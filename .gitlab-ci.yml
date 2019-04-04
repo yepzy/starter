@@ -1,0 +1,279 @@
+stages:
+    - build
+    - test
+    - compile
+    - deploy
+    - notify
+
+composer:
+    stage: build
+    image: composer:latest
+    script:
+        - composer install --no-progress --no-scripts --ignore-platform-reqs
+    artifacts:
+        expire_in: 1 day
+        paths:
+            - vendor/
+    cache:
+        key: ${CI_COMMIT_REF_SLUG}-composer
+        paths:
+            - vendor/
+    except:
+        refs:
+            - develop
+            - tags
+
+composer:nodev:
+    stage: build
+    image: composer:latest
+    before_script:
+        - rm -rf .utils
+        - git submodule sync --recursive .utils
+        - git submodule update --init --recursive --remote .utils
+    script:
+        - composer install --no-progress --no-scripts --ignore-platform-reqs --no-dev
+    artifacts:
+        expire_in: 1 day
+        paths:
+            - .utils/
+            - vendor/
+    cache:
+        key: ${CI_COMMIT_REF_SLUG}-composer-nodev
+        paths:
+            - .utils/
+            - vendor/
+    only:
+        refs:
+            - develop
+            - tags
+
+yarn:
+    stage: build
+    image: node:10
+    script:
+        - yarn install
+    artifacts:
+        expire_in: 1 day
+        paths:
+            - node_modules/
+    cache:
+        key: ${CI_COMMIT_REF_SLUG}-yarn
+        paths:
+            - node_modules/
+    only:
+        refs:
+            - develop
+            - tags
+
+yarn:nodev:
+    stage: build
+    image: node:10
+    script:
+        - yarn install --production
+    artifacts:
+        expire_in: 1 day
+        paths:
+            - node_modules/
+    cache:
+        key: ${CI_COMMIT_REF_SLUG}-yarn-nodev
+        paths:
+            - node_modules/
+    only:
+        refs:
+            - develop
+            - tags
+
+phpunit:
+    stage: test
+    image: php:7.3-cli # todo : set php version
+    dependencies:
+        - composer
+    before_script:
+        - pecl install xdebug
+        - docker-php-ext-enable xdebug
+    script:
+        - vendor/bin/phpunit --coverage-text --colors=never
+    except:
+        refs:
+            - develop
+            - tags
+
+phpcs:
+    stage: test
+    image: php:7.3-cli # todo : set php version
+    dependencies:
+        - composer
+    script:
+        - vendor/bin/phpcs
+    except:
+        refs:
+            - develop
+            - tags
+
+phpmd:
+    stage: test
+    image: php:7.3-cli # todo : set php version
+    dependencies:
+        - composer
+    script:
+        - vendor/bin/phpmd app,config,database,routes,tests text phpmd.xml
+    except:
+        refs:
+            - develop
+            - tags
+
+phpstan:
+    stage: test
+    image: php:7.3-cli # todo : set php version
+    dependencies:
+        - composer
+    script:
+        - php artisan code:analyse --paths="app,config,tests" || if [ $? -eq 1 ]; then echo "success" && exit 0; fi
+    except:
+        refs:
+            - develop
+            - tags
+
+resources:
+    stage: compile
+    image: node:10
+    dependencies:
+        - yarn
+        - composer:nodev
+    script:
+        - yarn production
+    artifacts:
+        expire_in: 1 day
+        paths:
+            - public/css/
+            - public/fonts/
+            - public/images/
+            - public/js/
+            - public/mix-manifest.json
+    only:
+        refs:
+            - develop
+            - tags
+
+.rsync_install: &rsync_install
+    before_script:
+        - apt-get update -y
+        - apt-get -y install rsync
+
+.ssh_init: &ssh_init |
+    which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
+    eval $(ssh-agent -s)
+    mkdir -p ~/.ssh
+    chmod 700 ~/.ssh
+    echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    chmod 600 ~/.ssh/id_rsa
+    ssh-add ~/.ssh/id_rsa
+    echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+
+.permissions_update: &permissions_update |
+    find . -type f -not -path "./vendor/*" -exec chmod 664 {} \;
+    find ./.utils -type f -iname "*.sh" -exec chmod +x {} \;
+    find ./.utils.custom -type f -iname "*.sh" -exec chmod +x {} \;
+    find . -type d -not -path "./vendor/*" -exec chmod 775 {} \;
+
+preprod:
+    stage: deploy
+    image: php:7.3-cli # todo : set php version
+    dependencies:
+        - composer:nodev
+        - yarn:nodev
+        - resources
+    <<: *rsync_install
+    script:
+        - *ssh_init
+        - *permissions_update
+        - vendor/bin/dep deploy preprod -vvv
+    environment:
+        name: preprod
+        url: https://preprod.digital-change.fr
+    only:
+        refs:
+            - develop
+
+prod:
+    stage: deploy
+    image: php:7.3-cli # todo : set php version
+    dependencies:
+        - composer:nodev
+        - yarn:nodev
+        - resources
+    <<: *rsync_install
+    script:
+        - *ssh_init
+        - *permissions_update
+        - vendor/bin/dep deploy production -vvv
+    environment:
+        name: production
+        url: https://www.digital-change.fr
+    only:
+        refs:
+            - tags
+
+# todo : set hook from rocket chat example
+.notify: &notify |
+    apk add --update curl && rm -rf /var/cache/apk/*
+    curl https://<rocket-chat-url>/hooks/<rocket-chat-channel-id> \
+            -X POST \
+            -H 'Content-Type:application/json' \
+            -d '{"text":"['"$CI_PROJECT_PATH"' - '"$CI_COMMIT_REF_NAME"'] : '"$NOTIFICATION_ACTION"' has '"$NOTIFICATION_STATUS"'.","attachments":[{"title":"Pipeline #'"$CI_PIPELINE_ID"'","title_link":"'"$CI_PIPELINE_URL"'","text":"Source : '"$CI_PIPELINE_SOURCE"' by '"$GITLAB_USER_NAME"'.","image_url": "'"$NOTIFICATION_IMAGE"'","color":"#764FA5"}]}'
+
+testing:success:
+    stage: notify
+    script:
+        - *notify
+    variables:
+        NOTIFICATION_ACTION: "testing"
+        NOTIFICATION_IMAGE: "https://img.icons8.com/color/1600/000000/todo-list.png"
+        NOTIFICATION_STATUS: "succeed"
+    except:
+        refs:
+            - develop
+            - tags
+    when: on_success
+
+testing:failure:
+    stage: notify
+    script:
+        - *notify
+    variables:
+        NOTIFICATION_ACTION: "testing"
+        NOTIFICATION_IMAGE: "https://img.icons8.com/color/1600/000000/to-do.png"
+        NOTIFICATION_STATUS: "failed"
+    except:
+        refs:
+            - develop
+            - tags
+    when: on_failure
+
+deploy:success:
+    stage: notify
+    script:
+        - *notify
+    variables:
+        NOTIFICATION_ACTION: "deployment"
+        NOTIFICATION_IMAGE: "https://img.icons8.com/color/1600/000000/launched-rocket.png"
+        NOTIFICATION_STATUS: "succeed"
+    only:
+        refs:
+            - develop
+            - tags
+    when: on_success
+
+deploy:failure:
+    stage: notify
+    script:
+        - *notify
+    variables:
+        NOTIFICATION_ACTION: "deployment"
+        NOTIFICATION_IMAGE: "https://img.icons8.com/color/1600/000000/mushroom-cloud.png"
+        NOTIFICATION_STATUS: "failed"
+    only:
+        refs:
+            - develop
+            - tags
+    when: on_failure
