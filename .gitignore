@@ -1,0 +1,35 @@
+# node
+/node_modules
+/npm-debug.log
+/yarn-error.log
+
+# public
+/public/hot
+/public/storage
+/public/images
+/public/css
+/public/js
+/public/fonts
+/public/mix-manifest.json
+/storage/*.key
+
+# composer
+/vendor
+
+# ide
+/.idea
+/.phpstorm.meta.php
+/_ide_helper.php
+
+# laravel
+.env
+
+# homestead
+Homestead.json
+Homestead.yaml
+
+#testing
+.phpunit.result.cache
+
+# storage
+/storage/medialibrary

@@ -1,0 +1,41 @@
+@extends('layouts.front.full')
+@section('template')
+    <div id="news" class="container my-5">
+        <div class="row">
+            <div class="col-12">
+                <h1>@lang('entities.news')</h1>
+            </div>
+            @foreach($articles as $article)
+                <div class="col-sm-4 py-3">
+                    <div class="card">
+                        <img src="{{ asset('images/lazy/pixel.png') }}"
+                             data-src="{{ $article->media->where('collection_name', 'illustration')->first()->getUrl('card') }}"
+                             class="card-img-top lozad"
+                             alt="{{ $article->title }}">
+                        <div class="card-body">
+                            <h2 class="h5 card-title">{{ $article->title }}</h2>
+                            <p class="small mt-n2">{{ Carbon\Carbon::parse($article->published_at)->format('d/m/Y') }}</p>
+                            @if($article->categories->isNotEmpty())
+                                <p class="card-text small">
+                                    @foreach($article->categories as $category)
+                                        <a class="btn btn-secondary btn-sm"
+                                           href="{{ route('news', ['category_id' => $category->id]) }}"
+                                           title="{{ $category->title }}">
+                                            {{ $category->title }}
+                                        </a>
+                                    @endforeach
+                                </p>
+                            @endif
+                            <p class="card-text shave description">{!! Str::limit(strip_tags((new Parsedown)->text($article->description)), 500) !!}</p>
+                            <a class="btn btn-primary spin-on-click"
+                               href="{{ route('news.article.show', $article->url) }}"
+                               title="@lang('static.action.moreInfo')">
+                                @lang('static.action.moreInfo')
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+@endsection

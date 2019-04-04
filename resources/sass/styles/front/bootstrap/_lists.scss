@@ -1,0 +1,38 @@
+.text {
+
+    ul:not(.pagination):not(.options) {
+        list-style-type: none;
+        padding: 0;
+
+        li {
+            position: relative;
+            padding: 0 0 0 2rem;
+            margin: 0 0 .3rem 0;
+            line-height: 1.2;
+            
+            &:before {
+                position: absolute;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                left: 0;
+                height: 100%;
+                content: '\f0c8';
+                font-family: "Font Awesome 5 Free";
+                font-weight: bold;
+                font-size: 1rem;
+                border-radius: 0;
+                color: $primary;
+            }
+        }
+    }
+
+    ol {
+        padding: 0 0 0 27px;
+
+        li {
+            padding: 0 0 0 10px;
+        }
+    }
+}
+

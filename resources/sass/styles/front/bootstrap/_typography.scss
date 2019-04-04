@@ -1,0 +1,35 @@
+.large {
+    font-size: $font-size-lg;
+}
+
+.text {
+    word-break: break-word;
+
+    em {
+        @extend .font-italic;
+    }
+
+    b,
+    strong {
+        @extend .font-weight-bold;
+    }
+
+    blockquote {
+        @extend .blockquote-footer;
+        @extend .font-italic;
+        position: relative;
+        padding: 0 0 0 4.5rem;
+        margin-top: 1rem;
+        font-size: $font-size-lg;
+
+        &:before {
+            content: '“';
+            position: absolute;
+            top: -2.5rem;
+            left: 0;
+            color: $primary;
+            font-size: 8rem;
+            font-weight: bold;
+        }
+    }
+}

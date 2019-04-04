@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ruleset name="PSR2">
+    <description>PSR-2 code style validation</description>
+    <file>./app</file>
+    <file>./database</file>
+    <file>./routes</file>
+    <file>./tests</file>
+    <arg name="colors"></arg>
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+        <exclude-pattern>./database/*</exclude-pattern>
+        <exclude-pattern>./tests/*</exclude-pattern>
+    </rule>
+    <rule ref="PSR2"/>
+</ruleset>

@@ -1,0 +1,9 @@
+#template {
+    padding: ($navbar-brand-height + $template-md-padding) $template-sm-padding $template-sm-padding $template-sm-padding;
+}
+
+@include media-breakpoint-up(md) {
+    #template {
+        padding: ($navbar-brand-height + $template-md-padding) $template-md-padding $template-md-padding ($navbar-left-sidebar-width + $template-md-padding);
+    }
+}

@@ -1,0 +1,10 @@
+.dropdown {
+
+    .dropdown-item {
+
+        @include media-breakpoint-down(sm) {
+            white-space: normal;
+        }
+    }
+}
+

@@ -1,0 +1,11 @@
+$swal2-success: $success;
+$swal2-error: $danger;
+$swal2-warning: $warning;
+$swal2-info: $info;
+@import '~sweetalert2/src/sweetalert2';
+.swal2-toast {
+    
+    #swal2-content {
+        text-align: start;
+    }
+}

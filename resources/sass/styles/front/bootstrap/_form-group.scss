@@ -1,0 +1,11 @@
+.form-group {
+
+    &[required] {
+
+        &:before {
+            left: -0.8rem;
+            top: 0;
+            font-size: 2.5rem;
+        }
+    }
+}

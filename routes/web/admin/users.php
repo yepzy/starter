@@ -1,0 +1,30 @@
+<?php
+
+Route::get(
+    LaravelLocalization::transRoute('routes.users.index'),
+    'UsersController@index'
+)->name('users');
+Route::get(
+    LaravelLocalization::transRoute('routes.users.create'),
+    'UsersController@create'
+)->name('user.create');
+Route::post(
+    LaravelLocalization::transRoute('routes.users.store'),
+    'UsersController@store'
+)->name('user.store');
+Route::get(
+    LaravelLocalization::transRoute('routes.users.edit'),
+    'UsersController@edit'
+)->name('user.edit');
+Route::put(
+    LaravelLocalization::transRoute('routes.users.update'),
+    'UsersController@update'
+)->name('user.update');
+Route::delete(
+    LaravelLocalization::transRoute('routes.users.destroy'),
+    'UsersController@destroy'
+)->name('user.destroy');
+Route::get(
+    LaravelLocalization::transRoute('routes.users.profile.admin'),
+    'UsersController@profile'
+)->name('user.profile');
