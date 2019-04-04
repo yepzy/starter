@@ -51,14 +51,6 @@
                     ->legend((new App\Models\User)->constraintsLegend('avatar')) }}
                 {{ bsText()->name('last_name')->model($user)->containerHtmlAttributes(['required']) }}
                 {{ bsText()->name('first_name')->model($user)->containerHtmlAttributes(['required']) }}
-                {{-- todo : manage roles --}}
-                {{--@if(! in_array(request()->route()->getName(), ['user.profile']))--}}
-                    {{--{{ bsSelect()->name('role_id')--}}
-                        {{--->options($selectOptions['roleOptions'], 'id', 'name')--}}
-                        {{--->selected('id', !$user ? $selectOptions['roleOptions']->where('slug', 'visitor')->first()->id : $user->role_id)--}}
-                        {{--->componentClass(['selector'])--}}
-                        {{--->containerHtmlAttributes(['required']) }}--}}
-                {{--@endif--}}
                 <h3 class="pt-4">@lang('admin.section.contact')</h3>
                 {{ bsEmail()->name('email')->model($user)->containerHtmlAttributes(['required']) }}
                 <h3 class="pt-4">@lang('admin.section.security')</h3>
