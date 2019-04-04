@@ -1,6 +1,6 @@
 <Todo : personalize readme>
 
-# Pre-built base for new app development
+# Pre-built base for new app development on Laravel 5.8
 
 `<build-status-badge>` `<coverage-report-badge>`
 
