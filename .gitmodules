@@ -1,7 +1,3 @@
-[submodule ".docker"]
-	path = .docker
-	url = git@gitlab.acid.fr:acid-solutions/docker.git
-	branch = "astikoto-site"
 [submodule ".utils"]
 	path = .utils
 	url = https://github.com/Okipa/laravel-utils-dotfiles.git
