@@ -13,24 +13,13 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        // todo : create needed users
         $this->createUser([
-            'first_name' => 'Arthur',
-            'last_name'  => 'Lorent',
-            'email'      => 'arthur@acid.fr',
+            'first_name' => 'App',
+            'last_name'  => 'Starter',
+            'email'      => 'app@starter.fr',
             'password'   => Hash::make('secret'),
-        ], 'admin');
-        $this->createUser([
-            'first_name' => 'Mathieu',
-            'last_name'  => 'Yactayo',
-            'email'      => 'mathieu@acid.fr',
-            'password'   => Hash::make('secret'),
-        ], 'admin');
-        $this->createUser([
-            'first_name' => 'Nicolas',
-            'last_name'  => 'Conrad',
-            'email'      => 'nicolas.conrad@itcco.fr',
-            'password'   => Hash::make('secret'),
-        ], 'moderator');
+        ]);
     }
 
     /**

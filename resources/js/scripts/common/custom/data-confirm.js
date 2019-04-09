@@ -34,6 +34,6 @@ window.listenToDataConfirmEvents = (askForConfirmationElements) => {
     });
 };
 const askForConfirmationElements = $('[data-confirm]');
-if(askForConfirmationElements) {
+if(askForConfirmationElements.length) {
     listenToDataConfirmEvents(askForConfirmationElements);
 }
