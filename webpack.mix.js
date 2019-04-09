@@ -41,7 +41,7 @@ mix.copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/fonts/fo
         cookieconsent: ['cookieconsent', 'window.cookieconsent'],
         lozad: ['lozad']
     })
-    .extract(['lodash', 'axios', 'jquery', 'popper.js', 'bootstrap', 'cookieconsent', 'lozad']);
+    .extract(['bootstrap', 'lodash', 'axios', 'jquery', 'popper.js', 'sweetalert2', 'cookieconsent', 'lozad']);
 
 if (mix.inProduction()) {
     mix.disableNotifications();
