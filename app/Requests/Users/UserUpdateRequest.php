@@ -7,6 +7,7 @@ use App\Models\User;
 
 class UserUpdateRequest extends Request
 {
+    protected $exceptFromSanitize = ['password'];
     protected $safetyChecks = [
         'remove_avatar' => 'boolean',
     ];
@@ -33,19 +34,6 @@ class UserUpdateRequest extends Request
                 'unique:users,email,' . $this->user->id,
             ],
             'password'      => ['string', 'min:6', 'confirmed'],
-        ];
-    }
-
-    /**
-     * Get custom messages for validator errors.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'password.min'       => __('notifications.message.password.wrong'),
-            'password.confirmed' => __('notifications.message.password.wrong'),
         ];
     }
 }

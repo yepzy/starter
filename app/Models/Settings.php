@@ -47,20 +47,20 @@ class Settings extends Model implements HasMedia
             ->singleFile()
             ->registerMediaConversions(function (Media $media = null) {
                 $this->addMediaConversion('front-mobile-header')
-                    ->fit(Manipulations::FIT_CONTAIN, 70, 70)
+                    ->fit(Manipulations::FIT_CROP, 70, 70)
                     ->keepOriginalImageFormat()
                     ->withResponsiveImages()
                     ->nonQueued();
                 $this->addMediaConversion('admin-header')
-                    ->fit(Manipulations::FIT_CONTAIN, 30, 30)
+                    ->fit(Manipulations::FIT_CROP, 30, 30)
                     ->keepOriginalImageFormat()
                     ->nonQueued();
                 $this->addMediaConversion('mail')
-                    ->fit(Manipulations::FIT_CONTAIN, 50, 50)
+                    ->fit(Manipulations::FIT_CROP, 50, 50)
                     ->keepOriginalImageFormat()
                     ->nonQueued();
                 $this->addMediaConversion('auth')
-                    ->fit(Manipulations::FIT_CONTAIN, 225, 225)
+                    ->fit(Manipulations::FIT_CROP, 225, 225)
                     ->keepOriginalImageFormat()
                     ->withResponsiveImages()
                     ->nonQueued();
@@ -78,7 +78,7 @@ class Settings extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')
-            ->crop(Manipulations::CROP_CENTER, 40, 40)
+            ->fit(Manipulations::FIT_CROP, 40, 40)
             ->keepOriginalImageFormat()
             ->nonQueued();
     }

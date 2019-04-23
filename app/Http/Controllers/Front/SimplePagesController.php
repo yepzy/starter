@@ -20,6 +20,6 @@ class SimplePagesController extends Controller
         (new SeoService)->seoMeta($page->title);
         $css = mix('css/simple-pages.css');
 
-        return view('templates.front.simple-page', compact('page', 'css'));
+        return view('templates.front.simplePages.show', compact('page', 'css'));
     }
 }

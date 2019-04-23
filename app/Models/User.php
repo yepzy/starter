@@ -63,7 +63,7 @@ class User extends Authenticatable implements
             ->singleFile()
             ->registerMediaConversions(function (Media $media = null) {
                 $this->addMediaConversion('profile')
-                    ->crop(Manipulations::CROP_CENTER, 260, 350)
+                    ->fit(Manipulations::FIT_CROP, 260, 350)
                     ->keepOriginalImageFormat()
                     ->nonQueued();
             });
@@ -80,7 +80,7 @@ class User extends Authenticatable implements
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')
-            ->crop(Manipulations::CROP_CENTER, 40, 40)
+            ->fit(Manipulations::FIT_CROP, 40, 40)
             ->keepOriginalImageFormat()
             ->nonQueued();
     }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Services\SimplePages\PagesService;
 use App\Http\Requests\SimplePages\SimplePageStoreRequest;
 use App\Http\Requests\SimplePages\SimplePageUpdateRequest;
+use Illuminate\Support\Str;
 
 class SimplePagesController extends Controller
 {
@@ -20,7 +21,7 @@ class SimplePagesController extends Controller
         $table = (new PagesService)->table();
         (new SeoService)->seoMeta(__('admin.title.orphan.index', ['entity' => __('entities.simplePages')]));
 
-        return view('templates.admin.simple-pages', compact('table'));
+        return view('templates.admin.simplePages.index', compact('table'));
     }
 
     /**
@@ -28,68 +29,73 @@ class SimplePagesController extends Controller
      */
     public function create()
     {
-        $page = null;
-        (new SeoService)->seoMeta(__('admin.title.create', ['entity' => __('entities.users')]));
+        $simplePage = null;
+        (new SeoService)->seoMeta(__('admin.title.orphan.create', ['entity' => __('entities.users')]));
 
-        return view('templates.admin.simple-page-edit', compact('page'));
+        return view('templates.admin.simplePages.edit', compact('simplePage'));
     }
 
     /**
      * @param \App\Http\Requests\SimplePages\SimplePageStoreRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function store(SimplePageStoreRequest $request)
     {
-        $page = (new SimplePage)->create($request->all());
+        $simplePage = (new SimplePage)->create($request->all());
+        cache()->forever(Str::camel($simplePage->slug), $simplePage);
 
         return redirect()->route('simplePages')->with('toast_success', __('notifications.message.crud.orphan.created', [
             'entity' => __('entities.simplePages'),
-            'name'   => $page->title,
+            'name'   => $simplePage->title,
         ]));
     }
 
     /**
-     * @param \App\Models\SimplePage $page
+     * @param \App\Models\SimplePage $simplePage
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(SimplePage $page)
+    public function edit(SimplePage $simplePage)
     {
         (new SeoService)->seoMeta(__('admin.title.orphan.edit', [
             'entity' => __('entities.simplePages'),
-            'detail' => $page->title,
+            'detail' => $simplePage->title,
         ]));
 
-        return view('templates.admin.simple-page-edit', compact('page'));
+        return view('templates.admin.simplePages.edit', compact('simplePage'));
     }
 
     /**
-     * @param \App\Models\SimplePage $page
+     * @param \App\Models\SimplePage $simplePage
      * @param \App\Http\Requests\SimplePages\SimplePageUpdateRequest $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(SimplePage $page, SimplePageUpdateRequest $request)
-    {
-        $page->update($request->all());
-
-        return back()->with('toast_success', __('notifications.message.crud.orphan.updated', [
-            'entity' => __('entities.simplePages'),
-            'name'   => $page->title,
-        ]));
-    }
-
-    /**
-     * @param \App\Models\SimplePage $page
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy(SimplePage $page)
+    public function update(SimplePage $simplePage, SimplePageUpdateRequest $request)
     {
-        $name = $page->title;
-        $page->delete();
+        cache()->forget(Str::camel($simplePage->slug));
+        $simplePage->update($request->all());
+        cache()->forever(Str::camel($simplePage->slug), $simplePage);
+
+        return back()->with('toast_success', __('notifications.message.crud.orphan.updated', [
+            'entity' => __('entities.simplePages'),
+            'name'   => $simplePage->title,
+        ]));
+    }
+
+    /**
+     * @param \App\Models\SimplePage $simplePage
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function destroy(SimplePage $simplePage)
+    {
+        $name = $simplePage->title;
+        $simplePage->delete();
 
         return back()->with('toast_success', __('notifications.message.crud.orphan.destroyed', [
             'entity' => __('entities.simplePages'),

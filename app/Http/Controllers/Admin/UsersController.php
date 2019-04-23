@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Auth;
-use App\Models\User;
-use App\Services\Utils\SeoService;
 use App\Http\Controllers\Controller;
-use App\Services\Users\UsersService;
 use App\Http\Requests\Users\UserStoreRequest;
 use App\Http\Requests\Users\UserUpdateRequest;
+use App\Models\User;
+use App\Services\Users\UsersService;
+use App\Services\Utils\SeoService;
+use Auth;
+use Hash;
 
 class UsersController extends Controller
 {
@@ -29,7 +30,7 @@ class UsersController extends Controller
         (new SeoService)->seoMeta(__('admin.title.orphan.index', ['entity' => __('entities.users')]));
         $table = $this->service->table();
 
-        return view('templates.admin.users', compact('table'));
+        return view('templates.admin.users.index', compact('table'));
     }
 
     /**
@@ -41,7 +42,7 @@ class UsersController extends Controller
         $user = null;
         (new SeoService)->seoMeta(__('admin.title.create', ['entity' => __('entities.users')]));
 
-        return view('templates.admin.user-edit', compact('user'));
+        return view('templates.admin.users.edit', compact('user'));
     }
 
     /**
@@ -51,6 +52,7 @@ class UsersController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
+        $request->merge(['password' => Hash::make($request->password)]);
         $user = (new User)->create($request->all());
         $this->service->manageAvatarFromRequest($request, $user);
 
@@ -73,7 +75,7 @@ class UsersController extends Controller
             'detail' => $user->name,
         ]));
 
-        return view('templates.admin.user-edit', compact('user'));
+        return view('templates.admin.users.edit', compact('user'));
     }
 
     /**
@@ -84,6 +86,9 @@ class UsersController extends Controller
      */
     public function update(User $user, UserUpdateRequest $request)
     {
+        if ($password = $request->password) {
+            $request->merge(['password' => Hash::make($password)]);
+        }
         $user->update($request->all());
         $this->service->manageAvatarFromRequest($request, $user);
 
@@ -121,6 +126,6 @@ class UsersController extends Controller
         $user = auth()->user();
         (new SeoService)->seoMeta(__('entities.profile'));
 
-        return view('templates.admin.user-edit', compact('user'));
+        return view('templates.admin.users.edit', compact('user'));
     }
 }

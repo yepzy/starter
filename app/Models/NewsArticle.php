@@ -50,12 +50,12 @@ class NewsArticle extends Model implements HasMedia
             ->acceptsMimeTypes(['image/jpeg', 'image/png'])
             ->registerMediaConversions(function (Media $media = null) {
                 $this->addMediaConversion('cover')
-                    ->crop(Manipulations::CROP_CENTER, 1140, 500)
+                    ->fit(Manipulations::FIT_CROP, 1140, 500)
                     ->withResponsiveImages()
                     ->keepOriginalImageFormat()
                     ->nonQueued();
                 $this->addMediaConversion('card')
-                    ->crop(Manipulations::CROP_CENTER, 350, 250)
+                    ->fit(Manipulations::FIT_CROP, 350, 250)
                     ->keepOriginalImageFormat()
                     ->nonQueued();
             });
@@ -72,7 +72,7 @@ class NewsArticle extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')
-            ->crop(Manipulations::CROP_CENTER, 40, 40)
+            ->fit(Manipulations::FIT_CROP, 40, 40)
             ->keepOriginalImageFormat()
             ->nonQueued();
     }

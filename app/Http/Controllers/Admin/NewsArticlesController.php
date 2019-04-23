@@ -23,7 +23,7 @@ class NewsArticlesController extends Controller
             'entity' => __('entities.articles'),
         ]));
 
-        return view('templates.admin.news-articles', compact('table'));
+        return view('templates.admin.news.articles.index', compact('table'));
     }
 
     /**
@@ -37,7 +37,7 @@ class NewsArticlesController extends Controller
             'entity' => __('entities.articles'),
         ]));
 
-        return view('templates.admin.news-article-edit', compact('article'));
+        return view('templates.admin.news.articles.edit', compact('article'));
     }
 
     /**
@@ -75,7 +75,7 @@ class NewsArticlesController extends Controller
             'detail' => $article->title,
         ]));
 
-        return view('templates.admin.news-article-edit', compact('article'));
+        return view('templates.admin.news.articles.edit', compact('article'));
     }
 
     /**

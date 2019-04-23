@@ -14,6 +14,6 @@ class DashboardController extends Controller
     {
         (new SeoService)->seoMeta(__('entities.dashboard'));
 
-        return view('templates.admin.dashboard');
+        return view('templates.admin.dashboard.index');
     }
 }

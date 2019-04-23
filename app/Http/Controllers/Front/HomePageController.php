@@ -16,6 +16,6 @@ class HomePageController extends Controller
         (new SeoService)->seoMeta(__('entities.home'));
         $css = mix('css/home.css');
 
-        return view('templates.front.home', compact('css'));
+        return view('templates.front.home.show', compact('css'));
     }
 }
