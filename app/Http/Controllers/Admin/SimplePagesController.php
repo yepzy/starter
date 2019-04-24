@@ -44,7 +44,9 @@ class SimplePagesController extends Controller
     public function store(SimplePageStoreRequest $request)
     {
         $simplePage = (new SimplePage)->create($request->all());
-        cache()->forever(Str::camel($simplePage->slug), $simplePage);
+        cache()->rememberForever(Str::camel($simplePage->slug), function () use ($simplePage) {
+            return $simplePage;
+        });
 
         return redirect()->route('simplePages')->with('toast_success', __('notifications.message.crud.orphan.created', [
             'entity' => __('entities.simplePages'),
@@ -78,7 +80,9 @@ class SimplePagesController extends Controller
     {
         cache()->forget(Str::camel($simplePage->slug));
         $simplePage->update($request->all());
-        cache()->forever(Str::camel($simplePage->slug), $simplePage);
+        cache()->rememberForever(Str::camel($simplePage->slug), function () use ($simplePage) {
+            return $simplePage;
+        });
 
         return back()->with('toast_success', __('notifications.message.crud.orphan.updated', [
             'entity' => __('entities.simplePages'),
@@ -95,6 +99,7 @@ class SimplePagesController extends Controller
     public function destroy(SimplePage $simplePage)
     {
         $name = $simplePage->title;
+        cache()->forget(Str::camel($simplePage->slug));
         $simplePage->delete();
 
         return back()->with('toast_success', __('notifications.message.crud.orphan.destroyed', [
