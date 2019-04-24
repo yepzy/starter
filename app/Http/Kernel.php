@@ -15,12 +15,13 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
+        ShareDataGlobally::class,
+        InsertJavascript::class,
         \App\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
-        ShareDataGlobally::class,
     ];
     /**
      * The application's route middleware groups.
@@ -37,7 +38,6 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \RealRashid\SweetAlert\ToSweetAlert::class,
-            InsertJavascript::class,
         ],
         'api' => [
             'throttle:60,1',
