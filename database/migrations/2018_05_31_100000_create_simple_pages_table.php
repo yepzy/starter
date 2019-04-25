@@ -14,7 +14,7 @@ class CreateSimplePagesTable extends Migration
     public function up()
     {
         Schema::create('simple_pages', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('slug')->unique();
             $table->string('url')->unique();
             $table->string('title');
