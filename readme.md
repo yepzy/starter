@@ -36,7 +36,6 @@ Once you are connected into your docker workspace (previous command), execute th
 - `composer install`
 - `php artisan key:generate`
 - `php artisan storage:link`
-- `php artisan storage:link`
 - `php artisan migrate:refresh --seed`
 
 ------------------------------------------------------------------------------------------------------------------------
