@@ -1,18 +1,16 @@
 <?php
 
 return [
+
     'front' => [
         'home' => 'Accueil',
         'news' => 'Actualités',
     ],
+
     'admin' => [
-        // top nav *****************************************************************************************************
-        // tabs
+        // top nav
         'profile'     => 'Mon profil',
-        // actions
-        'logout'      => 'Déconnexion',
-        // side nav ****************************************************************************************************
-        // tabs
+        // side nav
         'dashboard'   => 'Tableau de bord',
         'home'        => 'Accueil',
         'news'        => 'Actualités',
@@ -20,13 +18,13 @@ return [
         'articles'    => 'Articles',
         'simplePages' => 'Pages simples',
         'users'       => 'Utilisateurs',
-        'site'        => 'Site',
         'settings'    => 'Paramètres',
-        // actions
-        'page'        => 'Page',
-        'slides'      => 'Slides',
-        'list'        => 'Liste',
-        'create'      => 'Ajout',
-        'back'        => 'Retour au site',
+    ],
+
+    'action' => [
+        'page'   => 'Page',
+        'list'   => 'Liste',
+        'back'   => 'Retour au site',
+        'logout' => 'Déconnexion',
     ],
 ];

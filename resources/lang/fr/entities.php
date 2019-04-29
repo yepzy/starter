@@ -7,7 +7,6 @@ return [
     'home'                 => 'Accueil',
     'news'                 => 'Actualités',
     'simplePages'          => 'Pages simples',
-    'slides'               => 'Slides',
     'categories'           => 'Catégories',
     'articles'             => 'Articles',
 ];

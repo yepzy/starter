@@ -52,10 +52,10 @@
                         @csrf()
                         <button type="submit"
                                 class="dropdown-item btn btn-link"
-                                title="{{ __('nav.admin.logout') }}"
+                                title="{{ __('nav.action.logout') }}"
                                 data-confirm="@lang('notifications.message.logout.confirmation')">
                             <i class="fas fa-fw fa-sign-out-alt"></i>
-                            @lang('nav.admin.logout')
+                            @lang('nav.action.logout')
                         </button>
                     </form>
                 </div>

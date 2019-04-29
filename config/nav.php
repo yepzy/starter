@@ -68,7 +68,7 @@ return [
         'divider',
         'back'        => [
             'icon'        => '<i class="fas fa-undo fa-fw"></i>',
-            'trans'       => 'nav.admin.back',
+            'trans'       => 'nav.action.back',
             'route'       => 'home',
             'class'       => ['new-window'],
         ],
