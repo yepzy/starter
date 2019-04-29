@@ -220,7 +220,7 @@ prod:
     curl https://<rocket-chat-url>/hooks/<rocket-chat-channel-id> \
             -X POST \
             -H 'Content-Type:application/json' \
-            -d '{"text":"['"$CI_PROJECT_PATH"' - '"$CI_COMMIT_REF_NAME"'] : '"$NOTIFICATION_ACTION"' has '"$NOTIFICATION_STATUS"'.","attachments":[{"title":"Pipeline #'"$CI_PIPELINE_ID"'","title_link":"'"$CI_PIPELINE_URL"'","text":"Source : '"$CI_PIPELINE_SOURCE"' by '"$GITLAB_USER_NAME"'.","image_url": "'"$NOTIFICATION_IMAGE"'","color":"#764FA5"}]}'
+            -d '{"text":"'"$NOTIFICATION_STATUS_ICON"' `['"$CI_PROJECT_PATH"']` ['"$NOTIFICATION_ACTION"']('"$CI_PIPELINE_URL"') : branch **'"$CI_COMMIT_REF_NAME"'** / **'"$CI_PIPELINE_SOURCE"'** from  @'"$GITLAB_USER_NAME"'"}'
 
 testing:success:
     stage: notify
@@ -228,8 +228,7 @@ testing:success:
         - *notify
     variables:
         NOTIFICATION_ACTION: "testing"
-        NOTIFICATION_IMAGE: "https://img.icons8.com/color/1600/000000/todo-list.png"
-        NOTIFICATION_STATUS: "succeed"
+        NOTIFICATION_STATUS_ICON: "✅"
     except:
         refs:
             - develop
@@ -242,8 +241,7 @@ testing:failure:
         - *notify
     variables:
         NOTIFICATION_ACTION: "testing"
-        NOTIFICATION_IMAGE: "https://img.icons8.com/color/1600/000000/to-do.png"
-        NOTIFICATION_STATUS: "failed"
+        NOTIFICATION_STATUS_ICON: "❌"
     except:
         refs:
             - develop
@@ -256,8 +254,7 @@ deploy:success:
         - *notify
     variables:
         NOTIFICATION_ACTION: "deployment"
-        NOTIFICATION_IMAGE: "https://img.icons8.com/color/1600/000000/launched-rocket.png"
-        NOTIFICATION_STATUS: "succeed"
+        NOTIFICATION_STATUS_ICON: "✅"
     only:
         refs:
             - develop
@@ -270,8 +267,7 @@ deploy:failure:
         - *notify
     variables:
         NOTIFICATION_ACTION: "deployment"
-        NOTIFICATION_IMAGE: "https://img.icons8.com/color/1600/000000/mushroom-cloud.png"
-        NOTIFICATION_STATUS: "failed"
+        NOTIFICATION_STATUS_ICON: "❌"
     only:
         refs:
             - develop
