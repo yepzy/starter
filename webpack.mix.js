@@ -26,7 +26,7 @@ mix.copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/fonts/fo
     // admin
     //
     // front
-    .sass('resources/sass/front/home/index.scss', 'public/css/home')
+    .sass('resources/sass/front/home/page/show.scss', 'public/css/home/page')
     .sass('resources/sass/front/news/index.scss', 'public/css/news')
     .sass('resources/sass/front/news/show.scss', 'public/css/news')
     .sass('resources/sass/front/simplePages/show.scss', 'public/css/simplePages')

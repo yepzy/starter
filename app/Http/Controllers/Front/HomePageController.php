@@ -11,11 +11,11 @@ class HomePageController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Exception
      */
-    public function index()
+    public function show()
     {
         (new SeoService)->seoMeta(__('entities.home'));
-        $css = mix('/css/home/index.css');
+        $css = mix('/css/home/show.css');
 
-        return view('templates.front.home.show', compact('css'));
+        return view('templates.front.home.page.show', compact('css'));
     }
 }
