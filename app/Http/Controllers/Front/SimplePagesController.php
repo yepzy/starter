@@ -18,7 +18,7 @@ class SimplePagesController extends Controller
     {
         $page = (new SimplePage)->where('url', $url)->where('active', true)->firstOrFail();
         (new SeoService)->seoMeta($page->title);
-        $css = mix('css/simple-pages.css');
+        $css = mix('/css/simplePages/show.css');
 
         return view('templates.front.simplePages.show', compact('page', 'css'));
     }

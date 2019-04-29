@@ -14,7 +14,7 @@ class HomePageController extends Controller
     public function index()
     {
         (new SeoService)->seoMeta(__('entities.home'));
-        $css = mix('css/home.css');
+        $css = mix('/css/home/index.css');
 
         return view('templates.front.home.show', compact('css'));
     }

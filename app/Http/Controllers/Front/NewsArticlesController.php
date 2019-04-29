@@ -31,7 +31,7 @@ class NewsArticlesController extends Controller
             });
         }
         $articles = $query->paginate(6)->appends($request->only('category_id'));
-        $css = mix('css/news.css');
+        $css = mix('/css/news/index.css');
 
         return view('templates.front.news.index', compact('articles', 'css'));
     }
@@ -56,7 +56,7 @@ class NewsArticlesController extends Controller
             ->limit(3)
             ->get();
         (new SeoService)->seoMeta($article->title);
-        $css = mix('css/news-show.css');
+        $css = mix('/css/news/show.css');
 
         return view('templates.front.news.show', compact('article', 'lastArticles', 'css'));
     }
