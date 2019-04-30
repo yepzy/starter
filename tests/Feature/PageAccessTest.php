@@ -17,7 +17,6 @@ class PageAccessTest extends TestCase
     {
         $this->artisan('db:seed --class=SettingsTableSeeder');
         $this->artisan('db:seed --class=SimplePagesTableSeeder');
-        $response = $this->get('/');
-        $response->assertStatus(200);
+        $this->get('/')->assertStatus(200);
     }
 }

@@ -8,7 +8,6 @@ class RoutesTest extends TestCase
 {
     public function testRouteList()
     {
-        $returnCode = $this->artisan('route:list');
-        $this->assertEquals(0, $returnCode);
+        $this->artisan('route:list')->assertExitCode(0);
     }
 }
