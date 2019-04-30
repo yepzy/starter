@@ -1,7 +1,7 @@
 stages:
     - build
-    - test
     - compile
+    - test
     - deploy
     - notify
 
@@ -60,10 +60,6 @@ yarn:
         key: ${CI_COMMIT_REF_SLUG}-yarn
         paths:
             - node_modules/
-    only:
-        refs:
-            - develop
-            - tags
 
 yarn:nodev:
     stage: build
@@ -83,12 +79,59 @@ yarn:nodev:
             - develop
             - tags
 
+resources:
+    stage: compile
+    image: node:10
+    dependencies:
+        - yarn
+        - composer:nodev
+    script:
+        - yarn production
+    artifacts:
+        expire_in: 1 day
+        paths:
+            - public/css/
+            - public/fonts/
+            - public/images/
+            - public/js/
+            - public/mix-manifest.json
+    only:
+        refs:
+            - develop
+            - tags
+
+resources:nodev:
+    stage: compile
+    image: node:10
+    dependencies:
+        - yarn
+        - composer:nodev
+    script:
+        - yarn production
+    artifacts:
+        expire_in: 1 day
+        paths:
+            - public/css/
+            - public/fonts/
+            - public/images/
+            - public/js/
+            - public/mix-manifest.json
+    only:
+        refs:
+            - develop
+            - tags
+
 phpunit:
     stage: test
     image: php:7.3-cli # todo : set php version
     dependencies:
         - composer
+        - resources
     before_script:
+        - apt update && apt install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev exif
+        - docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+        - docker-php-ext-install gd
+        - docker-php-ext-install exif
         - pecl install xdebug
         - docker-php-ext-enable xdebug
     script:
@@ -134,27 +177,6 @@ phpstan:
             - develop
             - tags
 
-resources:
-    stage: compile
-    image: node:10
-    dependencies:
-        - yarn
-        - composer:nodev
-    script:
-        - yarn production
-    artifacts:
-        expire_in: 1 day
-        paths:
-            - public/css/
-            - public/fonts/
-            - public/images/
-            - public/js/
-            - public/mix-manifest.json
-    only:
-        refs:
-            - develop
-            - tags
-
 .rsync_install: &rsync_install
     before_script:
         - apt-get update -y
@@ -182,7 +204,7 @@ preprod:
     dependencies:
         - composer:nodev
         - yarn:nodev
-        - resources
+        - resources:nodev
     <<: *rsync_install
     script:
         - *ssh_init
@@ -201,7 +223,7 @@ prod:
     dependencies:
         - composer:nodev
         - yarn:nodev
-        - resources
+        - resources:nodev
     <<: *rsync_install
     script:
         - *ssh_init
@@ -220,7 +242,7 @@ prod:
     curl https://<rocket-chat-url>/hooks/<rocket-chat-channel-id> \
             -X POST \
             -H 'Content-Type:application/json' \
-            -d '{"text":"'"$NOTIFICATION_STATUS_ICON"' `['"$CI_PROJECT_PATH"']` ['"$NOTIFICATION_ACTION"']('"$CI_PIPELINE_URL"') : branch **'"$CI_COMMIT_REF_NAME"'** / **'"$CI_PIPELINE_SOURCE"'** from  @'"$GITLAB_USER_NAME"'"}'
+            -d '{"text":"'"$NOTIFICATION_STATUS_ICON"' `['"$CI_PROJECT_PATH"']` ['"$NOTIFICATION_ACTION"']('"$CI_PIPELINE_URL"') : **'"$CI_PIPELINE_SOURCE"'** from  @'"$GITLAB_USER_NAME"' on branch **'"$CI_COMMIT_REF_NAME"'**."}'
 
 testing:success:
     stage: notify
