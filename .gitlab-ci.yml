@@ -242,7 +242,7 @@ prod:
     curl https://<rocket-chat-url>/hooks/<rocket-chat-channel-id> \
             -X POST \
             -H 'Content-Type:application/json' \
-            -d '{"text":"'"$NOTIFICATION_STATUS_ICON"' `['"$CI_PROJECT_PATH"']` ['"$NOTIFICATION_ACTION"']('"$CI_PIPELINE_URL"') : **'"$CI_PIPELINE_SOURCE"'** from  @'"$GITLAB_USER_NAME"' on branch **'"$CI_COMMIT_REF_NAME"'**."}'
+            -d '{"text":"'"$NOTIFICATION_STATUS_ICON"' `['"$CI_PROJECT_PATH"']` ['"$NOTIFICATION_ACTION"']('"$CI_PIPELINE_URL"') : **'"$CI_PIPELINE_SOURCE"'** from  @'"$GITLAB_USER_NAME"' on **'"$CI_COMMIT_REF_NAME"'**."}'
 
 testing:success:
     stage: notify
