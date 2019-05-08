@@ -14,9 +14,9 @@ class CreateNewsArticleCategoryTable extends Migration
     public function up()
     {
         Schema::create('news_article_category', function (Blueprint $table) {
-            $table->unsignedInteger('news_article_id');
+            $table->unsignedBigInteger('news_article_id');
             $table->foreign('news_article_id')->references('id')->on('news_articles')->onDelete('cascade');
-            $table->unsignedInteger('news_category_id');
+            $table->unsignedBigInteger('news_category_id');
             $table->foreign('news_category_id')->references('id')->on('news_categories')->onDelete('cascade');
             $table->primary(['news_article_id', 'news_category_id']);
             $table->timestamps();

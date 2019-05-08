@@ -62,12 +62,10 @@
                 {{ bsPassword()->name('password_confirmation')
                     ->model($user)
                     ->containerHtmlAttributes($user ? [] : ['required']) }}
-                {{ bsCancel()->url(route('users'))->containerClass(['pt-4', 'mr-3', 'float-left']) }}
-                @if($user)
-                    {{ bsUpdate()->containerClass(['pt-4', 'float-left']) }}
-                @else
-                    {{ bsCreate()->containerClass(['pt-4', 'float-left']) }}
-                @endif
+                <div class="d-flex pt-4">
+                    {{ bsCancel()->route('users')->containerClass(['mr-3']) }}
+                    @if($user){{ bsUpdate() }}@else{{ bsCreate() }}@endif
+                </div>
             </div>
         </div>
     </form>

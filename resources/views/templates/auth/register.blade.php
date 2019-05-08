@@ -18,10 +18,10 @@
         @csrf
         @include('components.common.form.notice')
         {{ bsText()->name('first_name')
-            ->icon('<i class="fas fa-user"></i>')
+            ->prepend('<i class="fas fa-user"></i>')
             ->containerHtmlAttributes(['required']) }}
         {{ bsText()->name('last_name')
-            ->icon('<i class="fas fa-user"></i>')
+            ->prepend('<i class="fas fa-user"></i>')
             ->containerHtmlAttributes(['required']) }}
         {{ bsEmail()->name('email')
             ->containerHtmlAttributes(['required']) }}

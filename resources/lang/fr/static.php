@@ -36,6 +36,5 @@ return [
         'phoneNumber' => [
             'foreign' => 'En cas de numéro non français, merci de saisir le numéro de téléphone avec son indicatif pays (exemple : +49 pour l\'Allemagne).',
         ],
-        'slug'        => 'Attention : toute modification pourra avoir des effets indésirables (élément inaccessible).',
     ],
 ];

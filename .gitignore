@@ -13,6 +13,9 @@
 /public/mix-manifest.json
 /storage/*.key
 
+# docker
+.docker
+
 # composer
 /vendor
 

@@ -19,8 +19,7 @@ class SimplePageUpdateRequest extends Request
     public function before()
     {
         $this->merge([
-            'slug' => Str::slug($this->slug),
-            'url'  => Str::slug($this->url),
+            'url' => Str::slug($this->url),
         ]);
     }
 
@@ -32,7 +31,6 @@ class SimplePageUpdateRequest extends Request
     public function rules()
     {
         return [
-            'slug'        => ['string', 'max:255', 'alpha_dash', 'unique:simple_pages,slug,' . $this->page->id],
             'url'         => [
                 'required',
                 'string',

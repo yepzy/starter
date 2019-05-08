@@ -27,9 +27,8 @@ Set your project domain resolution in your virtualhost : `sudo vim /etc/hosts`
 ### Project configuration and dependencies installation 
 First, execute the following commands on your host machine :
 - `cp .env.example .env`. Then set the environment variable according to your project needs.
-- `yarn install`
-- `yarn run dev`
 - `git submodule update --init --recursive --remote --force`
+- `yarn install`
 - `.utils/docker/up.sh --build` 
 - `.utils/docker/workspace.sh` 
 Once you are connected into your docker workspace (previous command), execute the following commands :
@@ -37,6 +36,8 @@ Once you are connected into your docker workspace (previous command), execute th
 - `php artisan key:generate`
 - `php artisan storage:link`
 - `php artisan migrate:refresh --seed`
+Finally, on your host machine :
+- `yarn dev` or `yarn watch`
 
 ------------------------------------------------------------------------------------------------------------------------
 

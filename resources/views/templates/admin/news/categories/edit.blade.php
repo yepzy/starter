@@ -16,7 +16,8 @@
         @endif
     </h1>
     <hr>
-    <form action="{{ $category ? route('news.category.update', ['id' => $category->id]) : route('news.category.store') }}" method="POST">
+    <form action="{{ $category ? route('news.category.update', ['id' => $category->id]) : route('news.category.store') }}"
+          method="POST">
         @csrf
         @if($category)
             @method('PUT')
@@ -31,12 +32,10 @@
             <div class="card-body">
                 <h3>@lang('admin.section.identity')</h3>
                 {{ bsText()->name('title')->model($category)->containerHtmlAttributes(['required']) }}
-                {{ bsCancel()->route('news.categories')->containerClass(['pt-4', 'mr-3', 'float-left']) }}
-                @if($category)
-                    {{ bsUpdate()->containerClass(['pt-4', 'float-left']) }}
-                @else
-                    {{ bsCreate()->containerClass(['pt-4', 'float-left']) }}
-                @endif
+                <div class="d-flex pt-4">
+                    {{ bsCancel()->route('news.categories')->containerClass(['mr-3']) }}
+                    @if($category){{ bsUpdate() }}@else{{ bsCreate() }}@endif
+                </div>
             </div>
         </div>
     </form>

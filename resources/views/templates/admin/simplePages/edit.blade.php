@@ -9,7 +9,8 @@
         @endif
     </h1>
     <hr>
-    <form action="{{ $simplePage ? route('simplePage.update', ['id' => $simplePage->id]) : route('simplePage.store') }}" method="POST">
+    <form action="{{ $simplePage ? route('simplePage.update', ['id' => $simplePage->id]) : route('simplePage.store') }}"
+          method="POST">
         @csrf
         @if($simplePage)
             @method('PUT')
@@ -25,28 +26,27 @@
             <div class="card-body">
                 <h3>@lang('admin.section.page')</h3>
                 {{ bsText()->name('title')->model($simplePage)->containerHtmlAttributes(['required']) }}
+                @if(! $simplePage)
+                    {{ bsText()->name('slug')
+                        ->model($simplePage)
+                        ->prepend('<i class="fas fa-fw fa-key"></i>')
+                        ->componentClass(['slugify'])
+                        ->componentHtmlAttributes(['data-target' => '#text-title'])
+                        ->containerHtmlAttributes(['required'])}}
+                @endif
                 {{ bsUrl()->name('url')
                     ->model($simplePage)
-                    ->icon(route('simplePage.show', ['']) . '/')
+                    ->prepend(route('simplePage.show', ['']) . '/')
                     ->componentClass(['slugify'])
                     ->componentHtmlAttributes(['data-target' => '#text-title'])
                     ->containerHtmlAttributes(['required']) }}
-                {{ bsText()->name('slug')
-                    ->model($simplePage)
-                    ->icon('<i class="fas fa-fw fa-key"></i>')
-                    ->legend(__('static.legend.slug'))
-                    ->componentClass(['slugify'])
-                    ->componentHtmlAttributes(['data-target' => '#text-title'])
-                    ->containerHtmlAttributes(['required'])}}
-                {{ bsTextarea()->name('description')->model($simplePage)->hideIcon()->componentClass(['editor']) }}
+                {{ bsTextarea()->name('description')->model($simplePage)->prepend(false)->componentClass(['editor']) }}
                 <h3 class="pt-4">@lang('admin.section.publication')</h3>
                 {{ bsToggle()->name('active')->model($simplePage) }}
-                {{ bsCancel()->route('simplePages')->containerClass(['pt-4', 'mr-3', 'float-left']) }}
-                @if($simplePage)
-                    {{ bsUpdate()->containerClass(['pt-4', 'float-left']) }}
-                @else
-                    {{ bsCreate()->containerClass(['pt-4', 'float-left']) }}
-                @endif
+                <div class="d-flex pt-4">
+                    {{ bsCancel()->route('simplePages')->containerClass(['mr-3']) }}
+                    @if($simplePage){{ bsUpdate() }}@else{{ bsCreate() }}@endif
+                </div>
             </div>
         </div>
     </form>

@@ -56,9 +56,9 @@ return [
         'index'   => 'pages',
         'create'  => 'page/creer',
         'store'   => 'page/enregistrer',
-        'edit'    => 'page/editer/{page}',
-        'update'  => 'page/mettre-a-jour/{page}',
-        'destroy' => 'page/supprimer/{page}',
+        'edit'    => 'page/editer/{simplePage}',
+        'update'  => 'page/mettre-a-jour/{simplePage}',
+        'destroy' => 'page/supprimer/{simplePage}',
     ],
     // admin ***********************************************************************************************************
     'settings'            => [

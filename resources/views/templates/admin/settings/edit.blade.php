@@ -31,14 +31,16 @@
                 <h3 class="pt-4">@lang('admin.section.contact')</h3>
                 {{ bsEmail()->name('email')->model($settings)->containerHtmlAttributes(['required']) }}
                 {{ bsTel()->name('phone_number')->model($settings)->containerHtmlAttributes(['required']) }}
-                {{ bsText()->name('address')->model($settings)->icon('<i class="fas fa-map-marker"></i>') }}
-                {{ bsText()->name('zip_code')->model($settings)->icon('<i class="fas fa-location-arrow"></i>') }}
-                {{ bsText()->name('city')->model($settings)->icon('<i class="fas fa-thumbtack"></i>') }}
+                {{ bsText()->name('address')->model($settings)->prepend('<i class="fas fa-map-marker"></i>') }}
+                {{ bsText()->name('zip_code')->model($settings)->prepend('<i class="fas fa-location-arrow"></i>') }}
+                {{ bsText()->name('city')->model($settings)->prepend('<i class="fas fa-thumbtack"></i>') }}
                 <h3 class="pt-4">@lang('admin.section.links')</h3>
-                {{ bsText()->name('facebook')->model($settings)->icon('<i class="fab fa-facebook"></i>') }}
-                {{ bsText()->name('instagram')->model($settings)->icon('<i class="fab fa-instagram"></i>') }}
-                {{ bsText()->name('google_tag_manager')->model($settings)->icon('<i class="fas fa-tag"></i>') }}
-                {{ bsUpdate()->containerClass(['pt-4']) }}
+                {{ bsText()->name('facebook')->model($settings)->prepend('<i class="fab fa-facebook"></i>') }}
+                {{ bsText()->name('instagram')->model($settings)->prepend('<i class="fab fa-instagram"></i>') }}
+                {{ bsText()->name('google_tag_manager')->model($settings)->prepend('<i class="fas fa-tag"></i>') }}
+                <div class="d-flex pt-4">
+                    {{ bsUpdate() }}
+                </div>
             </div>
         </div>
     </form>

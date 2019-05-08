@@ -13,6 +13,7 @@ class PagesService extends Service implements PagesServiceInterface
      *
      * @return \Okipa\LaravelTable\Table
      * @throws \ErrorException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function table(): Table
     {

@@ -50,32 +50,30 @@
                 {{ bsText()->name('title')->model($article)->containerHtmlAttributes(['required']) }}
                 {{ bsUrl()->name('url')
                     ->model($article)
-                    ->icon(route('news.article.show', [$article]) . '/')
+                    ->prepend(route('news.article.show', [$article]) . '/')
                     ->componentClass(['slugify'])
                     ->componentHtmlAttributes(['data-target' => '#text-title'])
                     ->containerHtmlAttributes(['required']) }}
                 <h3 class="pt-4">@lang('admin.section.information')</h3>
                 {{ bsSelect()->name('category_ids')
                     ->model($article)
-                    ->icon(' <i class="fas fa-tags"></i>')
+                    ->prepend(' <i class="fas fa-tags"></i>')
                     ->options((new \App\Models\NewsCategory)->orderBy('title')->get(), 'id', 'title')
                     ->multiple()
                     ->componentClass(['selector'])
                     ->containerHtmlAttributes(['required']) }}
-                {{ bsTextarea()->name('description')->model($article)->componentClass(['editor'])->hideIcon() }}
+                {{ bsTextarea()->name('description')->model($article)->componentClass(['editor'])->prepend(false) }}
                 <h3 class="pt-4">@lang('admin.section.publication')</h3>
                 {{ bsText()->name('published_at')
                     ->value(($article ? $article->published_at : now())->format('d/m/Y H:i'))
-                    ->icon('<i class="fas fa-calendar-alt"></i>')
+                    ->prepend('<i class="fas fa-calendar-alt"></i>')
                     ->componentClass(['datetime-picker'])
                     ->containerHtmlAttributes(['required']) }}
                 {{ bsToggle()->name('active')->model($article) }}
-                {{ bsCancel()->route('news.articles')->containerClass(['pt-4', 'mr-3', 'float-left']) }}
-                @if($article)
-                    {{ bsUpdate()->containerClass(['pt-4', 'float-left']) }}
-                @else
-                    {{ bsCreate()->containerClass(['pt-4', 'float-left']) }}
-                @endif
+                <div class="d-flex pt-4">
+                    {{ bsCancel()->route('news.articles')->containerClass(['mr-3']) }}
+                    @if($article){{ bsUpdate() }}@else{{ bsCreate() }}@endif
+                </div>
             </div>
         </div>
     </form>
