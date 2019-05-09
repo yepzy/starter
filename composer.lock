@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9f5f9e4cfd698e9a8a7a4abe19316537",
+    "content-hash": "bd7b7bed3ded0774ac7dd6eadd0c030d",
     "packages": [
         {
             "name": "artesaos/seotools",
@@ -2153,23 +2153,23 @@
         },
         {
             "name": "okipa/laravel-bootstrap-components",
-            "version": "dev-master",
+            "version": "0.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-bootstrap-components.git",
-                "reference": "7a43dc2fe27808f6102c14876dd67bac25e72668"
+                "reference": "7f298b7bea0768b2b588eb92880b920b864d53cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Okipa/laravel-bootstrap-components/zipball/7a43dc2fe27808f6102c14876dd67bac25e72668",
-                "reference": "7a43dc2fe27808f6102c14876dd67bac25e72668",
+                "url": "https://api.github.com/repos/Okipa/laravel-bootstrap-components/zipball/7f298b7bea0768b2b588eb92880b920b864d53cc",
+                "reference": "7f298b7bea0768b2b588eb92880b920b864d53cc",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "illuminate/support": "~5.0",
+                "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
                 "okipa/laravel-html-helper": "^1.0",
-                "php": ">=7.1"
+                "php": "^7.2"
             },
             "require-dev": {
                 "mockery/mockery": "^1.2",
@@ -2205,7 +2205,7 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Laravel bootstrap components generator.",
+            "description": "Generate bootstrap components with Laravel.",
             "homepage": "https://github.com/Okipa/laravel-bootstrap-components",
             "keywords": [
                 "bootstrap",
@@ -2219,7 +2219,7 @@
                 "package",
                 "php"
             ],
-            "time": "2019-05-02T16:30:10+00:00"
+            "time": "2019-05-09T11:25:11+00:00"
         },
         {
             "name": "okipa/laravel-html-helper",
@@ -2422,23 +2422,23 @@
         },
         {
             "name": "okipa/laravel-table",
-            "version": "dev-master",
+            "version": "1.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-table.git",
-                "reference": "86f2ed07526b372da27d176c3b5298107e2d44f2"
+                "reference": "d23067e74e4969a96ee81ee19671004f7bee7d24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Okipa/laravel-table/zipball/86f2ed07526b372da27d176c3b5298107e2d44f2",
-                "reference": "86f2ed07526b372da27d176c3b5298107e2d44f2",
+                "url": "https://api.github.com/repos/Okipa/laravel-table/zipball/d23067e74e4969a96ee81ee19671004f7bee7d24",
+                "reference": "d23067e74e4969a96ee81ee19671004f7bee7d24",
                 "shasum": ""
             },
             "require": {
                 "ext-pdo": "*",
-                "illuminate/support": "~5.2",
+                "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
                 "okipa/laravel-html-helper": "^1.0",
-                "php": ">=7.1"
+                "php": "^7.2"
             },
             "require-dev": {
                 "mockery/mockery": "^1.2",
@@ -2487,7 +2487,7 @@
                 "table",
                 "tables"
             ],
-            "time": "2019-05-08T20:35:12+00:00"
+            "time": "2019-05-09T09:19:43+00:00"
         },
         {
             "name": "okipa/php-data-sanitizer",
@@ -4456,16 +4456,16 @@
         },
         {
             "name": "symfony/contracts",
-            "version": "v1.0.2",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/contracts.git",
-                "reference": "1aa7ab2429c3d594dd70689604b5cf7421254cdf"
+                "reference": "d3636025e8253c6144358ec0a62773cae588395b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/contracts/zipball/1aa7ab2429c3d594dd70689604b5cf7421254cdf",
-                "reference": "1aa7ab2429c3d594dd70689604b5cf7421254cdf",
+                "url": "https://api.github.com/repos/symfony/contracts/zipball/d3636025e8253c6144358ec0a62773cae588395b",
+                "reference": "d3636025e8253c6144358ec0a62773cae588395b",
                 "shasum": ""
             },
             "require": {
@@ -4473,19 +4473,22 @@
             },
             "require-dev": {
                 "psr/cache": "^1.0",
-                "psr/container": "^1.0"
+                "psr/container": "^1.0",
+                "symfony/polyfill-intl-idn": "^1.10"
             },
             "suggest": {
                 "psr/cache": "When using the Cache contracts",
                 "psr/container": "When using the Service contracts",
                 "symfony/cache-contracts-implementation": "",
+                "symfony/event-dispatcher-implementation": "",
+                "symfony/http-client-contracts-implementation": "",
                 "symfony/service-contracts-implementation": "",
                 "symfony/translation-contracts-implementation": ""
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -4520,7 +4523,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2018-12-05T08:06:11+00:00"
+            "time": "2019-04-27T14:29:50+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -4986,7 +4989,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -8182,16 +8185,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.5.9",
+            "version": "7.5.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "134669cf0eeac3f79bc7f0c793efbc158bffc160"
+                "reference": "d7d9cee051d03ed98df6023aad93f7902731a780"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/134669cf0eeac3f79bc7f0c793efbc158bffc160",
-                "reference": "134669cf0eeac3f79bc7f0c793efbc158bffc160",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d7d9cee051d03ed98df6023aad93f7902731a780",
+                "reference": "d7d9cee051d03ed98df6023aad93f7902731a780",
                 "shasum": ""
             },
             "require": {
@@ -8262,7 +8265,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-04-19T15:50:46+00:00"
+            "time": "2019-05-09T05:06:47+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -9255,9 +9258,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "okipa/laravel-bootstrap-components": 20,
-        "okipa/laravel-medialibrary-extension": 20,
-        "okipa/laravel-table": 20
+        "okipa/laravel-medialibrary-extension": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

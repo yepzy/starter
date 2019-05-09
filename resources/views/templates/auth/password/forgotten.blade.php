@@ -1,7 +1,7 @@
 @extends('layouts.admin.auth')
 @section('content')
     @include('components.common.language.selector', [
-        'containerClass'    => 'text-right',
+        'containerClasses'    => 'text-right',
         'dropdownClass'     => 'dropdown-menu-right',
         'labelClass'        => ['btn', 'btn-link']
     ])
@@ -21,7 +21,7 @@
             ->legend(__('static.legend.password.forgotten'))
             ->containerHtmlAttributes(['required']) }}
         {{ bsValidate()->label(__('auth.label.sendEmail'))
-            ->componentClass(['btn', 'btn-block', 'btn-primary', 'spin-on-click']) }}
+            ->componentClasses(['btn', 'btn-block', 'btn-primary', 'spin-on-click']) }}
     </form>
     {{ bsCancel()->route('login') }}
 @endsection

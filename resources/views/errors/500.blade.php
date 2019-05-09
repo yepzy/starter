@@ -30,7 +30,7 @@
                         });
                     </script>
                 @endif
-                {{ bsBack()->route('home')->label(__('static.action.backHome'))->containerClass(['mt-5']) }}
+                {{ bsBack()->route('home')->label(__('static.action.backHome'))->containerClasses(['mt-5']) }}
             </div>
         </div>
     </div>

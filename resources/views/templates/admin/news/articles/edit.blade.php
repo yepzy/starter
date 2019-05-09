@@ -40,7 +40,7 @@
                         return $illustration 
                             ? image()->src($illustration->getUrl('thumb'))
                                 ->linkUrl($illustration->getUrl('cover'))
-                                ->containerClass(['mb-2'])
+                                ->containerClasses(['mb-2'])
                             : null;
                     })
                     ->showRemoveCheckbox(false)
@@ -48,10 +48,10 @@
                     ->legend((new \App\Models\NewsArticle)->constraintsLegend('illustration')) }}
                 <h3 class="pt-4">@lang('admin.section.identity')</h3>
                 {{ bsText()->name('title')->model($article)->containerHtmlAttributes(['required']) }}
-                {{ bsUrl()->name('url')
+                {{ bsText()->name('url')
                     ->model($article)
                     ->prepend(route('news.article.show', [$article]) . '/')
-                    ->componentClass(['slugify'])
+                    ->componentClasses(['slugify'])
                     ->componentHtmlAttributes(['data-target' => '#text-title'])
                     ->containerHtmlAttributes(['required']) }}
                 <h3 class="pt-4">@lang('admin.section.information')</h3>
@@ -60,18 +60,18 @@
                     ->prepend(' <i class="fas fa-tags"></i>')
                     ->options((new \App\Models\NewsCategory)->orderBy('title')->get(), 'id', 'title')
                     ->multiple()
-                    ->componentClass(['selector'])
+                    ->componentClasses(['selector'])
                     ->containerHtmlAttributes(['required']) }}
-                {{ bsTextarea()->name('description')->model($article)->componentClass(['editor'])->prepend(false) }}
+                {{ bsTextarea()->name('description')->model($article)->componentClasses(['editor'])->prepend(false) }}
                 <h3 class="pt-4">@lang('admin.section.publication')</h3>
                 {{ bsText()->name('published_at')
                     ->value(($article ? $article->published_at : now())->format('d/m/Y H:i'))
                     ->prepend('<i class="fas fa-calendar-alt"></i>')
-                    ->componentClass(['datetime-picker'])
+                    ->componentClasses(['datetime-picker'])
                     ->containerHtmlAttributes(['required']) }}
                 {{ bsToggle()->name('active')->model($article) }}
                 <div class="d-flex pt-4">
-                    {{ bsCancel()->route('news.articles')->containerClass(['mr-3']) }}
+                    {{ bsCancel()->route('news.articles')->containerClasses(['mr-3']) }}
                     @if($article){{ bsUpdate() }}@else{{ bsCreate() }}@endif
                 </div>
             </div>

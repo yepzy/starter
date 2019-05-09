@@ -30,21 +30,21 @@
                     {{ bsText()->name('slug')
                         ->model($simplePage)
                         ->prepend('<i class="fas fa-fw fa-key"></i>')
-                        ->componentClass(['slugify'])
+                        ->componentClasses(['slugify'])
                         ->componentHtmlAttributes(['data-target' => '#text-title'])
                         ->containerHtmlAttributes(['required'])}}
                 @endif
-                {{ bsUrl()->name('url')
+                {{ bsText()->name('url')
                     ->model($simplePage)
                     ->prepend(route('simplePage.show', ['']) . '/')
-                    ->componentClass(['slugify'])
+                    ->componentClasses(['slugify'])
                     ->componentHtmlAttributes(['data-target' => '#text-title'])
                     ->containerHtmlAttributes(['required']) }}
-                {{ bsTextarea()->name('description')->model($simplePage)->prepend(false)->componentClass(['editor']) }}
+                {{ bsTextarea()->name('description')->model($simplePage)->prepend(false)->componentClasses(['editor']) }}
                 <h3 class="pt-4">@lang('admin.section.publication')</h3>
                 {{ bsToggle()->name('active')->model($simplePage) }}
                 <div class="d-flex pt-4">
-                    {{ bsCancel()->route('simplePages')->containerClass(['mr-3']) }}
+                    {{ bsCancel()->route('simplePages')->containerClasses(['mr-3']) }}
                     @if($simplePage){{ bsUpdate() }}@else{{ bsCreate() }}@endif
                 </div>
             </div>

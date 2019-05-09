@@ -18,7 +18,7 @@
                 </p>
                 {{ bsBack()->route('home')->label($exception->getStatusCode() == 503
                     ? __('static.action.retry')
-                    : __('static.action.backHome'))->containerClass(['mt-5']) }}
+                    : __('static.action.backHome'))->containerClasses(['mt-5']) }}
             </div>
         </div>
     </div>

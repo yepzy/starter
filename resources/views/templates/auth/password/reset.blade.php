@@ -1,7 +1,7 @@
 @extends('layouts.admin.auth')
 @section('content')
     @include('components.common.language.selector', [
-        'containerClass'    => 'text-right',
+        'containerClasses'    => 'text-right',
         'dropdownClass'     => 'dropdown-menu-right',
         'labelClass'        => ['btn', 'btn-link']
     ])
@@ -22,7 +22,7 @@
         {{ bsPassword()->name('password')->containerHtmlAttributes(['required']) }}
         {{ bsPassword()->name('password_confirmation')->containerHtmlAttributes(['required']) }}
         {{ bsValidate()->label(__('auth.label.resetPassword'))
-            ->componentClass(['btn', 'btn-block', 'btn-primary', 'spin-on-click']) }}
+            ->componentClasses(['btn', 'btn-block', 'btn-primary', 'spin-on-click']) }}
     </form>
     {{ bsBack()->url(route('login')) }}
 @endsection

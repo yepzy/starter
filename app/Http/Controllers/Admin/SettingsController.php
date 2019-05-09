@@ -16,7 +16,7 @@ class SettingsController extends Controller
     {
         (new SeoService)->seoMeta(__('admin.title.orphan.index', ['entity' => __('entities.settings')]));
 
-        return view('templates.admin.settings.index');
+        return view('templates.admin.settings.edit');
     }
 
     /**

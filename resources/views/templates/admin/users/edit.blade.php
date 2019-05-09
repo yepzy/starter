@@ -45,7 +45,7 @@
                         return $avatar
                             ? image()->src(optional($avatar)->getUrl('thumb'))
                                 ->linkUrl(optional($avatar)->getUrl('profile'))
-                                ->containerClass(['mb-2'])
+                                ->containerClasses(['mb-2'])
                             : null;
                     })
                     ->legend((new App\Models\User)->constraintsLegend('avatar')) }}
@@ -63,7 +63,7 @@
                     ->model($user)
                     ->containerHtmlAttributes($user ? [] : ['required']) }}
                 <div class="d-flex pt-4">
-                    {{ bsCancel()->route('users')->containerClass(['mr-3']) }}
+                    {{ bsCancel()->route('users')->containerClasses(['mr-3']) }}
                     @if($user){{ bsUpdate() }}@else{{ bsCreate() }}@endif
                 </div>
             </div>

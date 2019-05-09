@@ -1,5 +1,5 @@
 @if(multilingual())
-    <div {{ classTag('dropdown', isset($containerClass) ? $containerClass : null) }}>
+    <div {{ classTag('dropdown', isset($containerClasses) ? $containerClasses : null) }}>
         <a href=""
            {{ classTag('dropdown-toggle', isset($dropdownLabelClass) ? $dropdownLabelClass : null) }}
            id="language-selector"

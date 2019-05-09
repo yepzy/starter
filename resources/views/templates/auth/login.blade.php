@@ -1,7 +1,7 @@
 @extends('layouts.admin.auth')
 @section('content')
     @include('components.common.language.selector', [
-        'containerClass'        => 'text-right',
+        'containerClasses'        => 'text-right',
         'dropdownLabelClass'    => ['btn', 'btn-link'],
         'dropdownMenuClass'     => 'dropdown-menu-right'
     ])
@@ -22,7 +22,7 @@
         {{ bsToggle()->name('remember') }}
         {{ bsValidate()
             ->label(__('auth.label.signIn'))
-            ->componentClass(['btn', 'btn-block', 'btn-primary', 'spin-on-click']) }}
+            ->componentClasses(['btn', 'btn-block', 'btn-primary', 'spin-on-click']) }}
         <div class="form-group d-block">
             <a href="{{ route('password.request') }}">
                 @lang('auth.label.forgottenPassword')

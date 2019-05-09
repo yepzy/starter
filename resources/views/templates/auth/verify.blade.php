@@ -1,7 +1,7 @@
 @extends('layouts.admin.auth')
 @section('content')
     @include('components.common.language.selector', [
-        'containerClass'        => 'text-right',
+        'containerClasses'        => 'text-right',
         'dropdownLabelClass'    => ['btn', 'btn-link'],
         'dropdownMenuClass'     => 'dropdown-menu-right'
     ])

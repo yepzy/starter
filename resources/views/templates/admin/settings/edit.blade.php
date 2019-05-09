@@ -24,7 +24,7 @@
                         return ($logo = $settings->media->where('collection_name', 'icon')->first())
                             ? image()->src($logo->getUrl('thumb'))
                                 ->linkUrl($logo->getUrl('auth'))
-                                ->containerClass(['mb-2'])
+                                ->containerClasses(['mb-2'])
                             : null;
                     })
                     ->legend((new \App\Models\Settings)->constraintsLegend('icon')) }}

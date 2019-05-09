@@ -36,7 +36,7 @@ class SimplePageUpdateRequest extends Request
                 'string',
                 'alpha_dash',
                 'max:255',
-                'unique:simple_pages,url,' . $this->page->id,
+                'unique:simple_pages,url,' . $this->simplePage->id,
                 new UrlUnique,
             ],
             'title'       => ['required', 'string', 'max:255'],
