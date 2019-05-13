@@ -2,7 +2,7 @@
 @php
     switch(request()->route()->getName()){
         case 'user.create' :
-            $title = __('admin.title.create', ['entity' => __('entities.users')]);
+            $title = __('admin.title.orphan.create', ['entity' => __('entities.users')]);
             $action = route('user.store');
             break;
         case 'user.edit' :

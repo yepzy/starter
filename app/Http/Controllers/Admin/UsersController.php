@@ -40,7 +40,7 @@ class UsersController extends Controller
     public function create()
     {
         $user = null;
-        (new SeoService)->seoMeta(__('admin.title.create', ['entity' => __('entities.users')]));
+        (new SeoService)->seoMeta(__('admin.title.orphan.create', ['entity' => __('entities.users')]));
 
         return view('templates.admin.users.edit', compact('user'));
     }
