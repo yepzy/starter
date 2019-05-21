@@ -212,7 +212,7 @@ preprod:
         - vendor/bin/dep deploy preprod -vvv
     environment:
         name: preprod
-        url: https://preprod.digital-change.fr
+        url: <project-preprod-url> # todo : set project preprod url
     only:
         refs:
             - develop
@@ -231,7 +231,7 @@ prod:
         - vendor/bin/dep deploy production -vvv
     environment:
         name: production
-        url: https://www.digital-change.fr
+        url: <project-prod-url> # todo : set project prod url
     only:
         refs:
             - tags

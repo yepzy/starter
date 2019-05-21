@@ -77,7 +77,7 @@ class SimplePagesController extends Controller
     public function update(SimplePage $simplePage, SimplePageUpdateRequest $request)
     {
         cache()->forget(Str::camel($simplePage->slug));
-        $simplePage->update($request->all());
+        $simplePage->update($request->except('slug'));
         cache()->forever(Str::camel($simplePage->slug), $simplePage->fresh());
 
         return back()->with('toast_success', __('notifications.message.crud.orphan.updated', [
