@@ -83,8 +83,8 @@ task('deploy', [
 
 task('deploy:upload', function () {
     $toUpload = [
-        '.utils/', '.utils.custom/', 'app/', 'bootstrap/', 'config/', 'database/', 'node_modules/', 'public/', 
-        'resources/', 'routes/', 'vendor/', 'artisan', 'composer.json'
+        '.utils/', '.utils.custom/', 'app/', 'bootstrap/', 'config/', 'database/', 'node_modules/', 'public/',
+        'resources/', 'routes/', 'vendor/', 'artisan', 'composer.json',
     ];
     $rsyncConfig = ['--delete'];
     foreach ($toUpload as $key => $item) {
@@ -117,7 +117,7 @@ task('supervisor:laravel-queue:restart', function () {
 task('server:resources:reload', function () {
     $output = run('sudo service nginx reload');
     writeln('<info>' . $output . '</info>');
-    $output = run('sudo service php7.2-fpm restart');
+    $output = run('sudo service php7.3-fpm restart');
     writeln('<info>' . $output . '</info>');
 })->desc('Reloading the server resources');
 
