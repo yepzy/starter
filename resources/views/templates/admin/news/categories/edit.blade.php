@@ -1,5 +1,4 @@
 @extends('layouts.admin.full')
-
 @section('template')
     <h1>
         <i class="fas fa-tags fa-fw"></i>
@@ -33,7 +32,7 @@
                 <h3>@lang('admin.section.identity')</h3>
                 {{ bsText()->name('title')->model($category)->containerHtmlAttributes(['required']) }}
                 <div class="d-flex pt-4">
-                    {{ bsCancel()->route('news.categories')->containerClasses(['mr-3']) }}
+                    {{ bsCancel()->route('news.categories')->containerClasses(['mr-2']) }}
                     @if($category){{ bsUpdate() }}@else{{ bsCreate() }}@endif
                 </div>
             </div>

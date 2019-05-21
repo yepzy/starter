@@ -71,7 +71,7 @@
                     ->containerHtmlAttributes(['required']) }}
                 {{ bsToggle()->name('active')->model($article) }}
                 <div class="d-flex pt-4">
-                    {{ bsCancel()->route('news.articles')->containerClasses(['mr-3']) }}
+                    {{ bsCancel()->route('news.articles')->containerClasses(['mr-2']) }}
                     @if($article){{ bsUpdate() }}@else{{ bsCreate() }}@endif
                 </div>
             </div>

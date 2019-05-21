@@ -44,7 +44,7 @@
                 <h3 class="pt-4">@lang('admin.section.publication')</h3>
                 {{ bsToggle()->name('active')->model($simplePage) }}
                 <div class="d-flex pt-4">
-                    {{ bsCancel()->route('simplePages')->containerClasses(['mr-3']) }}
+                    {{ bsCancel()->route('simplePages')->containerClasses(['mr-2']) }}
                     @if($simplePage){{ bsUpdate() }}@else{{ bsCreate() }}@endif
                 </div>
             </div>

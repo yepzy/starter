@@ -63,7 +63,7 @@
                     ->model($user)
                     ->containerHtmlAttributes($user ? [] : ['required']) }}
                 <div class="d-flex pt-4">
-                    {{ bsCancel()->route('users')->containerClasses(['mr-3']) }}
+                    {{ bsCancel()->route('users')->containerClasses(['mr-2']) }}
                     @if($user){{ bsUpdate() }}@else{{ bsCreate() }}@endif
                 </div>
             </div>
