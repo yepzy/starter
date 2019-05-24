@@ -16,7 +16,6 @@
             @method('PUT')
         @endif()
         @include('components.common.form.notice')
-        {{-- Title --}}
         <div class="card">
             <div class="card-header">
                 <h2 class="m-0">
