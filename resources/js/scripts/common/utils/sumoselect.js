@@ -6,11 +6,6 @@ window.triggerSumoSelectDetection = () => {
         selectorElements.each((key, select) => {
             const $select = $(select);
             let placeholder = app.sumoSelect.placeholder;
-            if ($select.attr('multiple')) {
-                const placeholderOption = $select.find('option').first();
-                placeholder = placeholderOption.text();
-                placeholderOption.remove();
-            }
             $select.SumoSelect({
                 placeholder: placeholder,
                 search: true,

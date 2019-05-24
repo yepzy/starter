@@ -36,6 +36,7 @@ $selector-disabled-bg: $custom-select-disabled-bg !default;
 .SumoSelect {
     @extend .d-flex;
     @extend .flex-grow-1;
+    width: 100%;
     max-width: 100%;
 
     &:hover {
@@ -169,4 +170,3 @@ $selector-disabled-bg: $custom-select-disabled-bg !default;
         }
     }
 }
-

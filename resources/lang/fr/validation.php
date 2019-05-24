@@ -91,6 +91,7 @@ return [
     'not_regex'            => 'Le format du champ :attribute est invalide.',
     'numeric'              => 'Le champ :attribute doit être un nombre.',
     'present'              => 'Le champ :attribute doit être transmis.',
+    'phone'                => 'Le champ :attribute est un numéro non valide.',
     'regex'                => 'Le format du champ :attribute est invalide.',
     'required'             => 'Le champ :attribute est obligatoire.',
     'required_if'          => 'Le champ :attribute est obligatoire quand :other est égal à :value.',
