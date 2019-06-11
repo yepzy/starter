@@ -86,8 +86,8 @@ class UsersController extends Controller
      */
     public function update(User $user, UserUpdateRequest $request)
     {
-        if ($password = $request->password) {
-            $request->merge(['password' => Hash::make($password)]);
+        if ($newPassword = $request->new_password) {
+            $request->merge(['password' => Hash::make($newPassword)]);
         }
         $user->update($request->all());
         $this->service->manageAvatarFromRequest($request, $user);

@@ -34,4 +34,7 @@
         <server name="DB_DATABASE" value=":memory:"/>
         <server name="TELESCOPE_ENABLED" value="false"/>
     </php>
+    <listeners>
+        <listener class="NunoMaduro\Collision\Adapters\Phpunit\Listener" />
+    </listeners>
 </phpunit>

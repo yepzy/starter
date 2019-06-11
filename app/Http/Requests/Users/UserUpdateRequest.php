@@ -33,7 +33,7 @@ class UserUpdateRequest extends Request
                 'max:255',
                 'unique:users,email,' . $this->user->id,
             ],
-            'password'      => ['string', 'min:6', 'confirmed'],
+            'new_password'  => ['string', 'min:6', 'confirmed'],
         ];
     }
 }

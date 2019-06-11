@@ -59,7 +59,7 @@
                         . __('static.legend.password.constraint.string') 
                         . ' ' . __('static.legend.password.update'))
                     ->containerHtmlAttributes($user ? [] : ['required'])  }}
-                {{ bsPassword()->name('password_confirmation')
+                {{ bsPassword()->name($user ? 'new_password_confirmation' : 'password_confirmation')
                     ->model($user)
                     ->containerHtmlAttributes($user ? [] : ['required']) }}
                 <div class="d-flex pt-4">
