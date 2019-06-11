@@ -6,7 +6,7 @@ body, body *:not(html):not(style):not(br):not(tr):not(code) {
 }
 
 body {
-    background-color: #071e40;
+    background-color: #212529; // todo : customize color
     color: white;
     height: 100%;
     line-height: 1.4;
@@ -23,7 +23,7 @@ blockquote {
 }
 
 a {
-    color: #ba9a36;
+    color: #007bff; // todo : customize color
 }
 
 a img {
@@ -33,7 +33,7 @@ a img {
 /* Typography */
 
 h1 {
-    color: #ba9a36;
+    color: #007bff; // todo : customize color
     font-size: 1.6rem;
     font-weight: bold;
     margin: 1.6rem 0 1rem;
@@ -41,7 +41,7 @@ h1 {
 }
 
 h2 {
-    color: #ba9a36;
+    color: #007bff; // todo : customize color
     font-size: 1.4rem;
     font-weight: bold;
     margin: 1.4rem 0 .8rem;
@@ -49,7 +49,7 @@ h2 {
 }
 
 h3 {
-    color: #071f40;
+    color: #007bff; // todo : customize color
     font-size: 1rem;
     font-weight: bold;
     margin: 1.1rem 0 0.5rem;
@@ -57,7 +57,7 @@ h3 {
 }
 
 p {
-    color: #272d34;
+    color: #212529; // todo : customize color
     font-size: 1rem;
     line-height: 1.5em;
     margin-top: 0;
@@ -65,7 +65,7 @@ p {
 }
 
 li {
-    color: #272d34;
+    color: #212529; // todo : customize color
 }
 
 p.sub {
@@ -79,7 +79,7 @@ img {
 /* Layout */
 
 .wrapper {
-    background-color: #272d34;
+    background-color: #272d34; // todo : customize color
     margin: 0;
     padding: 0;
     width: 100%;
@@ -112,7 +112,7 @@ img {
 }
 
 .header a {
-    color: #ba9a36;
+    color: #007bff; // todo : customize color
     font-size: 19px;
     font-weight: bold;
     text-decoration: none;
@@ -235,27 +235,27 @@ img {
 }
 
 .button-primary {
-    background-color: #ba9a36;
-    border-top: 10px solid #ba9a36;
-    border-right: 18px solid #ba9a36;
-    border-bottom: 10px solid #ba9a36;
-    border-left: 18px solid #ba9a36;
+    background-color: #007bff; // todo : customize color
+    border-top: 10px solid #007bff; // todo : customize color
+    border-right: 18px solid #007bff; // todo : customize color
+    border-bottom: 10px solid #007bff; // todo : customize color
+    border-left: 18px solid #007bff; // todo : customize color
 }
 
 .button-secondary {
-    background-color: #55918f;
-    border-top: 10px solid #55918f;
-    border-right: 18px solid #55918f;
-    border-bottom: 10px solid #55918f;
-    border-left: 18px solid #55918f;
+    background-color: #6c757d; // todo : customize color
+    border-top: 10px solid #6c757d; // todo : customize color
+    border-right: 18px solid #6c757d; // todo : customize color
+    border-bottom: 10px solid #6c757d; // todo : customize color
+    border-left: 18px solid #6c757d; // todo : customize color
 }
 
 .button-info {
-    background-color: #805771;
-    border-top: 10px solid #805771;
-    border-right: 18px solid #805771;
-    border-bottom: 10px solid #805771;
-    border-left: 18px solid #805771;
+    background-color: #17a2b8; // todo : customize color
+    border-top: 10px solid #17a2b8; // todo : customize color
+    border-right: 18px solid #17a2b8; // todo : customize color
+    border-bottom: 10px solid #17a2b8; // todo : customize color
+    border-left: 18px solid #17a2b8; // todo : customize color
 }
 
 /* Panels */
