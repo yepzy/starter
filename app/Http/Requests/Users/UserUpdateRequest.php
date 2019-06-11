@@ -7,7 +7,7 @@ use App\Models\User;
 
 class UserUpdateRequest extends Request
 {
-    protected $exceptFromSanitize = ['password'];
+    protected $exceptFromSanitize = ['new_password'];
     protected $safetyChecks = [
         'remove_avatar' => 'boolean',
     ];
