@@ -62,7 +62,7 @@ class UserCredentialsReset extends Notification implements ShouldQueue
                 ['password' => $this->data['password']]
             ))
             ->line('  ')
-            ->action(__('mail.UserCredentialsReset.action'), route('user.profile.front'))
+            ->action(__('mail.UserCredentialsReset.action'), route('user.profile'))
             ->line('  ')
             ->line(__('mail.UserCredentialsReset.closing'));
 

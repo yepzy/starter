@@ -171,7 +171,8 @@ phpstan:
     dependencies:
         - composer
     script:
-        - php artisan code:analyse --paths="app,config,tests" || if [ $? -eq 1 ]; then echo "success" && exit 0; fi
+        - php artisan code:analyse --paths="app,config,tests"
+        - exit $?
     except:
         refs:
             - develop
