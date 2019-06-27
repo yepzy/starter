@@ -14,6 +14,7 @@ class UsersService extends Service implements UsersServiceInterface
      *
      * @return \Okipa\LaravelTable\Table
      * @throws \ErrorException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function table(): Table
     {

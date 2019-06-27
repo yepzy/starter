@@ -1,10 +1,11 @@
 @php
     $base64Logo = null;
-    if ($image = $settings->media->where('collection_name', 'icon')->first()) {
-        $imageUrl = $image->getUrl('mail');
+    $settings = (new \App\Models\Settings)->first();
+    if ($image = optional($settings)->media->where('collection_name', 'icon')->first()) {
+        $imageUrl = $image->getPath('mail');
         $type = pathinfo($imageUrl, PATHINFO_EXTENSION);
-        $data = file_get_contents(public_path($imageUrl));
-        $base64Logo = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        $base64Image = base64_encode(file_get_contents($imageUrl));
+        $base64Logo = 'data:image/' . $type . ';base64,' . $base64Image;
     }
 @endphp
 <tr>
