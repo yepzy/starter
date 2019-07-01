@@ -36,7 +36,7 @@ Once you are connected into your docker workspace (previous command), execute th
 - `php artisan key:generate`
 - `php artisan storage:link`
 - `php artisan migrate:refresh --seed`
-Finally, on your host machine :
+Finally, back on your host machine, execute the following commands :
 - `yarn dev` or `yarn watch`
 
 ------------------------------------------------------------------------------------------------------------------------
