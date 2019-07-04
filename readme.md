@@ -2,7 +2,12 @@
 
 # Pre-built base for new app development on Laravel 5.8
 
-`<build-status-badge>` `<coverage-report-badge>`
+**Master :** 
+`<build-status-badge>`
+`<coverage-report-badge>`  
+**Develop :**
+`<build-status-badge>`
+
 
 ------------------------------------------------------------------------------------------------------------------------
 

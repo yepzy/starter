@@ -62,10 +62,10 @@ task('deploy', [
     'deploy:shared',
     'deploy:writable',
     'artisan:storage:link',
-    'artisan:view:clear',
     'artisan:cache:clear',
+    'artisan:view:cache',
     'artisan:config:cache',
-    'artisan:route:cache', // only uncomment if the app is NOT multilingual
+    // 'artisan:route:cache', // todo : only uncomment if the app is NOT multilingual
     'artisan:optimize',
     'artisan:migrate',
     'deploy:symlink',
