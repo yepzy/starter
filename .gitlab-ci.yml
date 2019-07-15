@@ -128,8 +128,8 @@ phpunit:
         - composer
         - resources
     before_script:
-        - apt update && apt install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev exif
-        - docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+        - apt update && apt install -y libjpeg62-turbo-dev libpng-dev exif
+        - docker-php-ext-configure gd --with-gd --with-jpeg-dir --with-png-dir
         - docker-php-ext-install gd
         - docker-php-ext-install exif
         - pecl install xdebug
