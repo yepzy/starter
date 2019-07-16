@@ -11,7 +11,7 @@ class SeoController extends Controller
      */
     public function robotsTxt()
     {
-        $robotsTxtContent = app()->environment() == 'production'
+        $robotsTxtContent = app()->environment() === 'production'
             ? <<<EOT
 User-agent: *
 Disallow:
@@ -21,8 +21,18 @@ User-agent: *
 Disallow: /
 EOT;
 
-        // todo: declare sitemap
         return response()->make($robotsTxtContent)
+            ->header('Content-Type', 'text/plain');
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function sitemap()
+    {
+        //todo: declare sitemap
+        $sitemap = 'Empty sitemap';
+        return response()->make($sitemap)
             ->header('Content-Type', 'text/plain');
     }
 }

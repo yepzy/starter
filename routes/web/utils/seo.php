@@ -1,3 +1,4 @@
 <?php
 
-Route::get('robots.txt', 'SeoController@robotsTxt')->name('seo.robots');
+Route::get('robots.txt', 'SeoController@robotsTxt');
+Route::get('sitemap.xml', 'SeoController@sitemap');
