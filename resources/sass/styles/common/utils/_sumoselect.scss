@@ -39,6 +39,10 @@ $selector-disabled-bg: $custom-select-disabled-bg !default;
     width: 100%;
     max-width: 100%;
 
+    select {
+        visibility: hidden;
+    }
+
     &:hover {
         border-color: $selector-border-color;
         box-shadow: unset;
