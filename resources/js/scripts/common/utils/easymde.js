@@ -8,6 +8,7 @@ window.triggerEditorElementsDetection = () => {
                 forceSync: true,
                 spellChecker: false,
                 hideIcons: ['image'],
+                showIcons: ['table'],
                 status: [
                     'lines',
                     'words',

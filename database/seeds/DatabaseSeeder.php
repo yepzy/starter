@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->command->call('queue:flush');
         $this->command->call('queue:restart');
         File::cleanDirectory(storage_path('app/public'));
+        config()->set('medialibrary.queued_conversions', true);
         $this->call(SettingsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(SimplePagesTableSeeder::class);

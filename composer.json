@@ -20,7 +20,7 @@
         "laravel/tinker": "^1.0",
         "mcamara/laravel-localization": "^1.3",
         "okipa/laravel-bootstrap-components": "^0.9.0",
-        "okipa/laravel-medialibrary-extension": "dev-master",
+        "okipa/laravel-medialibrary-ext": "^7.11.0",
         "okipa/laravel-request-sanitizer": "^1.0",
         "okipa/laravel-table": "^1.0",
         "predis/predis": "^1.1",
