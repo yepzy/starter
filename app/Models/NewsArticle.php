@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Okipa\MediaLibraryExtension\HasMedia\HasMedia;
-use Okipa\MediaLibraryExtension\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\Models\Media;
 
@@ -52,12 +52,10 @@ class NewsArticle extends Model implements HasMedia
                 $this->addMediaConversion('cover')
                     ->fit(Manipulations::FIT_CROP, 1140, 500)
                     ->withResponsiveImages()
-                    ->keepOriginalImageFormat()
-                    ->nonQueued();
+                    ->keepOriginalImageFormat();
                 $this->addMediaConversion('card')
                     ->fit(Manipulations::FIT_CROP, 350, 250)
-                    ->keepOriginalImageFormat()
-                    ->nonQueued();
+                    ->keepOriginalImageFormat();
             });
     }
 
@@ -73,8 +71,7 @@ class NewsArticle extends Model implements HasMedia
     {
         $this->addMediaConversion('thumb')
             ->fit(Manipulations::FIT_CROP, 40, 40)
-            ->keepOriginalImageFormat()
-            ->nonQueued();
+            ->keepOriginalImageFormat();
     }
 
     // relationships ***************************************************************************************************

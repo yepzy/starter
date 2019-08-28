@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\Models\Media;
-use Okipa\MediaLibraryExtension\HasMedia\HasMedia;
-use Okipa\MediaLibraryExtension\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class Settings extends Model implements HasMedia
 {
@@ -49,21 +49,17 @@ class Settings extends Model implements HasMedia
                 $this->addMediaConversion('front-mobile-header')
                     ->fit(Manipulations::FIT_CROP, 70, 70)
                     ->keepOriginalImageFormat()
-                    ->withResponsiveImages()
-                    ->nonQueued();
+                    ->withResponsiveImages();
                 $this->addMediaConversion('admin-header')
                     ->fit(Manipulations::FIT_CROP, 30, 30)
-                    ->keepOriginalImageFormat()
-                    ->nonQueued();
+                    ->keepOriginalImageFormat();
                 $this->addMediaConversion('mail')
                     ->fit(Manipulations::FIT_CROP, 50, 50)
-                    ->keepOriginalImageFormat()
-                    ->nonQueued();
+                    ->keepOriginalImageFormat();
                 $this->addMediaConversion('auth')
                     ->fit(Manipulations::FIT_CROP, 225, 225)
                     ->keepOriginalImageFormat()
-                    ->withResponsiveImages()
-                    ->nonQueued();
+                    ->withResponsiveImages();
             });
     }
 
@@ -79,7 +75,6 @@ class Settings extends Model implements HasMedia
     {
         $this->addMediaConversion('thumb')
             ->fit(Manipulations::FIT_CROP, 40, 40)
-            ->keepOriginalImageFormat()
-            ->nonQueued();
+            ->keepOriginalImageFormat();
     }
 }

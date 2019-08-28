@@ -13,8 +13,8 @@ class UserStoreRequest extends Request
      * Get the validation rules that apply to the request.
      *
      * @return array
-     * @throws \Okipa\MediaLibraryExtension\Exceptions\CollectionNotFound
-     * @throws \Okipa\MediaLibraryExtension\Exceptions\ConversionsNotFound
+     * @throws \Spatie\MediaLibrary\Exceptions\CollectionNotFound
+     * @throws \Spatie\MediaLibrary\Exceptions\ConversionsNotFound
      */
     public function rules()
     {

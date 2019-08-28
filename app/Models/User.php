@@ -7,9 +7,9 @@ use App\Notifications\VerifyEmail;
 use App\Notifications\ResetPassword;
 use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Notifications\Notifiable;
-use Okipa\MediaLibraryExtension\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Okipa\MediaLibraryExtension\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail; // todo : uncomment if this feature is needed
 class User extends Authenticatable implements
@@ -64,8 +64,7 @@ class User extends Authenticatable implements
             ->registerMediaConversions(function (Media $media = null) {
                 $this->addMediaConversion('profile')
                     ->fit(Manipulations::FIT_CROP, 260, 350)
-                    ->keepOriginalImageFormat()
-                    ->nonQueued();
+                    ->keepOriginalImageFormat();
             });
     }
 
@@ -81,8 +80,7 @@ class User extends Authenticatable implements
     {
         $this->addMediaConversion('thumb')
             ->fit(Manipulations::FIT_CROP, 40, 40)
-            ->keepOriginalImageFormat()
-            ->nonQueued();
+            ->keepOriginalImageFormat();
     }
 
     // relationships ***************************************************************************************************
