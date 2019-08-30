@@ -94,6 +94,7 @@ resources:
             - public/fonts/
             - public/images/
             - public/js/
+            - public/favicon.ico
             - public/mix-manifest.json
     only:
         refs:
@@ -115,6 +116,7 @@ resources:nodev:
             - public/fonts/
             - public/images/
             - public/js/
+            - public/favicon.ico
             - public/mix-manifest.json
     only:
         refs:
