@@ -1,5 +1,11 @@
 const mix = require('laravel-mix');
 
+// fix found here to avoid custom files versioning issue : https://github.com/JeffreyWay/laravel-mix/issues/1193
+mix.copyDirectoryOutsideMixWorkflow = function (from, to) {
+    new File(from).copyTo(new File(to).path());
+    return this;
+}.bind(mix);
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,8 +17,10 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/fonts/fontawesome')
-    .copy('resources/images/', 'public/images/')
+mix
+    .copy('resources/favicon.ico', 'public/favicon.ico')
+    .copyDirectoryOutsideMixWorkflow('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/fonts/fontawesome')
+    .copyDirectoryOutsideMixWorkflow('resources/images', 'public/images')
     // js **************************************************************************************************************
     .js('resources/js/scripts/admin/base.js', 'public/js/admin.js')
     .js('resources/js/scripts/front/base.js', 'public/js/front.js')
@@ -41,9 +49,12 @@ mix.copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/fonts/fo
         cookieconsent: ['cookieconsent', 'window.cookieconsent'],
         lozad: ['lozad']
     })
-    .extract(['bootstrap', 'lodash', 'axios', 'jquery', 'popper.js', 'sweetalert2', 'cookieconsent', 'lozad']);
+    .extract(['bootstrap', 'lodash', 'axios', 'jquery', 'popper.js', 'sweetalert2', 'cookieconsent', 'lozad'])
+    .version([
+        'public/images/',
+        'public/favicon.ico'
+    ]);
 
 if (mix.inProduction()) {
     mix.disableNotifications();
-    mix.version();
 }

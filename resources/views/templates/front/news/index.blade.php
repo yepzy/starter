@@ -8,7 +8,7 @@
             @foreach($articles as $article)
                 <div class="col-sm-4 py-3">
                     <div class="card">
-                        <img src="{{ asset('images/lazy/pixel.png') }}"
+                        <img src="{{ mix('/images/lazy/pixel.png') }}"
                              data-src="{{ $article->media->where('collection_name', 'illustration')->first()->getUrl('card') }}"
                              class="card-img-top lozad"
                              alt="{{ $article->title }}">
