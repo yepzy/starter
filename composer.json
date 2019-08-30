@@ -1,12 +1,6 @@
 {
     "name": "laravel/laravel",
     "license": "proprietary",
-    "repositories": [
-        {
-            "type": "github",
-            "url":  "https://github.com/Okipa/laravel-medialibrary-extension"
-        }
-    ],
     "require": {
         "php": "^7.3",
         "ext-json": "*",
