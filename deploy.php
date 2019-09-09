@@ -65,7 +65,7 @@ task('deploy', [
     'artisan:cache:clear',
     'artisan:view:cache',
     'artisan:config:cache',
-    // 'artisan:route:cache', // todo : only uncomment if the app is NOT multilingual
+    'artisan:route:cache',
     'artisan:optimize',
     'artisan:migrate',
     'deploy:symlink',
@@ -73,6 +73,7 @@ task('deploy', [
     'cleanup',
     'artisan:queue:restart',
     'supervisor:laravel-queue:restart',
+    'supervisor:laravel-horizon:restart',
     'server:resources:reload',
     'cron:install',
 ])->desc('Releasing compiled project on server');
@@ -113,6 +114,12 @@ task('supervisor:laravel-queue:restart', function () {
         }
     });
 })->desc('Restarting the project laravel-queue supervisor task');
+
+task('supervisor:laravel-horizon:restart', function () {
+    within(get('release_path'), function () {
+        run('./.utils/supervisor/laravelHorizonRestart.sh');
+    });
+})->desc('Restarting the project laravel-horizon supervisor task');
 
 task('server:resources:reload', function () {
     $output = run('sudo service nginx reload');
