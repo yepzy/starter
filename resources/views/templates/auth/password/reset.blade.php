@@ -19,7 +19,10 @@
         <input type="hidden" name="token" value="{{ $token }}">
         @include('components.common.form.notice')
         {{ bsEmail()->name('email')->containerHtmlAttributes(['required']) }}
-        {{ bsPassword()->name('password')->containerHtmlAttributes(['required']) }}
+        {{ bsPassword()->name('password')
+            ->legend(__('static.legend.password.constraint.min', ['count' => config('security.password.constraint.min')]) . '<br/>'
+                . __('static.legend.password.recommendation'))
+            ->containerHtmlAttributes(['required']) }}
         {{ bsPassword()->name('password_confirmation')->containerHtmlAttributes(['required']) }}
         {{ bsValidate()->label(__('auth.label.resetPassword'))
             ->componentClasses(['btn', 'btn-block', 'btn-primary', 'spin-on-click']) }}

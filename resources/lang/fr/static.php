@@ -20,11 +20,11 @@ return [
     ],
     'legend'   => [
         'password'    => [
-            'forgotten'  => 'Renseignez votre e-mail pour y recevoir les instructions de réinitialisation de votre mot de passe.',
-            'update'     => 'Ne saisir que si vous souhaitez modifier le mot de passe actuel.',
-            'constraint' => [
-                'min'    => '6 caractères minimum.',
-                'string' => 'Doit contenir au moins une lettre.',
+            'forgotten'      => 'Renseignez votre e-mail pour y recevoir les instructions de réinitialisation de votre mot de passe.',
+            'recommendation' => 'Recommandation : mélanger majuscules, minuscules, chiffres et caractères spéciaux.',
+            'update'         => 'Ne saisir que si vous souhaitez modifier le mot de passe actuel.',
+            'constraint'     => [
+                'min' => '8 caractères minimum.',
             ],
         ],
         'media'       => [
