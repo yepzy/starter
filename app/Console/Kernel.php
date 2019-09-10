@@ -36,8 +36,10 @@ class Kernel extends ConsoleKernel
     {
         // auth
         $schedule->command('auth:clear-resets')->dailyAt('02:00');
-        // media library
-        $schedule->command('medialibrary:clean')->dailyAt('03:00');
+        // sitemap
+        $schedule->command('sitemap:generate')->twiceDaily();
+        // horizon
+        $schedule->command('horizon:snapshot')->everyFiveMinutes();
         // telescope
         $schedule->command('telescope:prune')->dailyAt('04:00');
     }

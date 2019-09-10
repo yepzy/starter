@@ -11,8 +11,11 @@
 /public/favicon.ico
 /public/hot
 /public/mix-manifest.json
-/storage/*.key
 /public/storage
+/public/sitemap.xml
+
+# storage
+/storage/*.key
 
 # docker
 .docker
