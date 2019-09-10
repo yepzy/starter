@@ -8,23 +8,22 @@ return [
     ],
 
     'admin' => [
+        // common
+        'categories'  => 'Catégories',
+        'articles'    => 'Articles',
+        'page'        => 'Page',
+        'list'        => 'Liste',
         // top nav
         'profile'     => 'Mon profil',
+        'logout'      => 'Déconnexion',
         // side nav
         'dashboard'   => 'Tableau de bord',
         'home'        => 'Accueil',
         'news'        => 'Actualités',
-        'categories'  => 'Catégories',
-        'articles'    => 'Articles',
         'simplePages' => 'Pages simples',
         'users'       => 'Utilisateurs',
         'settings'    => 'Paramètres',
+        'back'        => 'Retour au site',
     ],
 
-    'action' => [
-        'page'   => 'Page',
-        'list'   => 'Liste',
-        'back'   => 'Retour au site',
-        'logout' => 'Déconnexion',
-    ],
 ];

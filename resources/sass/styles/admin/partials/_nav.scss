@@ -108,43 +108,46 @@
 
         .navbar-nav {
 
+            // first level side menu elements
             .nav-item {
 
-                &.active {
-                    background-color: $navbar-nav-active-bg-color;
-                }
+                .nav-link {
 
-                &:hover {
-                    @extend .active;
-                    @include transition();
+                    @include media-breakpoint-up(md) {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        max-width: $navbar-left-sidebar-width;
+                    }
 
-                    .nav-link {
+                    &.active {
+                        background-color: darken($dark, 10%);
+                    }
+
+                    &:hover {
                         color: $navbar-dark-hover-color;
+                        background-color: darken($dark, 10%);
+                        @include transition();
                     }
                 }
 
-                .nav-link {
-                    padding-left: $nav-link-padding-x;
-                    padding-right: $nav-link-padding-x;
-                    text-overflow: ellipsis;
-                    max-width: 100%;
-                    white-space: nowrap;
-                    overflow: hidden;
-                }
-
-                ul.collapse, ul.collapsing {
+                // collapsing side sub menu elements
+                .collapse, .collapsing {
+                    background-color: $light;
 
                     .nav-item {
 
-                        &.active {
-                            background-color: $navbar-nav-active-sub-bg-color;
-                        }
+                        .nav-link {
+                            color: $navbar-light-color;
 
-                        &:hover {
-                            @extend .active;
+                            &.active {
+                                color: $navbar-light-active-color;
+                                background-color: darken($light, 10%);
+                            }
 
-                            .nav-link {
-                                color: $navbar-nav-active-sub-color;
+                            &:hover {
+                                color: $navbar-light-hover-color;
+                                background-color: darken($light, 10%);
                             }
                         }
                     }

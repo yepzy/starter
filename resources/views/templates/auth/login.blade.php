@@ -6,7 +6,7 @@
         'dropdownMenuClass'     => 'dropdown-menu-right'
     ])
     @if($icon = $settings->media->where('collection_name', 'icon')->first())
-        <div class="mx-auto mb-3">
+        <div class="mx-auto mb-4">
             {{ $icon('auth') }}
         </div>
     @endif
@@ -17,7 +17,7 @@
     <form method="POST" class="w-100" novalidate action="{{ route('login.login') }}">
         @csrf
         @include('components.common.form.notice')
-        {{ bsEmail()->name('email')->containerHtmlAttributes(['required']) }}
+        {{ bsEmail()->name('email')->componentHtmlAttributes(['autofocus'])->containerHtmlAttributes(['required']) }}
         {{ bsPassword()->name('password')->containerHtmlAttributes(['required']) }}
         {{ bsToggle()->name('remember') }}
         {{ bsValidate()

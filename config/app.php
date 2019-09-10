@@ -183,10 +183,9 @@ return [
         /*
          * Created Service Providers...
          */
-        App\Providers\SslServiceProvider::class,
-        App\Providers\SeoServiceProvider::class,
-        App\Providers\LocalizationServiceProvider::class,
-        App\Providers\ViewComposerServiceProvider::class,
+//        App\Providers\SslServiceProvider::class,
+//        App\Providers\SeoServiceProvider::class,
+//        App\Providers\LocalizationServiceProvider::class,
 
     ],
 

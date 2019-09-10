@@ -65,7 +65,7 @@ return [
             'view'                 => 'bootstrap-components.form.input',
             'prepend'              => '<i class="fas fa-calendar-alt"></i>',
             'append'               => null,
-            'format'               => 'd/m/Y H:i',
+            'format'               => 'Y-m-d \TH:i',
             'labelPositionedAbove' => true,
             'legend'               => 'bootstrap-components.legend.datetime',
             'classes'              => [
@@ -85,7 +85,7 @@ return [
             'view'                 => 'bootstrap-components.form.input',
             'prepend'              => '<i class="fas fa-calendar-alt"></i>',
             'append'               => null,
-            'format'               => 'd/m/Y',
+            'format'               => 'Y-m-d',
             'labelPositionedAbove' => true,
             'legend'               => 'bootstrap-components.legend.date',
             'classes'              => [
@@ -362,7 +362,7 @@ return [
             'label'          => 'bootstrap-components.label.back',
             'classes'        => [
                 'container' => ['form-group'],
-                'component' => ['btn', 'btn-light', 'spin-on-click'],
+                'component' => ['btn', 'btn-secondary', 'spin-on-click'],
             ],
             'htmlAttributes' => [
                 'container' => [],
@@ -403,12 +403,12 @@ return [
             'view'           => 'bootstrap-components.media.image',
             'classes'        => [
                 'container' => [],
-                'link'      => ['data-lity'],
+                'link'      => [],
                 'component' => [],
             ],
             'htmlAttributes' => [
                 'container' => [],
-                'link'      => [],
+                'link'      => ['data-lity'],
                 'component' => [],
             ],
         ],

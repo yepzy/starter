@@ -6,7 +6,7 @@
         'labelClass'        => ['btn', 'btn-link']
     ])
     @if($icon = $settings->media->where('collection_name', 'icon')->first())
-        <div class="mx-auto mb-3">
+        <div class="mx-auto mb-4">
             {{ $icon('auth') }}
         </div>
     @endif
@@ -19,6 +19,7 @@
         @include('components.common.form.notice')
         {{ bsEmail()->name('email')
             ->legend(__('static.legend.password.forgotten'))
+            ->componentHtmlAttributes(['autofocus'])
             ->containerHtmlAttributes(['required']) }}
         {{ bsValidate()->label(__('auth.label.sendEmail'))
             ->componentClasses(['btn', 'btn-block', 'btn-primary', 'spin-on-click']) }}

@@ -4,7 +4,7 @@
     <div id="error" class="container d-flex flex-grow-1 align-items-center justify-content-center">
         <div class="row">
             <div class="text-center">
-                <div class="mx-auto mb-3">
+                <div class="mx-auto mb-4">
                     @if($icon = $settings->media->where('collection_name', 'icon')->first())
                         {{ $icon('auth') }}
                     @endif

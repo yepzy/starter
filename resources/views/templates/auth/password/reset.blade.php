@@ -6,7 +6,7 @@
         'labelClass'        => ['btn', 'btn-link']
     ])
     @if($icon = $settings->media->where('collection_name', 'icon')->first())
-        <div class="mx-auto mb-3">
+        <div class="mx-auto mb-4">
             {{ $icon('auth') }}
         </div>
     @endif
@@ -18,7 +18,7 @@
         @csrf
         <input type="hidden" name="token" value="{{ $token }}">
         @include('components.common.form.notice')
-        {{ bsEmail()->name('email')->containerHtmlAttributes(['required']) }}
+        {{ bsEmail()->name('email')->componentHtmlAttributes(['autofocus'])->containerHtmlAttributes(['required']) }}
         {{ bsPassword()->name('password')
             ->legend(__('static.legend.password.constraint.min', ['count' => config('security.password.constraint.min')]) . '<br/>'
                 . __('static.legend.password.recommendation'))
