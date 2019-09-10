@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\Utils\SeoService;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use SEO;
 
 class VerificationController extends Controller
 {
@@ -39,7 +40,7 @@ class VerificationController extends Controller
      */
     public function show(Request $request)
     {
-        (new SeoService)->seoMeta(__('auth.title.verifyEmail'));
+        SEO::setTitle(__('auth.title.verifyEmail'));
 
         return $request->user()->hasVerifiedEmail()
             ? redirect($this->redirectPath())

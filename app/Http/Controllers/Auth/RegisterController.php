@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use SEO;
 
 class RegisterController extends Controller
 {
@@ -32,7 +33,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        (new SeoService)->seoMeta(__('auth.title.register'));
+        SEO::setTitle(__('auth.title.register'));
 
         return view('templates.auth.register');
     }

@@ -6,6 +6,7 @@ use App\Models\Settings;
 use App\Services\Utils\SeoService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\SettingsUpdateRequest;
+use SEO;
 
 class SettingsController extends Controller
 {
@@ -14,7 +15,7 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        (new SeoService)->seoMeta(__('admin.title.orphan.index', ['entity' => __('entities.settings')]));
+        SEO::setTitle(__('admin.title.orphan.index', ['entity' => __('entities.settings')]));
 
         return view('templates.admin.settings.edit');
     }

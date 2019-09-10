@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\SimplePage;
 use App\Services\Utils\SeoService;
+use SEO;
 
 class SimplePagesController extends Controller
 {
@@ -17,7 +18,7 @@ class SimplePagesController extends Controller
     public function show(string $url)
     {
         $page = (new SimplePage)->where('url', $url)->where('active', true)->firstOrFail();
-        (new SeoService)->seoMeta($page->title);
+        SEO::setTitle($page->title);
         $css = mix('/css/simplePages/show.css');
 
         return view('templates.front.simplePages.show', compact('page', 'css'));

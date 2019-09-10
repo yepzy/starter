@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Services\Utils\SeoService;
+use SEO;
 
 class DashboardController extends Controller
 {
@@ -12,7 +13,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        (new SeoService)->seoMeta(__('entities.dashboard'));
+        SEO::setTitle(__('entities.dashboard'));
 
         return view('templates.admin.dashboard.index');
     }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Services\News\CategoriesService;
 use App\Http\Requests\News\CategoryStoreRequest;
 use App\Http\Requests\News\CategoryUpdateRequest;
+use SEO;
 
 class NewsCategoriesController extends Controller
 {
@@ -18,7 +19,7 @@ class NewsCategoriesController extends Controller
     public function index()
     {
         $table = (new CategoriesService)->table();
-        (new SeoService)->seoMeta(__('admin.title.parent.index', [
+        SEO::setTitle(__('admin.title.parent.index', [
             'parent' => __('entities.news'),
             'entity' => __('entities.categories'),
         ]));
@@ -32,7 +33,7 @@ class NewsCategoriesController extends Controller
     public function create()
     {
         $category = null;
-        (new SeoService)->seoMeta(__('admin.title.parent.create', [
+        SEO::setTitle(__('admin.title.parent.create', [
             'parent' => __('entities.news'),
             'entity' => __('entities.categories'),
         ]));
@@ -64,7 +65,7 @@ class NewsCategoriesController extends Controller
      */
     public function edit(NewsCategory $category)
     {
-        (new SeoService)->seoMeta(__('admin.title.parent.edit', [
+        SEO::setTitle(__('admin.title.parent.edit', [
             'parent' => __('entities.news'),
             'entity' => __('entities.categories'),
             'detail' => $category->title,

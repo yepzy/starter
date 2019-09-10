@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\News\ArticlesIndexRequest;
 use App\Models\NewsArticle;
 use App\Services\Utils\SeoService;
+use SEO;
 
 class NewsArticlesController extends Controller
 {
@@ -17,7 +18,7 @@ class NewsArticlesController extends Controller
      */
     public function index(ArticlesIndexRequest $request)
     {
-        (new SeoService)->seoMeta(__('admin.title.parent.index', [
+        SEO::setTitle(__('admin.title.parent.index', [
             'parent' => __('entities.news'),
             'entity' => __('entities.articles'),
         ]));
@@ -55,7 +56,7 @@ class NewsArticlesController extends Controller
             ->orderBy('published_at', 'desc')
             ->limit(3)
             ->get();
-        (new SeoService)->seoMeta($article->title);
+        SEO::setTitle($article->title);
         $css = mix('/css/news/show.css');
 
         return view('templates.front.news.show', compact('article', 'lastArticles', 'css'));

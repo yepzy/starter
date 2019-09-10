@@ -22,11 +22,11 @@ class PagesService extends Service implements PagesServiceInterface
             'create'  => ['name' => 'simplePage.create'],
             'edit'    => ['name' => 'simplePage.edit'],
             'destroy' => ['name' => 'simplePage.destroy'],
-        ])->destroyConfirmationHtmlAttributes(function ($model) {
+        ])->destroyConfirmationHtmlAttributes(function (SimplePage $simplePage) {
             return [
                 'data-confirm' => __('notifications.message.crud.orphan.destroyConfirm', [
                     'entity' => __('entities.simplePages'),
-                    'name'   => $model->title,
+                    'name'   => $simplePage->title,
                 ]),
             ];
         });
@@ -36,17 +36,17 @@ class PagesService extends Service implements PagesServiceInterface
         $table->column('slug')
             ->sortable()
             ->searchable();
-        $table->column('url')->title(__('components.table.link'))->html(function ($entity) {
+        $table->column('url')->title(__('components.table.link'))->html(function (SimplePage $simplePage) {
             return view('components.admin.table.link', [
-                'url'    => route('simplePage.show', ['url' => $entity->url], false),
-                'active' => $entity->active,
+                'url'    => route('simplePage.show', ['url' => $simplePage->url], false),
+                'active' => $simplePage->active,
             ]);
         });
         $table->column('active')
             ->sortable()
-            ->html(function ($entity) {
+            ->html(function (SimplePage $simplePage) {
                 return view('components.admin.table.active', [
-                    'active' => $entity->active,
+                    'active' => $simplePage->active,
                 ]);
             });
 

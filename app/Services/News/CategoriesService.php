@@ -13,6 +13,7 @@ class CategoriesService extends Service implements CategoriesServiceInterface
      *
      * @return \Okipa\LaravelTable\Table
      * @throws \ErrorException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function table(): Table
     {
@@ -21,12 +22,12 @@ class CategoriesService extends Service implements CategoriesServiceInterface
             'create'  => ['name' => 'news.category.create'],
             'edit'    => ['name' => 'news.category.edit'],
             'destroy' => ['name' => 'news.category.destroy'],
-        ])->destroyConfirmationHtmlAttributes(function ($category) {
+        ])->destroyConfirmationHtmlAttributes(function (NewsCategory $newsCategory) {
             return [
                 'data-confirm' => __('notifications.message.crud.parent.destroyConfirm', [
                     'parent' => __('entities.news'),
                     'entity' => __('entities.categories'),
-                    'name'   => $category->title,
+                    'name'   => $newsCategory->title,
                 ]),
             ];
         });

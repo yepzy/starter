@@ -13,6 +13,7 @@ class ArticlesService extends Service implements ArticlesServiceInterface
      *
      * @return \Okipa\LaravelTable\Table
      * @throws \ErrorException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function table(): Table
     {
@@ -21,17 +22,17 @@ class ArticlesService extends Service implements ArticlesServiceInterface
             'create'  => ['name' => 'news.article.create'],
             'edit'    => ['name' => 'news.article.edit'],
             'destroy' => ['name' => 'news.article.destroy'],
-        ])->destroyConfirmationHtmlAttributes(function ($model) {
+        ])->destroyConfirmationHtmlAttributes(function (NewsArticle $newsArticle) {
             return [
                 'data-confirm' => __('notifications.message.crud.parent.destroyConfirm', [
                     'parent' => __('entities.news'),
                     'entity' => __('entities.articles'),
-                    'name'   => $model->title,
+                    'name'   => $newsArticle->title,
                 ]),
             ];
         });
-        $table->column('illustration')->html(function ($entity) {
-            $avatar = $entity->getFirstMedia('illustration');
+        $table->column('illustration')->html(function (NewsArticle $newsArticle) {
+            $avatar = $newsArticle->getFirstMedia('illustration');
 
             return $avatar
                 ? image()->src($avatar->getUrl('thumb'))
@@ -40,22 +41,22 @@ class ArticlesService extends Service implements ArticlesServiceInterface
                 : null;
         });
         $table->column('title')->stringLimit(50)->sortable()->searchable();
-        $table->column()->title(__('validation.attributes.category_ids'))->html(function ($article) {
-            return $article->categories->pluck('title')->map(function ($title) {
+        $table->column()->title(__('validation.attributes.category_ids'))->html(function (NewsArticle $newsArticle) {
+            return $newsArticle->categories->pluck('title')->map(function ($title) {
                 return $title
                     ? '<button class="btn btn-sm btn-outline-primary m-1 no-click">' . $title . '</button>'
                     : null;
             })->implode(' ');
         });
-        $table->column()->title(__('components.table.link'))->html(function ($entity) {
+        $table->column()->title(__('components.table.link'))->html(function (NewsArticle $newsArticle) {
             return view('components.admin.table.link', [
-                'url'    => route('news.article.show', ['url' => $entity->url], false),
-                'active' => $entity->active,
+                'url'    => route('news.article.show', ['url' => $newsArticle->url], false),
+                'active' => $newsArticle->active,
             ]);
         });
-        $table->column('active')->sortable()->html(function ($entity) {
+        $table->column('active')->sortable()->html(function (NewsArticle $newsArticle) {
             return view('components.admin.table.active', [
-                'active' => $entity->active,
+                'active' => $newsArticle->active,
             ]);
         });
         $table->column('published_at')->dateTimeFormat('d/m/Y H:i')->sortable(true);

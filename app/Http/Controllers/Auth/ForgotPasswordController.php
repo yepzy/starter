@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\Utils\SeoService;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use SEO;
 
 class ForgotPasswordController extends Controller
 {
@@ -30,7 +31,7 @@ class ForgotPasswordController extends Controller
      */
     public function showLinkRequestForm()
     {
-        (new SeoService)->seoMeta(__('auth.title.forgottenPassword'));
+        SEO::setTitle(__('auth.title.forgottenPassword'));
 
         return view('templates.auth.password.forgotten');
     }

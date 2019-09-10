@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Services\News\ArticlesService;
 use App\Http\Requests\News\ArticleStoreRequest;
 use App\Http\Requests\News\ArticleUpdateRequest;
+use SEO;
 
 class NewsArticlesController extends Controller
 {
@@ -18,7 +19,7 @@ class NewsArticlesController extends Controller
     public function index()
     {
         $table = (new ArticlesService)->table();
-        (new SeoService)->seoMeta(__('admin.title.parent.index', [
+        SEO::setTitle(__('admin.title.parent.index', [
             'parent' => __('entities.news'),
             'entity' => __('entities.articles'),
         ]));
@@ -32,7 +33,7 @@ class NewsArticlesController extends Controller
     public function create()
     {
         $article = null;
-        (new SeoService)->seoMeta(__('admin.title.parent.create', [
+        SEO::setTitle(__('admin.title.parent.create', [
             'parent' => __('entities.news'),
             'entity' => __('entities.articles'),
         ]));
@@ -70,7 +71,7 @@ class NewsArticlesController extends Controller
      */
     public function edit(NewsArticle $article)
     {
-        (new SeoService)->seoMeta(__('admin.title.parent.edit', [
+        SEO::setTitle(__('admin.title.parent.edit', [
             'parent' => __('entities.news'),
             'entity' => __('entities.articles'),
             'detail' => $article->title,

@@ -24,7 +24,7 @@
                     ->uploadedFile(function() use ($logo) {
                         return $logo
                             ? image()->src($logo->getUrl('thumb'))
-                                ->linkUrl($logo->getUrl('auth'))
+                                ->linkUrl($logo->getUrl())
                                 ->containerClasses(['mb-2'])
                             : null;
                     })

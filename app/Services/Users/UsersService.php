@@ -2,10 +2,10 @@
 
 namespace App\Services\Users;
 
+use App\Http\Requests\Request;
 use App\Models\User;
 use App\Services\Service;
 use Okipa\LaravelTable\Table;
-use App\Http\Requests\Request;
 
 class UsersService extends Service implements UsersServiceInterface
 {
@@ -23,9 +23,9 @@ class UsersService extends Service implements UsersServiceInterface
             'create'  => ['name' => 'user.create'],
             'edit'    => ['name' => 'user.edit'],
             'destroy' => ['name' => 'user.destroy'],
-        ])->disableRows(function ($model) {
-            return $model->id === auth()->id();
-        })->destroyConfirmationHtmlAttributes(function ($user) {
+        ])->disableRows(function (User $user) {
+            return $user->id === auth()->id();
+        })->destroyConfirmationHtmlAttributes(function (User $user) {
             return [
                 'data-confirm' => __('notifications.message.crud.orphan.destroyConfirm', [
                     'entity' => __('entities.settings'),
@@ -33,16 +33,15 @@ class UsersService extends Service implements UsersServiceInterface
                 ]),
             ];
         });
-        $table->column('avatar')
-            ->html(function ($entity) {
-                $avatar = $entity->getFirstMedia('avatar');
+        $table->column('avatar')->html(function (User $user) {
+            $avatar = $user->getFirstMedia('avatar');
 
-                return $avatar
-                    ? image()->src($avatar->getUrl('thumb'))
-                        ->linkUrl($avatar->getUrl('profile'))
-                        ->toHtml()
-                    : null;
-            });
+            return $avatar
+                ? image()->src($avatar->getUrl('thumb'))
+                    ->linkUrl($avatar->getUrl('profile'))
+                    ->toHtml()
+                : null;
+        });
         $table->column('first_name')->sortable(true)->searchable();
         $table->column('last_name')->sortable()->searchable();
         $table->column('email')->sortable()->searchable();

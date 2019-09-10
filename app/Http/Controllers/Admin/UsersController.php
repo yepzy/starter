@@ -7,9 +7,9 @@ use App\Http\Requests\Users\UserStoreRequest;
 use App\Http\Requests\Users\UserUpdateRequest;
 use App\Models\User;
 use App\Services\Users\UsersService;
-use App\Services\Utils\SeoService;
 use Auth;
 use Hash;
+use SEO;
 
 class UsersController extends Controller
 {
@@ -24,10 +24,11 @@ class UsersController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \ErrorException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function index()
     {
-        (new SeoService)->seoMeta(__('admin.title.orphan.index', ['entity' => __('entities.users')]));
+        SEO::setTitle(__('admin.title.orphan.index', ['entity' => __('entities.users')]));
         $table = $this->service->table();
 
         return view('templates.admin.users.index', compact('table'));
@@ -40,7 +41,7 @@ class UsersController extends Controller
     public function create()
     {
         $user = null;
-        (new SeoService)->seoMeta(__('admin.title.orphan.create', ['entity' => __('entities.users')]));
+        SEO::setTitle(__('admin.title.orphan.create', ['entity' => __('entities.users')]));
 
         return view('templates.admin.users.edit', compact('user'));
     }
@@ -70,10 +71,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        (new SeoService)->seoMeta(__('admin.title.orphan.edit', [
-            'entity' => __('entities.users'),
-            'detail' => $user->name,
-        ]));
+        SEO::setTitle(__('admin.title.orphan.edit', ['entity' => __('entities.users'), 'detail' => $user->name]));
 
         return view('templates.admin.users.edit', compact('user'));
     }
@@ -86,8 +84,8 @@ class UsersController extends Controller
      */
     public function update(User $user, UserUpdateRequest $request)
     {
-        if ($newPassword = $request->new_password) {
-            $request->merge(['password' => Hash::make($newPassword)]);
+        if ($request->new_password) {
+            $request->merge(['password' => Hash::make($request->new_password)]);
         }
         $user->update($request->all());
         $this->service->manageAvatarFromRequest($request, $user);
@@ -124,7 +122,7 @@ class UsersController extends Controller
     public function profile()
     {
         $user = auth()->user();
-        (new SeoService)->seoMeta(__('entities.profile'));
+        SEO::setTitle(__('entities.profile'));
 
         return view('templates.admin.users.edit', compact('user'));
     }
