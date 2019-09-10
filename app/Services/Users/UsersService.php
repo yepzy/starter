@@ -35,9 +35,11 @@ class UsersService extends Service implements UsersServiceInterface
         });
         $table->column('avatar')
             ->html(function ($entity) {
-                return ($avatar = $entity->getFirstMedia('avatar'))
-                    ? image()->src($avatar ? $avatar->getUrl('thumb') : null)
-                        ->linkUrl($avatar ? $avatar->getUrl('profile') : null)
+                $avatar = $entity->getFirstMedia('avatar');
+
+                return $avatar
+                    ? image()->src($avatar->getUrl('thumb'))
+                        ->linkUrl($avatar->getUrl('profile'))
                         ->toHtml()
                     : null;
             });

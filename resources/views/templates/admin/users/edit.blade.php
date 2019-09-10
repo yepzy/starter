@@ -38,10 +38,10 @@
             </div>
             <div class="card-body">
                 <h3>@lang('admin.section.identity')</h3>
+                @php($avatar = optional($user)->getFirstMedia('avatar'))
                 {{ bsFile()->name('avatar')
-                    ->value(optional(optional($user)->getFirstMedia('avatar'))->file_name)
-                    ->uploadedFile(function() use ($user) {
-                        $avatar = optional($user)->getFirstMedia('avatar');
+                    ->value(optional($avatar)->file_name)
+                    ->uploadedFile(function() use ($avatar) {
                         return $avatar
                             ? image()->src(optional($avatar)->getUrl('thumb'))
                                 ->linkUrl(optional($avatar)->getUrl('profile'))

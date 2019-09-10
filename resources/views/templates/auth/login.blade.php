@@ -5,7 +5,7 @@
         'dropdownLabelClass'    => ['btn', 'btn-link'],
         'dropdownMenuClass'     => 'dropdown-menu-right'
     ])
-    @if($icon = $settings->media->where('collection_name', 'icon')->first())
+    @if($icon = $settings->getFirstMedia('icon'))
         <div class="mx-auto mb-4">
             {{ $icon('auth') }}
         </div>

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}" title="{{ config('app.name') }}">
-            @if($icon = $settings->media->where('collection_name', 'icon')->first())
+            @if($icon = $settings->getFirstMedia('icon'))
                 {{ $icon('admin-header') }}
             @endif
             {{ config('app.name') }}

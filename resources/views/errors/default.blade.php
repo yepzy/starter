@@ -5,7 +5,7 @@
         <div class="row">
             <div class="text-center">
                 <div class="mx-auto mb-4">
-                    @if($icon = $settings->media->where('collection_name', 'icon')->first())
+                    @if($icon = $settings->getFirstMedia('icon'))
                         {{ $icon('auth') }}
                     @endif
                 </div>

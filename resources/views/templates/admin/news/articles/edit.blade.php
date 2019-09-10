@@ -31,13 +31,11 @@
             </div>
             <div class="card-body">
                 <h3>@lang('admin.section.media')</h3>
-                @php
-                    $illustration = optional(optional(optional($article)->media)->where('collection_name', 'illustration'))->first();
-                @endphp
+                @php($illustration = optional($article)->getFirstMedia('illustration'))
                 {{ bsFile()->name('illustration')
                     ->value(optional($illustration)->file_name)
                     ->uploadedFile(function() use ($illustration) {
-                        return $illustration 
+                        return $illustration
                             ? image()->src($illustration->getUrl('thumb'))
                                 ->linkUrl($illustration->getUrl('cover'))
                                 ->containerClasses(['mb-2'])

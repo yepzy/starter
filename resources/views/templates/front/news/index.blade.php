@@ -9,7 +9,7 @@
                 <div class="col-sm-4 py-3">
                     <div class="card">
                         <img src="{{ mix('/images/lazy/pixel.png') }}"
-                             data-src="{{ $article->media->where('collection_name', 'illustration')->first()->getUrl('card') }}"
+                             data-src="{{ $article->getFirstMediaUrl('illustration', 'card') }}"
                              class="card-img-top lozad"
                              alt="{{ $article->title }}">
                         <div class="card-body">

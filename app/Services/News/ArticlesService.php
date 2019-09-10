@@ -31,7 +31,9 @@ class ArticlesService extends Service implements ArticlesServiceInterface
             ];
         });
         $table->column('illustration')->html(function ($entity) {
-            return ($avatar = $entity->media->where('collection_name', 'illustration')->first())
+            $avatar = $entity->getFirstMedia('illustration');
+
+            return $avatar
                 ? image()->src($avatar->getUrl('thumb'))
                     ->linkUrl($avatar->getUrl('cover'))
                     ->toHtml()

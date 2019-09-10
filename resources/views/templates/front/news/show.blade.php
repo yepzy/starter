@@ -3,7 +3,7 @@
     <div id="news-show" class="container my-5">
         {{-- cover --}}
         <div class="row">
-            {{ $article->media->where('collection_name', 'illustration')->first()('cover') }}
+            {{ $article->getFirstMedia('illustration')('cover') }}
             {{-- categories / sharing --}}
             <div class="d-flex flex-wrap flex-grow-1 align-items-center justify-content-between py-3">
                 <div>

@@ -18,10 +18,11 @@
             </div>
             <div class="card-body">
                 <h3>@lang('admin.section.identity')</h3>
+                @php($logo = $settings->getFirstMedia('icon'))
                 {{ bsFile()->name('icon')
-                    ->value(optional($settings->media->where('collection_name', 'icon')->first())->file_name)
-                    ->uploadedFile(function() use ($settings) {
-                        return ($logo = $settings->media->where('collection_name', 'icon')->first())
+                    ->value(optional($logo)->file_name)
+                    ->uploadedFile(function() use ($logo) {
+                        return $logo
                             ? image()->src($logo->getUrl('thumb'))
                                 ->linkUrl($logo->getUrl('auth'))
                                 ->containerClasses(['mb-2'])

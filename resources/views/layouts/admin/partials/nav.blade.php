@@ -4,7 +4,7 @@
 @endphp
 <nav id="navbar" class="navbar navbar-expand-md navbar-dark bg-dark w-100 fixed-top">
     <a class="navbar-brand d-flex align-items-center pl-3 pr-3" href="{{ route('admin') }}">
-        @if($icon = $settings->media->where('collection_name', 'icon')->first())
+        @if($icon = $settings->getFirstMedia('icon'))
             {{ $icon('admin-header') }}
         @endif
         <span {{ classTag($icon ? 'pl-2' : null) }}>{{ config('app.name') }}</span>
