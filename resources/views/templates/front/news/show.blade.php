@@ -8,7 +8,7 @@
             <div class="d-flex flex-wrap flex-grow-1 align-items-center justify-content-between py-3">
                 <div>
                     @if($article->categories->isNotEmpty())
-                        @foreach($article->categories as $category)
+                        @foreach($article->categories->cursor() as $category)
                             <a class="btn btn-secondary btn-sm"
                                href="{{ route('news', ['category_id' => $category->id]) }}"
                                title="{{ $category->title }}">

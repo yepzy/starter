@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\SimplePage;
-use App\Services\Utils\SeoService;
 use App\Http\Controllers\Controller;
 use App\Services\SimplePages\PagesService;
 use App\Http\Requests\SimplePages\SimplePageStoreRequest;

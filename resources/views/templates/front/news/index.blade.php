@@ -5,7 +5,7 @@
             <div class="col-12">
                 <h1>@lang('entities.news')</h1>
             </div>
-            @foreach($articles as $article)
+            @foreach($articles->cursor() as $article)
                 <div class="col-sm-4 py-3">
                     <div class="card">
                         <img src="{{ mix('/images/lazy/pixel.png') }}"
@@ -17,7 +17,7 @@
                             <p class="small mt-n2">{{ Carbon\Carbon::parse($article->published_at)->format('d/m/Y') }}</p>
                             @if($article->categories->isNotEmpty())
                                 <p class="card-text small">
-                                    @foreach($article->categories as $category)
+                                    @foreach($article->categories->cursor() as $category)
                                         <a class="btn btn-secondary btn-sm"
                                            href="{{ route('news', ['category_id' => $category->id]) }}"
                                            title="{{ $category->title }}">

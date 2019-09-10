@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Services\Utils\SeoService;
 use App\Http\Controllers\Controller;
-use Seo;
+use SEO;
 
 class HomePageController extends Controller
 {

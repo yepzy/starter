@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Services\Utils\SeoService;
 use SEO;
 
 class DashboardController extends Controller

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\SimplePage;
-use App\Services\Utils\SeoService;
 use SEO;
 
 class SimplePagesController extends Controller

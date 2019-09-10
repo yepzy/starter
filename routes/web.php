@@ -14,7 +14,7 @@ Route::prefix(LaravelLocalization::setLocale())
             require('web/auth/login.php');
             require('web/auth/password.php');
             // require('web/auth/register.php'); // todo : uncomment if this feature is needed
-            // require('web/auth/verification.php'); // todo : uncomment if this feature is needed
+             require('web/auth/verification.php'); // todo : uncomment if this feature is needed
         });
         // admin *******************************************************************************************************
         Route::prefix('admin')->namespace('Admin')

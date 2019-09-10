@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Services\Utils\SeoService;
 use App\Services\Users\UsersService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;

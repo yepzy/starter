@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\NewsArticle;
-use App\Services\Utils\SeoService;
 use App\Http\Controllers\Controller;
 use App\Services\News\ArticlesService;
 use App\Http\Requests\News\ArticleStoreRequest;

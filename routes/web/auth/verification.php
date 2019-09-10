@@ -8,7 +8,7 @@ Route::get(
     LaravelLocalization::transRoute('routes.verification.verify'),
     'VerificationController@verify'
 )->name('verification.verify')->middleware('auth', 'signed', 'throttle:6,1');
-Route::get(
+Route::post(
     LaravelLocalization::transRoute('routes.verification.resend'),
     'VerificationController@resend'
 )->name('verification.resend')->middleware('auth', 'throttle:6,1');
