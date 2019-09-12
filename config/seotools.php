@@ -15,7 +15,7 @@ return [
             'description' => $defaultDescription, // set false to total remove
             'separator'   => ' - ',
             'keywords'    => [],
-            'canonical'   => false, // Set null for using Url::current(), set false to total remove
+            'canonical'   => null, // Set null for using Url::current(), set false to total remove
             'robots'      => false, // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow
         ],
         /*
