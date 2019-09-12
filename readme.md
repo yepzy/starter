@@ -74,7 +74,7 @@ This project use the following docker submodule : `<project-docker-repository>`.
 
 ### Commands
 
-**:warning: Notice :** all the commands listed bellow are shortcuts. If you are more comfortable to directly use the docker commands, make yourself at ease but you should give a look to the docker utils files content.
+**:warning: Notice :** all the commands listed bellow are shortcuts. If you are more comfortable with directly using the docker commands, make yourself at ease but you should give a look to the docker utils files content.
 - Start and build your project in docker by running the command : `./.utils/docker/up.sh --build`
 - To start your project without building it, just execute `./.utils/docker/up.sh`
 - Access to your docker workspace with : `./.utils/docker/workspace` (you will be connected as the `Laradock` user. The get connected with the root user, add the `--root` option to the command)
