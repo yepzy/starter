@@ -9,7 +9,7 @@ use App\Models\User;
 use App\Services\Users\UsersService;
 use Auth;
 use Hash;
-use SEO;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class UsersController extends Controller
 {
@@ -28,7 +28,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        SEO::setTitle(__('admin.title.orphan.index', ['entity' => __('entities.users')]));
+        SEOTools::setTitle(__('admin.title.orphan.index', ['entity' => __('entities.users')]));
         $table = $this->service->table();
 
         return view('templates.admin.users.index', compact('table'));
@@ -41,7 +41,7 @@ class UsersController extends Controller
     public function create()
     {
         $user = null;
-        SEO::setTitle(__('admin.title.orphan.create', ['entity' => __('entities.users')]));
+        SEOTools::setTitle(__('admin.title.orphan.create', ['entity' => __('entities.users')]));
 
         return view('templates.admin.users.edit', compact('user'));
     }
@@ -71,7 +71,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        SEO::setTitle(__('admin.title.orphan.edit', ['entity' => __('entities.users'), 'detail' => $user->name]));
+        SEOTools::setTitle(__('admin.title.orphan.edit', ['entity' => __('entities.users'), 'detail' => $user->name]));
 
         return view('templates.admin.users.edit', compact('user'));
     }
@@ -122,7 +122,7 @@ class UsersController extends Controller
     public function profile()
     {
         $user = auth()->user();
-        SEO::setTitle(__('entities.profile'));
+        SEOTools::setTitle(__('entities.profile'));
 
         return view('templates.admin.users.edit', compact('user'));
     }

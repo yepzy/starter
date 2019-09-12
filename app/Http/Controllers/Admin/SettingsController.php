@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Settings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\SettingsUpdateRequest;
-use SEO;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class SettingsController extends Controller
 {
@@ -14,7 +14,7 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        SEO::setTitle(__('admin.title.orphan.index', ['entity' => __('entities.settings')]));
+        SEOTools::setTitle(__('admin.title.orphan.index', ['entity' => __('entities.settings')]));
 
         return view('templates.admin.settings.edit');
     }

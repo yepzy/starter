@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use SEO;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class HomePageController extends Controller
 {
@@ -13,7 +13,7 @@ class HomePageController extends Controller
      */
     public function show()
     {
-        SEO::setTitle(__('entities.home'));
+        SEOTools::setTitle(__('entities.home'));
         $css = mix('/css/home/page/show.css');
 
         return view('templates.front.home.page.show', compact('css'));

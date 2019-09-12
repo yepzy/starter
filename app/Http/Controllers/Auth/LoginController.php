@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use SEO;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class LoginController extends Controller
 {
@@ -31,7 +31,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        SEO::setTitle(__('auth.title.signIn'));
+        SEOTools::setTitle(__('auth.title.signIn'));
 
         return view('templates.auth.login');
     }

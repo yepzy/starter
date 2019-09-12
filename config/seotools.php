@@ -11,7 +11,7 @@ return [
          */
         'defaults'       => [
             'title'       => $defaultTitle, // set false to total remove
-            'titleBefore' => true, // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
+            'titleBefore' => false, // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
             'description' => $defaultDescription, // set false to total remove
             'separator'   => ' - ',
             'keywords'    => [],

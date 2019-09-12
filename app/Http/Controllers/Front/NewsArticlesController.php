@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\News\ArticlesIndexRequest;
 use App\Models\NewsArticle;
-use SEO;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class NewsArticlesController extends Controller
 {
@@ -17,7 +17,7 @@ class NewsArticlesController extends Controller
      */
     public function index(ArticlesIndexRequest $request)
     {
-        SEO::setTitle(__('admin.title.parent.index', [
+        SEOTools::setTitle(__('admin.title.parent.index', [
             'parent' => __('entities.news'),
             'entity' => __('entities.articles'),
         ]));
@@ -55,7 +55,7 @@ class NewsArticlesController extends Controller
             ->orderBy('published_at', 'desc')
             ->limit(3)
             ->get();
-        SEO::setTitle($article->title);
+        SEOTools::setTitle($article->title);
         $css = mix('/css/news/show.css');
 
         return view('templates.front.news.show', compact('article', 'lastArticles', 'css'));

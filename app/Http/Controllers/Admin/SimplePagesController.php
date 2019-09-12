@@ -8,7 +8,7 @@ use App\Services\SimplePages\PagesService;
 use App\Http\Requests\SimplePages\SimplePageStoreRequest;
 use App\Http\Requests\SimplePages\SimplePageUpdateRequest;
 use Illuminate\Support\Str;
-use SEO;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class SimplePagesController extends Controller
 {
@@ -19,7 +19,7 @@ class SimplePagesController extends Controller
     public function index()
     {
         $table = (new PagesService)->table();
-        SEO::setTitle(__('admin.title.orphan.index', ['entity' => __('entities.simplePages')]));
+        SEOTools::setTitle(__('admin.title.orphan.index', ['entity' => __('entities.simplePages')]));
 
         return view('templates.admin.simplePages.index', compact('table'));
     }
@@ -30,7 +30,7 @@ class SimplePagesController extends Controller
     public function create()
     {
         $simplePage = null;
-        SEO::setTitle(__('admin.title.orphan.create', ['entity' => __('entities.users')]));
+        SEOTools::setTitle(__('admin.title.orphan.create', ['entity' => __('entities.users')]));
 
         return view('templates.admin.simplePages.edit', compact('simplePage'));
     }
@@ -59,7 +59,7 @@ class SimplePagesController extends Controller
      */
     public function edit(SimplePage $simplePage)
     {
-        SEO::setTitle(__('admin.title.orphan.edit', [
+        SEOTools::setTitle(__('admin.title.orphan.edit', [
             'entity' => __('entities.simplePages'),
             'detail' => $simplePage->title,
         ]));

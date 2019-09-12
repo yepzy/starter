@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use SEO;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class ResetPasswordController extends Controller
 {
@@ -35,7 +35,7 @@ class ResetPasswordController extends Controller
      */
     public function showResetForm(Request $request, $token = null)
     {
-        SEO::setTitle(__('auth.title.resetPassword'));
+        SEOTools::setTitle(__('auth.title.resetPassword'));
 
         return view('templates.auth.password.reset')->with(['token' => $token, 'email' => $request->email]);
     }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use SEO;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class DashboardController extends Controller
 {
@@ -12,7 +12,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        SEO::setTitle(__('entities.dashboard'));
+        SEOTools::setTitle(__('entities.dashboard'));
 
         return view('templates.admin.dashboard.index');
     }

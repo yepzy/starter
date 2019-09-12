@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\SimplePage;
-use SEO;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class SimplePagesController extends Controller
 {
@@ -17,7 +17,7 @@ class SimplePagesController extends Controller
     public function show(string $url)
     {
         $page = (new SimplePage)->where('url', $url)->where('active', true)->firstOrFail();
-        SEO::setTitle($page->title);
+        SEOTools::setTitle($page->title);
         $css = mix('/css/simplePages/show.css');
 
         return view('templates.front.simplePages.show', compact('page', 'css'));
