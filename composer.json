@@ -17,6 +17,7 @@
         "okipa/laravel-medialibrary-ext": "^7.11.0",
         "okipa/laravel-request-sanitizer": "^1.1",
         "okipa/laravel-table": "^1.0",
+        "predis/predis": "^1.1",
         "propaganistas/laravel-phone": "^4.1",
         "realrashid/sweet-alert": "^2.0",
         "sentry/sentry-laravel": "^1.0",
