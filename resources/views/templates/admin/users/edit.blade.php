@@ -7,11 +7,11 @@
             break;
         case 'user.edit' :
             $title = __('admin.title.orphan.edit', ['entity' => __('entities.users'), 'detail' => $user->name]);
-            $action = route('user.update', ['id' => $user->id]);
+            $action = route('user.update', $user);
             break;
         case 'user.profile' :
             $title = __('entities.profile');
-            $action = route('user.update', ['id' => $user->id]);
+            $action = route('user.update', $user);
             break;
     }
 @endphp

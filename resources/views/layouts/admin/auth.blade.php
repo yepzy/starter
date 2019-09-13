@@ -1,5 +1,4 @@
 @extends('layouts.admin.empty')
-
 @section('template')
     <div id="auth" class="container d-flex">
         <div class="row d-flex flex-grow-1 align-items-center justify-content-center">

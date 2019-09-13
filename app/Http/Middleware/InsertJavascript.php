@@ -27,7 +27,7 @@ class InsertJavascript
             'routes'        => [
                 'page' => [
                     'termsOfService' => ($termsOfService = cache('termsOfService'))
-                        ? route('simplePage.show', ['url' => $termsOfService->url])
+                        ? route('simplePage.show', $termsOfService->url)
                         : null,
                 ],
             ],

@@ -1,5 +1,4 @@
 @extends('layouts.front.empty')
-
 @section('template')
     <div id="error" class="container d-flex flex-grow-1 align-items-center justify-content-center">
         <div class="row">

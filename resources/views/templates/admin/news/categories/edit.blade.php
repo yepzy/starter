@@ -15,7 +15,7 @@
         @endif
     </h1>
     <hr>
-    <form action="{{ $category ? route('news.category.update', ['id' => $category->id]) : route('news.category.store') }}"
+    <form action="{{ $category ? route('news.category.update', $category) : route('news.category.store') }}"
           method="POST">
         @csrf
         @if($category)

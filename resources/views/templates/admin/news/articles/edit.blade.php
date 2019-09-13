@@ -15,7 +15,7 @@
         @endif
     </h1>
     <hr>
-    <form action="{{ $article ? route('news.article.update', ['id' => $article->id]) : route('news.article.store') }}"
+    <form action="{{ $article ? route('news.article.update', $article) : route('news.article.store') }}"
           method="POST"
           enctype="multipart/form-data">
         @csrf
@@ -48,7 +48,7 @@
                 {{ bsText()->name('title')->model($article)->containerHtmlAttributes(['required']) }}
                 {{ bsText()->name('url')
                     ->model($article)
-                    ->prepend(route('news.article.show', [$article]) . '/')
+                    ->prepend(route('news.article.show', $article) . '/')
                     ->componentClasses(['slugify'])
                     ->componentHtmlAttributes(['data-target' => '#text-title'])
                     ->containerHtmlAttributes(['required']) }}

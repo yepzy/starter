@@ -1,5 +1,4 @@
 @extends('layouts.admin.full')
-
 @section('template')
     <h1>
         <i class="fas fa-tags fa-fw"></i>

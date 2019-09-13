@@ -1,5 +1,4 @@
 @extends('layouts.admin.full')
-
 @section('template')
     <h1>@lang('entities.dashboard')</h1>
     <hr>

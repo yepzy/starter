@@ -7,14 +7,14 @@
             </span>
             @if($termsOfService)
                 <a class="text-body"
-                   href="{{ route('simplePage.show', ['url' => $termsOfService->url]) }}"
+                   href="{{ route('simplePage.show', $termsOfService->url) }}"
                    title="{{ $termsOfService->title }}">
                     {{ $termsOfService->title }}
                 </a>
             @endif
             @if($rgpd)
                 <a class="text-body"
-                   href="{{ route('simplePage.show', ['url' => $rgpd->url]) }}"
+                   href="{{ route('simplePage.show', $rgpd->url) }}"
                    title="{{ $rgpd->title }}">
                     {{ $rgpd->title }}
                 </a>

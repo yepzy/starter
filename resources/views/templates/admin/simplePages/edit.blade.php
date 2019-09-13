@@ -9,7 +9,7 @@
         @endif
     </h1>
     <hr>
-    <form action="{{ $simplePage ? route('simplePage.update', ['id' => $simplePage->id]) : route('simplePage.store') }}"
+    <form action="{{ $simplePage ? route('simplePage.update', $simplePage) : route('simplePage.store') }}"
           method="POST">
         @csrf
         @if($simplePage)
@@ -35,7 +35,7 @@
                 @endif
                 {{ bsText()->name('url')
                     ->model($simplePage)
-                    ->prepend(route('simplePage.show', ['']) . '/')
+                    ->prepend(route('simplePage.show', '') . '/')
                     ->componentClasses(['slugify'])
                     ->componentHtmlAttributes(['data-target' => '#text-title'])
                     ->containerHtmlAttributes(['required']) }}

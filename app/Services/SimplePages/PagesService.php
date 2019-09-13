@@ -38,7 +38,7 @@ class PagesService extends Service implements PagesServiceInterface
             ->searchable();
         $table->column('url')->title(__('components.table.link'))->html(function (SimplePage $simplePage) {
             return view('components.admin.table.link', [
-                'url'    => route('simplePage.show', ['url' => $simplePage->url], false),
+                'url'    => route('simplePage.show', $simplePage->url),
                 'active' => $simplePage->active,
             ]);
         });

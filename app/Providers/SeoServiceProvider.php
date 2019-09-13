@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
 use LaravelLocalization;
-use Artesaos\SEOTools\Facades\SEOTools;
+use SEO;
 
 class SeoServiceProvider extends ServiceProvider
 {

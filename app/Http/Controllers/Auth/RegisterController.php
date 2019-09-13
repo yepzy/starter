@@ -87,7 +87,7 @@ class RegisterController extends Controller
     {
         alert()->toast(__('notifications.message.auth.accountCreated', [
             'name' => $request->first_name . ' ' . $request->last_name,
-        ]), 'success', 'top-right');
+        ]), 'success');
     }
 
     /**
