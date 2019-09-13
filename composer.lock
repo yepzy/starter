@@ -2840,16 +2840,16 @@
         },
         {
             "name": "okipa/laravel-table",
-            "version": "1.2.1",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-table.git",
-                "reference": "e063f8b4bd4048f3dd459ed5603e6b748ccf1dd1"
+                "reference": "cc9953bc4d1b651bda3c54431ef32e1dc31bebe2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Okipa/laravel-table/zipball/e063f8b4bd4048f3dd459ed5603e6b748ccf1dd1",
-                "reference": "e063f8b4bd4048f3dd459ed5603e6b748ccf1dd1",
+                "url": "https://api.github.com/repos/Okipa/laravel-table/zipball/cc9953bc4d1b651bda3c54431ef32e1dc31bebe2",
+                "reference": "cc9953bc4d1b651bda3c54431ef32e1dc31bebe2",
                 "shasum": ""
             },
             "require": {
@@ -2905,7 +2905,7 @@
                 "table",
                 "tables"
             ],
-            "time": "2019-09-13T09:55:30+00:00"
+            "time": "2019-09-13T12:33:35+00:00"
         },
         {
             "name": "okipa/php-data-sanitizer",
