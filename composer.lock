@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f0700c340efb2af7ca496ccea97bdb7c",
+    "content-hash": "ca1d49105c28b3d23fb62706c6cc50a3",
     "packages": [
         {
             "name": "artesaos/seotools",
@@ -2686,16 +2686,16 @@
         },
         {
             "name": "okipa/laravel-medialibrary-ext",
-            "version": "dev-master",
+            "version": "7.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-medialibrary-ext.git",
-                "reference": "8de5e5427ae0eae08082d903871184507589f5ad"
+                "reference": "0ad5857d49978593f6bb587656f25b06a572cd4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Okipa/laravel-medialibrary-ext/zipball/8de5e5427ae0eae08082d903871184507589f5ad",
-                "reference": "8de5e5427ae0eae08082d903871184507589f5ad",
+                "url": "https://api.github.com/repos/Okipa/laravel-medialibrary-ext/zipball/0ad5857d49978593f6bb587656f25b06a572cd4a",
+                "reference": "0ad5857d49978593f6bb587656f25b06a572cd4a",
                 "shasum": ""
             },
             "require": {
@@ -2771,7 +2771,7 @@
                 "package",
                 "spatie"
             ],
-            "time": "2019-09-26T13:20:57+00:00"
+            "time": "2019-09-26T13:29:36+00:00"
         },
         {
             "name": "okipa/laravel-request-sanitizer",
@@ -4737,24 +4737,24 @@
         },
         {
             "name": "spatie/pdf-to-image",
-            "version": "1.2.2",
+            "version": "1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/pdf-to-image.git",
-                "reference": "9a5cb264a99e87e010c65d4ece03b51f821d55bd"
+                "reference": "22a580e03550c95ce810ad430e3c44d2f7a1c75a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/pdf-to-image/zipball/9a5cb264a99e87e010c65d4ece03b51f821d55bd",
-                "reference": "9a5cb264a99e87e010c65d4ece03b51f821d55bd",
+                "url": "https://api.github.com/repos/spatie/pdf-to-image/zipball/22a580e03550c95ce810ad430e3c44d2f7a1c75a",
+                "reference": "22a580e03550c95ce810ad430e3c44d2f7a1c75a",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.0"
+                "ext-imagick": "*",
+                "php": "^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.*",
-                "scrutinizer/ocular": "~1.1"
+                "phpunit/phpunit": "^6.2"
             },
             "type": "library",
             "autoload": {
@@ -4783,7 +4783,7 @@
                 "pdf-to-image",
                 "spatie"
             ],
-            "time": "2016-12-14T15:37:00+00:00"
+            "time": "2019-07-31T06:46:19+00:00"
         },
         {
             "name": "spatie/robots-txt",
@@ -10331,9 +10331,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "okipa/laravel-medialibrary-ext": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
