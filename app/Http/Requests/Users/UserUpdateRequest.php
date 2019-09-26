@@ -16,8 +16,6 @@ class UserUpdateRequest extends Request
      * Get the validation rules that apply to the request.
      *
      * @return array
-     * @throws \Spatie\MediaLibrary\Exceptions\CollectionNotFound
-     * @throws \Spatie\MediaLibrary\Exceptions\ConversionsNotFound
      */
     public function rules()
     {

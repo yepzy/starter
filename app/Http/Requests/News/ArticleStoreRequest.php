@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\News;
 
-use App\Models\NewsArticle;
 use App\Http\Requests\Request;
+use App\Models\NewsArticle;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
@@ -37,7 +37,7 @@ class ArticleStoreRequest extends Request
     public function rules()
     {
         return [
-            'illustration'   => ['required', (new NewsArticle)->validationConstraints('illustration')],
+            'illustration'   => array_merge(['required'], (new NewsArticle)->validationConstraints('illustration')),
             'title'          => ['required', 'string', 'max:255'],
             'url'            => ['required', 'string', 'alpha_dash', 'max:255', 'unique:news_articles,url'],
             'category_ids'   => ['required', 'array'],

@@ -44,6 +44,9 @@ class NewsArticlesController extends Controller
      * @param \App\Http\Requests\News\ArticleStoreRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
      */
     public function store(ArticleStoreRequest $request)
     {
@@ -84,6 +87,9 @@ class NewsArticlesController extends Controller
      * @param \App\Http\Requests\News\ArticleUpdateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
      */
     public function update(NewsArticle $article, ArticleUpdateRequest $request)
     {

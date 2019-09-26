@@ -48,7 +48,7 @@
                 {{ bsText()->name('title')->model($article)->containerHtmlAttributes(['required']) }}
                 {{ bsText()->name('url')
                     ->model($article)
-                    ->prepend(route('news.article.show', $article) . '/')
+                    ->prepend(route('news.article.show', '') . '/')
                     ->componentClasses(['slugify'])
                     ->componentHtmlAttributes(['data-target' => '#text-title'])
                     ->containerHtmlAttributes(['required']) }}

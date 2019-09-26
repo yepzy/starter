@@ -113,6 +113,7 @@ return [
     'unique'               => 'La valeur du champ :attribute est déjà utilisée.',
     'uploaded'             => 'Le fichier :attribute n\'a pas été chargé.',
     'url'                  => 'Le format du champ :attribute est invalide.',
+    'uuid'                 => 'Le champ :attribute doit être un UUID valide.',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

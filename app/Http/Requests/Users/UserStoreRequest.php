@@ -13,13 +13,11 @@ class UserStoreRequest extends Request
      * Get the validation rules that apply to the request.
      *
      * @return array
-     * @throws \Spatie\MediaLibrary\Exceptions\CollectionNotFound
-     * @throws \Spatie\MediaLibrary\Exceptions\ConversionsNotFound
      */
     public function rules()
     {
         return [
-            'avatar'     => [(new User)->validationConstraints('avatar')],
+            'avatar'     => (new User)->validationConstraints('avatar'),
             'first_name' => ['required', 'string', 'max:255'],
             'last_name'  => ['required', 'string', 'max:255'],
             'email'      => ['required', 'string', 'email', 'max:255', 'unique:users'],

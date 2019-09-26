@@ -10,14 +10,15 @@ class InsertJavascript
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
      *
      * @return mixed
      * @throws \Exception
      */
     public function handle($request, Closure $next)
     {
+        $termsOfService = cache('termsOfService');
         JavaScript::put([
             'locale'        => app()->getLocale(),
             'notifications' => __('notifications'),
@@ -26,7 +27,7 @@ class InsertJavascript
             'static'        => __('static'),
             'routes'        => [
                 'page' => [
-                    'termsOfService' => ($termsOfService = cache('termsOfService'))
+                    'termsOfService' => $termsOfService
                         ? route('simplePage.show', $termsOfService->url)
                         : null,
                 ],
