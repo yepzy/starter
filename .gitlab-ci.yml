@@ -201,9 +201,16 @@ phpstan:
   find ./.utils.custom -type f -iname "*.sh" -exec chmod +x {} \;
   find . -type d -not -path "./vendor/*" -exec chmod 775 {} \;
 
+.check_returned_http_code: &check_returned_http_code |
+  HTTPCODE=$(curl --write-out %{http_code} --silent --output /dev/null $URL)
+  echo 'The URL '"$URL"' returned a '"$HTTPCODE"' HTTP code.'
+  if [ "$HTTPCODE" -eq 200 ] || [ "$HTTPCODE" -eq 301 ] ; then exit 0; else exit 1; fi
+
 preprod:
   stage: deploy
   image: php:7.3-cli # todo : set php version
+  variables:
+    URL: <project-preprod-url> # todo : set project preprod url
   dependencies:
     - composer:nodev
     - yarn:nodev
@@ -213,9 +220,10 @@ preprod:
     - *ssh_init
     - *permissions_update
     - vendor/bin/dep deploy preprod -vvv
+    - *check_returned_http_code
   environment:
     name: preprod
-    url: <project-preprod-url> # todo : set project preprod url
+    url: $URL
   only:
     refs:
       - develop
@@ -223,6 +231,8 @@ preprod:
 prod:
   stage: deploy
   image: php:7.3-cli # todo : set php version
+  variables:
+    URL: <project-prod-url> # todo : set project prod url
   dependencies:
     - composer:nodev
     - yarn:nodev
@@ -232,9 +242,10 @@ prod:
     - *ssh_init
     - *permissions_update
     - vendor/bin/dep deploy production -vvv
+    - *check_returned_http_code
   environment:
     name: production
-    url: <project-prod-url> # todo : set project prod url
+    url: $URL
   only:
     refs:
       - tags

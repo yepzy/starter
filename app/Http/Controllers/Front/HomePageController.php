@@ -14,6 +14,7 @@ class HomePageController extends Controller
     public function show()
     {
         SEOTools::setTitle(__('entities.home'));
+
         $css = mix('/css/home/page/show.css');
 
         return view('templates.front.home.page.show', compact('css'));
