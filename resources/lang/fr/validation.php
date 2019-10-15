@@ -90,6 +90,7 @@ return [
     'not_in'               => 'Le champ :attribute est invalide.',
     'not_regex'            => 'Le format du champ :attribute est invalide.',
     'numeric'              => 'Le champ :attribute doit être un nombre.',
+    'password'             => 'Le mot de passe est incorrect.',
     'present'              => 'Le champ :attribute doit être transmis.',
     'phone'                => 'Le champ :attribute est un numéro non valide.',
     'regex'                => 'Le format du champ :attribute est invalide.',

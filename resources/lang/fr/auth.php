@@ -9,6 +9,7 @@ return [
         'resetPassword'     => 'Nouveau mot de passe',
         'verifyEmail'       => 'Vérification adresse e-mail',
         'register'          => 'Inscription',
+        'confirmPassword'   => 'Vérification mot de passe',
     ],
     'label' => [
         'forgottenPassword'               => 'Mot de passe oublié ?',
@@ -20,5 +21,6 @@ return [
         'beforeResendingVerificationLink' => 'Tout d\'abord, vérifiez bien que vous n\'avez pas déjà reçu votre lien de vérification par e-mail.',
         'didNotReceivedVerificationLink'  => 'Vous ne ne le retrouvez pas ? Cliquez sur le bouton ci-dessous pour en recevoir un nouveau.',
         'newVerificationEmail'            => 'Envoi nouveau lien vérification',
+        'confirmPassword'                 => 'Confirmer mot de passe',
     ],
 ];

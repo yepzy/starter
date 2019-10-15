@@ -56,6 +56,9 @@ class UsersService extends Service implements UsersServiceInterface
      * @param \App\Models\User $user
      *
      * @return void
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
      */
     public function manageAvatarFromRequest(Request $request, User $user): void
     {
@@ -70,6 +73,10 @@ class UsersService extends Service implements UsersServiceInterface
      * Set default avatar image for the given user.
      *
      * @param \App\Models\User $user
+     *
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
      */
     public function setDefaultAvatarImage(User $user): void
     {

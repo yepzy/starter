@@ -172,6 +172,8 @@ phpstan:
   image: php:7.3-cli # todo : set php version
   dependencies:
     - composer
+  before_script:
+    - docker-php-ext-install mysqli pdo pdo_mysql
   script:
     - vendor/bin/phpstan analyse ./app ./config ./tests  --configuration=./phpstan.neon.dist --level=5 --autoload-file=./autoload.php --error-format=table --memory-limit=2048M
     - exit $?

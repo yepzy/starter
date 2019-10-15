@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -51,7 +51,8 @@ class LoginController extends Controller
      */
     protected function loggedOut()
     {
-        alert()->toast(__('notifications.message.logout.success'), 'success', 'top-right');
+        alert()->toast(__('notifications.message.logout.success'), 'success');
+
         return;
     }
 
@@ -59,6 +60,7 @@ class LoginController extends Controller
      * Get the failed login response instance.
      *
      * @return void
+     * @throws \Illuminate\Validation\ValidationException
      */
     protected function sendFailedLoginResponse()
     {
@@ -75,7 +77,8 @@ class LoginController extends Controller
     {
         alert()->toast(__('notifications.message.login.success', [
             'name' => auth()->user()->name,
-        ]), 'success', 'top-right');
+        ]), 'success');
+
         return;
     }
 
@@ -85,6 +88,7 @@ class LoginController extends Controller
      * @param \Illuminate\Http\Request $request
      *
      * @return void
+     * @throws \Illuminate\Validation\ValidationException
      */
     protected function sendLockoutResponse(Request $request)
     {

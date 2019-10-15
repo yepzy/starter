@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => [
+    'title'   => [
         'success' => 'Succès',
         'error'   => 'Erreur',
         'confirm' => 'Confirmation demandée',
@@ -22,11 +22,10 @@ return [
             'success'      => 'Vous avez été déconnecté.',
         ],
         'passwords'    => [
-            'password' => 'Le mot de passe doit comporter au moins six caractères et correspondre à la confirmation.',
-            'reset'    => 'Votre mot de passe a été réinitialisé.',
-            'sent'     => 'Nous vous avons envoyé un e-mail contenant un lien de réinitialisation de mot de passe.',
-            'token'    => 'Le jeton de réinitialisation du mot de passe est invalide.',
-            'user'     => 'Nous ne trouvons pas d\'utilisateur associé à cette adresse e-mail.',
+            'reset' => 'Votre mot de passe a été réinitialisé.',
+            'sent'  => 'Nous vous avons envoyé un e-mail contenant un lien de réinitialisation de mot de passe.',
+            'token' => 'Le jeton de réinitialisation du mot de passe est invalide.',
+            'user'  => 'Nous ne trouvons pas d\'utilisateur associé à cette adresse e-mail.',
         ],
         'crud'         => [
             'name'   => [

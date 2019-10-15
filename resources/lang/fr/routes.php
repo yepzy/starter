@@ -6,33 +6,35 @@ return [
         'login'  => 'connecter',
         'logout' => 'deconnecter',
     ],
-    'password'            => [
-        'index'  => 'mot-de-passe/reinitialisation',
-        'email'  => 'mot-de-passe/e-mail',
-        'update' => 'mot-de-passe/reinitialisation/{token}',
-        'reset'  => 'mot-de-passe/reinitialiser',
+    'password'     => [
+        'index'     => 'mot-de-passe/reinitialisation',
+        'email'     => 'mot-de-passe/e-mail',
+        'update'    => 'mot-de-passe/reinitialisation/{token}',
+        'reset'     => 'mot-de-passe/reinitialiser',
+        'confirm'   => 'mot-de-passe/verification',
+        'reconfirm' => 'mot-de-passe/confirmer',
     ],
-    'registration'        => [
+    'registration' => [
         'index'    => 'inscription',
         'register' => 'inscrire',
     ],
-    'verification'        => [
+    'verification' => [
         'notice' => 'email/verification',
         'verify' => 'email/verification/{id}',
         'resend' => 'email/renvoi',
     ],
-    'admin'               => [
+    'admin'        => [
         'index' => '/',
     ],
-    'dashboard'           => [
+    'dashboard'    => [
         'index' => 'tableau-de-bord',
     ],
-    'home'                => [
-        'page'   => [
+    'home'         => [
+        'page' => [
             'index' => '/',
         ],
     ],
-    'news'                => [
+    'news'         => [
         'categories' => [
             'index'   => 'news/categories',
             'create'  => 'news/categorie/creer',
@@ -51,7 +53,7 @@ return [
             'show'    => 'news/article/{url}',
         ],
     ],
-    'simplePages'         => [
+    'simplePages'  => [
         'show'    => '{url}',
         'index'   => 'pages',
         'create'  => 'page/creer',
@@ -61,17 +63,20 @@ return [
         'destroy' => 'page/supprimer/{simplePage}',
     ],
     // admin ***********************************************************************************************************
-    'settings'            => [
+    'settings'     => [
         'index'  => 'parametres',
         'update' => 'parametres/mettre-a-jour',
     ],
-    'users'               => [
+    'users'        => [
         'index'   => 'utilisateurs',
         'create'  => 'utilisateur/creer',
         'store'   => 'utilisateur/enregistrer',
         'edit'    => 'utilisateur/editer/{user}',
         'update'  => 'utilisateur/mettre-a-jour/{user}',
         'destroy' => 'utilisateur/supprimer/{user}',
-        'profile' => 'mon-profil',
+        'profile' => [
+            'edit'   => 'mon-profil',
+            'update' => 'mon-profil/mettre-a-jour',
+        ],
     ],
 ];
