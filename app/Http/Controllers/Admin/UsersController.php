@@ -7,9 +7,9 @@ use App\Http\Requests\Users\UserStoreRequest;
 use App\Http\Requests\Users\UserUpdateRequest;
 use App\Models\User;
 use App\Services\Users\UsersService;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Auth;
 use Hash;
-use Artesaos\SEOTools\Facades\SEOTools;
 
 class UsersController extends Controller
 {
@@ -50,6 +50,9 @@ class UsersController extends Controller
      * @param \App\Http\Requests\Users\UserStoreRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
      */
     public function store(UserStoreRequest $request)
     {
@@ -81,6 +84,9 @@ class UsersController extends Controller
      * @param \App\Http\Requests\Users\UserUpdateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
      */
     public function update(User $user, UserUpdateRequest $request)
     {

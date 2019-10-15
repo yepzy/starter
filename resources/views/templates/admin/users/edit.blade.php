@@ -9,7 +9,7 @@
             $title = __('admin.title.orphan.edit', ['entity' => __('entities.users'), 'detail' => $user->name]);
             $action = route('user.update', $user);
             break;
-        case 'user.profile' :
+        case 'user.profile.edit' :
             $title = __('entities.profile');
             $action = route('user.update', $user);
             break;

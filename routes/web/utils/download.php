@@ -1,3 +1,5 @@
 <?php
 
-Route::get('download', 'DownloadController@file')->name('download.file');
+use App\Http\Controllers\Utils\DownloadController;
+
+Route::get('download', [DownloadController::class, 'file'])->name('download.file');
