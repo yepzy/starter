@@ -29,8 +29,4 @@ Route::delete(LaravelLocalization::transRoute('routes.users.destroy'), [
 Route::get(LaravelLocalization::transRoute('routes.users.profile.edit'), [
     UsersController::class,
     'profile',
-])->name('user.profile.edit');
-Route::put(LaravelLocalization::transRoute('routes.users.profile.update'), [
-    UsersController::class,
-    'update',
-])->name('user.profile.update')->middleware('password.confirm');
+])->name('user.profile.edit')->middleware('password.confirm');

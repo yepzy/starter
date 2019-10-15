@@ -76,7 +76,6 @@ return [
         'destroy' => 'utilisateur/supprimer/{user}',
         'profile' => [
             'edit'   => 'mon-profil',
-            'update' => 'mon-profil/mettre-a-jour',
         ],
     ],
 ];

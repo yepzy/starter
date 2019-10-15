@@ -17,6 +17,7 @@
     <form method="POST" class="w-100" action="{{ route('password.reconfirm') }}">
         @csrf
         @include('components.common.form.notice')
+        <p>@lang('auth.label.confirmPasswordNotice')</p>
         {{ bsPassword()->name('password')->containerHtmlAttributes(['required']) }}
         {{ bsValidate()->label(__('auth.label.confirmPassword'))
             ->componentClasses(['btn', 'btn-block', 'btn-primary', 'spin-on-click']) }}
