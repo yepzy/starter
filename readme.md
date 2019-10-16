@@ -1,6 +1,6 @@
 <Todo : personalize readme>
 
-# Pre-built base for new app development on Laravel 6.0
+# Pre-built base for new app development on Laravel 6
 
 **Master :** 
 `<build-status-badge>`
