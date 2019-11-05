@@ -21,6 +21,7 @@ Route::prefix(LaravelLocalization::setLocale())
         ])->group(function () {
             require('web/admin/admin.php');
             require('web/admin/dashboard.php');
+            require('web/admin/home.php');
             require('web/admin/news.php');
             require('web/admin/simplePages.php');
             require('web/admin/settings.php');

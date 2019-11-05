@@ -1,5 +1,5 @@
 img {
-    
+
     &.lozad {
 
         &[data-loaded] {
@@ -10,11 +10,18 @@ img {
 }
 
 @keyframes fade {
-    
+
     from {
         opacity: 0;
     }
     to {
         opacity: 1;
     }
+}
+
+
+[data-background-image] {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }

@@ -11,7 +11,7 @@
         </div>
     @endif
     <h1 class="h3 mb-3 font-weight-normal">
-        <i class="fas fa-fw fa-sign-in-alt"></i>
+        <i class="fas fa-sign-in-alt fa-fw"></i>
         @lang('auth.title.verifyEmail')
     </h1>
     <div>
@@ -21,6 +21,6 @@
         @lang('auth.label.didNotReceivedVerificationLink')
     </div>
     <form class="mt-3" method="POST" action="{{ route('verification.resend') }}">
-        {{ bsValidate()->label(__('auth.label.newVerificationEmail'))->prepend('<i class="fas fa-fw fa-paper-plane"></i>')}}
+        {{ bsValidate()->label(__('auth.label.newVerificationEmail'))->prepend('<i class="fas fa-paper-plane fa-fw"></i>')}}
     </form>
 @endsection

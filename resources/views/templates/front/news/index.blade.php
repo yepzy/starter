@@ -9,7 +9,7 @@
                 <div class="col-sm-4 py-3">
                     <div class="card">
                         <img src="{{ mix('/images/lazy/pixel.png') }}"
-                             data-src="{{ $article->getFirstMediaUrl('illustration', 'card') }}"
+                             data-src="{{ $article->getFirstMediaUrl('illustrations', 'card') }}"
                              class="card-img-top lozad"
                              alt="{{ $article->title }}">
                         <div class="card-body">

@@ -12,7 +12,7 @@ return [
         'categories'  => 'Catégories',
         'articles'    => 'Articles',
         'page'        => 'Page',
-        'list'        => 'Liste',
+        'slides'      => 'Slides',
         // top nav
         'profile'     => 'Mon profil',
         'logout'      => 'Déconnexion',
@@ -22,6 +22,7 @@ return [
         'news'        => 'Actualités',
         'simplePages' => 'Pages simples',
         'users'       => 'Utilisateurs',
+        'adminZone'   => 'Administration',
         'settings'    => 'Paramètres',
         'back'        => 'Retour au site',
     ],

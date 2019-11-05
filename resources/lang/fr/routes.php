@@ -30,8 +30,18 @@ return [
         'index' => 'tableau-de-bord',
     ],
     'home'         => [
-        'page' => [
-            'index' => '/',
+        'page'   => [
+            'index'  => '/',
+            'edit'   => 'accueil/editer',
+            'update' => 'accueil/mettre-a-jour',
+        ],
+        'slides' => [
+            'index'   => 'accueil/slides',
+            'create'  => 'accueil/slide/creer',
+            'store'   => 'accueil/slide/enregistrer',
+            'edit'    => 'accueil/slide/editer/{homeSlide}',
+            'update'  => 'accueil/slide/mettre-a-jour/{homeSlide}',
+            'destroy' => 'accueil/slide/supprimer/{homeSlide}',
         ],
     ],
     'news'         => [
@@ -75,7 +85,7 @@ return [
         'update'  => 'utilisateur/mettre-a-jour/{user}',
         'destroy' => 'utilisateur/supprimer/{user}',
         'profile' => [
-            'edit'   => 'mon-profil',
+            'edit' => 'mon-profil',
         ],
     ],
 ];

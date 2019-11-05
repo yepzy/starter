@@ -11,7 +11,7 @@
         </div>
     @endif
     <h1 class="h3 mb-3 font-weight-normal">
-        <i class="fas fa-fw fa-user-plus"></i>
+        <i class="fas fa-user-plus fa-fw"></i>
         @lang('auth.title.signUp')
     </h1>
     <form method="POST" class="w-100" action="{{ route('register.register') }}">

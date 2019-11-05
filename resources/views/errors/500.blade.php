@@ -8,7 +8,7 @@
                         {{ $icon('auth') }}
                     @endif
                 </div>
-                <i class="fas fa-fw fa-5x fa-exclamation-triangle  text-danger"></i>
+                <i class="fas fa-5x fa-exclamation-triangle fa-fw text-danger"></i>
                 <h1 class="h3 font-weight-normal mt-3">
                     @lang('errors.title') {{ $exception->getStatusCode() }}
                 </h1>

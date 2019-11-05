@@ -166,5 +166,9 @@ return [
         'illustration'              => 'Illustration',
         'category_ids'              => 'Catégories',
         'published_at'              => 'Date publication',
+        'position'                  => 'Position',
+        'meta_title'                => 'Meta Title',
+        'meta_description'          => 'Meta Description',
+        'meta_keywords'             => 'Meta Keywords',
     ],
 ];

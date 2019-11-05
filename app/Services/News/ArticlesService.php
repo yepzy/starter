@@ -36,7 +36,7 @@ class ArticlesService extends Service implements ArticlesServiceInterface
 
             return $avatar
                 ? image()->src($avatar->getUrl('thumb'))
-                    ->linkUrl($avatar->getUrl('cover'))
+                    ->linkUrl($avatar->getUrl('illustrations'))
                     ->toHtml()
                 : null;
         });

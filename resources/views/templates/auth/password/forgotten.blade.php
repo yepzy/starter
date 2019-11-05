@@ -11,7 +11,7 @@
         </div>
     @endif
     <h1 class="h3 mb-3 font-weight-normal">
-        <i class="fas fa-fw fa-unlock-alt"></i>
+        <i class="fas fa-unlock-alt fa-fw"></i>
         @lang('auth.title.forgottenPassword')
     </h1>
     <form method="POST" class="w-100" action="{{ route('password.email') }}">

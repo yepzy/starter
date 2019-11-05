@@ -22,22 +22,24 @@ mix
     .copyDirectoryOutsideMixWorkflow('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/fonts/fontawesome')
     .copyDirectoryOutsideMixWorkflow('resources/images', 'public/images')
     // js **************************************************************************************************************
-    .js('resources/js/scripts/admin/base.js', 'public/js/admin.js')
-    .js('resources/js/scripts/front/base.js', 'public/js/front.js')
     // admin
-    //
+    .js('resources/js/admin/home/slides/index.js', 'public/js/home/slides')
     // front
     //
+    // base
+    .js('resources/js/scripts/admin/base.js', 'public/js/admin.js')
+    .js('resources/js/scripts/front/base.js', 'public/js/front.js')
     // sass ************************************************************************************************************
-    .sass('resources/sass/styles/admin/_base.scss', 'public/css/admin.css')
-    .sass('resources/sass/styles/front/_base.scss', 'public/css/front.css')
     // admin
     //
     // front
     .sass('resources/sass/front/home/page/show.scss', 'public/css/home/page')
     .sass('resources/sass/front/news/index.scss', 'public/css/news')
     .sass('resources/sass/front/news/show.scss', 'public/css/news')
-    .sass('resources/sass/front/simplePages/show.scss', 'public/css/simplePages')
+    .sass('resources/sass/front/simple-pages/show.scss', 'public/css/simple-pages')
+    // base
+    .sass('resources/sass/styles/admin/_base.scss', 'public/css/admin.css')
+    .sass('resources/sass/styles/front/_base.scss', 'public/css/front.css')
     // config **********************************************************************************************************
     .options({processCssUrls: false})
     .autoload({

@@ -31,6 +31,6 @@ class UsersTableSeeder extends Seeder
         $user = (new User)->create($data);
         $user->addMedia(database_path('seeds/files/users/default-450-450.png'))
             ->preservingOriginal()
-            ->toMediaCollection('avatar');
+            ->toMediaCollection('avatars');
     }
 }

@@ -37,7 +37,7 @@
                     ->uploadedFile(function() use ($illustration) {
                         return $illustration
                             ? image()->src($illustration->getUrl('thumb'))
-                                ->linkUrl($illustration->getUrl('cover'))
+                                ->linkUrl($illustration->getUrl('illustrations'))
                                 ->containerClasses(['mb-2'])
                             : null;
                     })
@@ -68,6 +68,7 @@
                     ->componentClasses(['datetime-picker'])
                     ->containerHtmlAttributes(['required']) }}
                 {{ bsToggle()->name('active')->model($article) }}
+                @include('components.admin.seo.meta-tags', ['model' => $article])
                 <div class="d-flex pt-4">
                     {{ bsCancel()->route('news.articles')->containerClasses(['mr-2']) }}
                     @if($article){{ bsUpdate() }}@else{{ bsCreate() }}@endif

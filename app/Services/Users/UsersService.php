@@ -63,7 +63,7 @@ class UsersService extends Service implements UsersServiceInterface
     public function manageAvatarFromRequest(Request $request, User $user): void
     {
         if ($request->file('avatar')) {
-            $user->addMediaFromRequest('avatar')->toMediaCollection('avatar');
+            $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
         } elseif ($request->method() !== 'PUT' || $request->remove_avatar) {
             $this->setDefaultAvatarImage($user);
         }
@@ -82,6 +82,6 @@ class UsersService extends Service implements UsersServiceInterface
     {
         $user->addMedia(database_path('seeds/files/users/default-450-450.png'))
             ->preservingOriginal()
-            ->toMediaCollection('avatar');
+            ->toMediaCollection('avatars');
     }
 }

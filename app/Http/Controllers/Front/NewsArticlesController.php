@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\News\ArticlesIndexRequest;
 use App\Models\NewsArticle;
+use App\Services\Seo\SeoService;
 use Artesaos\SEOTools\Facades\SEOTools;
 
 class NewsArticlesController extends Controller
@@ -44,20 +45,15 @@ class NewsArticlesController extends Controller
      */
     public function show(string $url)
     {
+        /** @var \App\Models\NewsArticle $article */
         $article = (new NewsArticle)->with(['media', 'categories'])
             ->where('url', $url)
             ->where('active', true)
             ->where('published_at', '<=', now())
             ->firstOrFail();
-        $lastArticles = (new NewsArticle)->with(['media', 'categories'])
-            ->where('active', true)
-            ->where('published_at', '<=', now())
-            ->orderBy('published_at', 'desc')
-            ->limit(3)
-            ->get();
-        SEOTools::setTitle($article->title);
+        (new SeoService)->displayMetaTagsFromModel($article);
         $css = mix('/css/news/show.css');
 
-        return view('templates.front.news.show', compact('article', 'lastArticles', 'css'));
+        return view('templates.front.news.show', compact('article', 'css'));
     }
 }

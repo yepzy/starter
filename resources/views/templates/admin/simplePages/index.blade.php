@@ -1,7 +1,7 @@
 @extends('layouts.admin.full')
 @section('template')
     <h1>
-        <i class="fas fa-fw fa-file-alt"></i>
+        <i class="fas fa-file-alt fa-fw"></i>
         @lang('admin.title.orphan.index', ['entity' => __('entities.simplePages')])
     </h1>
     <hr>

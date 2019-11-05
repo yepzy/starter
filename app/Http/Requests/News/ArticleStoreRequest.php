@@ -4,6 +4,7 @@ namespace App\Http\Requests\News;
 
 use App\Http\Requests\Request;
 use App\Models\NewsArticle;
+use App\Services\Seo\SeoService;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
@@ -36,7 +37,7 @@ class ArticleStoreRequest extends Request
      */
     public function rules()
     {
-        return [
+        return array_merge([
             'illustration'   => array_merge(['required'], (new NewsArticle)->validationConstraints('illustration')),
             'title'          => ['required', 'string', 'max:255'],
             'url'            => ['required', 'string', 'alpha_dash', 'max:255', 'unique:news_articles,url'],
@@ -45,6 +46,6 @@ class ArticleStoreRequest extends Request
             'description'    => ['string', 'max:4294967295'],
             'published_at'   => ['required', 'date_format:Y-m-d H:i:s'],
             'active'         => ['required', 'boolean'],
-        ];
+        ], (new SeoService)->metaTagsRules());
     }
 }

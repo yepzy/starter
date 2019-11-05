@@ -11,7 +11,7 @@
         </div>
     @endif
     <h1 class="h3 mb-3 font-weight-normal">
-        <i class="fas fa-fw fa-sign-in-alt"></i>
+        <i class="fas fa-sign-in-alt fa-fw"></i>
         @lang('auth.title.signIn')
     </h1>
     <form method="POST" class="w-100" novalidate action="{{ route('login.login') }}">

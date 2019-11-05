@@ -23,7 +23,7 @@
                 <a href="{{ route('user.profile.edit') }}"
                    {{ classTag('dropdown-item', 'spin-on-click', $route === 'user.profile' ? 'active' : null) }}
                    title="{{ __('nav.admin.profile') }}">
-                    <i class="fas fa-fw fa-user-circle"></i>
+                    <i class="fas fa-user-circle fa-fw"></i>
                     @lang('nav.admin.profile')
                 </a>
                 <div class="dropdown-divider"></div>
@@ -33,7 +33,7 @@
                             class="dropdown-item btn btn-link"
                             title="{{ __('nav.admin.logout') }}"
                             data-confirm="@lang('notifications.message.logout.confirmation')">
-                        <i class="fas fa-fw fa-sign-out-alt"></i>
+                        <i class="fas fa-sign-out-alt fa-fw"></i>
                         @lang('nav.admin.logout')
                     </button>
                 </form>

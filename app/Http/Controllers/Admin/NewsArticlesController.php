@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Services\News\ArticlesService;
 use App\Http\Requests\News\ArticleStoreRequest;
 use App\Http\Requests\News\ArticleUpdateRequest;
+use App\Services\Seo\SeoService;
 use Artesaos\SEOTools\Facades\SEOTools;
 
 class NewsArticlesController extends Controller
@@ -54,9 +55,10 @@ class NewsArticlesController extends Controller
         /** @var  NewsArticle $article */
         $article = (new NewsArticle)->create($request->all());
         if ($request->file('illustration')) {
-            $article->addMediaFromRequest('illustration')->toMediaCollection('illustration');
+            $article->addMediaFromRequest('illustration')->toMediaCollection('illustrations');
         }
         $article->categories()->sync($request->category_ids);
+        (new SeoService)->saveMetaTagsFromRequest($request, $article);
 
         return redirect()->route('news.articles')
             ->with('toast_success', __('notifications.message.crud.parent.created', [
@@ -96,9 +98,10 @@ class NewsArticlesController extends Controller
         $request->merge(['title' => ucfirst(strtolower($request->title))]);
         $article->update($request->all());
         if ($request->file('illustration')) {
-            $article->addMediaFromRequest('illustration')->toMediaCollection('illustration');
+            $article->addMediaFromRequest('illustration')->toMediaCollection('illustrations');
         }
         $article->categories()->sync($request->category_ids);
+        (new SeoService)->saveMetaTagsFromRequest($request, $article);
 
         return back()->with('toast_success', __('notifications.message.crud.parent.updated', [
             'parent' => __('entities.news'),

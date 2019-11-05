@@ -1,0 +1,8 @@
+<li class="nav-item">
+    <a{{ classTag('nav-link', 'spin-on-click', in_array($route, ['dashboard']) ? 'active' : null) }}
+       href="{{ route('dashboard') }}"
+       title="@lang('nav.admin.dashboard')">
+        <i class="fas fa-tachometer-alt fa-fw"></i>
+        @lang('nav.admin.dashboard')
+    </a>
+</li>

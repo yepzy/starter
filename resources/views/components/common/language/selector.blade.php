@@ -6,7 +6,7 @@
            data-toggle="dropdown"
            aria-haspopup="true"
            aria-expanded="false">
-            <i class="fas fa-fw fa-language"></i>
+            <i class="fas fa-language fa-fw"></i>
             @lang('admin.section.language')
         </a>
         <div {{ classTag('dropdown-menu', isset($dropdownMenuClass) ? $dropdownMenuClass : null) }}
@@ -16,7 +16,7 @@
                    rel="alternate"
                    hreflang="{{ $localeCode }}"
                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                    <i class="fas fa-fw fa-caret-right"></i>
+                    <i class="fas fa-caret-right fa-fw"></i>
                     {{ $properties['native'] }}
                 </a>
             @endforeach

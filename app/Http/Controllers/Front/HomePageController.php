@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use Artesaos\SEOTools\Facades\SEOTools;
+use App\Models\HomePage;
+use App\Services\Seo\SeoService;
 
 class HomePageController extends Controller
 {
@@ -13,10 +14,11 @@ class HomePageController extends Controller
      */
     public function show()
     {
-        SEOTools::setTitle(__('entities.home'));
-
+        /** @var \App\Models\HomePage $homePage */
+        $homePage = (new HomePage)->firstOrFail();
+        (new SeoService)->displayMetaTagsFromModel($homePage);
         $css = mix('/css/home/page/show.css');
 
-        return view('templates.front.home.page.show', compact('css'));
+        return view('templates.front.home.page.show', compact('homePage', 'css'));
     }
 }

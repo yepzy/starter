@@ -1,12 +1,20 @@
 <?php
+
 return [
-    'dashboard'            => 'Tableau de bord',
-    'settings'             => 'Paramètres',
-    'users'                => 'Utilisateurs',
-    'profile'              => 'Mon profil',
-    'home'                 => 'Accueil',
-    'news'                 => 'Actualités',
-    'simplePages'          => 'Pages simples',
-    'categories'           => 'Catégories',
-    'articles'             => 'Articles',
+
+    // entities
+    'dashboard'   => 'Tableau de bord',
+    'home'        => 'Accueil',
+    'news'        => 'Actualités',
+    'simplePages' => 'Pages simples',
+    'users'       => 'Utilisateurs',
+    'profile'     => 'Mon profil',
+    'settings'    => 'Paramètres',
+
+    // common
+    'page'        => 'Page',
+    'slides'      => 'Slides',
+    'categories'  => 'Catégories',
+    'articles'    => 'Articles',
+
 ];

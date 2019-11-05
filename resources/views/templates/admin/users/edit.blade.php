@@ -17,7 +17,7 @@
 @endphp
 @section('template')
     <h1>
-        <i class="fas fa-fw fa-user"></i>
+        <i class="fas fa-user fa-fw"></i>
         {{ $title }}
     </h1>
     <hr>

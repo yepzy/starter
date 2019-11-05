@@ -2,13 +2,20 @@
 
 # Pre-built base for new app development on Laravel 6.0
 
-**Master :** 
-`<build-status-badge>`
-`<coverage-report-badge>`  
-**Develop :**
-`<build-status-badge>`
+| Develop | Master |
+|---|---|
+| `<build-status-badge>` | `<build-status-badge>` |
+| `<coverage-report-badge>` | `<coverage-report-badge>` |
+
+## Team
+
+- Lead dev : [Okipa](https://github.com/Okipa)
+- Quality : [Okipa](https://github.com/Okipa)
+- Management : [Okipa](https://github.com/Okipa)
+- Devs : https://github.com/Okipa/starter/graphs/contributors
 
 ## Table of Contents
+
 - [Installation](#installation)
   - [Requirements](#requirements)
   - [Import](#import)

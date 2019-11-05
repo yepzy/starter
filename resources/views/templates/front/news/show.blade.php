@@ -3,7 +3,7 @@
     <div id="news-show" class="container my-5">
         {{-- cover --}}
         <div class="row">
-            {{ $article->getFirstMedia('illustration')('cover') }}
+            {{ $article->getFirstMedia('illustrations')('cover') }}
             {{-- categories / sharing --}}
             <div class="d-flex flex-wrap flex-grow-1 align-items-center justify-content-between py-3">
                 <div>
@@ -46,6 +46,7 @@
             </div>
             {{-- description --}}
             <div class="d-flex w-100 flex-column text mt-3">
+                <h1 class="mb-4">{{ $article->title }}</h1>
                 {!! (new Parsedown)->text($article->description) !!}
                 <div class="mt-3">
                     <a class="btn btn-link spin-on-click"

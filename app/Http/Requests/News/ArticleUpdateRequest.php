@@ -4,6 +4,7 @@ namespace App\Http\Requests\News;
 
 use App\Http\Requests\Request;
 use App\Models\NewsArticle;
+use App\Services\Seo\SeoService;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
@@ -35,13 +36,13 @@ class ArticleUpdateRequest extends Request
      */
     public function rules()
     {
-        return [
+        return array_merge([
             'illustration'   => (new NewsArticle)->validationConstraints('illustration'),
             'url'            => ['required', 'string', 'max:255', 'unique:news_articles,url,' . $this->article->id],
             'title'          => ['required', 'string', 'max:255'],
             'description'    => ['string', 'max:4294967295'],
             'published_at'   => ['required', 'date_format:Y-m-d H:i:s'],
             'active'         => ['required', 'boolean'],
-        ];
+        ], (new SeoService)->metaTagsRules());
     }
 }

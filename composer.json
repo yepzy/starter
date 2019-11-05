@@ -21,7 +21,9 @@
         "propaganistas/laravel-phone": "^4.0",
         "realrashid/sweet-alert": "^2.0",
         "sentry/sentry-laravel": "^1.0",
-        "spatie/laravel-sitemap": "^5.0"
+        "spatie/eloquent-sortable": "^3.7",
+        "spatie/laravel-sitemap": "^5.0",
+        "vkovic/laravel-model-meta": "^0.3.0"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

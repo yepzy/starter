@@ -1,7 +1,7 @@
 @extends('layouts.admin.full')
 @section('template')
     <h1>
-        <i class="fas fa-fw fa-file-alt"></i>
+        <i class="fas fa-file-alt fa-fw"></i>
         @if($simplePage)
             @lang('admin.title.orphan.edit', ['entity' => __('entities.simplePages'), 'detail' => $simplePage->title])
         @else
@@ -28,7 +28,7 @@
                 @if(! $simplePage)
                     {{ bsText()->name('slug')
                         ->model($simplePage)
-                        ->prepend('<i class="fas fa-fw fa-key"></i>')
+                        ->prepend('<i class="fas fa-key fa-fw"></i>')
                         ->componentClasses(['slugify'])
                         ->componentHtmlAttributes(['data-target' => '#text-title'])
                         ->containerHtmlAttributes(['required'])}}

@@ -6,10 +6,12 @@ use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\Models\Media;
+use Vkovic\LaravelModelMeta\Models\Traits\HasMetadata;
 
 class NewsArticle extends Model implements HasMedia
 {
     use HasMediaTrait;
+    use HasMetadata;
     /**
      * The database table used by the model.
      *
@@ -36,6 +38,7 @@ class NewsArticle extends Model implements HasMedia
     protected $dates = [
         'published_at',
     ];
+
     // media ***********************************************************************************************************
 
     /**
@@ -46,7 +49,7 @@ class NewsArticle extends Model implements HasMedia
      */
     public function registerMediaCollections()
     {
-        $this->addMediaCollection('illustration')
+        $this->addMediaCollection('illustrations')
             ->acceptsMimeTypes(['image/jpeg', 'image/png'])
             ->registerMediaConversions(function (Media $media = null) {
                 $this->addMediaConversion('cover')

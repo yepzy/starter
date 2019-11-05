@@ -94,7 +94,7 @@ Ordered list :
         ]);
         $article->addMedia(database_path($imageUrl))
             ->preservingOriginal()
-            ->toMediaCollection('illustration');
+            ->toMediaCollection('illustrations');
         $categoryIds = $this->categories->random(rand(1, $this->categories->count() / 3))->pluck('id');
         $article->categories()->sync($categoryIds);
     }
