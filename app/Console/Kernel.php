@@ -42,6 +42,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
         // telescope
         $schedule->command('telescope:prune')->dailyAt('04:00');
+        // stuck failed jobs notifier
+        // https://github.com/Okipa/laravel-failed-jobs-notifier
+        $schedule->command('queue:failed:notify')->everyFiveMinutes();
     }
 
     /**
