@@ -42,6 +42,7 @@
                 {{ bsTextarea()->name('description')->model($simplePage)->prepend(false)->componentClasses(['editor']) }}
                 <h3 class="pt-4">@lang('admin.section.publication')</h3>
                 {{ bsToggle()->name('active')->model($simplePage) }}
+                @include('components.admin.seo.meta-tags', ['model' => $simplePage])
                 <div class="d-flex pt-4">
                     {{ bsCancel()->route('simplePages')->containerClasses(['mr-2']) }}
                     @if($simplePage){{ bsUpdate() }}@else{{ bsCreate() }}@endif

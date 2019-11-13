@@ -2,9 +2,9 @@
 
 namespace App\Services\Seo;
 
-use App\Models\Model;
 use App\Services\Service;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class SeoService extends Service implements SeoServiceInterface
@@ -12,28 +12,17 @@ class SeoService extends Service implements SeoServiceInterface
     /**
      * @return array
      */
-    public function exceptMetaTagsFromNullExclusion(): array
-    {
-        return [
-            'meta_title',
-            'meta_description',
-        ];
-    }
-
-    /**
-     * @return array
-     */
     public function metaTagsRules(): array
     {
         return [
-            'meta_title'       => ['string', 'max:255'],
+            'meta_title'       => ['required', 'string', 'max:255'],
             'meta_description' => ['string', 'max:255'],
         ];
     }
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Model $model
+     * @param \Illuminate\Database\Eloquent\Model $model
      */
     public function saveMetaTagsFromRequest(Request $request, Model $model): void
     {
@@ -47,7 +36,7 @@ class SeoService extends Service implements SeoServiceInterface
     }
 
     /**
-     * @param \App\Models\Model $model
+     * @param \Illuminate\Database\Eloquent\Model $model
      */
     public function displayMetaTagsFromModel(Model $model): void
     {

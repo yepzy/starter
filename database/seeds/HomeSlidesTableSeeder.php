@@ -19,8 +19,8 @@ class HomeSlidesTableSeeder extends Seeder
     {
         $this->faker = Factory::create(config('app.faker_locale'));
         $this->homePage = (new HomePage)->firstOrFail();
-        $this->createSlide(database_path('seeds/files/home/slide-1-2560-1769.jpg'));
-        $this->createSlide(database_path('seeds/files/home/slide-2-2560-1896.jpg'));
+        $this->createSlide(database_path('seeds/files/home/slide-1-2560x500.png'));
+        $this->createSlide(database_path('seeds/files/home/slide-2-2560x500.png'));
     }
 
     /**

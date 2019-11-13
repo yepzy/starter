@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Vkovic\LaravelModelMeta\Models\Traits\HasMetadata;
 
 class SimplePage extends Model
 {
+    use HasMetadata;
     /**
      * The database table used by the model.
      *

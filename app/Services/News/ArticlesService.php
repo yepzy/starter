@@ -32,13 +32,7 @@ class ArticlesService extends Service implements ArticlesServiceInterface
             ];
         });
         $table->column('illustration')->html(function (NewsArticle $newsArticle) {
-            $avatar = $newsArticle->getFirstMedia('illustration');
-
-            return $avatar
-                ? image()->src($avatar->getUrl('thumb'))
-                    ->linkUrl($avatar->getUrl('illustrations'))
-                    ->toHtml()
-                : null;
+            return view('components.admin.table.image', ['image' => $newsArticle->getFirstMedia('illustrations')]);
         });
         $table->column('title')->stringLimit(50)->sortable()->searchable();
         $table->column()->title(__('validation.attributes.category_ids'))->html(function (NewsArticle $newsArticle) {

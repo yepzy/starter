@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\SimplePage;
 use App\Http\Controllers\Controller;
+use App\Services\Seo\SeoService;
 use App\Services\SimplePages\PagesService;
 use App\Http\Requests\SimplePages\SimplePageStoreRequest;
 use App\Http\Requests\SimplePages\SimplePageUpdateRequest;
@@ -21,7 +22,7 @@ class SimplePagesController extends Controller
         $table = (new PagesService)->table();
         SEOTools::setTitle(__('admin.title.orphan.index', ['entity' => __('entities.simplePages')]));
 
-        return view('templates.admin.simplePages.index', compact('table'));
+        return view('templates.admin.simple-pages.index', compact('table'));
     }
 
     /**
@@ -32,7 +33,7 @@ class SimplePagesController extends Controller
         $simplePage = null;
         SEOTools::setTitle(__('admin.title.orphan.create', ['entity' => __('entities.users')]));
 
-        return view('templates.admin.simplePages.edit', compact('simplePage'));
+        return view('templates.admin.simple-pages.edit', compact('simplePage'));
     }
 
     /**
@@ -43,7 +44,8 @@ class SimplePagesController extends Controller
      */
     public function store(SimplePageStoreRequest $request)
     {
-        $simplePage = (new SimplePage)->create($request->all());
+        $simplePage = (new SimplePage)->create($request->validated());
+        (new SeoService)->saveMetaTagsFromRequest($request, $simplePage);
         cache()->forever(Str::camel($simplePage->slug), $simplePage->fresh());
 
         return redirect()->route('simplePages')->with('toast_success', __('notifications.message.crud.orphan.created', [
@@ -64,7 +66,7 @@ class SimplePagesController extends Controller
             'detail' => $simplePage->title,
         ]));
 
-        return view('templates.admin.simplePages.edit', compact('simplePage'));
+        return view('templates.admin.simple-pages.edit', compact('simplePage'));
     }
 
     /**
@@ -78,6 +80,7 @@ class SimplePagesController extends Controller
     {
         cache()->forget(Str::camel($simplePage->slug));
         $simplePage->update($request->except('slug'));
+        (new SeoService)->saveMetaTagsFromRequest($request, $simplePage);
         cache()->forever(Str::camel($simplePage->slug), $simplePage->fresh());
 
         return back()->with('toast_success', __('notifications.message.crud.orphan.updated', [

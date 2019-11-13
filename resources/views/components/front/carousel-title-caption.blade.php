@@ -19,11 +19,11 @@
         @endforeach
     </div>
     @if($slides->count() > 1)
-        <a class="carousel-control-prev" href="#home-carousel" role="button" data-slide="prev">
+        <a class="carousel-control-prev" href="#carouselTitleCaption" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">@lang('static.action.previous')</span>
         </a>
-        <a class="carousel-control-next" href="#home-carousel" role="button" data-slide="next">
+        <a class="carousel-control-next" href="#carouselTitleCaption" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">@lang('static.action.next')</span>
         </a>

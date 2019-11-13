@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\SimplePage;
-use Artesaos\SEOTools\Facades\SEOTools;
+use App\Services\Seo\SeoService;
 
 class SimplePagesController extends Controller
 {
@@ -16,10 +16,10 @@ class SimplePagesController extends Controller
      */
     public function show(string $url)
     {
-        $page = (new SimplePage)->where('url', $url)->where('active', true)->firstOrFail();
-        SEOTools::setTitle($page->title);
-        $css = mix('/css/simplePages/show.css');
+        $simplePage = (new SimplePage)->where('url', $url)->where('active', true)->firstOrFail();
+        (new SeoService)->displayMetaTagsFromModel($simplePage);
+        $css = mix('/css/simple-pages/show.css');
 
-        return view('templates.front.simplePages.show', compact('page', 'css'));
+        return view('templates.front.simple-pages.show', compact('simplePage', 'css'));
     }
 }

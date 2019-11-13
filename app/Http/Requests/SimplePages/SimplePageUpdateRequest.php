@@ -4,6 +4,7 @@ namespace App\Http\Requests\SimplePages;
 
 use App\Http\Requests\Request;
 use App\Rules\UrlUnique;
+use App\Services\Seo\SeoService;
 use Illuminate\Support\Str;
 
 class SimplePageUpdateRequest extends Request
@@ -30,7 +31,7 @@ class SimplePageUpdateRequest extends Request
      */
     public function rules()
     {
-        return [
+        return array_merge([
             'url'         => [
                 'required',
                 'string',
@@ -42,6 +43,6 @@ class SimplePageUpdateRequest extends Request
             'title'       => ['required', 'string', 'max:255'],
             'description' => ['string', 'max:4294967295'],
             'active'      => ['required', 'boolean'],
-        ];
+        ], (new SeoService)->metaTagsRules());
     }
 }

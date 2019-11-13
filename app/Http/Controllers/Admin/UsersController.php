@@ -14,14 +14,6 @@ use Hash;
 class UsersController extends Controller
 {
     /**
-     * HomeController constructor.
-     */
-    public function __construct()
-    {
-        $this->service = (new UsersService);
-    }
-
-    /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \ErrorException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
@@ -29,7 +21,7 @@ class UsersController extends Controller
     public function index()
     {
         SEOTools::setTitle(__('admin.title.orphan.index', ['entity' => __('entities.users')]));
-        $table = $this->service->table();
+        $table = (new UsersService)->table();
 
         return view('templates.admin.users.index', compact('table'));
     }
@@ -58,7 +50,7 @@ class UsersController extends Controller
     {
         $request->merge(['password' => Hash::make($request->password)]);
         $user = (new User)->create($request->all());
-        $this->service->manageAvatarFromRequest($request, $user);
+        (new UsersService)->manageAvatarFromRequest($request, $user);
 
         return redirect()->route('users')->with('toast_success', __('notifications.message.crud.orphan.created', [
             'entity' => __('entities.users'),
@@ -94,7 +86,7 @@ class UsersController extends Controller
             $request->merge(['password' => Hash::make($request->new_password)]);
         }
         $user->update($request->all());
-        $this->service->manageAvatarFromRequest($request, $user);
+        (new UsersService)->manageAvatarFromRequest($request, $user);
 
         return back()->with('toast_success', $user->id === Auth::id()
             ? __('notifications.message.crud.name.updated', ['name' => __('entities.profile')])

@@ -1,10 +1,14 @@
 <?php
 
 use App\Models\SimplePage;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class SimplePagesTableSeeder extends Seeder
 {
+    protected $faker;
+    protected $fakeText;
+
     /**
      * Run the database seeds.
      *
@@ -13,7 +17,8 @@ class SimplePagesTableSeeder extends Seeder
      */
     public function run()
     {
-        $fakeText = <<<EOT
+        $this->faker = Factory::create(config('app.faker_locale'));
+        $this->fakeText = <<<EOT
 **Bold text.**
 
 *Italic text.*
@@ -37,19 +42,24 @@ Ordered list :
 
 [Link](http://www.google.com).
 EOT;
-        (new SimplePage)->create([
-            'slug'        => 'terms-of-service',
-            'url'         => Str::slug('CGU et mentions légales'),
-            'title'       => 'CGU et mentions légales',
-            'description' => $fakeText,
+        $this->createSimplePage('CGU et mentions légales', 'terms-of-service');
+        $this->createSimplePage('Charte de respect de la vie privée - RGPD', 'rgpd');
+    }
+
+    /**
+     * @param string $title
+     * @param string $slug
+     */
+    protected function createSimplePage(string $title, string $slug): void
+    {
+        $simplePage = (new SimplePage)->create([
+            'slug'        => $slug,
+            'url'         => Str::slug($title),
+            'title'       => $title,
+            'description' => $this->fakeText,
             'active'      => true,
         ]);
-        (new SimplePage)->create([
-            'slug'        => 'rgpd',
-            'url'         => Str::slug('Charte de respect de la vie privée - RGPD'),
-            'title'       => 'Charte de respect de la vie privée - RGPD',
-            'description' => $fakeText,
-            'active'      => true,
-        ]);
+        $simplePage->setMeta('meta_title', $title);
+        $simplePage->setMeta('meta_description', $this->faker->text(150));
     }
 }

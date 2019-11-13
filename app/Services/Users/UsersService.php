@@ -34,13 +34,7 @@ class UsersService extends Service implements UsersServiceInterface
             ];
         });
         $table->column('avatar')->html(function (User $user) {
-            $avatar = $user->getFirstMedia('avatar');
-
-            return $avatar
-                ? image()->src($avatar->getUrl('thumb'))
-                    ->linkUrl($avatar->getUrl('profile'))
-                    ->toHtml()
-                : null;
+            return view('components.admin.table.image', ['image' => $user->getFirstMedia('avatars')]);
         });
         $table->column('first_name')->sortable(true)->searchable();
         $table->column('last_name')->sortable()->searchable();

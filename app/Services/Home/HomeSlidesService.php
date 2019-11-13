@@ -36,13 +36,7 @@ class HomeSlidesService extends Service implements HomeSlidesServiceInterface
             ];
         });
         $table->column('illustration')->html(function (HomeSlide $homeSlide) {
-            $avatar = $homeSlide->getFirstMedia('illustrations');
-
-            return $avatar
-                ? image()->src($avatar->getUrl('thumb'))
-                    ->linkUrl($avatar->getUrl('cover'))
-                    ->toHtml()
-                : null;
+            return view('components.admin.table.image', ['image' => $homeSlide->getFirstMedia('illustrations')]);
         });
         $table->column('title')->stringLimit(50);
         $table->column('description')->stringLimit(150);

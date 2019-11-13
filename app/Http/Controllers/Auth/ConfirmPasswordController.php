@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ConfirmsPasswords;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Illuminate\Foundation\Auth\ConfirmsPasswords;
+use Illuminate\View\View;
 
 class ConfirmPasswordController extends Controller
 {
@@ -29,9 +30,9 @@ class ConfirmPasswordController extends Controller
     /**
      * Display the password confirmation view.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
-    public function showConfirmForm()
+    public function showConfirmForm(): View
     {
         SEOTools::setTitle(__('auth.title.confirmPassword'));
 
