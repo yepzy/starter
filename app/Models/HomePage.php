@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Vkovic\LaravelModelMeta\Models\Traits\HasMetadata;
+use Plank\Metable\Metable;
 
 class HomePage extends Model
 {
-    use HasMetadata;
+    use Metable;
     /**
      * The database table used by the model.
      *

@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
+use Plank\Metable\Metable;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\Models\Media;
-use Vkovic\LaravelModelMeta\Models\Traits\HasMetadata;
 
 class NewsArticle extends Model implements HasMedia
 {
     use HasMediaTrait;
-    use HasMetadata;
+    use Metable;
     /**
      * The database table used by the model.
      *

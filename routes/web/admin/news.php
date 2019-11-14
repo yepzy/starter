@@ -34,7 +34,7 @@ Route::get(LaravelLocalization::transRoute('routes.news.articles.index'), [
     'index',
 ])->name('news.articles');
 Route::get(LaravelLocalization::transRoute('routes.news.articles.create'), [
-    ewsArticlesController::class,
+    NewsArticlesController::class,
     'create',
 ])->name('news.article.create');
 Route::post(LaravelLocalization::transRoute('routes.news.articles.store'), [
