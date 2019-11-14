@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "31c8c81d313b8e352615afcd21368c59",
+    "content-hash": "ed1ecff787838b1e08965a0220ae622e",
     "packages": [
         {
             "name": "artesaos/seotools",
@@ -3809,6 +3809,57 @@
             "time": "2018-01-21T07:42:36+00:00"
         },
         {
+            "name": "plank/laravel-metable",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/plank/laravel-metable.git",
+                "reference": "d4b29b2d7c77e4b9720d99d3ad45e956f1042c70"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/plank/laravel-metable/zipball/d4b29b2d7c77e4b9720d99d3ad45e956f1042c70",
+                "reference": "d4b29b2d7c77e4b9720d99d3ad45e956f1042c70",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/database": "^5.6|^6.0",
+                "illuminate/support": "^5.6|^6.0",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.3|^4.0",
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Plank\\Metable\\MetableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Plank\\Metable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sean Fraser",
+                    "email": "sean@plankdesign.com"
+                }
+            ],
+            "description": "A package for attaching arbitrary data to Eloquent models",
+            "time": "2019-09-13T01:23:25+00:00"
+        },
+        {
             "name": "predis/predis",
             "version": "v1.1.1",
             "source": {
@@ -6779,119 +6830,6 @@
             "time": "2019-10-24T08:53:34+00:00"
         },
         {
-            "name": "vkovic/laravel-meta",
-            "version": "v0.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vkovic/laravel-meta.git",
-                "reference": "31529be66c5de10a8dd19c4065cdfebbd1a856df"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vkovic/laravel-meta/zipball/31529be66c5de10a8dd19c4065cdfebbd1a856df",
-                "reference": "31529be66c5de10a8dd19c4065cdfebbd1a856df",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1"
-            },
-            "require-dev": {
-                "laravel/laravel": "^5.5|^6.0",
-                "orchestra/database": "^3.5|^4.0",
-                "orchestra/testbench": "^3.5|^4.0",
-                "phpunit/phpunit": "^6.3|^7.0|^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Vkovic\\LaravelMeta\\Providers\\LaravelMetaServiceProvider"
-                    ],
-                    "aliases": {
-                        "Meta": "Vkovic\\LaravelMeta\\Facades\\MetaFacade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Vkovic\\LaravelMeta\\": "src/package"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Vladimir Ković",
-                    "email": "vlada.kovic@gmail.com"
-                }
-            ],
-            "description": "Laravel meta storage for different purposes",
-            "keywords": [
-                "data",
-                "laravel",
-                "meta"
-            ],
-            "time": "2019-10-15T18:00:53+00:00"
-        },
-        {
-            "name": "vkovic/laravel-model-meta",
-            "version": "v0.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vkovic/laravel-model-meta.git",
-                "reference": "3f3aba115cb79568208b69db27812a5d27164d3b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vkovic/laravel-model-meta/zipball/3f3aba115cb79568208b69db27812a5d27164d3b",
-                "reference": "3f3aba115cb79568208b69db27812a5d27164d3b",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1",
-                "vkovic/laravel-meta": "^0.2.2|^0.3"
-            },
-            "require-dev": {
-                "laravel/laravel": "^6.0",
-                "orchestra/database": "^4.0",
-                "orchestra/testbench": "^4.0",
-                "phpunit/phpunit": "^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Vkovic\\LaravelModelMeta\\Providers\\LaravelModelMetaServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Vkovic\\LaravelModelMeta\\": "src/package"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Vladimir Ković",
-                    "email": "vlada.kovic@gmail.com"
-                }
-            ],
-            "description": "Laravel model meta storage",
-            "keywords": [
-                "data",
-                "laravel",
-                "meta",
-                "model"
-            ],
-            "time": "2019-11-04T14:32:14+00:00"
-        },
-        {
             "name": "vlucas/phpdotenv",
             "version": "v3.6.0",
             "source": {
@@ -6950,16 +6888,16 @@
         },
         {
             "name": "zendframework/zend-diactoros",
-            "version": "2.2.0",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "66eded992a75bfe75a829005a2884aae5ca86daa"
+                "reference": "de5847b068362a88684a55b0dbb40d85986cfa52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/66eded992a75bfe75a829005a2884aae5ca86daa",
-                "reference": "66eded992a75bfe75a829005a2884aae5ca86daa",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/de5847b068362a88684a55b0dbb40d85986cfa52",
+                "reference": "de5847b068362a88684a55b0dbb40d85986cfa52",
                 "shasum": ""
             },
             "require": {
@@ -7013,7 +6951,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2019-11-12T17:26:16+00:00"
+            "time": "2019-11-13T19:16:13+00:00"
         }
     ],
     "packages-dev": [

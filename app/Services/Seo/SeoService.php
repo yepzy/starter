@@ -26,11 +26,13 @@ class SeoService extends Service implements SeoServiceInterface
      */
     public function saveMetaTagsFromRequest(Request $request, Model $model): void
     {
-        $model->removeMeta(['meta_title', 'meta_description']);
-        if ($request->has('meta_title')) {
+        if (method_exists($model, 'removeMeta')) {
+            $model->removeMeta(['meta_title', 'meta_description']);
+        }
+        if (method_exists($model, 'setMeta') && $request->has('meta_title')) {
             $model->setMeta('meta_title', $request->meta_title);
         }
-        if ($request->has('meta_description')) {
+        if (method_exists($model, 'setMeta') && $request->has('meta_description')) {
             $model->setMeta('meta_description', $request->meta_description);
         }
     }
@@ -40,7 +42,9 @@ class SeoService extends Service implements SeoServiceInterface
      */
     public function displayMetaTagsFromModel(Model $model): void
     {
-        SEOTools::setTitle($model->getMeta('meta_title'));
-        SEOTools::setDescription($model->getMeta('meta_description'));
+        if (method_exists($model, 'getMeta')) {
+            SEOTools::setTitle($model->getMeta('meta_title'));
+            SEOTools::setDescription($model->getMeta('meta_description'));
+        }
     }
 }
