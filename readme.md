@@ -29,6 +29,7 @@
 - [Building resources](#building-resources)
 - [Testing](#testing)
 - [Debugging](#debugging)
+- [Changelog](#changelog)
 
 ## Installation
 
@@ -114,3 +115,7 @@ You can run these commands from your docker workspace, Node and Yarn are install
 Laravel Telescope and Laravel Horizon are pre-installed :
 - To open the `telescope` dashboard,  go to `http://your-project.url/telescope`.
 - To open the `horizon` dashboard,  go to `http://your-project.url/horizon`.
+
+## Changelog
+
+See [CHANGELOG](CHANGELOG.md) for more information on what has been pushed in production.
