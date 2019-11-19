@@ -21,7 +21,7 @@
             </a>
             <div {{ classTag('dropdown-menu', 'dropdown-menu-right') }}>
                 <a href="{{ route('user.profile.edit') }}"
-                   {{ classTag('dropdown-item', 'spin-on-click', $route === 'user.profile' ? 'active' : null) }}
+                   {{ classTag('dropdown-item', 'load-on-click', $route === 'user.profile' ? 'active' : null) }}
                    title="{{ __('nav.admin.profile') }}">
                     <i class="fas fa-user-circle fa-fw"></i>
                     @lang('nav.admin.profile')

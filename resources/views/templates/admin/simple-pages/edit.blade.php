@@ -30,14 +30,14 @@
                         ->model($simplePage)
                         ->prepend('<i class="fas fa-key fa-fw"></i>')
                         ->componentClasses(['slugify'])
-                        ->componentHtmlAttributes(['data-target' => '#text-title'])
+                        ->componentHtmlAttributes(['data-autofill-from' => '#text-title'])
                         ->containerHtmlAttributes(['required'])}}
                 @endif
                 {{ bsText()->name('url')
                     ->model($simplePage)
-                    ->prepend(route('simplePage.show', '') . '/')
-                    ->componentClasses(['slugify'])
-                    ->componentHtmlAttributes(['data-target' => '#text-title'])
+                    ->prepend(route('simplePage.show', ['url' => null]) . '/')
+                    ->componentClasses(['lowercase'])
+                    ->componentHtmlAttributes(['data-autofill-from' => '#text-title'])
                     ->containerHtmlAttributes(['required']) }}
                 {{ bsTextarea()->name('description')->model($simplePage)->prepend(false)->componentClasses(['editor']) }}
                 <h3 class="pt-4">@lang('admin.section.publication')</h3>

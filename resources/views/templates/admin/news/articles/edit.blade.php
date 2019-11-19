@@ -1,7 +1,7 @@
 @extends('layouts.admin.full')
 @section('template')
     <h1>
-        <i class="fas fa-pen fa-fw"></i>
+        <i class="fas fa-paper-plane fa-fw"></i>
         @if($article)
             @lang('admin.title.parent.edit', [
                 'entity' => __('entities.articles'), 'detail' => $article->title,
@@ -49,8 +49,8 @@
                 {{ bsText()->name('url')
                     ->model($article)
                     ->prepend(route('news.article.show', '') . '/')
-                    ->componentClasses(['slugify'])
-                    ->componentHtmlAttributes(['data-target' => '#text-title'])
+                    ->componentClasses(['lowercase'])
+                    ->componentHtmlAttributes(['data-autofill-from' => '#text-title'])
                     ->containerHtmlAttributes(['required']) }}
                 <h3 class="pt-4">@lang('admin.section.information')</h3>
                 {{ bsSelect()->name('category_ids')

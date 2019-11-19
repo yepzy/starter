@@ -1,7 +1,7 @@
 @extends('layouts.admin.full')
 @section('template')
     <h1>
-        <i class="fas fa-home fa-fw"></i>
+        <i class="fas fa-desktop fa-fw"></i>
         @lang('admin.title.orphan.edit', ['entity' => __('entities.home'), 'detail' => __('entities.page')])
     </h1>
     <hr>

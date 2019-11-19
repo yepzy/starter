@@ -9,4 +9,4 @@ Route::get(LaravelLocalization::transRoute('routes.news.articles.index'), [
 Route::get(LaravelLocalization::transRoute('routes.news.articles.show'), [
     NewsArticlesController::class,
     'show',
-])->name('news.article.show');
+])->name('news.article.show')->where('url', '.*');

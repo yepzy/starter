@@ -1,7 +1,7 @@
 @extends('layouts.admin.full')
 @section('template')
     <h1>
-        <i class="fas fa-pen fa-fw"></i>
+        <i class="fas fa-paper-plane fa-fw"></i>
         @lang('admin.title.parent.index', [
             'parent' => __('entities.news'),
             'entity' => __('entities.articles'),

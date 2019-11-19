@@ -320,7 +320,7 @@ return [
             'label'          => 'bootstrap-components.label.validate',
             'classes'        => [
                 'container' => ['form-group'],
-                'component' => ['btn', 'btn-success', 'spin-on-click'],
+                'component' => ['btn', 'btn-success', 'load-on-click'],
             ],
             'htmlAttributes' => [
                 'container' => [],
@@ -334,7 +334,7 @@ return [
             'label'          => 'bootstrap-components.label.create',
             'classes'        => [
                 'container' => ['form-group'],
-                'component' => ['btn', 'btn-success', 'spin-on-click'],
+                'component' => ['btn', 'btn-success', 'load-on-click'],
             ],
             'htmlAttributes' => [
                 'container' => [],
@@ -348,7 +348,7 @@ return [
             'label'          => 'bootstrap-components.label.update',
             'classes'        => [
                 'container' => ['form-group'],
-                'component' => ['btn', 'btn-success', 'spin-on-click'],
+                'component' => ['btn', 'btn-success', 'load-on-click'],
             ],
             'htmlAttributes' => [
                 'container' => [],
@@ -362,7 +362,7 @@ return [
             'label'          => 'bootstrap-components.label.back',
             'classes'        => [
                 'container' => ['form-group'],
-                'component' => ['btn', 'btn-secondary', 'spin-on-click'],
+                'component' => ['btn', 'btn-secondary', 'load-on-click'],
             ],
             'htmlAttributes' => [
                 'container' => [],
@@ -376,7 +376,7 @@ return [
             'label'          => 'bootstrap-components.label.cancel',
             'classes'        => [
                 'container' => ['form-group'],
-                'component' => ['btn', 'btn-danger', 'spin-on-click'],
+                'component' => ['btn', 'btn-danger', 'load-on-click'],
             ],
             'htmlAttributes' => [
                 'container' => [],

@@ -22,7 +22,7 @@
             ->componentHtmlAttributes(['autofocus'])
             ->containerHtmlAttributes(['required']) }}
         {{ bsValidate()->label(__('auth.label.sendEmail'))
-            ->componentClasses(['btn', 'btn-block', 'btn-primary', 'spin-on-click']) }}
+            ->componentClasses(['btn', 'btn-block', 'btn-primary', 'load-on-click']) }}
     </form>
     {{ bsCancel() }}
 @endsection

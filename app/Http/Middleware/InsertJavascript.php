@@ -15,6 +15,7 @@ class InsertJavascript
      *
      * @return mixed
      * @throws \Exception
+     * @throws \Throwable
      */
     public function handle($request, Closure $next)
     {
@@ -24,6 +25,9 @@ class InsertJavascript
             'notifications' => __('notifications'),
             'cookieConsent' => __('cookieconsent'),
             'sumoSelect'    => __('sumoselect'),
+            'templates' => [
+                'loading' => view('components.common.notifications.loading')->render(),
+            ],
             'static'        => __('static'),
             'routes'        => [
                 'page' => [

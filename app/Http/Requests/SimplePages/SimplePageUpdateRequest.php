@@ -5,11 +5,11 @@ namespace App\Http\Requests\SimplePages;
 use App\Http\Requests\Request;
 use App\Rules\UrlUnique;
 use App\Services\Seo\SeoService;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class SimplePageUpdateRequest extends Request
 {
-    protected $exceptFromSanitize = [];
+    protected $exceptFromSanitize = ['url'];
     protected $safetyChecks = ['active' => 'boolean'];
 
     /**
@@ -20,7 +20,7 @@ class SimplePageUpdateRequest extends Request
     public function before()
     {
         $this->merge([
-            'url' => Str::slug($this->url),
+            'url' => $this->url ? strtolower($this->url) : null,
         ]);
     }
 
@@ -35,7 +35,6 @@ class SimplePageUpdateRequest extends Request
             'url'         => [
                 'required',
                 'string',
-                'alpha_dash',
                 'max:255',
                 'unique:simple_pages,url,' . $this->simplePage->id,
                 new UrlUnique,
@@ -44,5 +43,26 @@ class SimplePageUpdateRequest extends Request
             'description' => ['string', 'max:4294967295'],
             'active'      => ['required', 'boolean'],
         ], (new SeoService)->metaTagsRules());
+    }
+
+    /**
+     * Configure the validator instance.
+     *
+     * @param \Illuminate\Validation\Validator $validator
+     *
+     * @return void
+     */
+    public function withValidator($validator)
+    {
+        $customValidator = Validator::make([
+            'full_url' => $this->url ? route('news.article.show', $this->url) : null,
+        ], [
+            'full_url' => ['required', 'string', 'url'],
+        ]);
+        if ($customValidator->failed()) {
+            $validator->after(function ($validator) {
+                $validator->errors()->add('url', __('validation.url'));
+            });
+        }
     }
 }
