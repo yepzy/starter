@@ -20,7 +20,7 @@
         <p>@lang('auth.label.confirmPasswordNotice')</p>
         {{ bsPassword()->name('password')->containerHtmlAttributes(['required']) }}
         {{ bsValidate()->label(__('auth.label.confirmPassword'))
-            ->componentClasses(['btn', 'btn-block', 'btn-primary', 'spin-on-click']) }}
+            ->componentClasses(['btn', 'btn-block', 'btn-primary', 'load-on-click']) }}
         <div class="form-group d-block">
             <a href="{{ route('password.request') }}">
                 @lang('auth.label.forgottenPassword')

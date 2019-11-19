@@ -27,7 +27,7 @@
                                 </p>
                             @endif
                             <p class="card-text shave description">{!! Str::limit(strip_tags((new Parsedown)->text($article->description)), 500) !!}</p>
-                            <a class="btn btn-primary spin-on-click"
+                            <a class="btn btn-primary load-on-click"
                                href="{{ route('news.article.show', $article->url) }}"
                                title="@lang('static.action.moreInfo')">
                                 @lang('static.action.moreInfo')

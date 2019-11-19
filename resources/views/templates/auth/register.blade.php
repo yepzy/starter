@@ -30,7 +30,7 @@
         {{ bsPassword()->name('password_confirmation')
             ->containerHtmlAttributes(['required']) }}
         {{ bsValidate()->label(__('auth.label.createAccount'))
-            ->componentClasses(['btn', 'btn-block', 'btn-primary', 'spin-on-click']) }}
+            ->componentClasses(['btn', 'btn-block', 'btn-primary', 'load-on-click']) }}
     </form>
     {{ bsCancel()->route('login') }}
 @endsection

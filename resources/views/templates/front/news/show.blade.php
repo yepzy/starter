@@ -49,7 +49,7 @@
                 <h1 class="mb-4">{{ $article->title }}</h1>
                 {!! (new Parsedown)->text($article->description) !!}
                 <div class="mt-3">
-                    <a class="btn btn-link spin-on-click"
+                    <a class="btn btn-link load-on-click"
                        href="{{ route('news') }}"
                        title="@lang('static.action.back')">
                         <i class="fas fa-chevron-left fa-fw"></i>

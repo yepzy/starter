@@ -1,7 +1,7 @@
 @extends('layouts.admin.full')
 @section('template')
     <h1>
-        <i class="fas fa-cog fa-fw"></i>
+        <i class="fas fa-cogs fa-fw"></i>
         @lang('admin.title.orphan.index', ['entity' => __('entities.settings')])
     </h1>
     <hr>

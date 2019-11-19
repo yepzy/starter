@@ -18,7 +18,7 @@
     <ul id="homeMenu" {{ classTag(['collapse', 'list-unstyled', $subMenuActive ? 'show' : null]) }}>
         {{-- page --}}
         <li class="nav-item">
-            <a{{ classTag(['nav-link', 'spin-on-click', $homePageActive ? 'active' : null]) }}
+            <a{{ classTag(['nav-link', 'load-on-click', $homePageActive ? 'active' : null]) }}
                href="{{ route('home.page.edit') }}"
                title="@lang('nav.admin.articles')">
                 <i class="fas fa-desktop fa-fw"></i>
@@ -27,10 +27,10 @@
         </li>
         {{-- slides --}}
         <li class="nav-item">
-            <a{{ classTag(['nav-link', 'spin-on-click', $homeSlidesActive ? 'active' : null]) }}
+            <a{{ classTag(['nav-link', 'load-on-click', $homeSlidesActive ? 'active' : null]) }}
                href="{{ route('home.slides') }}"
                title="@lang('nav.admin.categories')">
-                <i class="fas fa-tags fa-fw"></i>
+            <i class="fas fa-images fa-fw"></i>
                 @lang('nav.admin.slides')
             </a>
         </li>

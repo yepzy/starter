@@ -6,6 +6,7 @@ return [
         'success' => 'Succès',
         'error'   => 'Erreur',
         'confirm' => 'Confirmation demandée',
+        'loading' => 'Chargement en cours',
     ],
 
     'message' => [
@@ -64,6 +65,7 @@ return [
         'reorganization' => [
             'success' => 'La liste a été réorganisée.',
         ],
+        'loading'        => 'Merci de patienter quelques instants...',
     ],
 
 ];

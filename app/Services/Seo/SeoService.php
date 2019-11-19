@@ -26,8 +26,8 @@ class SeoService extends Service implements SeoServiceInterface
      */
     public function saveMetaTagsFromRequest(Request $request, Model $model): void
     {
-        if (method_exists($model, 'removeMeta')) {
-            $model->removeMeta(['meta_title', 'meta_description']);
+        if (method_exists($model, 'syncMeta')) {
+            $model->syncMeta([]);
         }
         if (method_exists($model, 'setMeta') && $request->has('meta_title')) {
             $model->setMeta('meta_title', $request->meta_title);

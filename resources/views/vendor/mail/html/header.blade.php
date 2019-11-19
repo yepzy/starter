@@ -1,6 +1,6 @@
+
 @php
     $base64Logo = null;
-    $settings = (new \App\Models\Settings)->first();
     $imagePath = optional($settings)->getFirstMediaPath('icon', 'mail');
     if ($imagePath) {
         $type = pathinfo($imagePath, PATHINFO_EXTENSION);

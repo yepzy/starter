@@ -16,6 +16,6 @@ require('./bootstrap/modal');
 require('./bootstrap/nav');
 // custom
 require('./custom/new-window');
-require('./custom/spin-on-click');
+require('./custom/load-on-click');
 require('./custom/data-confirm');
 require('./custom/no-click');
