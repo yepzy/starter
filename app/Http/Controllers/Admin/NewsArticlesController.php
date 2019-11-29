@@ -53,12 +53,12 @@ class NewsArticlesController extends Controller
     {
         $request->merge(['title' => ucfirst(strtolower($request->title))]);
         /** @var  NewsArticle $article */
-        $article = (new NewsArticle)->create($request->all());
+        $article = (new NewsArticle)->create($request->validated());
         if ($request->file('illustration')) {
             $article->addMediaFromRequest('illustration')->toMediaCollection('illustrations');
         }
         $article->categories()->sync($request->category_ids);
-        (new SeoService)->saveMetaTagsFromRequest($request, $article);
+        (new SeoService)->saveMetaTagsFromRequest($article, $request);
 
         return redirect()->route('news.articles')
             ->with('toast_success', __('notifications.message.crud.parent.created', [
@@ -96,12 +96,12 @@ class NewsArticlesController extends Controller
     public function update(NewsArticle $article, ArticleUpdateRequest $request)
     {
         $request->merge(['title' => ucfirst(strtolower($request->title))]);
-        $article->update($request->all());
+        $article->update($request->validated());
         if ($request->file('illustration')) {
             $article->addMediaFromRequest('illustration')->toMediaCollection('illustrations');
         }
         $article->categories()->sync($request->category_ids);
-        (new SeoService)->saveMetaTagsFromRequest($request, $article);
+        (new SeoService)->saveMetaTagsFromRequest($article, $request);
 
         return back()->with('toast_success', __('notifications.message.crud.parent.updated', [
             'parent' => __('entities.news'),

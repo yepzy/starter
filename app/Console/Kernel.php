@@ -61,8 +61,8 @@ class Kernel extends ConsoleKernel
      */
     protected function onScheduledDailyMaintenance(): bool
     {
-        $dailyMaintenanceStart = $this->carbonDateFromStringTime('04:00');
-        $dailyMaintenanceEnd = $this->carbonDateFromStringTime('06:00');
+        $dailyMaintenanceStart = $this->carbonDateFromStringTime('03:30');
+        $dailyMaintenanceEnd = $this->carbonDateFromStringTime('05:30');
 
         return Carbon::now($this->scheduleTimezone())->between($dailyMaintenanceStart, $dailyMaintenanceEnd);
     }
@@ -76,7 +76,10 @@ class Kernel extends ConsoleKernel
     {
         $segments = explode(':', $time);
 
-        return Carbon::now($this->scheduleTimezone())->startOfDay()->hours($segments[0])->minutes($segments[1]);
+        return Carbon::now($this->scheduleTimezone())
+            ->startOfDay()
+            ->hours((int) $segments[0])
+            ->minutes((int) $segments[1]);
     }
 
     /**

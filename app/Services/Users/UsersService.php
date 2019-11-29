@@ -10,7 +10,7 @@ use Okipa\LaravelTable\Table;
 class UsersService extends Service implements UsersServiceInterface
 {
     /**
-     * Get the users table list.
+     * Configure the model table list.
      *
      * @return \Okipa\LaravelTable\Table
      * @throws \ErrorException
@@ -33,7 +33,7 @@ class UsersService extends Service implements UsersServiceInterface
                 ]),
             ];
         });
-        $table->column('avatar')->html(function (User $user) {
+        $table->column('thumb')->html(function (User $user) {
             return view('components.admin.table.image', ['image' => $user->getFirstMedia('avatars')]);
         });
         $table->column('first_name')->sortable(true)->searchable();
