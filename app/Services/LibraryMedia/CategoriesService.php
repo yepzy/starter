@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\News;
+namespace App\Services\LibraryMedia;
 
-use App\Models\NewsCategory;
+use App\Models\LibraryMediaCategory;
 use App\Services\Service;
 use Okipa\LaravelTable\Table;
 
@@ -17,17 +17,17 @@ class CategoriesService extends Service implements CategoriesServiceInterface
      */
     public function table(): Table
     {
-        $table = (new Table)->model(NewsCategory::class)->routes([
-            'index'   => ['name' => 'news.categories'],
-            'create'  => ['name' => 'news.category.create'],
-            'edit'    => ['name' => 'news.category.edit'],
-            'destroy' => ['name' => 'news.category.destroy'],
-        ])->destroyConfirmationHtmlAttributes(function (NewsCategory $category) {
+        $table = (new Table)->model(LibraryMediaCategory::class)->routes([
+            'index'   => ['name' => 'libraryMedia.categories.index'],
+            'create'  => ['name' => 'libraryMedia.category.create'],
+            'edit'    => ['name' => 'libraryMedia.category.edit'],
+            'destroy' => ['name' => 'libraryMedia.category.destroy'],
+        ])->destroyConfirmationHtmlAttributes(function (LibraryMediaCategory $libraryMediaCategory) {
             return [
                 'data-confirm' => __('notifications.message.crud.parent.destroyConfirm', [
-                    'parent' => __('entities.news'),
+                    'parent' => __('entities.libraryMedia'),
                     'entity' => __('entities.categories'),
-                    'name'   => $category->name,
+                    'name'   => $libraryMediaCategory->name,
                 ]),
             ];
         });

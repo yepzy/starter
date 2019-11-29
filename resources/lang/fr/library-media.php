@@ -10,8 +10,10 @@ return [
     ],
 
     'actions' => [
-        'preview' => 'Prévisualiser « :name »',
+        'preview'  => 'Prévisualiser « :name »',
         'download' => 'Télécharger « :name »',
+        'filter'   => 'Filtrer',
+        'reset'    => 'Réinitialiser',
     ],
 
     'notifications' => [

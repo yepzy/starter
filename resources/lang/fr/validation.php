@@ -167,6 +167,7 @@ return [
         'google_tag_manager'        => 'Google Tag Manager',
         'avatar'                    => 'Avatar',
         'illustration'              => 'Illustration',
+        'category_id'               => 'Catégorie',
         'category_ids'              => 'Catégories',
         'published_at'              => 'Date publication',
         'position'                  => 'Position',

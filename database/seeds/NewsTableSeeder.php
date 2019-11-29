@@ -63,7 +63,7 @@ EOT;
             'Cat2',
         ];
         foreach ($categories as $category) {
-            $category = (new NewsCategory)->create(['title' => $category]);
+            $category = (new NewsCategory)->create(['name' => $category]);
             $seededCategories->push($category);
         }
 

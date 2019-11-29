@@ -14,7 +14,7 @@ class CategoryStoreRequest extends Request
     public function rules()
     {
         return [
-            'title' => ['required', 'string', 'max:255', 'unique:news_categories,title'],
+            'name' => ['required', 'string', 'max:255', 'unique:news_categories,name'],
         ];
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\News;
+namespace App\Http\Requests\LibraryMedia;
 
 use App\Http\Requests\Request;
 
-class CategoryUpdateRequest extends Request
+class FilesIndexRequest extends Request
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,7 +14,7 @@ class CategoryUpdateRequest extends Request
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255', 'unique:news_categories,name,' . $this->category->id],
+            'category_id' => ['integer', 'exists:library_media_categories,id'],
         ];
     }
 }

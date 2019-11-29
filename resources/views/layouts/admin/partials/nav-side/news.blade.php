@@ -1,6 +1,6 @@
 @php
+    $newsCategoriesActive = in_array($route, ['news.categories', 'news.category.create', 'news.category.edit']);
     $newsArticlesActive = in_array($route, ['news.articles', 'news.article.create', 'news.article.edit']);
-    $newsCategoriesActive = in_array($route, ['news.categories', 'news.categorie.create', 'news.categoris.edit']);
     $subMenuActive = $newsArticlesActive || $newsCategoriesActive;
 @endphp
 <li class="nav-item">
@@ -16,15 +16,6 @@
         <i class="fas fa-caret-down fa-fw"></i>
     </a>
     <ul id="newsMenu" {{ classTag(['collapse', 'list-unstyled', $subMenuActive ? 'show' : null]) }}>
-        {{-- articles --}}
-        <li class="nav-item">
-            <a{{ classTag(['nav-link', 'load-on-click', $newsArticlesActive ? 'active' : null]) }}
-               href="{{ route('news.articles') }}"
-               title="@lang('nav.admin.articles')">
-                <i class="fas fa-paper-plane fa-fw"></i>
-                @lang('nav.admin.articles')
-            </a>
-        </li>
         {{-- categories --}}
         <li class="nav-item">
             <a{{ classTag(['nav-link', 'load-on-click', $newsCategoriesActive ? 'active' : null]) }}
@@ -32,6 +23,15 @@
                title="@lang('nav.admin.categories')">
                 <i class="fas fa-tags fa-fw"></i>
                 @lang('nav.admin.categories')
+            </a>
+        </li>
+        {{-- articles --}}
+        <li class="nav-item">
+            <a{{ classTag(['nav-link', 'load-on-click', $newsArticlesActive ? 'active' : null]) }}
+               href="{{ route('news.articles') }}"
+               title="@lang('nav.admin.articles')">
+                <i class="fas fa-paper-plane fa-fw"></i>
+                @lang('nav.admin.articles')
             </a>
         </li>
     </ul>

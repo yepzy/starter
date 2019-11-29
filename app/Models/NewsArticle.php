@@ -84,8 +84,6 @@ class NewsArticle extends Model implements HasMedia
         return $this->belongsToMany(NewsCategory::class, 'news_article_category')->withTimestamps();
     }
 
-    // custom attributes ***********************************************************************************************
-
     /**
      * @return mixed
      */

@@ -10,6 +10,7 @@ return [
     'admin' => [
         // common
         'categories'   => 'Catégories',
+        'files'        => 'Fichiers',
         'articles'     => 'Articles',
         'page'         => 'Page',
         'slides'       => 'Slides',

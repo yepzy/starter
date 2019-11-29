@@ -2,18 +2,18 @@
 @section('template')
     <h1>
         <i class="fas fa-photo-video fa-fw"></i>
-        @if($libraryMedia)
-            @lang('admin.title.orphan.edit', ['entity' => __('entities.libraryMedia'), 'detail' => $libraryMedia->name])
+        @if($file)
+            @lang('admin.title.orphan.edit', ['entity' => __('entities.libraryMedia'), 'detail' => $file->name])
         @else
             @lang('admin.title.orphan.create', ['entity' => __('entities.libraryMedia')])
         @endif
     </h1>
     <hr>
-    <form action="{{ $libraryMedia ? route('libraryMedia.update', $libraryMedia) : route('libraryMedia.store') }}"
+    <form action="{{ $file ? route('libraryMedia.file.update', $file) : route('libraryMedia.file.store') }}"
           method="POST"
           enctype="multipart/form-data">
         @csrf
-        @if($libraryMedia)
+        @if($file)
             @method('PUT')
         @endif()
         @include('components.common.form.notice')
@@ -25,49 +25,54 @@
             </div>
             <div class="card-body">
                 <h3>@lang('admin.section.media')</h3>
+                {{ bsSelect()->name('category_id')
+                    ->model($file)
+                    ->options((new \App\Models\LibraryMediaCategory)->orderBy('name')->get(), 'id', 'name')
+                    ->componentClasses(['selector'])
+                    ->containerHtmlAttributes(['required']) }}
                 {{ bsFile()->name('media')
-                    ->value(optional(optional($libraryMedia)->getFirstMedia('medias'))->file_name)
-                    ->uploadedFile(function() use($libraryMedia) {
-                        return $libraryMedia
-                            ? '<div class="mb-2">' . view('components.admin.table.library-media.thumb', compact('libraryMedia')) . '</div>'
+                    ->value(optional(optional($file)->getFirstMedia('medias'))->file_name)
+                    ->uploadedFile(function() use($file) {
+                        return $file
+                            ? '<div class="mb-2">' . view('components.admin.table.library-media.thumb', compact('file')) . '</div>'
                             : null;
                     })
                     ->showRemoveCheckbox(false)
                     ->containerHtmlAttributes(['required'])
-                    ->legend((new \App\Models\LibraryMedia)->constraintsLegend('medias')) }}
-                {{ bsText()->name('name')->model($libraryMedia)->containerHtmlAttributes(['required']) }}
-                @if(! $libraryMedia || optional($libraryMedia)->canBeDisplayed)
+                    ->legend((new \App\Models\LibraryMediaFile)->constraintsLegend('medias')) }}
+                {{ bsText()->name('name')->model($file)->containerHtmlAttributes(['required']) }}
+                @if(! $file || optional($file)->canBeDisplayed)
                     {{ bsToggle()->name('downloadable')
-                        ->checked(optional($libraryMedia)->downloadable ?? false)
+                        ->checked(optional($file)->downloadable ?? false)
                         ->containerClasses(['form-group', 'mt-4']) }}
                 @endif
-                @if($libraryMedia)
+                @if($file)
                     {{ bsText()->name('url')
                         ->label(__('library-media.labels.url'))
                         ->prepend(false)
-                        ->value($libraryMedia->getFirstMedia('medias')->getFullUrl())
+                        ->value($file->getFirstMedia('medias')->getFullUrl())
                         ->containerClasses(['mb-1'])
                         ->componentHtmlAttributes(['disabled']) }}
                     <div class="form-group">
-                        <button type="button" class="btn btn-outline-primary clipboard-copy" data-library-media-id="{{ $libraryMedia->id }}" data-type="url">
+                        <button type="button" class="btn btn-outline-primary clipboard-copy" data-library-media-id="{{ $file->id }}" data-type="url">
                             <i class="fas fa-link fa-fw"></i> @lang('library-media.labels.clipboardCopy')
                         </button>
                     </div>
                     {{ bsTextarea()->name('html')
                         ->label(__('library-media.labels.html'))
                         ->prepend(false)
-                        ->value(trim(view('components.admin.table.library-media.html-clipboard-content', compact('libraryMedia'))->toHtml()))
+                        ->value(trim(view('components.admin.table.library-media.html-clipboard-content', compact('file'))->toHtml()))
                         ->containerClasses(['mb-1'])
                         ->componentHtmlAttributes(['rows' => 6, 'disabled']) }}
                     <div class="form-group">
-                        <button type="button" class="btn btn-outline-primary clipboard-copy" data-library-media-id="{{ $libraryMedia->id }}" data-type="html">
+                        <button type="button" class="btn btn-outline-primary clipboard-copy" data-library-media-id="{{ $file->id }}" data-type="html">
                             <i class="fas fa-link fa-fw"></i> @lang('library-media.labels.clipboardCopy')
                         </button>
                     </div>
                 @endif
                 <div class="d-flex pt-4">
-                    {{ bsCancel()->route('libraryMedia.index')->containerClasses(['mr-2']) }}
-                    @if($libraryMedia){{ bsUpdate() }}@else{{ bsCreate() }}@endif
+                    {{ bsCancel()->route('libraryMedia.files.index')->containerClasses(['mr-2']) }}
+                    @if($file){{ bsUpdate() }}@else{{ bsCreate() }}@endif
                 </div>
             </div>
         </div>

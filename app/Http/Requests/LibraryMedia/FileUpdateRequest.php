@@ -3,9 +3,9 @@
 namespace App\Http\Requests\LibraryMedia;
 
 use App\Http\Requests\Request;
-use App\Models\LibraryMedia;
+use App\Models\LibraryMediaFile;
 
-class LibraryMediaStoreRequest extends Request
+class FileUpdateRequest extends Request
 {
     protected $safetyChecks = [
         'downloadable' => 'boolean',
@@ -19,7 +19,8 @@ class LibraryMediaStoreRequest extends Request
     public function rules()
     {
         return [
-            'media'        => array_merge(['required'], (new LibraryMedia)->validationConstraints('medias')),
+            'category_id'  => ['required', 'integer', 'exists:library_media_categories,id'],
+            'media'        => (new LibraryMediaFile)->validationConstraints('medias'),
             'name'         => ['required', 'string', 'max:255'],
             'downloadable' => ['required', 'boolean'],
         ];

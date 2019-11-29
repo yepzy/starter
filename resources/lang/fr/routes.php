@@ -73,13 +73,23 @@ return [
         'destroy' => 'page/supprimer/{simplePage}',
     ],
     'libraryMedia' => [
-        'index'            => 'media',
-        'create'           => 'media/creer',
-        'store'            => 'media/enregistrer',
-        'edit'             => 'media/editer/{libraryMedia}',
-        'update'           => 'media/mettre-a-jour/{libraryMedia}',
-        'destroy'          => 'media/supprimer/{libraryMedia}',
-        'clipboardContent' => 'media/presse-papier/contenu/{libraryMedia}/{type}',
+        'categories' => [
+            'index'   => 'bibliotheque/media/categories',
+            'create'  => 'bibliotheque/media/categorie/creer',
+            'store'   => 'bibliotheque/media/categorie/enregistrer',
+            'edit'    => 'bibliotheque/media/categorie/editer/{category}',
+            'update'  => 'bibliotheque/media/categorie/mettre-a-jour/{category}',
+            'destroy' => 'bibliotheque/media/categorie/supprimer/{category}',
+        ],
+        'files'      => [
+            'index'            => 'bibliotheque/media/fichiers',
+            'create'           => 'bibliotheque/media/fichier/creer',
+            'store'            => 'bibliotheque/media/fichier/enregistrer',
+            'edit'             => 'bibliotheque/media/fichier/editer/{file}',
+            'update'           => 'bibliotheque/media/fichier/mettre-a-jour/{file}',
+            'destroy'          => 'bibliotheque/media/fichier/supprimer/{file}',
+            'clipboardContent' => 'bibliotheque/media/fichier/presse-papier/contenu/{file}/{type}',
+        ],
     ],
     // admin ***********************************************************************************************************
     'settings'     => [

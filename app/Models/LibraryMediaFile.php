@@ -8,7 +8,7 @@ use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
 
-class LibraryMedia extends Model implements HasMedia
+class LibraryMediaFile extends Model implements HasMedia
 {
     use HasMediaTrait;
     /**
@@ -16,13 +16,14 @@ class LibraryMedia extends Model implements HasMedia
      *
      * @var string
      */
-    protected $table = 'library_media';
+    protected $table = 'library_media_files';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
+        'category_id',
         'name',
         'downloadable',
     ];
@@ -141,5 +142,13 @@ class LibraryMedia extends Model implements HasMedia
     public function getCanBeDisplayedAttribute(): bool
     {
         return $this->type !== 'file';
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function category()
+    {
+        return $this->hasOne(LibraryMediaCategory::class, 'category_id');
     }
 }

@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-class NewsCategory extends Model
+class LibraryMediaCategory extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'news_categories';
+    protected $table = 'library_media_categories';
     /**
      * The attributes that are mass assignable.
      *
@@ -20,10 +20,10 @@ class NewsCategory extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function articles()
+    public function libraryMedia()
     {
-        return $this->belongsToMany(NewsArticle::class, 'news_article_category')->withTimestamps();
+        return $this->belongsTo(LibraryMedia::class, 'category_id');
     }
 }

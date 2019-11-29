@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLibraryMediaTable extends Migration
+class CreateLibraryMediaFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateLibraryMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create('library_media', function (Blueprint $table) {
+        Schema::create('library_media_files', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('library_media_categories')->onDelete('CASCADE');
             $table->string('name');
             $table->boolean('downloadable');
             $table->timestamps();
@@ -28,6 +30,6 @@ class CreateLibraryMediaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('library_media');
+        Schema::dropIfExists('library_media_files');
     }
 }

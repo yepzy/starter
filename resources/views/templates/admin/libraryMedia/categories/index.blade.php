@@ -2,7 +2,10 @@
 @section('template')
     <h1>
         <i class="fas fa-photo-video fa-fw"></i>
-        @lang('admin.title.orphan.index', ['entity' => __('entities.libraryMedia')])
+        @lang('admin.title.parent.index', [
+            'parent' => __('entities.libraryMedia'),
+            'entity' => __('entities.categories'),
+        ])
     </h1>
     <hr>
     <div class="card">

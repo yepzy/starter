@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\News;
+namespace App\Http\Requests\LibraryMedia;
 
 use App\Http\Requests\Request;
-use App\Models\LibraryMedia;
+use App\Models\LibraryMediaFile;
 
-class LibraryMediaUpdateRequest extends Request
+class FileStoreRequest extends Request
 {
     protected $safetyChecks = [
         'downloadable' => 'boolean',
@@ -19,7 +19,8 @@ class LibraryMediaUpdateRequest extends Request
     public function rules()
     {
         return [
-            'media'        => (new LibraryMedia)->validationConstraints('medias'),
+            'category_id'  => ['required', 'integer', 'exists:library_media_categories,id'],
+            'media'        => array_merge(['required'], (new LibraryMediaFile)->validationConstraints('medias')),
             'name'         => ['required', 'string', 'max:255'],
             'downloadable' => ['required', 'boolean'],
         ];

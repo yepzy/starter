@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\News;
+namespace App\Http\Requests\LibraryMedia;
 
 use App\Http\Requests\Request;
 
@@ -14,7 +14,7 @@ class CategoryUpdateRequest extends Request
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255', 'unique:news_categories,name,' . $this->category->id],
+            'name' => ['required', 'string', 'max:255', 'unique:library_media_categories,name,' . $this->category->id],
         ];
     }
 }
