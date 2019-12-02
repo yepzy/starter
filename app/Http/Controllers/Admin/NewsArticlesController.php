@@ -52,7 +52,7 @@ class NewsArticlesController extends Controller
     public function store(ArticleStoreRequest $request)
     {
         $request->merge(['title' => ucfirst(strtolower($request->title))]);
-        /** @var  NewsArticle $article */
+        /** @var NewsArticle $article */
         $article = (new NewsArticle)->create($request->validated());
         if ($request->file('illustration')) {
             $article->addMediaFromRequest('illustration')->toMediaCollection('illustrations');

@@ -27,7 +27,8 @@ class SettingsController extends Controller
      */
     public function update(SettingsUpdateRequest $request)
     {
-        /** @var  Settings $settings */
+        cache()->forget('settings');
+        /** @var Settings $settings */
         $settings = (new Settings)->firstOrFail();
         $settings->update($request->validated());
         if ($request->remove_icon) {

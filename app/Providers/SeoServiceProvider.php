@@ -21,6 +21,7 @@ class SeoServiceProvider extends ServiceProvider
                 SEO::metatags()->addAlternateLanguage($localCode, LaravelLocalization::getLocalizedURL($localCode));
             }
         }
+        
         SEO::opengraph()->addProperty('locale', LaravelLocalization::getCurrentLocaleRegional());
         if (multilingual()) {
             SEO::opengraph()->addProperty(
