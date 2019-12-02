@@ -4,7 +4,7 @@
         <i class="fas fa-paper-plane fa-fw"></i>
         @if($article)
             @lang('admin.title.parent.edit', [
-                'entity' => __('entities.articles'), 'detail' => $article->title,
+                'entity' => __('entities.articles'), 'detail' => $article->name,
                 'parent' => __('entities.news')
             ])
         @else

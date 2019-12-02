@@ -11,8 +11,8 @@
                         @foreach($article->categories as $category)
                             <a class="btn btn-secondary btn-sm"
                                href="{{ route('news', ['category_id' => $category->id]) }}"
-                               title="{{ $category->title }}">
-                                {{ $category->title }}
+                               title="{{ $category->name }}">
+                                {{ $category->name }}
                             </a>
                         @endforeach
                     @endif

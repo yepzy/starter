@@ -4,7 +4,7 @@
         <i class="fas fa-tags fa-fw"></i>
         @if($category)
             @lang('admin.title.parent.edit', [
-                'entity' => __('entities.categories'), 'detail' => $category->title,
+                'entity' => __('entities.categories'), 'detail' => $category->name,
                 'parent' => __('entities.news')
             ])
         @else
