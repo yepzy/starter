@@ -9,8 +9,8 @@
                 <div class="col-12 mb-3">
                     <h1>{{ $homePage->title }}</h1>
                 </div>
-                <div class="col-12">
-                    <p>{{ $homePage->description }}</p>
+                <div class="col-12 text">
+                    {!! (new Parsedown)->text($homePage->description) !!}
                 </div>
             </div>
         </div>

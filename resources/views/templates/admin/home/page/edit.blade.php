@@ -18,7 +18,11 @@
             <div class="card-body">
                 <h3>@lang('admin.section.content')</h3>
                 {{ bsText()->name('title')->model($homePage)->containerHtmlAttributes(['required']) }}
-                {{ bsTextarea()->name('description')->model($homePage)->containerHtmlAttributes(['required']) }}
+                {{ bsTextarea()->name('description')
+                    ->model($homePage)
+                    ->prepend(false)
+                    ->componentClasses(['editor'])
+                    ->containerHtmlAttributes(['required']) }}
                 @include('components.admin.seo.meta-tags', ['model' => $homePage])
                 <div class="d-flex pt-4">
                     {{ bsUpdate() }}
