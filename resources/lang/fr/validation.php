@@ -164,7 +164,7 @@ return [
         'city'                      => 'Ville',
         'facebook'                  => 'Page Facebook',
         'instagram'                 => 'Page Instagram',
-        'google_tag_manager'        => 'Google Tag Manager',
+        'google_tag_manager_id'     => 'Identifiant Google Tag Manager',
         'avatar'                    => 'Avatar',
         'illustration'              => 'Illustration',
         'category_id'               => 'Catégorie',

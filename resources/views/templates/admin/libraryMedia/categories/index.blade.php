@@ -1,7 +1,7 @@
 @extends('layouts.admin.full')
 @section('template')
     <h1>
-        <i class="fas fa-photo-video fa-fw"></i>
+        <i class="fas fa-tags fa-fw"></i>
         @lang('admin.title.parent.index', [
             'parent' => __('entities.libraryMedia'),
             'entity' => __('entities.categories'),

@@ -3,10 +3,13 @@
 return [
 
     'labels' => [
+        'file'          => 'Fichier',
         'mime_type'     => 'Type MIME',
         'clipboardCopy' => 'Copie presse-papier',
         'url'           => 'URL',
         'html'          => 'HTML',
+        'media'         => 'Média',
+        'data'          => 'Données',
     ],
 
     'actions' => [

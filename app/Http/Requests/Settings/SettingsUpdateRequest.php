@@ -20,16 +20,16 @@ class SettingsUpdateRequest extends Request
     public function rules()
     {
         return [
-            'icon'               => cache('settings')->validationConstraints('icon'),
-            'remove_icon'        => ['required', 'boolean'],
-            'email'              => ['required', 'string', 'max:255', 'email'],
-            'phone_number'       => ['required', 'string', 'max:255', 'phone:AUTO'],
-            'address'            => ['string', 'max:255'],
-            'zip_code'           => ['string', 'max:255'],
-            'city'               => ['string', 'max:255'],
-            'facebook'           => ['string', 'max:255', 'url'],
-            'instagram'          => ['string', 'max:255', 'url'],
-            'google_tag_manager' => ['string', 'max:255'],
+            'icon'                  => cache('settings')->validationConstraints('icon'),
+            'remove_icon'           => ['required', 'boolean'],
+            'email'                 => ['required', 'string', 'max:255', 'email'],
+            'phone_number'          => ['required', 'string', 'max:255', 'phone:AUTO'],
+            'address'               => ['string', 'max:255'],
+            'zip_code'              => ['string', 'max:255'],
+            'city'                  => ['string', 'max:255'],
+            'facebook'              => ['string', 'max:255', 'url'],
+            'instagram'             => ['string', 'max:255', 'url'],
+            'google_tag_manager_id' => ['string', 'max:255'],
         ];
     }
 }

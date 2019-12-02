@@ -30,7 +30,7 @@ class Settings extends Model implements HasMedia
         'city',
         'facebook',
         'instagram',
-        'google_tag_manager',
+        'google_tag_manager_id',
     ];
 
     /**

@@ -1,7 +1,7 @@
 @extends('layouts.admin.full')
 @section('template')
     <h1>
-        <i class="fas fa-photo-video fa-fw"></i>
+        <i class="fas fa-tags fa-fw"></i>
         @if($category)
             @lang('admin.title.parent.edit', [
                 'parent' => __('entities.libraryMedia'),

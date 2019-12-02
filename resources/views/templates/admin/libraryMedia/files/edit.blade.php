@@ -20,16 +20,11 @@
         <div class="card">
             <div class="card-header">
                 <h2 class="m-0">
-                    @lang('admin.section.data')
+                    @lang('library-media.labels.file')
                 </h2>
             </div>
             <div class="card-body">
-                <h3>@lang('admin.section.media')</h3>
-                {{ bsSelect()->name('category_id')
-                    ->model($file)
-                    ->options((new \App\Models\LibraryMediaCategory)->orderBy('name')->get(), 'id', 'name')
-                    ->componentClasses(['selector'])
-                    ->containerHtmlAttributes(['required']) }}
+                <h3>@lang('library-media.labels.media')</h3>
                 {{ bsFile()->name('media')
                     ->value(optional(optional($file)->getFirstMedia('medias'))->file_name)
                     ->uploadedFile(function() use($file) {
@@ -40,13 +35,20 @@
                     ->showRemoveCheckbox(false)
                     ->containerHtmlAttributes(['required'])
                     ->legend((new \App\Models\LibraryMediaFile)->constraintsLegend('medias')) }}
+                <h3 class="pt-4">@lang('library-media.labels.data')</h3>
                 {{ bsText()->name('name')->model($file)->containerHtmlAttributes(['required']) }}
+                {{ bsSelect()->name('category_id')
+                    ->model($file)
+                    ->options((new \App\Models\LibraryMediaCategory)->orderBy('name')->get(), 'id', 'name')
+                    ->componentClasses(['selector'])
+                    ->containerHtmlAttributes(['required']) }}
                 @if(! $file || optional($file)->canBeDisplayed)
                     {{ bsToggle()->name('downloadable')
                         ->checked(optional($file)->downloadable ?? false)
                         ->containerClasses(['form-group', 'mt-4']) }}
                 @endif
                 @if($file)
+                    <h3 class="pt-4">@lang('library-media.labels.clipboardCopy')</h3>
                     {{ bsText()->name('url')
                         ->label(__('library-media.labels.url'))
                         ->prepend(false)
@@ -54,7 +56,10 @@
                         ->containerClasses(['mb-1'])
                         ->componentHtmlAttributes(['disabled']) }}
                     <div class="form-group">
-                        <button type="button" class="btn btn-outline-primary clipboard-copy" data-library-media-id="{{ $file->id }}" data-type="url">
+                        <button type="button"
+                                class="btn btn-outline-primary clipboard-copy"
+                                data-library-media-id="{{ $file->id }}"
+                                data-type="url">
                             <i class="fas fa-link fa-fw"></i> @lang('library-media.labels.clipboardCopy')
                         </button>
                     </div>
@@ -65,7 +70,10 @@
                         ->containerClasses(['mb-1'])
                         ->componentHtmlAttributes(['rows' => 6, 'disabled']) }}
                     <div class="form-group">
-                        <button type="button" class="btn btn-outline-primary clipboard-copy" data-library-media-id="{{ $file->id }}" data-type="html">
+                        <button type="button"
+                                class="btn btn-outline-primary clipboard-copy"
+                                data-library-media-id="{{ $file->id }}"
+                                data-type="html">
                             <i class="fas fa-link fa-fw"></i> @lang('library-media.labels.clipboardCopy')
                         </button>
                     </div>

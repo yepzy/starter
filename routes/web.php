@@ -25,8 +25,10 @@ Route::prefix(LaravelLocalization::setLocale())
             require('web/admin/news.php');
             require('web/admin/simplePages.php');
             require('web/admin/libraryMedia.php');
-            require('web/admin/settings.php');
-            require('web/admin/users.php');
+            Route::middleware(['password.confirm'])->group(function () {
+                require('web/admin/settings.php');
+                require('web/admin/users.php');
+            });
         });
         // front *******************************************************************************************************
         require('web/front/home.php');

@@ -36,9 +36,11 @@
                 {{ bsText()->name('city')->model($settings)->prepend('<i class="fas fa-thumbtack"></i>') }}
                 <h3 class="pt-4">@lang('admin.section.links')</h3>
                 {{ bsText()->name('facebook')->model($settings)->prepend('<i class="fab fa-facebook"></i>') }}
+                {{ bsText()->name('twitter')->model($settings)->prepend('<i class="fab fa-twitter"></i>') }}
                 {{ bsText()->name('instagram')->model($settings)->prepend('<i class="fab fa-instagram"></i>') }}
+                {{ bsText()->name('youtube')->model($settings)->prepend('<i class="fab fa-youtube"></i>') }}
                 <h3 class="pt-4">@lang('admin.section.seo')</h3>
-                {{ bsText()->name('google_tag_manager')->model($settings)->prepend('<i class="fas fa-tag"></i>') }}
+                {{ bsText()->name('google_tag_manager_id')->model($settings)->prepend('<i class="fas fa-tag"></i>') }}
                 <div class="d-flex pt-4">
                     {{ bsUpdate() }}
                 </div>

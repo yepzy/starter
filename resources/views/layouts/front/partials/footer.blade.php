@@ -19,6 +19,28 @@
                     {{ $rgpd->title }}
                 </a>
             @endif
+            <div>
+                @if($settings->facebook)
+                    <a class="new-window" href="{{ $settings->facebook }}" title="Facebook">
+                        <i class="fab fa-facebook fa-fw"></i>
+                    </a>
+                @endif
+                @if($settings->twitter)
+                    <a class="new-window" href="{{ $settings->twitter }}" title="Twitter">
+                        <i class="fab fa-twitter fa-fw"></i>
+                    </a>
+                @endif
+                @if($settings->instagram)
+                    <a class="new-window" href="{{ $settings->instagram }}" title="Instagram">
+                        <i class="fab fa-instagram fa-fw"></i>
+                    </a>
+                @endif
+                @if($settings->youtube)
+                    <a class="new-window" href="{{ $settings->youtube }}" title="Youtube">
+                        <i class="fab fa-youtube fa-fw"></i>
+                    </a>
+                @endif
+            </div>
         </div>
     </div>
 </footer>

@@ -15,13 +15,14 @@ class CreateSettingsTable extends Migration
             $table->bigIncrements('id');
             $table->string('email')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('location')->nullable();
             $table->string('address')->nullable();
             $table->string('zip_code')->nullable();
             $table->string('city')->nullable();
             $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
-            $table->string('google_tag_manager')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('google_tag_manager_id')->nullable();
             $table->timestamps();
         });
     }
