@@ -38,7 +38,7 @@ return [
         'defaults' => [
             'title'       => $defaultTitle, // set false to total remove
             'description' => $defaultDescription, // set false to total remove
-            'url'         => false, // Set null for using Url::current(), set false to total remove
+            'url'         => null, // Set null for using Url::current(), set false to total remove
             'type'        => 'article', // all possible types available here : https://developers.facebook.com/docs/reference/opengraph#object-type
             'site_name'   => false,
             'images'      => [],
@@ -60,7 +60,7 @@ return [
         'defaults' => [
             'title'       => $defaultTitle, // set false to total remove
             'description' => $defaultDescription, // set false to total remove
-            'url'         => false, // Set null for using Url::current(), set false to total remove
+            'url'         => null, // Set null for using Url::current(), set false to total remove
             'type'        => 'WebPage',
             'images'      => [],
         ],

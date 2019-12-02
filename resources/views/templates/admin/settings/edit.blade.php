@@ -39,7 +39,7 @@
                 {{ bsText()->name('twitter')->model($settings)->prepend('<i class="fab fa-twitter"></i>') }}
                 {{ bsText()->name('instagram')->model($settings)->prepend('<i class="fab fa-instagram"></i>') }}
                 {{ bsText()->name('youtube')->model($settings)->prepend('<i class="fab fa-youtube"></i>') }}
-                <h3 class="pt-4">@lang('admin.section.seo')</h3>
+                <h3 class="pt-4">@lang('admin.section.tracking')</h3>
                 {{ bsText()->name('google_tag_manager_id')->model($settings)->prepend('<i class="fas fa-tag"></i>') }}
                 <div class="d-flex pt-4">
                     {{ bsUpdate() }}

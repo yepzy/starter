@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\Seo\SeoService;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
 use LaravelLocalization;
@@ -13,6 +15,7 @@ class SeoServiceProvider extends ServiceProvider
      * Register bindings in the container.
      *
      * @return void
+     * @throws \Exception
      */
     public function boot()
     {
@@ -21,7 +24,6 @@ class SeoServiceProvider extends ServiceProvider
                 SEO::metatags()->addAlternateLanguage($localCode, LaravelLocalization::getLocalizedURL($localCode));
             }
         }
-        
         SEO::opengraph()->addProperty('locale', LaravelLocalization::getCurrentLocaleRegional());
         if (multilingual()) {
             SEO::opengraph()->addProperty(

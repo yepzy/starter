@@ -25,6 +25,7 @@ return [
         'contact'     => 'Contact',
         'security'    => 'Sécurité',
         'seo'         => 'Référencement',
+        'tracking'    => 'Suivi',
         'title'       => 'Titre',
         'active'      => 'Active',
         'publication' => 'Publication',

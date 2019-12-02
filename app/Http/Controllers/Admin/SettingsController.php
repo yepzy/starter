@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Settings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\SettingsUpdateRequest;
+use App\Models\Settings;
 use Artesaos\SEOTools\Facades\SEOTools;
 
 class SettingsController extends Controller
