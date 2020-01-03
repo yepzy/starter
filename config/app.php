@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'fr',
+    'fallback_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -183,8 +183,6 @@ return [
          * Created Service Providers...
          */
         App\Providers\SslServiceProvider::class,
-        App\Providers\SeoServiceProvider::class,
-        App\Providers\LocalizationServiceProvider::class,
 
     ],
 

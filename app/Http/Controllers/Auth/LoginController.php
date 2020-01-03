@@ -21,80 +21,45 @@ class LoginController extends Controller
     |
     */
     use AuthenticatesUsers {
-        sendLockoutResponse as protected traitSendLockoutResponse;
+        showLoginForm as traitShowLoginForm;
+        sendLockoutResponse as traitSendLockoutResponse;
     }
 
     /**
-     * Show the application's login form.
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @inheritDoc
      */
     public function showLoginForm()
     {
-        SEOTools::setTitle(__('auth.title.signIn'));
+        SEOTools::setTitle(__('Sign in area'));
 
-        return view('templates.auth.login');
+        return $this->traitShowLoginForm();
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
-    protected function redirectTo()
+    protected function redirectPath()
     {
-        return route('admin');
+        return route('admin.index');
     }
 
     /**
-     * The user has logged out of the application.
-     *
-     * @return mixed
+     * @inheritDoc
      */
     protected function loggedOut()
     {
-        alert()->toast(__('notifications.message.logout.success'), 'success');
+        alert()->toast(__('You have been logged out.'), 'success');
+
+        return redirect()->route('home');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        alert()->toast(__('Welcome') . ' ' . $user->name . '.', 'success');
 
         return;
-    }
-
-    /**
-     * Get the failed login response instance.
-     *
-     * @return void
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    protected function sendFailedLoginResponse()
-    {
-        throw ValidationException::withMessages([$this->username() => [trans('notifications.message.login.failed')]])
-            ->redirectTo(route('login'));
-    }
-
-    /**
-     * The user has been authenticated.
-     *
-     * @return mixed
-     */
-    protected function authenticated()
-    {
-        alert()->toast(__('notifications.message.login.success', [
-            'name' => auth()->user()->name,
-        ]), 'success');
-
-        return;
-    }
-
-    /**
-     * Redirect the user after determining they are locked out.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return void
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    protected function sendLockoutResponse(Request $request)
-    {
-        $seconds = $this->limiter()->availableIn($this->throttleKey($request));
-        throw ValidationException::withMessages([
-            $this->username() => [__('notifications.message.login.throttle', ['seconds' => $seconds])],
-        ])->status(429);
     }
 }

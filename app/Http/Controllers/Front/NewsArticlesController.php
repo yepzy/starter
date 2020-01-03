@@ -18,9 +18,9 @@ class NewsArticlesController extends Controller
      */
     public function index(ArticlesIndexRequest $request)
     {
-        SEOTools::setTitle(__('admin.title.parent.index', [
-            'parent' => __('entities.news'),
-            'entity' => __('entities.articles'),
+        SEOTools::setTitle(__('breadcrumbs.parent.index', [
+            'parent' => __('News'),
+            'entity' => __('Articles'),
         ]));
         $query = (new NewsArticle)->with(['media', 'categories'])
             ->where('active', true)
@@ -38,19 +38,13 @@ class NewsArticlesController extends Controller
     }
 
     /**
-     * @param string $url
+     * @param \App\Models\NewsArticle $article
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Exception
      */
-    public function show(string $url)
+    public function show(NewsArticle $article)
     {
-        /** @var \App\Models\NewsArticle $article */
-        $article = (new NewsArticle)->with(['media', 'categories'])
-            ->where('url', $url)
-            ->where('active', true)
-            ->where('published_at', '<=', now())
-            ->firstOrFail();
         (new SeoService)->displayMetaTagsFromModel($article);
         $css = mix('/css/news/show.css');
 

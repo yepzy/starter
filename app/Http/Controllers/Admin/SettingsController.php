@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\SettingsUpdateRequest;
 use App\Models\Settings;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Exception;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class SettingsController extends Controller
 {
@@ -14,7 +18,7 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        SEOTools::setTitle(__('admin.title.orphan.index', ['entity' => __('entities.settings')]));
+        SEOTools::setTitle(__('breadcrumbs.orphan.index', ['entity' => __('Settings')]));
 
         return view('templates.admin.settings.edit');
     }
@@ -23,7 +27,9 @@ class SettingsController extends Controller
      * @param \App\Http\Requests\Settings\SettingsUpdateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
      */
     public function update(SettingsUpdateRequest $request)
     {
@@ -38,8 +44,8 @@ class SettingsController extends Controller
         }
         cache()->forever('settings', $settings->fresh());
 
-        return back()->with('toast_success', __('notifications.message.crud.name.updated', [
-            'name' => __('entities.settings'),
+        return back()->with('toast_success', __('notifications.name.updated', [
+            'name' => __('Settings'),
         ]));
     }
 }

@@ -1,11 +1,12 @@
 <div class="pt-1 pb-3">
     <span class="h6">
-        @lang('components.notice.title')
+        @lang('Form notice :')
     </span>
     <span class="pl-3">
-        <span class="form-group" required>
+        <span class="form-group">
+            <span class="text-danger">*</span>
             <span class="small">
-                @lang('components.notice.required')
+                @lang('Required fields.')
             </span>
         </span>
     </span>

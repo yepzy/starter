@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\Front\NewsArticlesController;
 
-Route::get(LaravelLocalization::transRoute('routes.news.articles.index'), [
-    NewsArticlesController::class,
-    'index',
-])->name('news');
-Route::get(LaravelLocalization::transRoute('routes.news.articles.show'), [
-    NewsArticlesController::class,
-    'show',
-])->name('news.article.show')->where('url', '.*');
+Route::get(
+    Lang::uri('news'),
+    [NewsArticlesController::class, 'index']
+)->name('news');
+Route::get(
+    Lang::uri('news/{article}'),
+    [NewsArticlesController::class, 'show']
+)->name('news.article.show')->where('url', '.*');

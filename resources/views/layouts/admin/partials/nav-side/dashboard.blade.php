@@ -1,8 +1,8 @@
 <li class="nav-item">
-    <a{{ classTag('nav-link', 'load-on-click', in_array($route, ['dashboard']) ? 'active' : null) }}
-       href="{{ route('dashboard') }}"
-       title="@lang('nav.admin.dashboard')">
+    <a class="nav-link load-on-click {{ Str::contains(request()->route()->getName(), ['dashboard.index']) ? 'active' : null }}"
+       href="{{ route('dashboard.index') }}"
+       title="@lang('Dashboard')">
         <i class="fas fa-tachometer-alt fa-fw"></i>
-        @lang('nav.admin.dashboard')
+        @lang('Dashboard')
     </a>
 </li>

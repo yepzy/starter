@@ -23,7 +23,6 @@ mix
     .copyDirectoryOutsideMixWorkflow('resources/images', 'public/images')
     // js **************************************************************************************************************
     // admin
-    .js('resources/js/admin/home/slides/index.js', 'public/js/home/slides')
     .js('resources/js/admin/library-media/index.js', 'public/js/library-media')
     .js('resources/js/admin/library-media/edit.js', 'public/js/library-media')
     // front
@@ -38,6 +37,7 @@ mix
     .sass('resources/sass/front/home/page/show.scss', 'public/css/home/page')
     .sass('resources/sass/front/news/index.scss', 'public/css/news')
     .sass('resources/sass/front/news/show.scss', 'public/css/news')
+    .sass('resources/sass/front/contact/page/show.scss', 'public/css/contact/page')
     .sass('resources/sass/front/simple-pages/show.scss', 'public/css/simple-pages')
     // base
     .sass('resources/sass/styles/admin/_base.scss', 'public/css/admin.css')
@@ -54,6 +54,7 @@ mix
         lozad: ['lozad']
     })
     .extract(['bootstrap', 'lodash', 'axios', 'jquery', 'popper.js', 'sweetalert2', 'cookieconsent', 'lozad'])
+    .sourceMaps()
     .version([
         'public/images/',
         'public/favicon.ico'

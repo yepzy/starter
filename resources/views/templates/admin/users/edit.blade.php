@@ -2,15 +2,15 @@
 @php
     switch(request()->route()->getName()){
         case 'user.create' :
-            $title = __('admin.title.orphan.create', ['entity' => __('entities.users')]);
+            $title = __('breadcrumbs.orphan.create', ['entity' => __('Users')]);
             $action = route('user.store');
             break;
         case 'user.edit' :
-            $title = __('admin.title.orphan.edit', ['entity' => __('entities.users'), 'detail' => $user->name]);
+            $title = __('breadcrumbs.orphan.edit', ['entity' => __('Users'), 'detail' => $user->name]);
             $action = route('user.update', $user);
             break;
         case 'user.profile.edit' :
-            $title = __('entities.profile');
+            $title = __('My profile');
             $action = route('user.update', $user);
             break;
     }
@@ -33,38 +33,38 @@
         <div class="card">
             <div class="card-header">
                 <h2 class="m-0">
-                    @lang('admin.section.data')
+                    @lang('Data')
                 </h2>
             </div>
             <div class="card-body">
-                <h3>@lang('admin.section.identity')</h3>
+                <h3>@lang('Identity')</h3>
                 @php($avatar = optional($user)->getFirstMedia('avatar'))
-                {{ bsFile()->name('avatar')
+                {{ inputFile()->name('avatar')
                     ->value(optional($avatar)->file_name)
                     ->uploadedFile(function() use ($avatar) {
                         return $avatar
-                            ? image()->src(optional($avatar)->getUrl('thumb'))
-                                ->linkUrl(optional($avatar)->getUrl('profile'))
-                                ->containerClasses(['mb-2'])
+                            ? image()->src($avatar->getUrl('thumb'))->linkUrl($avatar->getUrl())->linkTitle($avatar->name)
                             : null;
                     })
                     ->legend((new App\Models\User)->constraintsLegend('avatar')) }}
-                {{ bsText()->name('last_name')->model($user)->containerHtmlAttributes(['required']) }}
-                {{ bsText()->name('first_name')->model($user)->containerHtmlAttributes(['required']) }}
-                <h3 class="pt-4">@lang('admin.section.contact')</h3>
-                {{ bsEmail()->name('email')->model($user)->containerHtmlAttributes(['required']) }}
-                <h3 class="pt-4">@lang('admin.section.security')</h3>
-                {{ bsPassword()->name($user ? 'new_password' : 'password')
-                    ->legend(__('static.legend.password.constraint.min', ['count' => config('security.password.constraint.min')]) . '<br/>'
-                        . __('static.legend.password.recommendation') . '<br/>'
-                        . __('static.legend.password.update'))
+                {{ inputText()->name('last_name')->model($user)->containerHtmlAttributes(['required']) }}
+                {{ inputText()->name('first_name')->model($user)->containerHtmlAttributes(['required']) }}
+                <h3 class="pt-4">@lang('Contact')</h3>
+                {{ inputEmail()->name('email')->model($user)->containerHtmlAttributes(['required']) }}
+                <h3 class="pt-4">@lang('Security')</h3>
+                {{ inputPassword()->name($user ? 'new_password' : 'password')
+                    ->legend(
+                        __('passwords.minLength', ['count' => config('security.password.constraint.min')]) . '<br/>'
+                        . __('passwords.recommendation') . '<br/>'
+                        . __('passwords.fillForUpdate')
+                    )
                     ->containerHtmlAttributes($user ? [] : ['required'])  }}
-                {{ bsPassword()->name($user ? 'new_password_confirmation' : 'password_confirmation')
+                {{ inputPassword()->name($user ? 'new_password_confirmation' : 'password_confirmation')
                     ->model($user)
                     ->containerHtmlAttributes($user ? [] : ['required']) }}
                 <div class="d-flex pt-4">
-                    {{ bsCancel()->route('users')->containerClasses(['mr-2']) }}
-                    @if($user){{ bsUpdate() }}@else{{ bsCreate() }}@endif
+                    {{ buttonCancel()->route('users.index')->containerClasses(['mr-2']) }}
+                    @if($user){{ submitUpdate() }}@else{{ submitCreate() }}@endif
                 </div>
             </div>
         </div>

@@ -1,3 +1,3 @@
 <?php
 
-require 'multilingualHelper.php';
+require 'multilingual.php';

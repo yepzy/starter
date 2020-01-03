@@ -1,24 +1,15 @@
 <?php
 
 use App\Models\SimplePage;
+use App\Services\Seo\SeoService;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class SimplePagesTableSeeder extends Seeder
 {
-    protected $faker;
-    protected $fakeText;
-
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     * @throws \Exception
-     */
-    public function run()
-    {
-        $this->faker = Factory::create(config('app.faker_locale'));
-        $this->fakeText = <<<EOT
+    protected $fakerFr;
+    protected $fakerEn;
+    protected $fakeText = <<<EOT
 **Bold text.**
 
 *Italic text.*
@@ -42,24 +33,92 @@ Ordered list :
 
 [Link](http://www.google.com).
 EOT;
-        $this->createSimplePage('CGU et mentions légales', 'terms-of-service');
-        $this->createSimplePage('Charte de respect de la vie privée - RGPD', 'rgpd');
+
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     * @throws Exception
+     */
+    public function run()
+    {
+        $this->fakerFr = Factory::create('fr_EN');
+        $this->fakerEn = Factory::create('en_GB');
+        $this->createSimplePage(
+            [
+                'slug' => 'terms-of-service-page',
+                'active' => true
+            ],
+            [
+                'url' => [
+                    'fr' => 'cgu-et-mentions-legales',
+                    'en' => 'terms-and-legal-notice',
+                ],
+                'title' => [
+                    'fr' => 'CGU et mentions légales',
+                    'en' => 'Terms and legal notice',
+                ],
+                'description' => [
+                    'fr' => $this->fakeText,
+                    'en' => $this->fakeText,
+                ],
+            ],
+            [
+                'meta_title' => [
+                    'fr' => 'CGU et mentions légales',
+                    'en' => 'Terms and legal notice',
+                ],
+                'meta_description' => [
+                    'fr' => $this->fakerFr->text(150),
+                    'en' => $this->fakerEn->text(150),
+                ]
+            ]
+        );
+        $this->createSimplePage(
+            [
+                'slug' => 'gdpr-page',
+                'active' => true
+            ],
+            [
+                'url' => [
+                    'fr' => 'respect-vie-privee-rgpd',
+                    'en' => 'privacy-policy-gdpr',
+                ],
+                'title' => [
+                    'fr' => 'Respect de la vie privée - RGPD',
+                    'en' => 'Privacy policy - GDPR',
+                ],
+                'description' => [
+                    'fr' => $this->fakeText,
+                    'en' => $this->fakeText,
+                ],
+            ],
+            [
+                'meta_title' => [
+                    'fr' => 'CGU et mentions légales',
+                    'en' => 'Terms and legal notice',
+                ],
+                'meta_description' => [
+                    'fr' => $this->fakerFr->text(150),
+                    'en' => $this->fakerEn->text(150),
+                ]
+            ]
+        );
     }
 
     /**
-     * @param string $title
-     * @param string $slug
+     * @param array $data
+     * @param array $translatableData
+     * @param array $seoTags
      */
-    protected function createSimplePage(string $title, string $slug): void
+    protected function createSimplePage(array $data, array $translatableData, array $seoTags): void
     {
-        $simplePage = (new SimplePage)->create([
-            'slug'        => $slug,
-            'url'         => Str::slug($title),
-            'title'       => $title,
-            'description' => $this->fakeText,
-            'active'      => true,
-        ]);
-        $simplePage->setMeta('meta_title', $title);
-        $simplePage->setMeta('meta_description', $this->faker->text(150));
+        /** @var SimplePage $simplePage */
+        $simplePage = (new SimplePage)->fill($data);
+        foreach ($translatableData as $key => $values) {
+            $simplePage->setTranslations($key, $values);
+        }
+        $simplePage->save();
+        (new SeoService)->saveSeoTags($simplePage, $seoTags);
     }
 }

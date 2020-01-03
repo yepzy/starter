@@ -18,6 +18,7 @@ class Handler extends ExceptionHandler
     protected $dontReport = [
         //
     ];
+
     /**
      * A list of the inputs that are never flashed for validation exceptions.
      *
@@ -85,7 +86,7 @@ class Handler extends ExceptionHandler
     protected function invalid($request, ValidationException $exception)
     {
         if (! $request->expectsJson()) {
-            toast(__('notifications.message.validation.failed'), 'error');
+            toast(__('Invalid fields have been detected.'), 'error');
         }
 
         return parent::invalid($request, $exception);

@@ -9,17 +9,16 @@ use App\Services\Seo\SeoService;
 class SimplePagesController extends Controller
 {
     /**
-     * @param string $url
+     * @param \App\Models\SimplePage $page
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Exception
      */
-    public function show(string $url)
+    public function show(SimplePage $page)
     {
-        $simplePage = (new SimplePage)->where('url', $url)->where('active', true)->firstOrFail();
-        (new SeoService)->displayMetaTagsFromModel($simplePage);
+        (new SeoService)->displayMetaTagsFromModel($page);
         $css = mix('/css/simple-pages/show.css');
 
-        return view('templates.front.simple-pages.show', compact('simplePage', 'css'));
+        return view('templates.front.simple-pages.show', compact('page', 'css'));
     }
 }

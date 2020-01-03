@@ -20,7 +20,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        SEOTools::setTitle(__('admin.title.orphan.index', ['entity' => __('entities.users')]));
+        SEOTools::setTitle(__('breadcrumbs.orphan.index', ['entity' => __('Users')]));
         $table = (new UsersService)->table();
 
         return view('templates.admin.users.index', compact('table'));
@@ -28,12 +28,11 @@ class UsersController extends Controller
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Exception
      */
     public function create()
     {
         $user = null;
-        SEOTools::setTitle(__('admin.title.orphan.create', ['entity' => __('entities.users')]));
+        SEOTools::setTitle(__('breadcrumbs.orphan.create', ['entity' => __('Users')]));
 
         return view('templates.admin.users.edit', compact('user'));
     }
@@ -50,11 +49,11 @@ class UsersController extends Controller
     {
         $request->merge(['password' => Hash::make($request->password)]);
         $user = (new User)->create($request->validated());
-        (new UsersService)->manageAvatarFromRequest($request, $user);
+        (new UsersService)->saveAvatarFromRequest($request, $user);
 
-        return redirect()->route('users')->with('toast_success', __('notifications.message.crud.orphan.created', [
-            'entity' => __('entities.users'),
-            'name'   => $user->name,
+        return redirect()->route('users.index')->with('toast_success', __('notifications.orphan.created', [
+            'entity' => __('Users'),
+            'name' => $user->name,
         ]));
     }
 
@@ -62,11 +61,10 @@ class UsersController extends Controller
      * @param \App\Models\User $user
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Exception
      */
     public function edit(User $user)
     {
-        SEOTools::setTitle(__('admin.title.orphan.edit', ['entity' => __('entities.users'), 'detail' => $user->name]));
+        SEOTools::setTitle(__('breadcrumbs.orphan.edit', ['entity' => __('Users'), 'detail' => $user->name]));
 
         return view('templates.admin.users.edit', compact('user'));
     }
@@ -86,13 +84,13 @@ class UsersController extends Controller
             $request->merge(['password' => Hash::make($request->new_password)]);
         }
         $user->update($request->validated());
-        (new UsersService)->manageAvatarFromRequest($request, $user);
+        (new UsersService)->saveAvatarFromRequest($request, $user);
 
         return back()->with('toast_success', $user->id === Auth::id()
-            ? __('notifications.message.crud.name.updated', ['name' => __('entities.profile')])
-            : __('notifications.message.crud.orphan.updated', [
-                'entity' => __('entities.users'),
-                'name'   => $user->name,
+            ? __('notifications.name.updated', ['name' => __('My profile')])
+            : __('notifications.orphan.updated', [
+                'entity' => __('Users'),
+                'name' => $user->name,
             ]));
     }
 
@@ -107,20 +105,19 @@ class UsersController extends Controller
         $name = $user->name;
         $user->delete();
 
-        return back()->with('toast_success', __('notifications.message.crud.orphan.destroyed', [
-            'entity' => __('entities.users'),
-            'name'   => $name,
+        return back()->with('toast_success', __('notifications.orphan.destroyed', [
+            'entity' => __('Users'),
+            'name' => $name,
         ]));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Exception
      */
     public function profile()
     {
         $user = auth()->user();
-        SEOTools::setTitle(__('entities.profile'));
+        SEOTools::setTitle(__('My profile'));
 
         return view('templates.admin.users.edit', compact('user'));
     }

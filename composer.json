@@ -4,6 +4,8 @@
         "php": "^7.3",
         "ext-json": "*",
         "artesaos/seotools": "^0.16.0",
+        "codezero/laravel-localized-routes": "^2.1",
+        "codezero/laravel-unique-translation": "^2.0",
         "deployer/deployer": "^6.0",
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
@@ -12,8 +14,7 @@
         "laravel/horizon": "^3.0",
         "laravel/telescope": "^2.0",
         "laravel/tinker": "^1.0",
-        "mcamara/laravel-localization": "^1.4",
-        "okipa/laravel-bootstrap-components": "^1.0",
+        "okipa/laravel-bootstrap-components": "2.0.0.x-dev",
         "okipa/laravel-failed-jobs-notifier": "^1.0",
         "okipa/laravel-medialibrary-ext": "^7.11.0",
         "okipa/laravel-request-sanitizer": "^1.1",
@@ -24,16 +25,17 @@
         "realrashid/sweet-alert": "^2.0",
         "sentry/sentry-laravel": "^1.0",
         "spatie/eloquent-sortable": "^3.7",
-        "spatie/laravel-sitemap": "^5.0"
+        "spatie/laravel-sitemap": "^5.0",
+        "spatie/laravel-translatable": "^4.2"
     },
     "require-dev": {
-        "facade/ignition": "^1.4",
-        "fzaninotto/faker": "^1.4",
         "barryvdh/laravel-ide-helper": "^2.0",
         "beyondcode/laravel-dump-server": "^1.0",
+        "facade/ignition": "^1.4",
+        "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
-        "nunomaduro/larastan": "^0.4",
+        "nunomaduro/larastan": "^0.5",
         "phpmd/phpmd": "^2.0",
         "phpunit/phpunit": "^8.0",
         "squizlabs/php_codesniffer": "^3.0"
@@ -86,7 +88,7 @@
             "vendor/bin/phpcbf",
             "vendor/bin/phpcs",
             "vendor/bin/phpmd app,config,database,routes,tests text phpmd.xml",
-            "php artisan code:analyse --paths=\"app,config,tests\"",
+            "vendor/bin/phpstan analyse",
             "vendor/bin/phpunit"
         ]
     },

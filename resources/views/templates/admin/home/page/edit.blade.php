@@ -2,7 +2,7 @@
 @section('template')
     <h1>
         <i class="fas fa-desktop fa-fw"></i>
-        @lang('admin.title.orphan.edit', ['entity' => __('entities.home'), 'detail' => __('entities.page')])
+        @lang('breadcrumbs.orphan.edit', ['entity' => __('Home'), 'detail' => __('Page')])
     </h1>
     <hr>
     <form method="POST" class="w-100" action="{{ route('home.page.update') }}" enctype="multipart/form-data">
@@ -12,20 +12,27 @@
         <div class="card">
             <div class="card-header">
                 <h2 class="m-0">
-                    @lang('admin.section.data')
+                    @lang('Data')
                 </h2>
             </div>
             <div class="card-body">
-                <h3>@lang('admin.section.content')</h3>
-                {{ bsText()->name('title')->model($homePage)->containerHtmlAttributes(['required']) }}
-                {{ bsTextarea()->name('description')
-                    ->model($homePage)
-                    ->prepend(false)
-                    ->componentClasses(['editor'])
+                <h3>@lang('Content')</h3>
+                {{ inputText()->name('title')
+                    ->locales(supportedLocaleKeys())
+                    ->value(function($locale) use ($pageContent) {
+                        return optional($pageContent)->getMeta('title', null, $locale);
+                    })
                     ->containerHtmlAttributes(['required']) }}
-                @include('components.admin.seo.meta-tags', ['model' => $homePage])
+                {{ textarea()->name('description')
+                    ->locales(supportedLocaleKeys())
+                    ->value(function($locale) use ($pageContent) {
+                        return optional($pageContent)->getMeta('description', null, $locale);
+                    })
+                    ->prepend(false)
+                    ->componentClasses(['editor']) }}
+                @include('components.admin.seo.meta-tags', ['model' => $pageContent])
                 <div class="d-flex pt-4">
-                    {{ bsUpdate() }}
+                    {{ submitUpdate() }}
                 </div>
             </div>
         </div>

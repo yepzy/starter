@@ -9,12 +9,13 @@ use Illuminate\Notifications\Messages\MailMessage;
 class ResetPassword extends \Illuminate\Auth\Notifications\ResetPassword implements ShouldQueue
 {
     use Queueable;
+
     public $tries = 3;
 
     /**
      * Create a notification instance.
      *
-     * @param  string $token
+     * @param string $token
      *
      * @return void
      */
@@ -29,7 +30,7 @@ class ResetPassword extends \Illuminate\Auth\Notifications\ResetPassword impleme
      *
      * @param mixed $notifiable
      *
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @return \Illuminate\Notifications\Messages\MailMessage|mixed
      */
     public function toMail($notifiable)
     {
@@ -38,13 +39,10 @@ class ResetPassword extends \Illuminate\Auth\Notifications\ResetPassword impleme
         }
 
         return (new MailMessage)
-            ->subject(__('mail.passwordReset.subject'))
-            ->greeting(__('mail.notification.greeting.named', ['name' => $notifiable->name]))
-            ->line(__('mail.passwordReset.message'))
-            ->action(
-                __('mail.passwordReset.action'),
-                url(config('app.url') . route('password.update', $this->token, false))
-            )
-            ->line(__('mail.passwordReset.notice'));
+            ->subject(__('Reset your password'))
+            ->greeting(__('mails.notification.greeting.named', ['name' => $notifiable->name]))
+            ->line(__('mails.passwordReset.message'))
+            ->action(__('mails.passwordReset.action'), route('password.update', $this->token))
+            ->line(__('mails.passwordReset.notice'));
     }
 }

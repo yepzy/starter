@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\VerifiesEmails;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Http\Request;
 
 class VerificationController extends Controller
 {
@@ -19,77 +19,53 @@ class VerificationController extends Controller
     | be re-sent if the user didn't receive the original email message.
     |
     */
+
     use VerifiesEmails {
+        show as traitShow;
         resend as traitResend;
         verify as traitVerify;
     }
-    /**
-     * Where to redirect users after verification.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/';
 
     /**
-     * Show the email verification notice.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     * @inheritDoc
      */
     public function show(Request $request)
     {
-        SEOTools::setTitle(__('auth.title.verifyEmail'));
+        SEOTools::setTitle(__('Email address verification'));
 
-        return $request->user()->hasVerifiedEmail()
-            ? redirect($this->redirectPath())
-            : view('templates.auth.verify');
+        return $this->traitShow($request);
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
-    public function redirectTo()
+    public function redirectPath()
     {
-        return route('home');
+        return route('admin.index');
     }
 
     /**
-     * Resend the email verification notification.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
+     * @inheritDoc
      */
     public function resend(Request $request)
     {
+        $response = $this->traitResend($request);
         if (! $request->user()->hasVerifiedEmail()) {
-            alert()->html(
-                __('notifications.title.success'),
-                __('notifications.message.auth.verificationEmailSent', ['email' => $request->user()->email]),
-                'success'
-            )->showConfirmButton();
+            alert()->html(__('Success'), __('We have e-mailed your new verification link.'), 'success')
+                ->showConfirmButton();
         }
 
-        return $this->traitResend($request);
+        return $response;
     }
 
     /**
-     * Mark the authenticated user's email address as verified.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @inheritDoc
      */
     public function verify(Request $request)
     {
-        alert()->html(
-            __('notifications.title.success'),
-            __('notifications.message.auth.emailVerified', ['email' => $request->user()->email]),
-            'success'
-        )->showConfirmButton();
+        $response = $this->traitVerify($request);
+        alert()->html(__('Success'), __('Your e-mail address has been confirmed.'), 'success')->showConfirmButton();
 
-        return $this->traitVerify($request);
+        return $response;
     }
 }

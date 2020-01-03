@@ -20,51 +20,38 @@ class ForgotPasswordController extends Controller
     |
     */
     use SendsPasswordResetEmails {
+        showLinkRequestForm as traitShowLinkRequestForm;
         sendResetLinkResponse as traitSendResetLinkResponse;
+        sendResetLinkFailedResponse as traitSendResetLinkFailedResponse;
     }
 
     /**
-     * Display the form to request a password reset link.
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @inheritDoc
      */
     public function showLinkRequestForm()
     {
-        SEOTools::setTitle(__('auth.title.forgottenPassword'));
+        SEOTools::setTitle(__('Forgotten password'));
 
-        return view('templates.auth.password.forgotten');
+        return $this->traitShowLinkRequestForm();
     }
 
     /**
-     * Get the response for a successful password reset link.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param string $response
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     * @inheritDoc
      */
     protected function sendResetLinkResponse(Request $request, $response)
     {
-        $response = 'notifications.message.' . $response;
-        alert()->html(__('notifications.title.success'), __($response), 'success')
-            ->showConfirmButton();
+        alert()->html(__('Success'), __($response), 'success')->showConfirmButton();
 
-        return redirect()->route('login')->withInput($request->only('email'));
+        return $this->traitSendResetLinkResponse($request, $response);
     }
 
     /**
-     * Get the response for a failed password reset link.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param string $response
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     * @inheritDoc
      */
     protected function sendResetLinkFailedResponse(Request $request, $response)
     {
-        $response = 'notifications.message.' . $response;
-        alert()->html(__('notifications.title.error'), __($response), 'error')->showConfirmButton();
+        alert()->html(__('Error'), __($response), 'error')->showConfirmButton();
 
-        return $this->traitSendResetLinkResponse($request, $response);
+        return $this->traitSendResetLinkFailedResponse($request, $response);
     }
 }

@@ -19,17 +19,17 @@ class UsersService extends Service implements UsersServiceInterface
     public function table(): Table
     {
         $table = (new Table)->model(User::class)->routes([
-            'index'   => ['name' => 'users'],
-            'create'  => ['name' => 'user.create'],
-            'edit'    => ['name' => 'user.edit'],
+            'index' => ['name' => 'users.index'],
+            'create' => ['name' => 'user.create'],
+            'edit' => ['name' => 'user.edit'],
             'destroy' => ['name' => 'user.destroy'],
         ])->disableRows(function (User $user) {
             return $user->id === auth()->id();
         })->destroyConfirmationHtmlAttributes(function (User $user) {
             return [
-                'data-confirm' => __('notifications.message.crud.orphan.destroyConfirm', [
-                    'entity' => __('entities.settings'),
-                    'name'   => $user->name,
+                'data-confirm' => __('notifications.orphan.destroyConfirm', [
+                    'entity' => __('Users'),
+                    'name' => $user->name,
                 ]),
             ];
         });
@@ -44,22 +44,21 @@ class UsersService extends Service implements UsersServiceInterface
     }
 
     /**
-     * Manage avatar from request.
+     * Save avatar from request.
      *
      * @param \App\Http\Requests\Request $request
      * @param \App\Models\User $user
      *
-     * @return void
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
      */
-    public function manageAvatarFromRequest(Request $request, User $user): void
+    public function saveAvatarFromRequest(Request $request, User $user): void
     {
         if ($request->file('avatar')) {
             $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
         } elseif ($request->method() !== 'PUT' || $request->remove_avatar) {
-            $this->setDefaultAvatarImage($user);
+            $this->setDefaultAvatar($user);
         }
     }
 
@@ -72,7 +71,7 @@ class UsersService extends Service implements UsersServiceInterface
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
      */
-    public function setDefaultAvatarImage(User $user): void
+    public function setDefaultAvatar(User $user): void
     {
         $user->addMedia(database_path('seeds/files/users/default-450-450.png'))
             ->preservingOriginal()

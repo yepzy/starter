@@ -2,22 +2,32 @@
 
 namespace App\Models;
 
-use Plank\Metable\Metable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use Spatie\Translatable\HasTranslations;
 
-class NewsArticle extends Model implements HasMedia
+class NewsArticle extends Metable implements HasMedia
 {
     use HasMediaTrait;
-    use Metable;
+    use HasTranslations;
+
+    /**
+     * The attributes that are translatable.
+     *
+     * @var array
+     */
+    public $translatable = ['url', 'title', 'description'];
+
     /**
      * The database table used by the model.
      *
      * @var string
      */
     protected $table = 'news_articles';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -30,15 +40,38 @@ class NewsArticle extends Model implements HasMedia
         'active',
         'published_at',
     ];
+
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
     protected $casts = [
-        'active'       => 'boolean',
+        'active' => 'boolean',
         'published_at' => 'datetime',
     ];
+
+    /**
+     * Get the value of the model's route key.
+     *
+     * @return mixed
+     */
+    public function getRouteKey()
+    {
+        return $this->getTranslation('url', app()->getLocale());
+    }
+
+    /**
+     * Retrieve the model for a bound value.
+     *
+     * @param mixed $value
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+    public function resolveRouteBinding($value)
+    {
+        return $this->where('url->' . app()->getLocale(), $value)->firstOrFail();
+    }
 
     /**
      * Register the media collections.
@@ -63,9 +96,9 @@ class NewsArticle extends Model implements HasMedia
 
     /**
      * Register the media conversions.
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      *
      * @param \Spatie\MediaLibrary\Models\Media|null $media
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      *
      * @throws \Spatie\Image\Exceptions\InvalidManipulation
      */

@@ -15,28 +15,29 @@ class InsertJavascript
      *
      * @return mixed
      * @throws \Exception
-     * @throws \Throwable
      */
     public function handle($request, Closure $next)
     {
-        $termsOfService = cache('termsOfService');
+        $termsOfServiceUrl = data_get(cache('termsOfServicePage'), 'url')
+            ? route('simplePage.show', cache('termsOfServicePage')->url)
+            : null;
         JavaScript::put([
-            'locale'        => app()->getLocale(),
-            'notifications' => __('notifications'),
+            'locale' => $request->getLocale(),
+            'sweetalert' => __('sweetalert'),
             'cookieConsent' => __('cookieconsent'),
-            'sumoSelect'    => __('sumoselect'),
-            'templates' => [
-                'loading' => view('components.common.notifications.loading')->render(),
-            ],
-            'static'        => __('static'),
-            'routes'        => [
-                'page' => [
-                    'termsOfService' => $termsOfService
-                        ? route('simplePage.show', $termsOfService->url)
-                        : null,
-                ],
-            ],
+            'sumoSelect' => __('sumoselect'),
+            'termsOfService' => ['route' => $termsOfServiceUrl],
         ]);
+        // admin only
+        if ($request->is('admin/*') || $request->is('*/admin/*')) {
+            JavaScript::put([
+                'multilingual' => [
+                    'template' => [
+                        'formLangSwitcher' => view('components.admin.multilingual.form-lang-switcher')->toHtml(),
+                    ],
+                ],
+            ]);
+        }
 
         return $next($request);
     }

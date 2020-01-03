@@ -3,9 +3,9 @@
     <h1>
         <i class="fas fa-file-alt fa-fw"></i>
         @if($simplePage)
-            @lang('admin.title.orphan.edit', ['entity' => __('entities.simplePages'), 'detail' => $simplePage->title])
+            @lang('breadcrumbs.orphan.edit', ['entity' => __('Simple pages'), 'detail' => $simplePage->title])
         @else
-            @lang('admin.title.orphan.create', ['entity' => __('entities.simplePages')])
+            @lang('breadcrumbs.orphan.create', ['entity' => __('Simple pages')])
         @endif
     </h1>
     <hr>
@@ -19,33 +19,41 @@
         <div class="card">
             <div class="card-header">
                 <h2 class="m-0">
-                    @lang('admin.section.data')
+                    @lang('Data')
                 </h2>
             </div>
             <div class="card-body">
-                <h3>@lang('admin.section.page')</h3>
-                {{ bsText()->name('title')->model($simplePage)->containerHtmlAttributes(['required']) }}
+                <h3>@lang('Page')</h3>
+                {{ inputText()->name('title')
+                    ->locales(supportedLocaleKeys())
+                    ->model($simplePage)
+                    ->containerHtmlAttributes(['required']) }}
                 @if(! $simplePage)
-                    {{ bsText()->name('slug')
+                    {{ inputText()->name('slug')
                         ->model($simplePage)
                         ->prepend('<i class="fas fa-key fa-fw"></i>')
                         ->componentClasses(['slugify'])
                         ->componentHtmlAttributes(['data-autofill-from' => '#text-title'])
                         ->containerHtmlAttributes(['required'])}}
                 @endif
-                {{ bsText()->name('url')
+                {{ inputText()->name('url')
+                    ->locales(supportedLocaleKeys())
                     ->model($simplePage)
-                    ->prepend(route('simplePage.show', ['url' => '']) . '/')
+                    ->prepend(route('simplePage.show', '/') . '/')
                     ->componentClasses(['lowercase'])
                     ->componentHtmlAttributes(['data-autofill-from' => '#text-title'])
                     ->containerHtmlAttributes(['required']) }}
-                {{ bsTextarea()->name('description')->model($simplePage)->prepend(false)->componentClasses(['editor']) }}
-                <h3 class="pt-4">@lang('admin.section.publication')</h3>
-                {{ bsToggle()->name('active')->model($simplePage) }}
+                {{ textarea()->name('description')
+                    ->locales(supportedLocaleKeys())
+                    ->model($simplePage)
+                    ->prepend(false)
+                    ->componentClasses(['editor']) }}
+                <h3 class="pt-4">@lang('Publication')</h3>
+                {{ inputToggle()->name('active')->model($simplePage) }}
                 @include('components.admin.seo.meta-tags', ['model' => $simplePage])
                 <div class="d-flex pt-4">
-                    {{ bsCancel()->route('simplePages')->containerClasses(['mr-2']) }}
-                    @if($simplePage){{ bsUpdate() }}@else{{ bsCreate() }}@endif
+                    {{ buttonCancel()->route('simplePages.index')->containerClasses(['mr-2']) }}
+                    @if($simplePage){{ submitUpdate() }}@else{{ submitCreate() }}@endif
                 </div>
             </div>
         </div>

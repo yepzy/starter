@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
-use Illuminate\Http\Request;
-use App\Services\Users\UsersService;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Services\Users\UsersService;
+use Artesaos\SEOTools\Facades\SEOTools;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Artesaos\SEOTools\Facades\SEOTools;
 
 class RegisterController extends Controller
 {
@@ -23,18 +23,18 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-    use RegistersUsers;
+    use RegistersUsers {
+        showRegistrationForm as traitShowRegistrationForm;
+    }
 
     /**
-     * Show the application registration form.
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @inheritDoc
      */
     public function showRegistrationForm()
     {
-        SEOTools::setTitle(__('auth.title.register'));
+        SEOTools::setTitle(__('Registration area'));
 
-        return view('templates.auth.register');
+        return $this->traitShowRegistrationForm();
     }
 
     /**
@@ -48,9 +48,9 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'first_name' => ['required', 'string', 'max:255'],
-            'last_name'  => ['required', 'string', 'max:255'],
-            'email'      => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password'   => ['required', 'string', 'min:8', 'confirmed'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -59,42 +59,43 @@ class RegisterController extends Controller
      *
      * @param array $data
      *
-     * @return \Illuminate\Database\Eloquent\Model
-     * @throws \Exception
+     * @return \App\Models\User
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
      */
     protected function create(array $data)
     {
         /** @var User $user */
         $user = (new User)->create([
             'first_name' => $data['first_name'],
-            'last_name'  => $data['last_name'],
-            'email'      => $data['email'],
-            'password'   => Hash::make($data['password']),
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
         ]);
-        (new UsersService)->setDefaultAvatarImage($user);
+        (new UsersService)->setDefaultAvatar($user);
 
         return $user;
     }
 
     /**
-     * The user has been registered.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return mixed
+     * @inheritDoc
      */
     protected function registered(Request $request)
     {
-        alert()->toast(__('notifications.message.auth.accountCreated', [
-            'name' => $request->first_name . ' ' . $request->last_name,
-        ]), 'success');
+        alert()->toast(
+            __('Welcome to your new account') . ', ' . $request->first_name . ' ' . $request->last_name . '.',
+            'success'
+        );
+
+        return;
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
-    protected function redirectTo()
+    protected function redirectPath()
     {
-        return route('home');
+        return route('admin.index');
     }
 }

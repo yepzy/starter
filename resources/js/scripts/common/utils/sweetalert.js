@@ -3,7 +3,7 @@ window.notify = swal.mixin({
         confirmButton: 'btn btn-outline-primary mx-2',
         cancelButton: 'btn btn-outline-danger mx-2'
     },
-    cancelButtonText: app.static.action.cancel,
+    cancelButtonText: app.sweetalert.cancel,
     buttonsStyling: false
 });
 
@@ -13,25 +13,29 @@ notify.toast = notify.mixin({
     timer: 10000
 });
 
-notify.loading = (html = app.templates.loading, title = app.notifications.title.loading) => {
-    return notify.fire({
-        title: title,
-        html: html,
+notify.loading = (title = app.sweetalert.pleaseWait, message = app.sweetalert.loading) => {
+    return swal.fire({
+        toast: true,
+        position: 'top-end',
+        timer: 10000,
         type: 'info',
-        showConfirmButton: false,
-        showCloseButton: false,
-        allowOutsideClick: false
+        title: title,
+        html: message,
+        timerProgressBar: true,
+        onBeforeOpen: () => {
+            swal.showLoading();
+        },
     });
 };
 
-notify.warning = (html, title = app.notifications.title.confirm) => {
+notify.warning = (html, title = app.sweetalert.confirmRequest) => {
     return notify.fire({
         title: title,
         html: html,
         type: 'warning',
         showCancelButton: true,
-        confirmButtonText: app.static.action.confirm,
-        cancelButtonText: app.static.action.cancel
+        confirmButtonText: app.sweetalert.confirm,
+        cancelButtonText: app.sweetalert.cancel
     });
 };
 

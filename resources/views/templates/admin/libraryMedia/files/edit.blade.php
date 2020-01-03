@@ -3,9 +3,9 @@
     <h1>
         <i class="fas fa-photo-video fa-fw"></i>
         @if($file)
-            @lang('admin.title.orphan.edit', ['entity' => __('entities.libraryMedia'), 'detail' => $file->name])
+            @lang('breadcrumbs.orphan.edit', ['entity' => __('Media library'), 'detail' => $file->name])
         @else
-            @lang('admin.title.orphan.create', ['entity' => __('entities.libraryMedia')])
+            @lang('breadcrumbs.orphan.create', ['entity' => __('Media library')])
         @endif
     </h1>
     <hr>
@@ -20,67 +20,60 @@
         <div class="card">
             <div class="card-header">
                 <h2 class="m-0">
-                    @lang('library-media.labels.file')
+                    @lang('Data')
                 </h2>
             </div>
             <div class="card-body">
-                <h3>@lang('library-media.labels.media')</h3>
-                {{ bsFile()->name('media')
+                <h3>@lang('Media')</h3>
+                {{ inputFile()->name('media')
                     ->value(optional(optional($file)->getFirstMedia('medias'))->file_name)
-                    ->uploadedFile(function() use($file) {
-                        return $file
-                            ? '<div class="mb-2">' . view('components.admin.table.library-media.thumb', compact('file')) . '</div>'
-                            : null;
+                    ->uploadedFile(function() use ($file) {
+                        return view('components.admin.table.library-media.thumb', compact('file'));
                     })
                     ->showRemoveCheckbox(false)
                     ->containerHtmlAttributes(['required'])
                     ->legend((new \App\Models\LibraryMediaFile)->constraintsLegend('medias')) }}
-                <h3 class="pt-4">@lang('library-media.labels.data')</h3>
-                {{ bsText()->name('name')->model($file)->containerHtmlAttributes(['required']) }}
-                {{ bsSelect()->name('category_id')
+                <h3 class="pt-4">@lang('File')</h3>
+                {{ inputText()->name('name')
+                    ->locales(supportedLocaleKeys())
                     ->model($file)
-                    ->options((new \App\Models\LibraryMediaCategory)->orderBy('name')->get(), 'id', 'name')
+                    ->containerHtmlAttributes(['required']) }}
+                {{ select()->name('category_id')
+                    ->model($file)
+                    ->options((new \App\Models\LibraryMediaCategory)->get()->map(function($category){
+                        $array = $category->toArray();
+                        $array['name'] = $category->name;
+
+                        return $array;
+                    })->sortBy('name'), 'id', 'name')
                     ->componentClasses(['selector'])
                     ->containerHtmlAttributes(['required']) }}
                 @if(! $file || optional($file)->canBeDisplayed)
-                    {{ bsToggle()->name('downloadable')
+                    {{ inputToggle()->name('downloadable')
                         ->checked(optional($file)->downloadable ?? false)
                         ->containerClasses(['form-group', 'mt-4']) }}
                 @endif
                 @if($file)
-                    <h3 class="pt-4">@lang('library-media.labels.clipboardCopy')</h3>
-                    {{ bsText()->name('url')
-                        ->label(__('library-media.labels.url'))
-                        ->prepend(false)
+                    <h3 class="pt-4">@lang('Clipboard copy')</h3>
+                    {{ inputText()->name('url')
+                        ->label(__('URL'))
+                        ->prepend('<i class="fas fa-link fa-fw"></i>')
                         ->value($file->getFirstMedia('medias')->getFullUrl())
-                        ->containerClasses(['mb-1'])
+                        ->append(view('components.admin.table.library-media.url-copy-link', compact('file')))
                         ->componentHtmlAttributes(['disabled']) }}
-                    <div class="form-group">
-                        <button type="button"
-                                class="btn btn-outline-primary clipboard-copy"
-                                data-library-media-id="{{ $file->id }}"
-                                data-type="url">
-                            <i class="fas fa-link fa-fw"></i> @lang('library-media.labels.clipboardCopy')
-                        </button>
-                    </div>
-                    {{ bsTextarea()->name('html')
+                    {{ textarea()->name('html')
+                        ->locales(supportedLocaleKeys())
                         ->label(__('library-media.labels.html'))
-                        ->prepend(false)
-                        ->value(trim(view('components.admin.table.library-media.html-clipboard-content', compact('file'))->toHtml()))
-                        ->containerClasses(['mb-1'])
-                        ->componentHtmlAttributes(['rows' => 6, 'disabled']) }}
-                    <div class="form-group">
-                        <button type="button"
-                                class="btn btn-outline-primary clipboard-copy"
-                                data-library-media-id="{{ $file->id }}"
-                                data-type="html">
-                            <i class="fas fa-link fa-fw"></i> @lang('library-media.labels.clipboardCopy')
-                        </button>
-                    </div>
+                        ->prepend('<i class="fas fa-code fa-fw"></i>')
+                        ->value(function($locale) use($file) {
+                            return trim(view('components.admin.table.library-media.html-clipboard-content', compact('file', 'locale')));
+                        })
+                        ->append(view('components.admin.table.library-media.html-copy-link', compact('file')))
+                        ->componentHtmlAttributes(['disabled']) }}
                 @endif
                 <div class="d-flex pt-4">
-                    {{ bsCancel()->route('libraryMedia.files.index')->containerClasses(['mr-2']) }}
-                    @if($file){{ bsUpdate() }}@else{{ bsCreate() }}@endif
+                    {{ buttonCancel()->route('libraryMedia.files.index')->containerClasses(['mr-2']) }}
+                    @if($file){{ submitUpdate() }}@else{{ submitCreate() }}@endif
                 </div>
             </div>
         </div>

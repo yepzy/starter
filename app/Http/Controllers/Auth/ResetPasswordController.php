@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ResetsPasswords;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
 
 class ResetPasswordController extends Controller
 {
@@ -20,65 +20,46 @@ class ResetPasswordController extends Controller
     |
     */
     use ResetsPasswords {
-        reset as traitReset;
+        showResetForm as traitShowResetForm;
         sendResetResponse as traitSendResetResponse;
+        sendResetFailedResponse as traitSendResetFailedResponse;
     }
 
     /**
-     * Display the password reset view for the given token.
-     * If no token is present, display the link request form.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param string|null $token
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @inheritDoc
      */
     public function showResetForm(Request $request, $token = null)
     {
-        SEOTools::setTitle(__('auth.title.resetPassword'));
+        SEOTools::setTitle(__('Define new password'));
 
-        return view('templates.auth.password.reset')->with(['token' => $token, 'email' => $request->email]);
+        return $this->traitShowResetForm($request, $token);
     }
 
     /**
-     * Get the response for a successful password reset.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param string $response
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     * @inheritDoc
      */
     public function sendResetResponse(Request $request, $response)
     {
-        $response = 'notifications.message.' . $response;
-        alert()->html(__('notifications.title.success'), __($response), 'success')->showConfirmButton();
+        alert()->html(__('Success'), __($response), 'success')->showConfirmButton();
 
         return $this->traitSendResetResponse($request, $response);
     }
 
     /**
-     * Get the post register / login redirect path.
-     *
-     * @return string
+     * @inheritDoc
      */
     public function redirectPath()
     {
-        return route('admin');
+        return route('admin.index');
     }
 
     /**
-     * Get the response for a failed password reset.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param string $response
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     * @inheritDoc
      */
     protected function sendResetFailedResponse(Request $request, string $response)
     {
-        alert()->html(__('notifications.title.error'), __('notifications.message.' . $response), 'error')
-            ->showConfirmButton();
+        alert()->html(__('Error'), __($response), 'error')->showConfirmButton();
 
-        return back()->withInput($request->only('email'));
+        return $this->traitSendResetFailedResponse($request, $response);
     }
 }

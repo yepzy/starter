@@ -2,25 +2,30 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\NewsCategory;
 use App\Http\Controllers\Controller;
-use App\Services\News\CategoriesService;
 use App\Http\Requests\News\CategoryStoreRequest;
 use App\Http\Requests\News\CategoryUpdateRequest;
+use App\Models\NewsCategory;
+use App\Services\News\CategoriesService;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Exception;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class NewsCategoriesController extends Controller
 {
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Exception
+     * @throws \ErrorException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function index()
     {
         $table = (new CategoriesService)->table();
-        SEOTools::setTitle(__('admin.title.parent.index', [
-            'parent' => __('entities.news'),
-            'entity' => __('entities.categories'),
+        SEOTools::setTitle(__('breadcrumbs.parent.index', [
+            'parent' => __('News'),
+            'entity' => __('Categories'),
         ]));
 
         return view('templates.admin.news.categories.index', compact('table'));
@@ -32,9 +37,9 @@ class NewsCategoriesController extends Controller
     public function create()
     {
         $category = null;
-        SEOTools::setTitle(__('admin.title.parent.create', [
-            'parent' => __('entities.news'),
-            'entity' => __('entities.categories'),
+        SEOTools::setTitle(__('breadcrumbs.parent.create', [
+            'parent' => __('News'),
+            'entity' => __('Categories'),
         ]));
 
         return view('templates.admin.news.categories.edit', compact('category'));
@@ -49,11 +54,11 @@ class NewsCategoriesController extends Controller
     {
         $category = (new NewsCategory)->create($request->validated());
 
-        return redirect()->route('news.categories')
-            ->with('toast_success', __('notifications.message.crud.parent.created', [
-                'parent' => __('entities.news'),
-                'entity' => __('entities.categories'),
-                'name'   => $category->name,
+        return redirect()->route('news.categories.index')
+            ->with('toast_success', __('notifications.parent.created', [
+                'parent' => __('News'),
+                'entity' => __('Categories'),
+                'name' => $category->name,
             ]));
     }
 
@@ -64,9 +69,9 @@ class NewsCategoriesController extends Controller
      */
     public function edit(NewsCategory $category)
     {
-        SEOTools::setTitle(__('admin.title.parent.edit', [
-            'parent' => __('entities.news'),
-            'entity' => __('entities.categories'),
+        SEOTools::setTitle(__('breadcrumbs.parent.edit', [
+            'parent' => __('News'),
+            'entity' => __('Categories'),
             'detail' => $category->name,
         ]));
 
@@ -83,10 +88,10 @@ class NewsCategoriesController extends Controller
     {
         $category->update($request->validated());
 
-        return back()->with('toast_success', __('notifications.message.crud.parent.updated', [
-            'parent' => __('entities.news'),
-            'entity' => __('entities.categories'),
-            'name'   => $category->name,
+        return back()->with('toast_success', __('notifications.parent.updated', [
+            'parent' => __('News'),
+            'entity' => __('Categories'),
+            'name' => $category->name,
         ]));
     }
 
@@ -101,10 +106,10 @@ class NewsCategoriesController extends Controller
         $name = $category->name;
         $category->delete();
 
-        return back()->with('toast_success', __('notifications.message.crud.parent.destroyed', [
-            'parent' => __('entities.news'),
-            'entity' => __('entities.categories'),
-            'name'   => $name,
+        return back()->with('toast_success', __('notifications.parent.destroyed', [
+            'parent' => __('News'),
+            'entity' => __('Categories'),
+            'name' => $name,
         ]));
     }
 }

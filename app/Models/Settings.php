@@ -10,12 +10,14 @@ use Spatie\MediaLibrary\Models\Media;
 class Settings extends Model implements HasMedia
 {
     use HasMediaTrait;
+
     /**
      * The database table used by the model.
      *
      * @var string
      */
     protected $table = 'settings';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -75,5 +77,18 @@ class Settings extends Model implements HasMedia
         $this->addMediaConversion('thumb')
             ->fit(Manipulations::FIT_CROP, 40, 40)
             ->keepOriginalImageFormat();
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullPostalAddressAttribute(): string
+    {
+        $fullPostalAddress = '';
+        $fullPostalAddress .= $this->address ?: '';
+        $fullPostalAddress .= $this->zip_code ? ($fullPostalAddress ? ' ' : '') . $this->zip_code : '';
+        $fullPostalAddress .= $this->city ? ($fullPostalAddress ? ' ' : '') . $this->city : '';
+
+        return $fullPostalAddress;
     }
 }

@@ -9,9 +9,17 @@ use App\Http\Requests\LibraryMedia\FileUpdateRequest;
 use App\Models\LibraryMediaFile;
 use App\Services\LibraryMedia\FilesService;
 use Artesaos\SEOTools\Facades\SEOTools;
+use ErrorException;
 use Exception;
-use Illuminate\Support\Str;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use Log;
+use Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist;
+use Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist;
+use Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig;
 
 class LibraryMediaFilesController extends Controller
 {
@@ -25,7 +33,7 @@ class LibraryMediaFilesController extends Controller
     public function index(FilesIndexRequest $request)
     {
         $table = (new FilesService)->table($request);
-        SEOTools::setTitle(__('admin.title.orphan.index', ['entity' => __('entities.libraryMedia')]));
+        SEOTools::setTitle(__('breadcrumbs.orphan.index', ['entity' => __('Media library')]));
         (new FilesService)->injectJavascriptInView();
         $js = mix('/js/library-media/index.js');
 
@@ -38,7 +46,7 @@ class LibraryMediaFilesController extends Controller
     public function create()
     {
         $file = null;
-        SEOTools::setTitle(__('admin.title.orphan.create', ['entity' => __('entities.libraryMedia')]));
+        SEOTools::setTitle(__('breadcrumbs.orphan.create', ['entity' => __('Media library')]));
 
         return view('templates.admin.libraryMedia.files.edit', compact('file'));
     }
@@ -55,17 +63,12 @@ class LibraryMediaFilesController extends Controller
     {
         /** @var LibraryMediaFile $file */
         $file = (new LibraryMediaFile)->create($request->validated());
-        $uploadedMediaFile = $request->file('media');
-        $fileName = Str::slug($request->name) . '.' . $uploadedMediaFile->getClientOriginalExtension();
-        $file->addMedia($uploadedMediaFile->getRealPath())
-            ->setName($request->name)
-            ->setFileName($fileName)
-            ->toMediaCollection('medias');
+        $file->addMediaFromRequest('media')->toMediaCollection('medias');
 
         return redirect()->route('libraryMedia.files.index')
-            ->with('toast_success', __('notifications.message.crud.orphan.created', [
-                'entity' => __('entities.libraryMedia'),
-                'name'   => $file->name,
+            ->with('toast_success', __('notifications.orphan.created', [
+                'entity' => __('Media library'),
+                'name' => $file->name,
             ]));
     }
 
@@ -77,8 +80,8 @@ class LibraryMediaFilesController extends Controller
      */
     public function edit(LibraryMediaFile $file)
     {
-        SEOTools::setTitle(__('admin.title.orphan.edit', [
-            'entity' => __('entities.libraryMedia'),
+        SEOTools::setTitle(__('breadcrumbs.orphan.edit', [
+            'entity' => __('Media library'),
             'detail' => $file->name,
         ]));
         (new FilesService)->injectJavascriptInView();
@@ -100,17 +103,12 @@ class LibraryMediaFilesController extends Controller
     {
         $file->update($request->validated());
         if ($request->file('media')) {
-            $uploadedMediaFile = $request->file('media');
-            $fileName = Str::slug($request->name) . '.' . $uploadedMediaFile->getClientOriginalExtension();
-            $file->addMedia($uploadedMediaFile->getRealPath())
-                ->setName($request->name)
-                ->setFileName($fileName)
-                ->toMediaCollection('medias');
+            $file->addMediaFromRequest('media')->toMediaCollection('medias');
         }
 
-        return back()->with('toast_success', __('notifications.message.crud.orphan.updated', [
-            'entity' => __('entities.libraryMedia'),
-            'name'   => $file->name,
+        return back()->with('toast_success', __('notifications.orphan.updated', [
+            'entity' => __('Media library'),
+            'name' => $file->name,
         ]));
     }
 
@@ -125,31 +123,36 @@ class LibraryMediaFilesController extends Controller
         $name = $file->name;
         $file->delete();
 
-        return back()->with('toast_success', __('notifications.message.crud.orphan.destroyed', [
-            'entity' => __('entities.libraryMedia'),
-            'name'   => $name,
+        return back()->with('toast_success', __('notifications.orphan.destroyed', [
+            'entity' => __('Media library'),
+            'name' => $name,
         ]));
     }
 
     /**
      * @param \App\Models\LibraryMediaFile $file
      * @param string $type
+     * @param string|null $locale
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function clipboardContent(LibraryMediaFile $file, string $type)
+    public function clipboardContent(LibraryMediaFile $file, string $type, ?string $locale)
     {
         try {
             $clipboardContent = $type === 'url'
                 ? $file->getFirstMedia('medias')->getFullUrl()
-                : trim(view('components.admin.table.library-media.html-clipboard-content', compact('file'))->toHtml());
-            $message = __('library-media.notifications.clipboardCopy.success', [
+                : trim(view(
+                    'components.admin.table.library-media.html-clipboard-content',
+                    compact('file', 'locale')
+                )->toHtml());
+            $message = __('Media « :name » :type copied in clipboard.', [
                 'type' => strtoupper($type),
-                'name' => $file->name,
+                'name' => $file->getTranslation('name', $locale),
             ]);
         } catch (Exception $exception) {
             Log::error($exception);
-            $message = __('notifications.message.exception.support');
+            $clipboardContent = null;
+            $message = __('An unexpected error occurred. If the problem persists, please contact support.');
         }
 
         return response()->json(compact('clipboardContent', 'message'));

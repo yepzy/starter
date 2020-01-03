@@ -3,6 +3,7 @@
         @include('layouts.admin.partials.nav-side.dashboard')
         @include('layouts.admin.partials.nav-side.home')
         @include('layouts.admin.partials.nav-side.news')
+        @include('layouts.admin.partials.nav-side.contact')
         @include('layouts.admin.partials.nav-side.simple-pages')
         @include('layouts.admin.partials.nav-side.library-media')
         <hr class="w-100">
@@ -12,9 +13,9 @@
         <hr class="w-100">
         {{-- back to the front --}}
         <li class="nav-item">
-            <a class="nav-link new-window" href="{{ route('home') }}" title="@lang('nav.admin.users')">
+            <a class="nav-link new-window" href="{{ route('home') }}" title="@lang('Back to the front')">
                 <i class="fas fa-undo fa-fw"></i>
-                @lang('nav.admin.back')
+                @lang('Back to the front')
             </a>
         </li>
     </ul>

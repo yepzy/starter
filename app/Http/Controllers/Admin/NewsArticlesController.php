@@ -2,26 +2,34 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\NewsArticle;
 use App\Http\Controllers\Controller;
-use App\Services\News\ArticlesService;
 use App\Http\Requests\News\ArticleStoreRequest;
 use App\Http\Requests\News\ArticleUpdateRequest;
+use App\Models\NewsArticle;
+use App\Services\News\ArticlesService;
 use App\Services\Seo\SeoService;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Exception;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
+use Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist;
+use Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist;
+use Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig;
 
 class NewsArticlesController extends Controller
 {
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Exception
+     * @throws \ErrorException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function index()
     {
         $table = (new ArticlesService)->table();
-        SEOTools::setTitle(__('admin.title.parent.index', [
-            'parent' => __('entities.news'),
-            'entity' => __('entities.articles'),
+        SEOTools::setTitle(__('breadcrumbs.parent.index', [
+            'parent' => __('News'),
+            'entity' => __('Articles'),
         ]));
 
         return view('templates.admin.news.articles.index', compact('table'));
@@ -33,9 +41,9 @@ class NewsArticlesController extends Controller
     public function create()
     {
         $article = null;
-        SEOTools::setTitle(__('admin.title.parent.create', [
-            'parent' => __('entities.news'),
-            'entity' => __('entities.articles'),
+        SEOTools::setTitle(__('breadcrumbs.parent.create', [
+            'parent' => __('News'),
+            'entity' => __('Articles'),
         ]));
 
         return view('templates.admin.news.articles.edit', compact('article'));
@@ -51,20 +59,19 @@ class NewsArticlesController extends Controller
      */
     public function store(ArticleStoreRequest $request)
     {
-        $request->merge(['title' => ucfirst(strtolower($request->title))]);
         /** @var NewsArticle $article */
         $article = (new NewsArticle)->create($request->validated());
         if ($request->file('illustration')) {
             $article->addMediaFromRequest('illustration')->toMediaCollection('illustrations');
         }
         $article->categories()->sync($request->category_ids);
-        (new SeoService)->saveMetaTagsFromRequest($article, $request);
+        (new SeoService)->saveSeoTagsFromRequest($article, $request);
 
-        return redirect()->route('news.articles')
-            ->with('toast_success', __('notifications.message.crud.parent.created', [
-                'parent' => __('entities.news'),
-                'entity' => __('entities.articles'),
-                'name'   => $article->title,
+        return redirect()->route('news.articles.index')
+            ->with('toast_success', __('notifications.parent.created', [
+                'parent' => __('News'),
+                'entity' => __('Articles'),
+                'name' => $article->title,
             ]));
     }
 
@@ -75,9 +82,9 @@ class NewsArticlesController extends Controller
      */
     public function edit(NewsArticle $article)
     {
-        SEOTools::setTitle(__('admin.title.parent.edit', [
-            'parent' => __('entities.news'),
-            'entity' => __('entities.articles'),
+        SEOTools::setTitle(__('breadcrumbs.parent.edit', [
+            'parent' => __('News'),
+            'entity' => __('Articles'),
             'detail' => $article->title,
         ]));
 
@@ -95,18 +102,17 @@ class NewsArticlesController extends Controller
      */
     public function update(NewsArticle $article, ArticleUpdateRequest $request)
     {
-        $request->merge(['title' => ucfirst(strtolower($request->title))]);
         $article->update($request->validated());
         if ($request->file('illustration')) {
             $article->addMediaFromRequest('illustration')->toMediaCollection('illustrations');
         }
         $article->categories()->sync($request->category_ids);
-        (new SeoService)->saveMetaTagsFromRequest($article, $request);
+        (new SeoService)->saveSeoTagsFromRequest($article, $request);
 
-        return back()->with('toast_success', __('notifications.message.crud.parent.updated', [
-            'parent' => __('entities.news'),
-            'entity' => __('entities.articles'),
-            'name'   => $article->title,
+        return back()->with('toast_success', __('notifications.parent.updated', [
+            'parent' => __('News'),
+            'entity' => __('Articles'),
+            'name' => $article->title,
         ]));
     }
 
@@ -121,10 +127,10 @@ class NewsArticlesController extends Controller
         $name = $article->title;
         $article->delete();
 
-        return back()->with('toast_success', __('notifications.message.crud.parent.destroyed', [
-            'parent' => __('entities.news'),
-            'entity' => __('entities.articles'),
-            'name'   => $name,
+        return back()->with('toast_success', __('notifications.parent.destroyed', [
+            'parent' => __('News'),
+            'entity' => __('Articles'),
+            'name' => $name,
         ]));
     }
 }

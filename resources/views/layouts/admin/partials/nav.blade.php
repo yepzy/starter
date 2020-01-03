@@ -1,13 +1,9 @@
-@php
-    $route = request()->route()->getName();
-    $user = auth()->user();
-@endphp
 <nav id="navbar" class="navbar navbar-expand-md navbar-dark bg-dark w-100 fixed-top">
-    <a class="navbar-brand d-flex align-items-center pl-3 pr-3" href="{{ route('admin') }}">
+    <a class="navbar-brand d-flex align-items-center pl-3 pr-3" href="{{ route('admin.index') }}">
         @if($icon = $settings->getFirstMedia('icon'))
             {{ $icon('admin-header') }}
         @endif
-        <span {{ classTag($icon ? 'pl-2' : null) }}>{{ config('app.name') }}</span>
+        <span class="{{ $icon ? 'pl-2' : null }}">{{ config('app.name') }}</span>
     </a>
     <button class="navbar-toggler navbar-toggler-right collapsed"
             type="button"

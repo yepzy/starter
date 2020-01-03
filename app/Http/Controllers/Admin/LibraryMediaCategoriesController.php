@@ -8,19 +8,24 @@ use App\Http\Requests\LibraryMedia\CategoryUpdateRequest;
 use App\Models\LibraryMediaCategory;
 use App\Services\LibraryMedia\CategoriesService;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Exception;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class LibraryMediaCategoriesController extends Controller
 {
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Exception
+     * @throws \ErrorException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function index()
     {
         $table = (new CategoriesService)->table();
-        SEOTools::setTitle(__('admin.title.parent.index', [
-            'parent' => __('entities.libraryMedia'),
-            'entity' => __('entities.categories'),
+        SEOTools::setTitle(__('breadcrumbs.parent.index', [
+            'parent' => __('Media library'),
+            'entity' => __('Categories'),
         ]));
 
         return view('templates.admin.libraryMedia.categories.index', compact('table'));
@@ -32,9 +37,9 @@ class LibraryMediaCategoriesController extends Controller
     public function create()
     {
         $category = null;
-        SEOTools::setTitle(__('admin.title.parent.create', [
-            'parent' => __('entities.libraryMedia'),
-            'entity' => __('entities.categories'),
+        SEOTools::setTitle(__('breadcrumbs.parent.create', [
+            'parent' => __('Media library'),
+            'entity' => __('Categories'),
         ]));
 
         return view('templates.admin.libraryMedia.categories.edit', compact('category'));
@@ -47,12 +52,13 @@ class LibraryMediaCategoriesController extends Controller
      */
     public function store(CategoryStoreRequest $request)
     {
+        /** @var \App\Models\LibraryMediaCategory $category */
         $category = (new LibraryMediaCategory)->create($request->validated());
 
         return redirect()->route('libraryMedia.categories.index')
-            ->with('toast_success', __('notifications.message.crud.parent.created', [
-                'parent' => __('entities.libraryMedia'),
-                'entity' => __('entities.categories'),
+            ->with('toast_success', __('notifications.parent.created', [
+                'parent' => __('Media library'),
+                'entity' => __('Categories'),
                 'name'   => $category->name,
             ]));
     }
@@ -64,9 +70,9 @@ class LibraryMediaCategoriesController extends Controller
      */
     public function edit(LibraryMediaCategory $category)
     {
-        SEOTools::setTitle(__('admin.title.parent.edit', [
-            'parent' => __('entities.libraryMedia'),
-            'entity' => __('entities.categories'),
+        SEOTools::setTitle(__('breadcrumbs.parent.edit', [
+            'parent' => __('Media library'),
+            'entity' => __('Categories'),
             'detail' => $category->name,
         ]));
 
@@ -83,9 +89,9 @@ class LibraryMediaCategoriesController extends Controller
     {
         $category->update($request->validated());
 
-        return back()->with('toast_success', __('notifications.message.crud.parent.updated', [
-            'parent' => __('entities.libraryMedia'),
-            'entity' => __('entities.categories'),
+        return back()->with('toast_success', __('notifications.parent.updated', [
+            'parent' => __('Media library'),
+            'entity' => __('Categories'),
             'name'   => $category->name,
         ]));
     }
@@ -101,9 +107,9 @@ class LibraryMediaCategoriesController extends Controller
         $name = $category->name;
         $category->delete();
 
-        return back()->with('toast_success', __('notifications.message.crud.parent.destroyed', [
-            'parent' => __('entities.libraryMedia'),
-            'entity' => __('entities.categories'),
+        return back()->with('toast_success', __('notifications.parent.destroyed', [
+            'parent' => __('Media library'),
+            'entity' => __('Categories'),
             'name'   => $name,
         ]));
     }

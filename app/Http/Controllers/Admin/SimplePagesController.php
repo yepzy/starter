@@ -2,25 +2,31 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\SimplePage;
 use App\Http\Controllers\Controller;
-use App\Services\Seo\SeoService;
-use App\Services\SimplePages\PagesService;
 use App\Http\Requests\SimplePages\SimplePageStoreRequest;
 use App\Http\Requests\SimplePages\SimplePageUpdateRequest;
-use Illuminate\Support\Str;
+use App\Models\SimplePage;
+use App\Services\Seo\SeoService;
+use App\Services\SimplePages\SimpleSimplePagesService;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Exception;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class SimplePagesController extends Controller
 {
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Exception
+     * @throws \ErrorException
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function index()
     {
-        $table = (new PagesService)->table();
-        SEOTools::setTitle(__('admin.title.orphan.index', ['entity' => __('entities.simplePages')]));
+        $table = (new SimpleSimplePagesService)->table();
+        SEOTools::setTitle(__('breadcrumbs.orphan.index', ['entity' => __('Simple pages')]));
 
         return view('templates.admin.simple-pages.index', compact('table'));
     }
@@ -31,7 +37,7 @@ class SimplePagesController extends Controller
     public function create()
     {
         $simplePage = null;
-        SEOTools::setTitle(__('admin.title.orphan.create', ['entity' => __('entities.users')]));
+        SEOTools::setTitle(__('breadcrumbs.orphan.create', ['entity' => __('Users')]));
 
         return view('templates.admin.simple-pages.edit', compact('simplePage'));
     }
@@ -45,12 +51,12 @@ class SimplePagesController extends Controller
     public function store(SimplePageStoreRequest $request)
     {
         $simplePage = (new SimplePage)->create($request->validated());
-        (new SeoService)->saveMetaTagsFromRequest($simplePage, $request);
+        (new SeoService)->saveSeoTagsFromRequest($simplePage, $request);
         cache()->forever(Str::camel($simplePage->slug), $simplePage->fresh());
 
-        return redirect()->route('simplePages')->with('toast_success', __('notifications.message.crud.orphan.created', [
-            'entity' => __('entities.simplePages'),
-            'name'   => $simplePage->title,
+        return redirect()->route('simplePages.index')->with('toast_success', __('notifications.orphan.created', [
+            'entity' => __('Simple pages'),
+            'name' => $simplePage->title,
         ]));
     }
 
@@ -61,8 +67,8 @@ class SimplePagesController extends Controller
      */
     public function edit(SimplePage $simplePage)
     {
-        SEOTools::setTitle(__('admin.title.orphan.edit', [
-            'entity' => __('entities.simplePages'),
+        SEOTools::setTitle(__('breadcrumbs.orphan.edit', [
+            'entity' => __('Simple pages'),
             'detail' => $simplePage->title,
         ]));
 
@@ -79,13 +85,13 @@ class SimplePagesController extends Controller
     public function update(SimplePage $simplePage, SimplePageUpdateRequest $request)
     {
         cache()->forget(Str::camel($simplePage->slug));
-        $simplePage->update($request->except('slug'));
-        (new SeoService)->saveMetaTagsFromRequest($simplePage, $request);
+        $simplePage->update(Arr::except($request->validated(), 'slug'));
+        (new SeoService)->saveSeoTagsFromRequest($simplePage, $request);
         cache()->forever(Str::camel($simplePage->slug), $simplePage->fresh());
 
-        return back()->with('toast_success', __('notifications.message.crud.orphan.updated', [
-            'entity' => __('entities.simplePages'),
-            'name'   => $simplePage->title,
+        return back()->with('toast_success', __('notifications.orphan.updated', [
+            'entity' => __('Simple pages'),
+            'name' => $simplePage->title,
         ]));
     }
 
@@ -101,9 +107,9 @@ class SimplePagesController extends Controller
         cache()->forget(Str::camel($simplePage->slug));
         $simplePage->delete();
 
-        return back()->with('toast_success', __('notifications.message.crud.orphan.destroyed', [
-            'entity' => __('entities.simplePages'),
-            'name'   => $name,
+        return back()->with('toast_success', __('notifications.orphan.destroyed', [
+            'entity' => __('Simple pages'),
+            'name' => $name,
         ]));
     }
 }
