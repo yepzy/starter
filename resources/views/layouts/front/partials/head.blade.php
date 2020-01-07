@@ -9,7 +9,7 @@
     @if(app()->environment() !== 'production'){!! SEO::generate() !!}@else{!! SEO::generate(true) !!}@endif
     <link href="{{ mix('css/front.css') }}" rel="stylesheet" />
     @if(! empty($css))<link href="{{ $css }}" rel="stylesheet" />@endif
-    @if($gtmId = $settings->google_tag_manager_id)
+    @if($gtmId = settings()->google_tag_manager_id)
         <script>
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

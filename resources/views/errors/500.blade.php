@@ -9,7 +9,7 @@
                         'dropdownLabelClasses' => ['btn', 'btn-link'],
                         'dropdownMenuClasses' => ['dropdown-menu-right']
                     ])
-                    @if($icon = $settings->getFirstMedia('icon'))
+                    @if($icon = settings()->getFirstMedia('icon'))
                         {{ $icon('auth') }}
                     @endif
                 </div>
@@ -29,7 +29,7 @@
                             dsn: '{{ config('sentry.dsn_public') }}',
                             user: {
                                 'name': '{{ config('app.name') }}',
-                                'email': '{{ $settings->email }}',
+                                'email': '{{ settings()->email }}',
                             }
                         });
                     </script>

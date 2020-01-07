@@ -1,19 +1,18 @@
 @component('mail::layout')
     @php
-        $settings = cache('settings');
-        $phoneNumber = optional($settings)->phone_number;
-        $email = optional($settings)->email;
+        $phoneNumber = settings()->phone_number;
+        $email = settings()->email;
     @endphp
     {{-- Header --}}
     @slot('header')
-        @component('mail::header', ['url' => config('app.url'), 'settings' => $settings])
+        @component('mail::header', ['url' => config('app.url')])
             {{ config('app.name') }}
         @endcomponent
     @endslot
     {{-- Topcopy --}}
     @slot('topcopy')
         @component('vendor.mail.html.topcopy')
-            @lang('mail.notification.noReply')
+            @lang('mails.notification.noReply')
         @endcomponent
     @endslot
     {{-- Body --}}
@@ -31,15 +30,15 @@
         @component('mail::footer')
             © {{ date('Y') }} {{ config('app.name') }}.
             @if($phoneNumber || $email)
-                <br>@lang('mail.notification.action.contact') :
+                <br>@lang('mails.notification.action.contact') :
                 @if($phoneNumber)
-                    @lang('mail.notification.action.phone', compact('phoneNumber'))
+                    @lang('mails.notification.action.phone', compact('phoneNumber'))
                 @endif
                 @if($email)
                     @if($phoneNumber)
                         -
                     @endif
-                    @lang('mail.notification.action.email', compact('email'))
+                    @lang('mails.notification.action.email', compact('email'))
                 @endif
             @endif
         @endcomponent

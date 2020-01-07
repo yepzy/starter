@@ -1,18 +1,16 @@
 @extends('layouts.admin.full')
 @php
-    switch(request()->route()->getName()){
-        case 'user.create' :
-            $title = __('breadcrumbs.orphan.create', ['entity' => __('Users')]);
-            $action = route('user.store');
-            break;
-        case 'user.edit' :
-            $title = __('breadcrumbs.orphan.edit', ['entity' => __('Users'), 'detail' => $user->name]);
+    if(Str::contains(request()->route()->getName(), 'user.create')) {
+        $title = __('breadcrumbs.orphan.create', ['entity' => __('Users')]);
+        $action = route('user.store');
+    }
+    if(Str::contains(request()->route()->getName(), 'user.update')) {
+        $title = __('breadcrumbs.orphan.edit', ['entity' => __('Users'), 'detail' => $user->name]);
             $action = route('user.update', $user);
-            break;
-        case 'user.profile.edit' :
-            $title = __('My profile');
-            $action = route('user.update', $user);
-            break;
+    }
+    if(Str::contains(request()->route()->getName(), 'user.profile.edit')) {
+        $title = __('My profile');
+        $action = route('user.update', $user);
     }
 @endphp
 @section('template')
@@ -52,16 +50,16 @@
                 <h3 class="pt-4">@lang('Contact')</h3>
                 {{ inputEmail()->name('email')->model($user)->containerHtmlAttributes(['required']) }}
                 <h3 class="pt-4">@lang('Security')</h3>
-                {{ inputPassword()->name($user ? 'new_password' : 'password')
-                    ->legend(
-                        __('passwords.minLength', ['count' => config('security.password.constraint.min')]) . '<br/>'
-                        . __('passwords.recommendation') . '<br/>'
-                        . __('passwords.fillForUpdate')
-                    )
-                    ->containerHtmlAttributes($user ? [] : ['required'])  }}
-                {{ inputPassword()->name($user ? 'new_password_confirmation' : 'password_confirmation')
-                    ->model($user)
-                    ->containerHtmlAttributes($user ? [] : ['required']) }}
+                <p>
+                    <i class="fas fa-exclamation-triangle fa-fw text-warning"></i>
+                    @lang('If no password is defined for this user, he will be e-mailed a password creation link.')
+                </p>
+                {{ inputPassword()->name($user ? 'new_password' : 'password')->legend(
+                    __('passwords.minLength', ['count' => config('security.password.constraint.min')]) . '<br/>'
+                    . __('passwords.recommendation') . '<br/>'
+                    . __('passwords.fillForUpdate')
+                ) }}
+                {{ inputPassword()->name($user ? 'new_password_confirmation' : 'password_confirmation')->model($user) }}
                 <div class="d-flex pt-4">
                     {{ buttonCancel()->route('users.index')->containerClasses(['mr-2']) }}
                     @if($user){{ submitUpdate() }}@else{{ submitCreate() }}@endif

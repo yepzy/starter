@@ -4,8 +4,6 @@ namespace App\Services\News;
 
 use App\Models\NewsCategory;
 use App\Services\Service;
-use ErrorException;
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Okipa\LaravelTable\Table;
 
 class CategoriesService extends Service implements CategoriesServiceInterface

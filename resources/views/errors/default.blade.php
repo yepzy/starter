@@ -10,7 +10,7 @@
                         'dropdownLabelClasses' => ['btn', 'btn-link'],
                         'dropdownMenuClasses' => ['dropdown-menu-right']
                     ])
-                    @if($icon = $settings->getFirstMedia('icon'))
+                    @if($icon = settings()->getFirstMedia('icon'))
                         {{ $icon('auth') }}
                     @endif
                 </div>
@@ -19,7 +19,7 @@
                     @if($maintenanceMode && $exception->getMessage())
                         @lang('errors.message.' . $exception->getStatusCode())
                     @else
-                        @lang('errors.title') {{ $exception->getStatusCode() }}
+                        @lang('Error') {{ $exception->getStatusCode() }}
                     @endif
                 </h1>
                 <p class="h5">

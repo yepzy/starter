@@ -11,14 +11,14 @@
         </div>
     @endif
     <h1 class="h3 mb-3 font-weight-normal">
-        <i class="fas fa-sync fa-fw"></i>
-        @lang('Define new password')
+        <i class="fas fa-hand-spock fa-fw"></i>
+        @lang('Welcome')
     </h1>
-    <form method="POST" class="w-100" action="{{ route('password.reset') }}">
+    <form method="POST" class="w-100">
         @csrf
-        <input type="hidden" name="token" value="{{ $token }}">
+        <input type="hidden" name="email" value="{{ $user->email }}"/>
         @include('components.common.form.notice')
-        {{ inputEmail()->name('email')->componentHtmlAttributes(['autofocus'])->containerHtmlAttributes(['required']) }}
+        <p>@lang('Welcome on :app ! To be able to login to your new account please define a secured password with the fields bellow.', ['app' => config('app.name')])</p>
         {{ inputPassword()->name('password')
             ->legend(__('passwords.minLength', ['count' => config('security.password.constraint.min')]) . '<br/>'
                 . __('passwords.recommendation'))
@@ -27,5 +27,5 @@
         {{ submitValidate()->label(__('Save new password'))
             ->componentClasses(['btn', 'btn-block', 'btn-primary', 'load-on-click']) }}
     </form>
-    {{ buttonBack()->route('login') }}
+    {{ buttonCancel()->route('home') }}
 @endsection

@@ -19,7 +19,9 @@ class ConfirmPasswordController extends Controller
     | this trait and override any functions that require customization.
     |
     */
-    use ConfirmsPasswords;
+    use ConfirmsPasswords {
+        showConfirmForm as traitShowConfirmForm;
+    }
 
     /**
      * @inheritDoc
@@ -28,7 +30,7 @@ class ConfirmPasswordController extends Controller
     {
         SEOTools::setTitle(__('Password verification'));
 
-        return view('templates.auth.password.confirm');
+        return $this->traitShowConfirmForm();
     }
 
     /**

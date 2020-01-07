@@ -30,10 +30,10 @@ class SettingsController extends Controller
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
+     * @throws \Exception
      */
     public function update(SettingsUpdateRequest $request)
     {
-        cache()->forget('settings');
         /** @var Settings $settings */
         $settings = (new Settings)->firstOrFail();
         $settings->update($request->validated());
@@ -42,7 +42,7 @@ class SettingsController extends Controller
         } elseif ($request->file('icon')) {
             $settings->addMediaFromRequest('icon')->toMediaCollection('icon');
         }
-        cache()->forever('settings', $settings->fresh());
+        settings(true);
 
         return back()->with('toast_success', __('notifications.name.updated', [
             'name' => __('Settings'),

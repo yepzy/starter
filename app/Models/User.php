@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Notifications\InitializePassword;
 use App\Notifications\ResetPassword;
 use App\Notifications\VerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,6 +13,7 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use Spatie\WelcomeNotification\ReceivesWelcomeNotification;
 
 class User extends Authenticatable implements
     HasMedia,
@@ -18,6 +21,8 @@ class User extends Authenticatable implements
 {
     use Notifiable;
     use HasMediaTrait;
+    use ReceivesWelcomeNotification;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -30,6 +35,7 @@ class User extends Authenticatable implements
         'phone_number',
         'password',
     ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -112,5 +118,15 @@ class User extends Authenticatable implements
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmail);
+    }
+
+    /**
+     * Send the welcome notification for password initialization.
+     *
+     * @param \Carbon\Carbon $validUntil
+     */
+    public function sendWelcomeNotification(Carbon $validUntil)
+    {
+        $this->notify(new InitializePassword($validUntil));
     }
 }

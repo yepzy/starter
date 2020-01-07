@@ -35,6 +35,14 @@ return [
         'notice' => 'Si vous n\'avez pas créé de compte, aucune action de votre part n\'est nécessaire.',
     ],
 
+    'InitializePassword' => [
+        'subject' => 'Créez votre mot de passe sécurisé',
+        'message' => 'Bienvenue sur la plateforme :app. Votre compte a été créé et pour vous y connecter, il vous faut maintenant créer votre mot de passe sécurisé.',
+        'action' => 'Créer mon mot de passe sécurisé',
+        'expiration' => 'Ce lien expirera dans :minutes minutes.',
+        'notice' => 'Si vous n\'avez pas réalisé de demande de création de compte, aucune action de votre part n\'est nécessaire.',
+    ],
+
     'ContactFormMessage' => [
         'subject' => [
             'original' => 'Formulaire de contact : nouveau message',
@@ -45,5 +53,4 @@ return [
             'copy' => 'Nous vous adressons une copie du message que vous avez envoyé depuis le formulaire de contact de :app.',
         ],
     ],
-
 ];

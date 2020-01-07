@@ -35,6 +35,14 @@ return [
         'notice' => 'If you have not created an account, no action is required.',
     ],
 
+    'InitializePassword' => [
+        'subject' => 'Create your secured password',
+        'message' => 'Welcome on the :app platform. Your account has been created and to authenticate yourself, you first have to create your secured password.',
+        'action' => 'Create my secured password',
+        'expiration' => 'This link will expire in :minutes minutes.',
+        'notice' => 'If you have not requested an account creation, no action is required.',
+    ],
+
     'ContactFormMessage' => [
         'subject' => [
             'original' => 'Contact form : new message',

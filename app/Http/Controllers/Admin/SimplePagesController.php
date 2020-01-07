@@ -52,7 +52,7 @@ class SimplePagesController extends Controller
     {
         $simplePage = (new SimplePage)->create($request->validated());
         (new SeoService)->saveSeoTagsFromRequest($simplePage, $request);
-        cache()->forever(Str::camel($simplePage->slug), $simplePage->fresh());
+        simplePages(true);
 
         return redirect()->route('simplePages.index')->with('toast_success', __('notifications.orphan.created', [
             'entity' => __('Simple pages'),
@@ -84,10 +84,9 @@ class SimplePagesController extends Controller
      */
     public function update(SimplePage $simplePage, SimplePageUpdateRequest $request)
     {
-        cache()->forget(Str::camel($simplePage->slug));
         $simplePage->update(Arr::except($request->validated(), 'slug'));
         (new SeoService)->saveSeoTagsFromRequest($simplePage, $request);
-        cache()->forever(Str::camel($simplePage->slug), $simplePage->fresh());
+        simplePages(true);
 
         return back()->with('toast_success', __('notifications.orphan.updated', [
             'entity' => __('Simple pages'),
@@ -104,8 +103,8 @@ class SimplePagesController extends Controller
     public function destroy(SimplePage $simplePage)
     {
         $name = $simplePage->title;
-        cache()->forget(Str::camel($simplePage->slug));
         $simplePage->delete();
+        simplePages(true);
 
         return back()->with('toast_success', __('notifications.orphan.destroyed', [
             'entity' => __('Simple pages'),

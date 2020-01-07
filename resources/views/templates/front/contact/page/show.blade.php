@@ -61,27 +61,35 @@
                             <h3 class="h5 mb-3">
                                 {{ config('app.name') }}
                             </h3>
-                            <p class="d-flex align-items-start">
-                                <span class="mr-1"><i class="fas fa-phone-alt fa-fw"></i></span>
-                                {{ $settings->phone_number }}
-                            </p>
-                            <p class="d-flex align-items-start">
-                                <span class="mr-1"><i class="fas fa-at fa-fw"></i></span>
-                                {{ $settings->email }}
-                            </p>
-                            <p class="d-flex align-items-start">
-                                <span class="mr-1"><i class="fas fa-compass fa-fw"></i></span>
-                                {{ $settings->full_postal_address }}
-                            </p>
+                            @if($phoneNumber = settings()->phone_number)
+                                <p class="d-flex align-items-start">
+                                    <span class="mr-1"><i class="fas fa-phone-alt fa-fw"></i></span>
+                                    {{ $phoneNumber }}
+                                </p>
+                            @endif
+                            @if($email = settings()->email)
+                                <p class="d-flex align-items-start">
+                                    <span class="mr-1"><i class="fas fa-at fa-fw"></i></span>
+                                    {{ $email }}
+                                </p>
+                            @endif
+                            @if($fullPostalAddress = settings()->full_postal_address)
+                                <p class="d-flex align-items-start">
+                                    <span class="mr-1"><i class="fas fa-compass fa-fw"></i></span>
+                                    {{ $fullPostalAddress }}
+                                </p>
+                            @endif
                         </div>
-                        <div class="card-footer">
-                            <a class="h5"
-                               href="//maps.google.com/maps?q={{ str_replace([' ', ','], '+', $settings->full_postal_address) }}"
-                               data-lity>
-                                <i class="fas fa-search-location fa-fw"></i>
-                                @lang('Where to find us ?')
-                            </a>
-                        </div>
+                        @if($fullPostalAddress = settings()->full_postal_address)
+                            <div class="card-footer">
+                                <a class="h5"
+                                   href="//maps.google.com/maps?q={{ str_replace([' ', ','], '+', $fullPostalAddress) }}"
+                                   data-lity>
+                                    <i class="fas fa-search-location fa-fw"></i>
+                                    @lang('Where to find us ?')
+                                </a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

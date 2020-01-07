@@ -4,7 +4,7 @@
         "php": "^7.3",
         "ext-json": "*",
         "artesaos/seotools": "^0.16.0",
-        "codezero/laravel-localized-routes": "^2.1",
+        "codezero/laravel-localized-routes": "dev-master",
         "codezero/laravel-unique-translation": "^2.0",
         "deployer/deployer": "^6.0",
         "doctrine/dbal": "^2.9",
@@ -26,7 +26,8 @@
         "sentry/sentry-laravel": "^1.0",
         "spatie/eloquent-sortable": "^3.7",
         "spatie/laravel-sitemap": "^5.0",
-        "spatie/laravel-translatable": "^4.2"
+        "spatie/laravel-translatable": "^4.2",
+        "spatie/laravel-welcome-notification": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.0",

@@ -1,5 +1,5 @@
 <noscript class="d-flex justify-content-center bg-danger text-white p-4">
-    @if($gtmId = $settings->google_tag_manager_id)
+    @if($gtmId = settings()->google_tag_manager_id)
         <iframe src="https://www.googletagmanager.com/ns.html?id={{ $gtmId }}"
                 height="0"
                 width="0"

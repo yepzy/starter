@@ -47,14 +47,22 @@ class UsersController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        $request->merge(['password' => Hash::make($request->password)]);
-        $user = (new User)->create($request->validated());
+        /** @var \App\Models\User $user */
+        $user = (new User)->create(array_merge(
+            $request->validated(),
+            ['password' => $request->has('password') ? Hash::make($request->password) : 'password']
+        ));
         (new UsersService)->saveAvatarFromRequest($request, $user);
+        $additionalMessage = '';
+        if (! $request->has('password')) {
+            $user->sendWelcomeNotification(now()->addMinutes(120));
+            $additionalMessage = ' ' . __('A password creation link has been sent.');
+        }
 
         return redirect()->route('users.index')->with('toast_success', __('notifications.orphan.created', [
-            'entity' => __('Users'),
-            'name' => $user->name,
-        ]));
+                'entity' => __('Users'),
+                'name' => $user->name,
+            ]) . $additionalMessage);
     }
 
     /**

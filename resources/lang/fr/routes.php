@@ -1,7 +1,7 @@
 <?php
 
 return [
-    
+
     'create' => 'creer',
     'store' => 'enregistrer',
     'edit' => 'editer',
@@ -40,5 +40,6 @@ return [
     'profile' => 'profil',
     'simple-pages' => 'pages-simples',
     'simple-page' => 'page-simple',
+    'welcome' => 'bienvenue',
 
 ];

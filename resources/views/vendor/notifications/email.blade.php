@@ -4,7 +4,7 @@
 @if ($greeting)
 # {{ $greeting }}
 @else
-# @lang('mail.notification.greeting.default')
+# @lang('mails.notification.greeting.default')
 @endif
 
 {{-- Intro Lines --}}

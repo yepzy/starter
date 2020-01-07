@@ -161,6 +161,7 @@ return [
         'meta_description' => 'Meta description',
         'phone_number' => 'Phone number',
         'message' => 'Message',
+        'avatar' => 'Avatar',
     ],
 
 ];

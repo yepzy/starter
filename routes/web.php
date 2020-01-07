@@ -1,5 +1,8 @@
 <?php
 
+use CodeZero\LocalizedRoutes\Middleware\SetLocale;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+
 // localized routes ****************************************************************************************************
 Route::localized(function () {
     // auth
@@ -7,6 +10,7 @@ Route::localized(function () {
     require('web/auth/password.php');
     require('web/auth/register.php'); // todo : comment if this feature is not needed
     require('web/auth/verification.php'); // todo : uncomment if this feature is not needed
+    require('web/auth/welcome.php');
     // admin
     Route::prefix('admin')->middleware([
         'auth',
@@ -18,7 +22,7 @@ Route::localized(function () {
         require('web/admin/contact.php');
         require('web/admin/simplePages.php');
         require('web/admin/libraryMedia.php');
-        // sensitive data
+        // password reconfirm protection
         Route::middleware(['password.confirm'])->group(function () {
             require('web/admin/users.php');
             require('web/admin/settings.php');
@@ -36,4 +40,8 @@ require('web/admin/admin.php');
 // utils
 require('web/utils/seo.php');
 require('web/utils/download.php');
-require('web/utils/fallback.php');
+
+// 404 fallback route, do not not place any route declaration under this one *******************************************
+Route::fallback(function () {
+    return response()->view('errors.default', ['exception' => new HttpException(404)], 404);
+})->middleware(SetLocale::class)->name('404');

@@ -1,7 +1,7 @@
 
 @php
     $base64Logo = null;
-    $imagePath = optional($settings)->getFirstMediaPath('icon', 'mail');
+    $imagePath = optional(settings())->getFirstMediaPath('icon', 'mail');
     if ($imagePath) {
         $type = pathinfo($imagePath, PATHINFO_EXTENSION);
         $base64Image = base64_encode(file_get_contents($imagePath));

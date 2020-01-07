@@ -34,9 +34,9 @@ class ContactPageController extends Controller
      */
     public function sendMessage(ContactPageSendMessageRequest $request)
     {
-        Notification::route('mail', cache('settings')->email)
+        Notification::route('mail', settings()->email)
             ->notify(new ContactFormMessage('original', $request->validated()));
-        Notification::route('mail', cache('settings')->email)
+        Notification::route('mail', settings()->email)
             ->notify(new ContactFormMessage('copy', $request->validated()));
         (new LogContactFormMessage)->create(['data' => $request->validated()]);
 
