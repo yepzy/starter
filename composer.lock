@@ -2911,12 +2911,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-bootstrap-components.git",
-                "reference": "34a2705fc96b98045459e6482cbac6f6723ce58c"
+                "reference": "15f992914bbf2e0866839cb99000a16297930406"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Okipa/laravel-bootstrap-components/zipball/34a2705fc96b98045459e6482cbac6f6723ce58c",
-                "reference": "34a2705fc96b98045459e6482cbac6f6723ce58c",
+                "url": "https://api.github.com/repos/Okipa/laravel-bootstrap-components/zipball/15f992914bbf2e0866839cb99000a16297930406",
+                "reference": "15f992914bbf2e0866839cb99000a16297930406",
                 "shasum": ""
             },
             "require": {
@@ -2974,7 +2974,7 @@
                 "package",
                 "php"
             ],
-            "time": "2020-01-02T12:14:03+00:00"
+            "time": "2020-01-07T11:52:40+00:00"
         },
         {
             "name": "okipa/laravel-failed-jobs-notifier",

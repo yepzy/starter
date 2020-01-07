@@ -9,6 +9,6 @@ class Cancel extends \Okipa\LaravelBootstrapComponents\Components\Buttons\Cancel
      */
     protected function setComponentClasses(): array
     {
-        return ['btn-secondary', 'load-on-click'];
+        return ['btn-danger', 'load-on-click'];
     }
 }
