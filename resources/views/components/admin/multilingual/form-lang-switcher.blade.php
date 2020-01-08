@@ -5,7 +5,7 @@
                 <a class="nav-link"
                    href=""
                    data-locale="{{ $localeKey }}">
-                    {{ $locale['name'] }}
+                    @lang($locale['name'])
                 </a>
             </li>
         @endforeach
