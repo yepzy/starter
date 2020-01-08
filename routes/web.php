@@ -3,7 +3,7 @@
 use CodeZero\LocalizedRoutes\Middleware\SetLocale;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-// localized routes ****************************************************************************************************
+// localized ***********************************************************************************************************
 Route::localized(function () {
     // auth
     require('web/auth/login.php');
@@ -16,6 +16,7 @@ Route::localized(function () {
         'auth',
         'verified', // todo : comment if this feature is not needed
     ])->group(function () {
+        require('web/admin/admin.php');
         require('web/admin/dashboard.php');
         require('web/admin/home.php');
         require('web/admin/news.php');
@@ -35,13 +36,12 @@ Route::localized(function () {
     require('web/front/simplePages.php');
 });
 
-// not localized routes ************************************************************************************************
-require('web/admin/admin.php');
+// not localized *******************************************************************************************************
 // utils
 require('web/utils/seo.php');
 require('web/utils/download.php');
 
-// 404 fallback route, do not not place any route declaration under this one *******************************************
+// 404 fallback catch : do not not place any route declaration under this one ******************************************
 Route::fallback(function () {
     return response()->view('errors.default', ['exception' => new HttpException(404)], 404);
 })->middleware(SetLocale::class)->name('404');
