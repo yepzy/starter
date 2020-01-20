@@ -1,7 +1,7 @@
 @extends('layouts.admin.auth')
 @section('content')
     @include('components.common.multilingual.lang-switcher', [
-        'containerClasses' => ['text-right'],
+        'containerClasses' => ['text-right', 'mb-3'],
         'dropdownClass' => ['dropdown-menu-right'],
         'labelClass' => ['btn', 'btn-link']
     ])
@@ -14,7 +14,7 @@
         <i class="fas fa-sync fa-fw"></i>
         @lang('Define new password')
     </h1>
-    <form method="POST" class="w-100" action="{{ route('password.reset') }}">
+    <form method="POST" class="w-100" action="{{ route('password.update') }}">
         @csrf
         <input type="hidden" name="token" value="{{ $token }}">
         @include('components.common.form.notice')
@@ -26,6 +26,6 @@
         {{ inputPassword()->name('password_confirmation')->containerHtmlAttributes(['required']) }}
         {{ submitValidate()->label(__('Save new password'))
             ->componentClasses(['btn', 'btn-block', 'btn-primary']) }}
+        {{ buttonBack()->route('login')->containerClasses(['mt-3']) }}
     </form>
-    {{ buttonBack()->route('login') }}
 @endsection

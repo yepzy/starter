@@ -21,7 +21,7 @@ return [
         'noReply' => 'This email has been sent automatically. Thank you for not answering it.',
     ],
 
-    'passwordReset' => [
+    'ResetPassword' => [
         'subject' => 'Reset your password',
         'message' => 'This email has been sent to you because we have received a password reset request for your account.',
         'action' => 'Reset password',

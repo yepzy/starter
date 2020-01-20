@@ -3,7 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 
 Route::get(
-    Lang::uri('connection'),
+    Lang::uri('login'),
     [LoginController::class, 'showLoginForm']
 )->name('login')->middleware('guest');
 Route::post(
@@ -13,4 +13,4 @@ Route::post(
 Route::post(
     Lang::uri('logout'),
     [LoginController::class, 'logout']
-)->name('logout')->middleware('auth');
+)->name('logout');

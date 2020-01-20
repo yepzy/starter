@@ -12,9 +12,10 @@ require('web/utils/download.php');
 Route::localized(function () {
     // auth
     require('web/auth/login.php');
-    require('web/auth/password.php');
-    require('web/auth/register.php'); // todo : comment if this feature is not needed
-    require('web/auth/verification.php'); // todo : uncomment if this feature is not needed
+    require('web/auth/register.php');
+    require('web/auth/reset.php');
+    require('web/auth/confirm.php');
+    require('web/auth/verify.php');
     require('web/auth/welcome.php');
     // admin
     Route::prefix('admin')->middleware([

@@ -1,7 +1,7 @@
 @extends('layouts.admin.auth')
 @section('content')
     @include('components.common.multilingual.lang-switcher', [
-        'containerClasses' => ['text-right'],
+        'containerClasses' => ['text-right', 'mb-3'],
         'dropdownLabelClasses' => ['btn', 'btn-link'],
         'dropdownMenuClasses' => ['dropdown-menu-right']
     ])

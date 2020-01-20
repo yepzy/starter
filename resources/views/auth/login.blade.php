@@ -1,7 +1,7 @@
 @extends('layouts.admin.auth')
 @section('content')
     @include('components.common.multilingual.lang-switcher', [
-        'containerClasses' => ['text-right'],
+        'containerClasses' => ['text-right', 'mb-3'],
         'dropdownLabelClasses' => ['btn', 'btn-link'],
         'dropdownMenuClasses' => ['dropdown-menu-right']
     ])
@@ -14,14 +14,14 @@
         <i class="fas fa-sign-in-alt fa-fw"></i>
         @lang('Sign in area')
     </h1>
-    <form method="POST" class="w-100" novalidate action="{{ route('login.login') }}">
+    <form method="POST" class="w-100">
         @csrf
         @include('components.common.form.notice')
         {{ inputEmail()->name('email')->componentHtmlAttributes(['autofocus'])->containerHtmlAttributes(['required']) }}
         {{ inputPassword()->name('password')->containerHtmlAttributes(['required']) }}
         {{ inputToggle()->name('remember') }}
         {{ submitValidate()->label(__('Sign me in'))->componentClasses(['btn', 'btn-block', 'btn-primary']) }}
-        <div class="form-group d-block">
+        <div class="form-group mt-3">
             <a href="{{ route('password.request') }}">
                 @lang('Forgotten password')
             </a>
@@ -29,6 +29,6 @@
                 @lang('Create account')
             </a>
         </div>
+        {{ buttonBack()->route('home') }}
     </form>
-    {{ buttonBack()->route('home') }}
 @endsection

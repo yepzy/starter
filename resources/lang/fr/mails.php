@@ -21,7 +21,7 @@ return [
         'noReply' => 'Cet e-mail a été envoyé automatiquement. Merci de ne pas y répondre.',
     ],
 
-    'passwordReset' => [
+    'ResetPassword' => [
         'subject' => 'Réinitialisez votre mot de passe',
         'message' => 'Cet email vous a été envoyé car nous avons reçu une demande de réinitialisation de mot de passe pour votre compte.',
         'action' => 'Réinitialiser le mot de passe',

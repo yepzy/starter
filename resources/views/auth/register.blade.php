@@ -1,7 +1,7 @@
 @extends('layouts.admin.auth')
 @section('content')
     @include('components.common.multilingual.lang-switcher', [
-        'containerClasses' => ['text-right'],
+        'containerClasses' => ['text-right', 'mb-3'],
         'dropdownLabelClasses' => ['btn', 'btn-link'],
         'dropdownMenuClasses' => ['dropdown-menu-right']
     ])
@@ -14,7 +14,7 @@
         <i class="fas fa-user-plus fa-fw"></i>
         @lang('Registration area')
     </h1>
-    <form method="POST" class="w-100" action="{{ route('register.register') }}">
+    <form method="POST" class="w-100">
         @csrf
         @include('components.common.form.notice')
         {{ inputText()->name('first_name')
@@ -33,6 +33,6 @@
             ->containerHtmlAttributes(['required']) }}
         {{ submitValidate()->label(__('Create account'))
             ->componentClasses(['btn', 'btn-block', 'btn-primary']) }}
+        {{ buttonCancel()->route('login')->containerClasses(['mt-3']) }}
     </form>
-    {{ buttonCancel()->route('login') }}
 @endsection

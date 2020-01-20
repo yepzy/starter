@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -20,6 +19,7 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+
     use AuthenticatesUsers {
         showLoginForm as traitShowLoginForm;
         sendLockoutResponse as traitSendLockoutResponse;

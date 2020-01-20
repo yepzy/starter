@@ -1,7 +1,7 @@
 @extends('layouts.admin.auth')
 @section('content')
     @include('components.common.multilingual.lang-switcher', [
-        'containerClasses' => ['text-right'],
+        'containerClasses' => ['text-right', 'mb-3'],
         'dropdownClass' => ['dropdown-menu-right'],
         'labelClass' => ['btn', 'btn-link']
     ])
@@ -14,18 +14,18 @@
         <i class="fas fa-shield-alt fa-fw"></i>
         @lang('Password verification')
     </h1>
-    <form method="POST" class="w-100" action="{{ route('password.reconfirm') }}">
+    <form method="POST" class="w-100">
         @csrf
         @include('components.common.form.notice')
         <p>@lang('For security reasons, please confirm your password. You will not be asked for several hours.')</p>
         {{ inputPassword()->name('password')->containerHtmlAttributes(['required']) }}
         {{ submitValidate()->label(__('Confirm password'))
             ->componentClasses(['btn', 'btn-block', 'btn-primary']) }}
-        <div class="form-group d-block">
+        <div class="form-group d-block mt-3">
             <a href="{{ route('password.request') }}">
                 @lang('Forgotten password')
             </a>
         </div>
+        {{ buttonCancel() }}
     </form>
-    {{ buttonCancel() }}
 @endsection
