@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
+use Log;
 use Sentry\State\Scope;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
@@ -51,7 +52,7 @@ class Handler extends ExceptionHandler
     public function sentryReport(Exception $exception): void
     {
         if (app()->bound('sentry') && $this->shouldReport($exception)) {
-            /** @var \App\Models\User|null $user */
+            /** @var \App\Models\Users\User|null $user */
             $user = auth()->user();
             if ($user) {
                 app('sentry')->configureScope(function (Scope $scope) use ($user) : void {
@@ -69,6 +70,7 @@ class Handler extends ExceptionHandler
      * @param \Exception $exception
      *
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function render($request, Exception $exception)
     {
@@ -101,6 +103,7 @@ class Handler extends ExceptionHandler
      */
     protected function renderHttpException(HttpExceptionInterface $exception)
     {
+        Log::error($exception);
         if (! view()->exists("errors.{$exception->getStatusCode()}")) {
             return response()->view(
                 'errors.default',

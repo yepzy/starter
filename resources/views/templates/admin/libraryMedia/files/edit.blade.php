@@ -32,7 +32,7 @@
                     })
                     ->showRemoveCheckbox(false)
                     ->containerHtmlAttributes(['required'])
-                    ->legend((new \App\Models\LibraryMediaFile)->constraintsLegend('medias')) }}
+                    ->legend((new \App\Models\LibraryMedia\LibraryMediaFile)->constraintsLegend('medias')) }}
                 <h3 class="pt-4">@lang('File')</h3>
                 {{ inputText()->name('name')
                     ->locales(supportedLocaleKeys())
@@ -40,13 +40,12 @@
                     ->containerHtmlAttributes(['required']) }}
                 {{ select()->name('category_id')
                     ->model($file)
-                    ->options((new \App\Models\LibraryMediaCategory)->get()->map(function($category){
+                    ->options((new \App\Models\LibraryMedia\LibraryMediaCategory)->get()->map(function($category){
                         $array = $category->toArray();
                         $array['name'] = $category->name;
 
                         return $array;
                     })->sortBy('name'), 'id', 'name')
-                    ->componentClasses(['selector'])
                     ->containerHtmlAttributes(['required']) }}
                 @if(! $file || optional($file)->canBeDisplayed)
                     {{ inputToggle()->name('downloadable')

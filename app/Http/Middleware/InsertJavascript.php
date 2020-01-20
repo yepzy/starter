@@ -18,15 +18,13 @@ class InsertJavascript
      */
     public function handle($request, Closure $next)
     {
-        $termsOfServiceUrl = data_get(cache('termsOfServicePage'), 'url')
-            ? route('simplePage.show', cache('termsOfServicePage')->url)
-            : null;
+        $termsOfServicePage = pages()->where('slug', 'terms-of-service-page')->first();
         JavaScript::put([
-            'locale' => $request->getLocale(),
+            'locale' => app()->getLocale(),
             'sweetalert' => __('sweetalert'),
             'cookieConsent' => __('cookieconsent'),
             'sumoSelect' => __('sumoselect'),
-            'termsOfService' => ['route' => $termsOfServiceUrl],
+            'termsOfService' => ['route' => $termsOfServicePage ? route('page.show', $termsOfServicePage) : null],
         ]);
         // admin only
         if ($request->is('admin/*') || $request->is('*/admin/*')) {

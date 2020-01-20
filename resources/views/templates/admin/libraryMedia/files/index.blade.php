@@ -19,14 +19,13 @@
                 {{ select()->name('category_id')
                     ->prepend('<i class="fas fa-tags fa-fw"></i>')
                     ->label(false)
-                    ->options((new \App\Models\LibraryMediaCategory)->get()->map(function($category){
+                    ->options((new \App\Models\LibraryMedia\LibraryMediaCategory)->get()->map(function($category){
                         $array = $category->toArray();
                         $array['name'] = $category->name;
 
                         return $array;
                     })->sortBy('name'), 'id', 'name')
-                    ->selected('id', $request->category_id)
-                    ->componentClasses(['selector']) }}
+                    ->selected('id', $request->category_id) }}
                 {{ submitValidate()->prepend('<i class="fas fa-filter"></i>')->label(__('Filter'))->containerClasses(['ml-3']) }}
                 @if($request->has('category_id'))
                     {{ buttonCancel()->route('libraryMedia.files.index')->prepend('<i class="fas fa-undo"></i>')->label(__('Reset'))->containerClasses(['ml-3']) }}

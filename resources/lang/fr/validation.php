@@ -187,6 +187,12 @@ return [
         'media' => 'Média',
         'downloadable' => 'Téléchargeable',
         'message' => 'Message',
+        'brickable_type' => 'Type brique',
+        'text' => 'Texte',
+        'left_text' => 'Texte gauche',
+        'right_text' => 'Texte droit',
+        'right_image' => 'Image droite',
+        'invert_order' => 'Inverser ordre',
     ],
 
 ];
