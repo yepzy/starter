@@ -3,59 +3,56 @@
     <div class="container my-5">
         <div class="row">
             {{-- cover --}}
-            {{ $article->getFirstMedia('illustrations')('cover') }}
+            <div class="col-12 mb-3">
+                @php($illustration = $article->getFirstMedia('illustrations'))
+                {!! $illustration->img('cover', ['class' => 'mw-100', 'alt' => $illustration->name]) !!}
+            </div>
             {{-- categories / sharing --}}
-            <div class="d-flex flex-wrap flex-grow-1 align-items-center justify-content-between py-3">
-                <div>
-                    @if($article->categories->isNotEmpty())
-                        @foreach($article->categories as $category)
-                            <a class="btn btn-secondary btn-sm"
-                               href="{{ route('news', ['category_id' => $category->id]) }}"
-                               title="{{ $category->name }}">
-                                {{ $category->name }}
-                            </a>
-                        @endforeach
-                    @endif
-                </div>
-                <div>
-                    <span class="fa-stack text-primary">
-                        <a class="new-window"
-                           href="https://twitter.com/home?status={{ request()->url() }}"
-                           title="@lang('Share on :name', ['name' => 'Twitter'])">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+            <div class="col-sm-6 my-1 my-sm-0">
+                @if($article->categories->isNotEmpty())
+                    @foreach($article->categories as $category)
+                        <a class="btn btn-secondary btn-sm"
+                           href="{{ route('news', ['category_id' => $category->id]) }}"
+                           title="{{ $category->name }}">
+                            {{ $category->name }}
                         </a>
-                    </span>
-                    <span class="fa-stack text-primary">
-                        <a class="new-window"
-                           href="https://www.linkedin.com/shareArticle?mini=true&url={{ request()->url() }}&title=&summary=&source={{ request()->getHttpHost() }}"
-                           title="@lang('Share on :name', ['name' => 'Linkedin'])">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
-                        </a>
-                    </span>
-                    <span class="fa-stack text-primary">
-                        <a class="new-window"
-                           href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}"
-                           title="@lang('Share on :name', ['name' => 'Facebook'])">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                        </a>
-                    </span>
-                </div>
+                    @endforeach
+                @endif
+            </div>
+            <div class="col-sm-6 my-1 my-sm-0 text-sm-right">
+                <span class="fa-stack text-primary">
+                    <a class="new-window"
+                       href="https://twitter.com/home?status={{ request()->url() }}"
+                       title="@lang('Share on :name', ['name' => 'Twitter'])">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                    </a>
+                </span>
+                <span class="fa-stack text-primary">
+                    <a class="new-window"
+                       href="https://www.linkedin.com/shareArticle?mini=true&url={{ request()->url() }}&title=&summary=&source={{ request()->getHttpHost() }}"
+                       title="@lang('Share on :name', ['name' => 'Linkedin'])">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
+                    </a>
+                </span>
+                <span class="fa-stack text-primary">
+                    <a class="new-window"
+                       href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}"
+                       title="@lang('Share on :name', ['name' => 'Facebook'])">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                    </a>
+                </span>
             </div>
             {{-- description --}}
-            <div class="d-flex w-100 flex-column text mt-3">
+            <div class="col-12 mt-4 text">
                 <h1 class="mb-4">{{ $article->title }}</h1>
                 {!! (new Parsedown)->text($article->description) !!}
-                <div class="mt-3">
-                    <a class="btn btn-link"
-                       href="{{ route('news') }}"
-                       title="@lang('Back')">
-                        <i class="fas fa-chevron-left fa-fw"></i>
-                        @lang('Back')
-                    </a>
-                </div>
+                {{ buttonLink()->route('news')
+                    ->prepend('<i class="fas fa-chevron-left fa-fw"></i>')
+                    ->label(__('Back'))
+                    ->containerClasses(['mt-4']) }}
             </div>
         </div>
     </div>
