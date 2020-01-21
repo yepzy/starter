@@ -193,6 +193,9 @@ return [
         'right_text' => 'Texte droit',
         'right_image' => 'Image droite',
         'invert_order' => 'Inverser ordre',
+        'slide' => 'Slide',
+        'label' => 'Label',
+        'caption' => 'Caption',
     ],
 
 ];

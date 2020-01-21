@@ -19,6 +19,7 @@ return [
         App\Brickables\OneTextColumn::class,
         App\Brickables\TwoTextColumns::class,
         App\Brickables\TwoTextImageColumns::class,
+        App\Brickables\LabelCaptionCarousel::class,
         // add your content brick type configurations here ...
     ],
 

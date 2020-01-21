@@ -1,4 +1,5 @@
 //utils
+require('./utils/jquery');
 require('./utils/axios');
 require('./utils/cookieconsent');
 require('./utils/easymde');

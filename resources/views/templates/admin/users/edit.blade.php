@@ -44,7 +44,7 @@
                             ? image()->src($avatar->getUrl('thumb'))->linkUrl($avatar->getUrl())->linkTitle($avatar->name)
                             : null;
                     })
-                    ->legend((new \App\Models\Users\User)->constraintsLegend('avatar')) }}
+                    ->caption((new \App\Models\Users\User)->constraintsLegend('avatar')) }}
                 {{ inputText()->name('last_name')->model($user)->containerHtmlAttributes(['required']) }}
                 {{ inputText()->name('first_name')->model($user)->containerHtmlAttributes(['required']) }}
                 <h3 class="pt-4">@lang('Contact')</h3>
@@ -54,7 +54,7 @@
                     <i class="fas fa-exclamation-triangle fa-fw text-warning"></i>
                     @lang('If no password is defined for this user, he will be e-mailed a password creation link.')
                 </p>
-                {{ inputPassword()->name($user ? 'new_password' : 'password')->legend(
+                {{ inputPassword()->name($user ? 'new_password' : 'password')->caption(
                     __('passwords.minLength', ['count' => config('security.password.constraint.min')]) . '<br/>'
                     . __('passwords.recommendation') . '<br/>'
                     . __('passwords.fillForUpdate')

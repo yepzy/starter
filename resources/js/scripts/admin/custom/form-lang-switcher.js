@@ -2,7 +2,6 @@ const switcher = {
     langSwitcherLinks: $('#form-lang-switcher a'),
     localizedComponentContainers: $('.component-container[data-locale]'),
     selectLang: (locale) => {
-        console.log(locale);
         const defaultSelectedTab = $('#form-lang-switcher a[data-locale=' + locale + ']');
         switcher.selectTab(defaultSelectedTab);
         switcher.handleLocalizedComponentsDisplay(locale);

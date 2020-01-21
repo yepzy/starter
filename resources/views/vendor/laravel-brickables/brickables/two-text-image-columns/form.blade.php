@@ -13,6 +13,6 @@
         })
         ->showRemoveCheckbox(false)
         ->containerHtmlAttributes(['required'])
-        ->legend($brickable->getBrickModel()->constraintsLegend('bricks')) }}
+        ->caption($brickable->getBrickModel()->constraintsLegend('bricks')) }}
     {{ inputToggle()->name('invert_order')->checked((bool) data_get($brick, 'invert_order')) }}
 @endsection

@@ -25,7 +25,7 @@
                             ? image()->src($logo->getUrl('thumb'))->linkUrl($logo->getUrl())->linkTitle($logo->name)
                             : null;
                     })
-                    ->legend($settings->constraintsLegend('icon')) }}
+                    ->caption($settings->constraintsLegend('icon')) }}
                 <h3 class="pt-4">@lang('Contact')</h3>
                 {{ inputEmail()->name('email')->model($settings)->containerHtmlAttributes(['required']) }}
                 {{ inputTel()->name('phone_number')->model($settings)->containerHtmlAttributes(['required']) }}

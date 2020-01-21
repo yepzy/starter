@@ -3049,7 +3049,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-bootstrap-components",
-                "reference": "5c6b574136db4931efdfc5d4af54e7f78caf4106"
+                "reference": "69e3698d81deac21758f5cd8e6ee2ec73e94bc25"
             },
             "require": {
                 "ext-json": "*",
@@ -3148,7 +3148,7 @@
                 "package",
                 "php"
             ],
-            "time": "2020-01-21T11:58:16+00:00"
+            "time": "2020-01-21T13:14:46+00:00"
         },
         {
             "name": "okipa/laravel-brickables",

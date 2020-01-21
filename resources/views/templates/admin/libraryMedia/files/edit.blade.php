@@ -32,7 +32,7 @@
                     })
                     ->showRemoveCheckbox(false)
                     ->containerHtmlAttributes(['required'])
-                    ->legend((new \App\Models\LibraryMedia\LibraryMediaFile)->constraintsLegend('medias')) }}
+                    ->caption((new \App\Models\LibraryMedia\LibraryMediaFile)->constraintsLegend('medias')) }}
                 <h3 class="pt-4">@lang('File')</h3>
                 {{ inputText()->name('name')
                     ->locales(supportedLocaleKeys())

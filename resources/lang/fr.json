@@ -87,10 +87,13 @@
     "Data": "Données",
     "Content bricks": "Briques contenu",
     "Add": "Ajouter",
+    "No saved content brick.": "Aucune brique de contenu enregistrée.",
     "One text column": "Une colonne texte",
     "Two text columns": "Deux colonnes texte",
     "Two text image columns": "Deux colonnes texte image",
-    "No saved content brick.": "Aucune brique de contenu enregistrée.",
+    "Label caption carousel": "Carrousel label légende",
     "Cancel": "Annuler",
-    "Create": "Créer"
+    "Create": "Créer",
+    "Update": "Mettre à jour",
+    "No file selected.": "Aucun fichier selectionné."
 }

@@ -41,7 +41,7 @@
                     })
                     ->showRemoveCheckbox(false)
                     ->containerHtmlAttributes(['required'])
-                    ->legend((new \App\Models\News\NewsArticle)->constraintsLegend('illustrations')) }}
+                    ->caption((new \App\Models\News\NewsArticle)->constraintsLegend('illustrations')) }}
                 <h3 class="pt-4">@lang('Identity')</h3>
                 {{ inputText()->name('title')
                     ->locales(supportedLocaleKeys())

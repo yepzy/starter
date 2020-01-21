@@ -20,7 +20,7 @@
         @include('components.common.form.notice')
         <p>@lang('Welcome on :app ! To be able to login to your new account please define a secured password with the fields bellow.', ['app' => config('app.name')])</p>
         {{ inputPassword()->name('password')
-            ->legend(__('passwords.minLength', ['count' => config('security.password.constraint.min')]) . '<br/>'
+            ->caption(__('passwords.minLength', ['count' => config('security.password.constraint.min')]) . '<br/>'
                 . __('passwords.recommendation'))
             ->containerHtmlAttributes(['required']) }}
         {{ inputPassword()->name('password_confirmation')->containerHtmlAttributes(['required']) }}
