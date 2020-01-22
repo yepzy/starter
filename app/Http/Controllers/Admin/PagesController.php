@@ -51,7 +51,7 @@ class PagesController extends Controller
 
         return redirect()->route('pages.index')->with('toast_success', __('notifications.orphan.created', [
             'entity' => __('Pages'),
-            'name' => $page->title,
+            'name' => $page->nav_title,
         ]));
     }
 
@@ -64,7 +64,7 @@ class PagesController extends Controller
     {
         SEOTools::setTitle(__('breadcrumbs.orphan.edit', [
             'entity' => __('Pages'),
-            'detail' => $page->slug,
+            'detail' => $page->nav_title,
         ]));
 
         return view('templates.admin.pages.edit', compact('page'));
@@ -85,7 +85,7 @@ class PagesController extends Controller
 
         return back()->with('toast_success', __('notifications.orphan.updated', [
             'entity' => __('Pages'),
-            'name' => $page->title,
+            'name' => $page->nav_title,
         ]));
     }
 
@@ -97,7 +97,7 @@ class PagesController extends Controller
      */
     public function destroy(Page $page)
     {
-        $name = $page->title;
+        $name = $page->nav_title;
         $page->delete();
         pages(true);
 

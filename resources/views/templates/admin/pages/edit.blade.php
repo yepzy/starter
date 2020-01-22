@@ -3,7 +3,7 @@
     <h1>
         <i class="fas fa-file-alt fa-fw"></i>
         @if($page)
-            @lang('breadcrumbs.orphan.edit', ['entity' => __('Pages'), 'detail' => $page->slug])
+            @lang('breadcrumbs.orphan.edit', ['entity' => __('Pages'), 'detail' => $page->nav_title])
         @else
             @lang('breadcrumbs.orphan.create', ['entity' => __('Pages')])
         @endif
