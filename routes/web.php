@@ -28,7 +28,7 @@ Route::localized(function () {
         require('web/admin/news.php');
         require('web/admin/contact.php');
         require('web/admin/pages.php');
-        Brickables::routes();
+        require('web/admin/brickables.php');
         require('web/admin/libraryMedia.php');
         // password reconfirm protection
         Route::middleware(['password.confirm'])->group(function () {

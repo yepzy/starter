@@ -27,8 +27,7 @@ class PageUpdateRequest extends Request
                 'max:255',
                 UniqueTranslationRule::for('pages')->ignore($this->page->id),
             ],
-            'title' => ['required', 'string', 'max:255'],
-            'description' => ['string', 'max:4294967295'],
+            'nav_title' => ['required', 'string', 'max:255'],
         ], (new SeoService)->getSeoMetaRules()));
 
         return array_merge($localizedRules, $rules);

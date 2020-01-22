@@ -18,5 +18,4 @@
             })(window,document,'script','dataLayer','{{ $gtmId }}');
         </script>
     @endif
-    @include('layouts.common.partials.javascript')
 </head>

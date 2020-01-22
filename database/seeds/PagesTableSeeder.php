@@ -1,6 +1,7 @@
 <?php
 
 use App\Brickables\OneTextColumn;
+use App\Brickables\TitleH1;
 use App\Models\Pages\Page;
 use App\Services\Seo\SeoService;
 use Faker\Factory;
@@ -50,79 +51,49 @@ EOT;
         $this->createPage(
             [
                 'slug' => 'terms-of-service-page',
+                'nav_title' => ['fr' => 'CGU et mentions légales', 'en' => 'Terms and legal notice'],
                 'active' => true,
+                'url' => ['fr' => 'cgu-et-mentions-legales', 'en' => 'terms-and-legal-notice'],
             ],
             [
-                'url' => [
-                    'fr' => 'cgu-et-mentions-legales',
-                    'en' => 'terms-and-legal-notice',
-                ],
-                'title' => [
-                    'fr' => 'CGU et mentions légales',
-                    'en' => 'Terms and legal notice',
-                ],
+                [TitleH1::class, ['title' => ['fr' => 'CGU et mentions légales', 'en' => 'Terms and legal notice']]],
+                [OneTextColumn::class, ['text' => ['fr' => $this->fakeText, 'en' => $this->fakeText]]],
             ],
             [
-                'meta_title' => [
-                    'fr' => 'CGU et mentions légales',
-                    'en' => 'Terms and legal notice',
-                ],
-                'meta_description' => [
-                    'fr' => $this->fakerFr->text(150),
-                    'en' => $this->fakerEn->text(150),
-                ],
+                'meta_title' => ['fr' => 'CGU et mentions légales', 'en' => 'Terms and legal notice'],
+                'meta_description' => ['fr' => $this->fakerFr->text(150), 'en' => $this->fakerEn->text(150)],
             ]
         );
         $this->createPage(
             [
                 'slug' => 'gdpr-page',
+                'nav_title' => ['fr' => 'Vie privée et RGPD', 'en' => 'Privacy policy and GDPR'],
                 'active' => true,
+                'url' => ['fr' => 'vie-privee-rgpd', 'en' => 'privacy-policy-gdpr'],
             ],
             [
-                'url' => [
-                    'fr' => 'respect-vie-privee-rgpd',
-                    'en' => 'privacy-policy-gdpr',
-                ],
-                'title' => [
-                    'fr' => 'Respect de la vie privée - RGPD',
-                    'en' => 'Privacy policy - GDPR',
-                ],
+                [TitleH1::class, ['title' => ['fr' => 'Vie privée et RGPD', 'en' => 'Privacy policy and GDPR']]],
+                [OneTextColumn::class, ['text' => ['fr' => $this->fakeText, 'en' => $this->fakeText]]],
             ],
             [
-                'meta_title' => [
-                    'fr' => 'CGU et mentions légales',
-                    'en' => 'Terms and legal notice',
-                ],
-                'meta_description' => [
-                    'fr' => $this->fakerFr->text(150),
-                    'en' => $this->fakerEn->text(150),
-                ],
+                'meta_title' => ['fr' => 'Vie privée et RGPD', 'en' => 'Privacy policy and GDPR'],
+                'meta_description' => ['fr' => $this->fakerFr->text(150), 'en' => $this->fakerEn->text(150)],
             ]
         );
     }
 
     /**
      * @param array $data
-     * @param array $translatableData
+     * @param array $bricks
      * @param array $seoTags
      *
      * @throws \Okipa\LaravelBrickables\Exceptions\InvalidBrickableClassException
-     * @throws \Okipa\LaravelBrickables\Exceptions\NotRegisteredBrickableClassException
      */
-    protected function createPage(array $data, array $translatableData, array $seoTags): void
+    protected function createPage(array $data, array $bricks, array $seoTags): void
     {
         /** @var Page $page */
-        $page = (new Page)->fill($data);
-        foreach ($translatableData as $key => $values) {
-            $page->setTranslations($key, $values);
-        }
-        $page->save();
+        $page = (new Page)->create($data);
+        $page->addBricks($bricks);
         (new SeoService)->saveSeoTags($page, $seoTags);
-        $page->addBrick(OneTextColumn::class, [
-            'text' => [
-                'fr' => $this->fakeText,
-                'en' => $this->fakeText,
-            ],
-        ]);
     }
 }

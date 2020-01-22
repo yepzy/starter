@@ -14,9 +14,12 @@ class HomePageUpdateRequest extends Request
      */
     public function rules()
     {
-        return $this->localizeRules(array_merge([
+        $seoMetaRules = (new SeoService)->getSeoMetaRules();
+        $localizedRules = $this->localizeRules([
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:65535'],
-        ], (new SeoService)->getSeoMetaRules()));
+        ]);
+
+        return array_merge($localizedRules, $seoMetaRules);
     }
 }

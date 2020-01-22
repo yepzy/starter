@@ -1,7 +1,7 @@
 @extends('laravel-brickables::admin.form.layout')
 @section('inputs')
-    {{ textarea()->name('left_text')->locales(supportedLocaleKeys())->prepend(false)->value(function($locale) use($brick) {
-        return data_get($brick, 'left_text.' . $locale);
+    {{ textarea()->name('text_left')->locales(supportedLocaleKeys())->prepend(false)->value(function($locale) use($brick) {
+        return translate(data_get($brick, 'data.text_left'), $locale);
     })->componentClasses(['editor'])->containerHtmlAttributes(['required']) }}
     @php($image = optional($brick)->getFirstMedia('bricks'))
     {{ inputFile()->name('right_image')

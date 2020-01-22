@@ -1,13 +1,17 @@
 @extends('layouts.front.full')
 @section('template')
-    <div class="container my-5">
+    {{-- cover --}}
+    <div class="container mt-5">
         <div class="row">
-            {{-- cover --}}
             <div class="col-12 mb-3">
                 @php($illustration = $article->getFirstMedia('illustrations'))
                 {!! $illustration->img('cover', ['class' => 'mw-100', 'alt' => $illustration->name]) !!}
             </div>
-            {{-- categories / sharing --}}
+        </div>
+    </div>
+    {{-- categories / sharing --}}
+    <div class="container mt-2 mb-5">
+        <div class="row">
             <div class="col-sm-6 my-1 my-sm-0">
                 @if($article->categories->isNotEmpty())
                     @foreach($article->categories as $category)
@@ -45,8 +49,12 @@
                     </a>
                 </span>
             </div>
-            {{-- description --}}
-            <div class="col-12 mt-4 text">
+        </div>
+    </div>
+    {{-- description --}}
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-12 text">
                 <h1 class="mb-4">{{ $article->title }}</h1>
                 {!! (new Parsedown)->text($article->description) !!}
                 {{ buttonLink()->route('news')

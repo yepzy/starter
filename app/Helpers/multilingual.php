@@ -44,3 +44,16 @@ if (! function_exists('currentLocale')) {
         return supportedLocales()[app()->getLocale()];
     }
 }
+
+if (! function_exists('translate')) {
+    /**
+     * @param array $data
+     * @param string|null $locale
+     *
+     * @return array|string
+     */
+    function translate(?array $data = [], string $locale = null)
+    {
+        return multilingual() ? data_get($data, $locale ?: app()->getLocale()) : $data;
+    }
+}

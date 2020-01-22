@@ -86,7 +86,7 @@ class FilesService extends Service implements FilesServiceInterface
      */
     public function injectJavascriptInView(): void
     {
-        JavaScript::put([
+        share([
             'libraryMedia' => [
                 'clipboardCopy' => [
                     'route' => route('libraryMedia.file.clipboardContent', ['__ID__', '__TYPE__', '__LOCALE__']),

@@ -183,6 +183,7 @@ return [
         'intragram' => 'Instagram',
         'youtube' => 'Youtube',
         'google_tag_manager_id' => 'Google tag manager id',
+        'brickable_type' => 'Brickable type',
     ],
 
 ];

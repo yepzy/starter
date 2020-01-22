@@ -6,10 +6,18 @@
         @foreach($slides as $key => $slide)
             <div class="carousel-item{{ $loop->first ? ' active' : null }}">
                 {!! $slide->img('slide', ['class' => 'w-100', 'alt' => $slide->name]) !!}
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>{{ $slide->getCustomProperty('label') }}</h5>
-                    <p>{{ $slide->getCustomProperty('caption') }}</p>
-                </div>
+                @php($label = translate($slide->getCustomProperty('label')))
+                @php($caption = translate($slide->getCustomProperty('caption')))
+                @if($label || $caption)
+                    <div class="carousel-caption d-none d-md-block">
+                        @if($label)
+                            <h5>{{ $label }}</h5>
+                        @endif
+                        @if($caption)
+                            <p>{{ $caption }}</p>
+                        @endif
+                    </div>
+                @endif
             </div>
         @endforeach
     </div>
@@ -35,11 +43,10 @@
     <script type="text/javascript">
         $(function () {
             const carousel = $('#label-caption-carousel');
-            const sizes = carousel.find('.carousel-item.active > img').attr('sizes');
-            console.log(sizes);
-            setTimeout(function() {
+            setTimeout(function () {
+                const sizes = carousel.find('.carousel-item.active > img').attr('sizes');
                 carousel.find('.carousel-item:not(.active) > img').attr('sizes', sizes);
-            }, 500);
+            }, 250);
         });
     </script>
 @endpush

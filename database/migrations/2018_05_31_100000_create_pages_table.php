@@ -17,11 +17,9 @@ class CreatePagesTable extends Migration
             $table->bigIncrements('id');
             $table->string('slug')->unique();
             // todo : change column type with monolingual app
+            $table->json('nav_title');
+            // todo : change column type with monolingual app
             $table->json('url');
-            // todo : change column type with monolingual app
-            $table->json('title');
-            // todo : change column type with monolingual app
-            $table->json('description')->nullable();
             $table->boolean('active');
             $table->timestamps();
         });

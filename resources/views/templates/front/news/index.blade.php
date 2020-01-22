@@ -5,8 +5,12 @@
             <div class="col-12">
                 <h1>@lang('News')</h1>
             </div>
+        </div>
+    </div>
+    <div class="container my-5">
+        <div class="row">
             @foreach($articles as $article)
-                <div class="col-sm-4 py-3">
+                <div class="col-sm-4 my-3">
                     <div class="card">
                         <img src="{{ mix('/images/lazy/pixel.png') }}"
                              data-src="{{ $article->getFirstMediaUrl('illustrations', 'card') }}"

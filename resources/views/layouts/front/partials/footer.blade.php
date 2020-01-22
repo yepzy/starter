@@ -1,25 +1,25 @@
 <footer id="footer" class="bg-light py-3">
     <div class="container">
-        <div class="row d-flex justify-content-between">
-            <span class="text-muted">
+        <div class="row d-flex flew-wrap justify-content-between">
+            <span class="text-muted mx-3">
                 <i class="fas fa-copyright fa-fw"></i>
                 {{ config('app.name') }}
             </span>
             @if($termsOfServicePage = pages()->where('slug', 'terms-of-service-page')->first())
-                <a class="text-body"
+                <a class="text-body mx-3"
                    href="{{ route('page.show', $termsOfServicePage->url) }}"
-                   title="{{ $termsOfServicePage->title }}">
-                    {{ $termsOfServicePage->title }}
+                   title="{{ $termsOfServicePage->nav_title }}">
+                    {{ $termsOfServicePage->nav_title }}
                 </a>
             @endif
             @if($gdprPage = pages()->where('slug', 'gdpr-page')->first())
-                <a class="text-body"
+                <a class="text-body mx-3"
                    href="{{ route('page.show', $gdprPage->url) }}"
-                   title="{{ $gdprPage->title }}">
-                    {{ $gdprPage->title }}
+                   title="{{ $gdprPage->nav_title }}">
+                    {{ $gdprPage->nav_title }}
                 </a>
             @endif
-            <div>
+            <div class="mx-3">
                 @if($facebookUrl = settings()->facebook)
                     <a class="new-window" href="{{ $facebookUrl }}" title="@lang('Facebook')">
                         <i class="fab fa-facebook fa-fw"></i>

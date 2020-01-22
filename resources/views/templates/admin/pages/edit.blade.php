@@ -3,7 +3,7 @@
     <h1>
         <i class="fas fa-file-alt fa-fw"></i>
         @if($page)
-            @lang('breadcrumbs.orphan.edit', ['entity' => __('Pages'), 'detail' => $page->title])
+            @lang('breadcrumbs.orphan.edit', ['entity' => __('Pages'), 'detail' => $page->slug])
         @else
             @lang('breadcrumbs.orphan.create', ['entity' => __('Pages')])
         @endif
@@ -23,8 +23,8 @@
                 </h2>
             </div>
             <div class="card-body">
-                <h3>@lang('Identity')</h3>
-                {{ inputText()->name('title')
+                <h3>@lang('Navigation')</h3>
+                {{ inputText()->name('nav_title')
                     ->locales(supportedLocaleKeys())
                     ->model($page)
                     ->containerHtmlAttributes(['required']) }}
@@ -33,7 +33,7 @@
                         ->model($page)
                         ->prepend('<i class="fas fa-key fa-fw"></i>')
                         ->componentClasses(['slugify'])
-                        ->componentHtmlAttributes(['data-autofill-from' => '#text-title'])
+                        ->componentHtmlAttributes(['data-autofill-from' => '#text-nav-title'])
                         ->containerHtmlAttributes(['required'])}}
                 @endif
                 {{ inputText()->name('url')
@@ -41,9 +41,8 @@
                     ->model($page)
                     ->prepend(route('page.show', '/') . '/')
                     ->componentClasses(['lowercase'])
-                    ->componentHtmlAttributes(['data-autofill-from' => '#text-title'])
+                    ->componentHtmlAttributes(['data-autofill-from' => '#text-nav-title'])
                     ->containerHtmlAttributes(['required']) }}
-                <h3 class="pt-4">@lang('Publication')</h3>
                 {{ inputToggle()->name('active')->model($page) }}
                 @include('components.admin.seo.meta-tags', ['model' => $page])
                 <div class="d-flex pt-4">

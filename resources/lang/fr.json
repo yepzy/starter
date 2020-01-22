@@ -88,12 +88,14 @@
     "Content bricks": "Briques contenu",
     "Add": "Ajouter",
     "No saved content brick.": "Aucune brique de contenu enregistrée.",
+    "Title h1": "Titre h1",
     "One text column": "Une colonne texte",
     "Two text columns": "Deux colonnes texte",
     "Two text image columns": "Deux colonnes texte image",
-    "Label caption carousel": "Carrousel label légende",
+    "Carousel": "Carrousel",
     "Cancel": "Annuler",
     "Create": "Créer",
     "Update": "Mettre à jour",
-    "No file selected.": "Aucun fichier selectionné."
+    "No file selected.": "Aucun fichier selectionné.",
+    "Add new slide": "Ajouter nouvelle slide"
 }

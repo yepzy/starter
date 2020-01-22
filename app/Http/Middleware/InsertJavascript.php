@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use JavaScript;
 
 class InsertJavascript
 {
@@ -18,17 +17,18 @@ class InsertJavascript
      */
     public function handle($request, Closure $next)
     {
-        $termsOfServicePage = pages()->where('slug', 'terms-of-service-page')->first();
-        JavaScript::put([
+        $gdprPage = pages()->where('slug', 'gdpr-page')->first();
+        share([
             'locale' => app()->getLocale(),
+            'supportedLocales' => supportedLocaleKeys(),
             'sweetalert' => __('sweetalert'),
             'cookieConsent' => __('cookieconsent'),
             'sumoSelect' => __('sumoselect'),
-            'termsOfService' => ['route' => $termsOfServicePage ? route('page.show', $termsOfServicePage) : null],
+            'gdprPage' => ['route' => $gdprPage ? route('page.show', $gdprPage) : null],
         ]);
         // admin only
         if ($request->is('admin/*') || $request->is('*/admin/*')) {
-            JavaScript::put([
+            share([
                 'multilingual' => [
                     'template' => [
                         'formLangSwitcher' => view('components.admin.multilingual.form-lang-switcher')->toHtml(),

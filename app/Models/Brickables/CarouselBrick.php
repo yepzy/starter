@@ -8,7 +8,7 @@ use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
 
-class LabelCaptionCarouselBrick extends Brick implements HasMedia
+class CarouselBrick extends Brick implements HasMedia
 {
     use HasMediaTrait;
 

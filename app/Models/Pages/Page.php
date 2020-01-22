@@ -17,7 +17,7 @@ class Page extends Metable implements HasBrickables
      *
      * @var array
      */
-    public $translatable = ['url', 'title', 'description'];
+    public $translatable = ['url', 'nav_title'];
 
     /**
      * The database table used by the model.
@@ -31,13 +31,7 @@ class Page extends Metable implements HasBrickables
      *
      * @var array
      */
-    protected $fillable = [
-        'slug',
-        'url',
-        'title',
-        'description',
-        'active',
-    ];
+    protected $fillable = ['slug', 'nav_title', 'url', 'active'];
 
     /**
      * The attributes that should be cast to native types.

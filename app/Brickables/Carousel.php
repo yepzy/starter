@@ -2,23 +2,23 @@
 
 namespace App\Brickables;
 
-use App\Http\Controllers\Brickables\LabelCaptionCarouselBricksController;
+use App\Http\Controllers\Brickables\CarouselBricksController;
 use App\Http\Requests\Request;
-use App\Models\Brickables\LabelCaptionCarouselBrick;
+use App\Models\Brickables\CarouselBrick;
 use Okipa\LaravelBrickables\Abstracts\Brickable;
 
-class LabelCaptionCarousel extends Brickable
+class Carousel extends Brickable
 {
     /** @inheritDoc */
     protected function setBrickModelClass(): string
     {
-        return LabelCaptionCarouselBrick::class;
+        return CarouselBrick::class;
     }
 
     /** @inheritDoc */
     protected function setBricksControllerClass(): string
     {
-        return LabelCaptionCarouselBricksController::class;
+        return CarouselBricksController::class;
     }
 
     /** @inheritDoc */
@@ -27,11 +27,11 @@ class LabelCaptionCarousel extends Brickable
         /** @var \Spatie\MediaLibrary\HasMedia\HasMedia $model */
         $model = $this->getBrickModel();
         $rules = [
-            'slide' => array_merge(['required'], $model->validationConstraints('bricks')),
+            'image' => array_merge(['required'], $model->validationConstraints('bricks')),
         ];
         $localizedRules = (new Request)->localizeRules([
-            'label' => ['required', 'string', 'max:75'],
-            'caption' => ['required', 'string', 'max:150'],
+            'label' => ['nullable', 'string', 'max:75'],
+            'caption' => ['nullable', 'string', 'max:150'],
         ]);
 
         return array_merge($rules, $localizedRules);
@@ -43,11 +43,11 @@ class LabelCaptionCarousel extends Brickable
         /** @var \Spatie\MediaLibrary\HasMedia\HasMedia $model */
         $model = $this->getBrickModel();
         $rules = [
-            'slide' => $model->validationConstraints('bricks'),
+            'image' => array_merge(['required'], $model->validationConstraints('bricks')),
         ];
         $localizedRules = (new Request)->localizeRules([
-            'label' => ['required', 'string', 'max:75'],
-            'caption' => ['required', 'string', 'max:150'],
+            'label' => ['nullable', 'string', 'max:75'],
+            'caption' => ['nullable', 'string', 'max:150'],
         ]);
 
         return array_merge($rules, $localizedRules);

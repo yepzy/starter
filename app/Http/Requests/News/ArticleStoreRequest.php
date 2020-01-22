@@ -42,7 +42,7 @@ class ArticleStoreRequest extends Request
             'published_at' => ['required', 'date_format:Y-m-d H:i:s'],
             'active' => ['required', 'boolean'],
         ];
-        $localizedRules = $this->localizeRules(array_merge([
+        $localizedRules = $this->localizeRules([
             'title' => ['required', 'string', 'max:255'],
             'url' => [
                 'required',
@@ -51,8 +51,9 @@ class ArticleStoreRequest extends Request
                 UniqueTranslationRule::for('news_articles'),
             ],
             'description' => ['string', 'max:4294967295'],
-        ], (new SeoService)->getSeoMetaRules()));
+        ]);
+        $seoMetaRules = (new SeoService)->getSeoMetaRules();
 
-        return array_merge($localizedRules, $rules);
+        return array_merge($rules, $localizedRules, $seoMetaRules);
     }
 }

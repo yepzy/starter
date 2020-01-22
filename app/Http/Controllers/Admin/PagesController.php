@@ -64,7 +64,7 @@ class PagesController extends Controller
     {
         SEOTools::setTitle(__('breadcrumbs.orphan.edit', [
             'entity' => __('Pages'),
-            'detail' => $page->title,
+            'detail' => $page->slug,
         ]));
 
         return view('templates.admin.pages.edit', compact('page'));

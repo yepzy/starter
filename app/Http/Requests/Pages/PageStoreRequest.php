@@ -30,18 +30,21 @@ class PageStoreRequest extends Request
      */
     public function rules()
     {
-        $rules = ['active' => ['required', 'boolean']];
-        $localizedRules = $this->localizeRules(array_merge([
+        $rules = [
+            'slug' => ['required', 'alpha_dash', 'unique:pages'],
+            'active' => ['required', 'boolean'],
+        ];
+        $localizedRules = $this->localizeRules([
             'url' => [
                 'required',
                 'string',
                 'max:255',
                 UniqueTranslationRule::for('pages'),
             ],
-            'title' => ['required', 'string', 'max:255'],
-            'description' => ['string', 'max:4294967295'],
-        ], (new SeoService)->getSeoMetaRules()));
+            'nav_title' => ['required', 'string', 'max:255'],
+        ]);
+        $seoMetaRules = (new SeoService)->getSeoMetaRules();
 
-        return array_merge($localizedRules, $rules);
+        return array_merge($rules, $localizedRules, $seoMetaRules);
     }
 }
