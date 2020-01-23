@@ -31,18 +31,18 @@
             </div>
             <div class="card-body">
                 <h3>@lang('Media')</h3>
-                @php($illustration = optional($article)->getFirstMedia('illustrations'))
-                {{ inputFile()->name('illustration')
-                    ->value(optional($illustration)->file_name)
-                    ->uploadedFile(function() use ($illustration) {
-                        return $illustration
-                            ? image()->src($illustration->getUrl('thumb'))->linkUrl($illustration->getUrl())->linkTitle($illustration->name)
+                @php($image = optional($article)->getFirstMedia('news'))
+                {{ inputFile()->name('news')
+                    ->value(optional($image)->file_name)
+                    ->uploadedFile(function() use ($image) {
+                        return $image
+                            ? image()->src($image->getUrl('thumb'))->linkUrl($image->getUrl())->linkTitle($image->name)
                             : null;
                     })
                     ->showRemoveCheckbox(false)
                     ->containerHtmlAttributes(['required'])
-                    ->caption((new \App\Models\News\NewsArticle)->constraintsLegend('illustrations')) }}
-                <h3 class="pt-4">@lang('Identity')</h3>
+                    ->caption((new \App\Models\News\NewsArticle)->constraintsLegend('news')) }}
+                <h3>@lang('Identity')</h3>
                 {{ inputText()->name('title')
                     ->locales(supportedLocaleKeys())
                     ->model($article)
@@ -54,7 +54,7 @@
                     ->componentClasses(['lowercase'])
                     ->componentHtmlAttributes(['data-autofill-from' => '#text-title'])
                     ->containerHtmlAttributes(['required']) }}
-                <h3 class="pt-4">@lang('Information')</h3>
+                <h3>@lang('Information')</h3>
                 {{ select()->name('category_ids')
                     ->model($article)
                     ->prepend('<i class="fas fa-tags"></i>')
@@ -71,7 +71,7 @@
                     ->model($article)
                     ->prepend(false)
                     ->componentClasses(['editor']) }}
-                <h3 class="pt-4">@lang('Publication')</h3>
+                <h3>@lang('Publication')</h3>
                 {{ inputText()->name('published_at')
                     ->value(($article ? $article->published_at : now())->format('d/m/Y H:i'))
                     ->prepend('<i class="fas fa-calendar-alt"></i>')

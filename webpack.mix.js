@@ -51,9 +51,8 @@ mix
         'popper.js': ['Popper'],
         'sweetalert2': ['swal'],
         cookieconsent: ['cookieconsent', 'window.cookieconsent'],
-        lozad: ['lozad']
     })
-    .extract(['bootstrap', 'lodash', 'axios', 'jquery', 'popper.js', 'sweetalert2', 'cookieconsent', 'lozad'])
+    .extract(['bootstrap', 'lodash', 'axios', 'jquery', 'popper.js', 'sweetalert2', 'cookieconsent'])
     .sourceMaps()
     .version([
         'public/images/',

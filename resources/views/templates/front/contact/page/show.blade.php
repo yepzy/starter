@@ -42,7 +42,7 @@
                         <div class="col-md-8">
                             @include('components.common.form.notice')
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 text-right">
                             {{ submit()->prepend('<i class="fas fa-paper-plane fa-fw"></i>')->label(__('Send')) }}
                         </div>
                     </div>

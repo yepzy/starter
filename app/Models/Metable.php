@@ -42,9 +42,8 @@ abstract class Metable extends Model
     public function getMeta(string $key, $default = null, $locale = null)
     {
         $locale = $locale ?? app()->getLocale();
+        $meta = $this->traitGetMeta($key, $default);
 
-        return multilingual()
-            ? data_get($this->traitGetMeta($key, $default), $locale, $default)
-            : $this->traitGetMeta($key, $default);
+        return translatedData($meta, null, $locale);
     }
 }

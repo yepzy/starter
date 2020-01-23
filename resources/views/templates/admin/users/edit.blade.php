@@ -47,9 +47,9 @@
                     ->caption((new \App\Models\Users\User)->constraintsLegend('avatar')) }}
                 {{ inputText()->name('last_name')->model($user)->containerHtmlAttributes(['required']) }}
                 {{ inputText()->name('first_name')->model($user)->containerHtmlAttributes(['required']) }}
-                <h3 class="pt-4">@lang('Contact')</h3>
+                <h3>@lang('Contact')</h3>
                 {{ inputEmail()->name('email')->model($user)->containerHtmlAttributes(['required']) }}
-                <h3 class="pt-4">@lang('Security')</h3>
+                <h3>@lang('Security')</h3>
                 <p>
                     <i class="fas fa-exclamation-triangle fa-fw text-warning"></i>
                     @lang('If no password is defined for this user, he will be e-mailed a password creation link.')

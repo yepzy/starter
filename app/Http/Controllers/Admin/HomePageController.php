@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\News\HomePageUpdateRequest;
+use App\Http\Requests\Home\HomePageUpdateRequest;
 use App\Models\Pages\PageContent;
 use App\Services\Seo\SeoService;
 use Artesaos\SEOTools\Facades\SEOTools;
@@ -28,7 +28,7 @@ class HomePageController extends Controller
     }
 
     /**
-     * @param \App\Http\Requests\News\HomePageUpdateRequest $request
+     * @param \App\Http\Requests\Home\HomePageUpdateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */

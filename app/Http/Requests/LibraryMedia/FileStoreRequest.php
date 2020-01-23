@@ -23,6 +23,6 @@ class FileStoreRequest extends Request
         ];
         $localizedRules = $this->localizeRules(['name' => ['required', 'string', 'max:255']]);
 
-        return array_merge($localizedRules, $rules);
+        return array_merge($rules, $localizedRules);
     }
 }

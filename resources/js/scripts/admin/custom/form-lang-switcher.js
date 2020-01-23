@@ -1,6 +1,6 @@
 const switcher = {
     langSwitcherLinks: $('#form-lang-switcher a'),
-    localizedComponentContainers: $('.component-container[data-locale]'),
+    localizedComponents: $('.component[data-locale]'),
     selectLang: (locale) => {
         const defaultSelectedTab = $('#form-lang-switcher a[data-locale=' + locale + ']');
         switcher.selectTab(defaultSelectedTab);
@@ -14,8 +14,8 @@ const switcher = {
         $($tab).attr('aria-selected', true);
     },
     handleLocalizedComponentsDisplay: (locale) => {
-        switcher.localizedComponentContainers.hide();
-        switcher.localizedComponentContainers.filter('[data-locale=' + locale + ']').show();
+        switcher.localizedComponents.closest('.component-container').hide();
+        switcher.localizedComponents.filter('[data-locale=' + locale + ']').closest('.component-container').show();
     },
     triggerTabClickListening: () => {
         $('#form-lang-switcher a').click((e) => {
@@ -30,7 +30,7 @@ const switcher = {
     }
 };
 
-if (switcher.localizedComponentContainers.length) {
+if (switcher.localizedComponents.length) {
     switcher.initialize();
 }
 

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class SeoService extends Service implements SeoServiceInterface
 {
-    protected $seoTags = ['meta_title', 'meta_description'];
+    protected array $seoTags = ['meta_title', 'meta_description'];
 
     /**
      * Get SEO meta rules.
@@ -18,7 +18,10 @@ class SeoService extends Service implements SeoServiceInterface
      */
     public function getSeoMetaRules(): array
     {
-        return ['meta_title' => ['required', 'string', 'max:255'], 'meta_description' => ['string', 'max:255']];
+        return localizeRules([
+            'meta_title' => ['required', 'string', 'max:255'],
+            'meta_description' => ['string', 'max:255'],
+        ]);
     }
 
     /**

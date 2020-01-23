@@ -2,6 +2,17 @@
 
 use App\Http\Controllers\Admin\NewsArticlesController;
 use App\Http\Controllers\Admin\NewsCategoriesController;
+use App\Http\Controllers\Admin\NewsPageController;
+
+// page
+Route::get(
+    Lang::uri('news/page/edit'),
+    [NewsPageController::class, 'edit']
+)->name('news.page.edit');
+Route::put(
+    Lang::uri('news/page/update'),
+    [NewsPageController::class, 'update']
+)->name('news.page.update');
 
 // categories
 Route::get(

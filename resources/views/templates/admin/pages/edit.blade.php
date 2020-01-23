@@ -39,7 +39,7 @@
                 {{ inputText()->name('url')
                     ->locales(supportedLocaleKeys())
                     ->model($page)
-                    ->prepend(route('page.show', '/') . '/')
+                    ->prepend(route('page.show', '') . '/')
                     ->componentClasses(['lowercase'])
                     ->componentHtmlAttributes(['data-autofill-from' => '#text-nav-title'])
                     ->containerHtmlAttributes(['required']) }}

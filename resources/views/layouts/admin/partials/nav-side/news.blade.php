@@ -1,6 +1,7 @@
 @php
-    $newsCategoriesActive = Str::contains(request()->route()->getName(), ['news.categories', 'news.category.create', 'news.category.edit']);
-    $newsArticlesActive = Str::contains(request()->route()->getName(), ['news.articles', 'news.article.create', 'news.article.edit']);
+    $newsPageActive = Str::contains(request()->route()->getName(), ['news.page']);
+    $newsCategoriesActive = Str::contains(request()->route()->getName(), ['news.categories', 'news.category']);
+    $newsArticlesActive = Str::contains(request()->route()->getName(), ['news.articles', 'news.article']);
     $subMenuActive = $newsArticlesActive || $newsCategoriesActive;
 @endphp
 <li class="nav-item">
@@ -16,6 +17,15 @@
         <i class="fas fa-caret-down fa-fw"></i>
     </a>
     <ul id="newsMenu" class="collapse list-unstyled {{ $subMenuActive ? 'show' : null }}">
+        {{-- page --}}
+        <li class="nav-item">
+            <a class="nav-link {{ $newsPageActive ? 'active' : null }}"
+               href="{{ route('news.page.edit') }}"
+               title="@lang('Page')">
+                <i class="fas fa-desktop fa-fw"></i>
+                @lang('Page')
+            </a>
+        </li>
         {{-- categories --}}
         <li class="nav-item">
             <a class="nav-link {{ $newsCategoriesActive ? 'active' : null }}"

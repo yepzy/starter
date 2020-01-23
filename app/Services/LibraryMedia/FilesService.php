@@ -35,7 +35,9 @@ class FilesService extends Service implements FilesServiceInterface
             ];
         })->query(function ($query) use ($request) {
             $query->select('library_media_files.*');
-            $query->addSelect('library_media_categories.name->' . app()->getLocale() . ' as category_name');
+            $query->addSelect(multilingual()
+                ? 'library_media_categories.name->' . app()->getLocale() . ' as category_name'
+                : 'library_media_categories.name as category_name');
             $query->addSelect('media.mime_type');
             $query->join('media', 'media.model_id', '=', 'library_media_files.id');
             $query->join(

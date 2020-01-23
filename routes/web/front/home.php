@@ -2,4 +2,7 @@
 
 use App\Http\Controllers\Front\HomePageController;
 
-Route::get('/', [HomePageController::class, 'show'])->name('home');
+Route::get(
+    '/',
+    [HomePageController::class, 'show']
+)->name('home');

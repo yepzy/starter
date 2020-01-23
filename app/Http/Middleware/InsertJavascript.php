@@ -20,7 +20,6 @@ class InsertJavascript
         $gdprPage = pages()->where('slug', 'gdpr-page')->first();
         share([
             'locale' => app()->getLocale(),
-            'supportedLocales' => supportedLocaleKeys(),
             'sweetalert' => __('sweetalert'),
             'cookieConsent' => __('cookieconsent'),
             'sumoSelect' => __('sumoselect'),

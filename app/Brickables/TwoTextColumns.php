@@ -10,7 +10,7 @@ class TwoTextColumns extends Brickable
     /** @inheritDoc */
     protected function setStoreValidationRules(): array
     {
-        return (new Request)->localizeRules([
+        return localizeRules([
             'text_left' => ['required', 'string'],
             'text_right' => ['required', 'string'],
         ]);
@@ -19,7 +19,7 @@ class TwoTextColumns extends Brickable
     /** @inheritDoc */
     protected function setUpdateValidationRules(): array
     {
-        return (new Request)->localizeRules([
+        return localizeRules([
             'text_left' => ['required', 'string'],
             'text_right' => ['required', 'string'],
         ]);

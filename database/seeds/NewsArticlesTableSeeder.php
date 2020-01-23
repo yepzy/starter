@@ -6,13 +6,15 @@ use App\Services\Seo\SeoService;
 use Carbon\Carbon;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Collection;
 
-class NewsTableSeeder extends Seeder
+class NewsArticlesTableSeeder extends Seeder
 {
     protected $fakerFr;
+
     protected $fakerEn;
+
     protected $categories;
+
     protected $fakeText = <<<EOT
 **Bold text.**
 
@@ -37,6 +39,7 @@ Ordered list :
 
 [Link](http://www.google.com).
 EOT;
+
     protected $images = ['seeds/files/news/article-2560-1440.jpg', 'seeds/files/news/article-2560-1769.jpg'];
 
     /**
@@ -49,29 +52,10 @@ EOT;
     {
         $this->fakerFr = Factory::create('fr_EN');
         $this->fakerEn = Factory::create('en_GB');
-        $this->createCategories();
+        $this->categories = NewsCategory::all();
         for ($ii = 1; $ii <= 5; $ii++) {
             $this->createArticle();
         }
-    }
-
-    /**
-     * @return void
-     */
-    protected function createCategories(): void
-    {
-        $seededCategories = new Collection();
-        for ($ii = 1; $ii <= 5; $ii++) {
-            $name = $this->fakerFr->word();
-            $category = (new NewsCategory)->create([
-                'name' => [
-                    'fr' => $name . ' FR',
-                    'en' => $name . ' EN',
-                ]
-            ]);
-            $seededCategories->push($category);
-        }
-        $this->categories = $seededCategories;
     }
 
     /**
@@ -100,7 +84,7 @@ EOT;
         $imageUrl = $this->images[array_rand($this->images, 1)];
         $article->addMedia(database_path($imageUrl))
             ->preservingOriginal()
-            ->toMediaCollection('illustrations');
+            ->toMediaCollection('news');
         $categoryIds = $this->categories->random(rand(1, $this->categories->count() / 3))->pluck('id');
         $article->categories()->sync($categoryIds);
         (new SeoService)->saveSeoTags($article, [
@@ -111,7 +95,7 @@ EOT;
             'meta_description' => [
                 'fr' => $this->fakerFr->text(150),
                 'en' => $this->fakerEn->text(150),
-            ]
+            ],
         ]);
     }
 }

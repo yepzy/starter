@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Home;
+namespace App\Http\Requests\News;
 
 use App\Http\Requests\Request;
 use App\Services\Seo\SeoService;
 
-class HomePageUpdateRequest extends Request
+class NewsPageUpdateRequest extends Request
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,9 +14,9 @@ class HomePageUpdateRequest extends Request
      */
     public function rules()
     {
-        $localizedRules = $this->localizeRules([
+        $localizedRules = localizeRules([
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:65535'],
+            'description' => ['string', 'max:65535'],
         ]);
         $seoMetaRules = (new SeoService)->getSeoMetaRules();
 

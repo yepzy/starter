@@ -1,5 +1,9 @@
 <?php
 
+use App\Brickables\Carousel;
+use App\Brickables\OneTextColumn;
+use App\Brickables\TitleH1;
+use App\Models\Brickables\CarouselBrick;
 use App\Models\Pages\PageContent;
 use App\Services\Seo\SeoService;
 use Faker\Factory;
@@ -41,12 +45,36 @@ Ordered list :
 EOT;
         $fakerFr = Factory::create('fr_EN');
         $fakerEn = Factory::create('en_GB');
+        /** @var \App\Models\Pages\PageContent $pageContent */
         $pageContent = (new PageContent)->create(['slug' => 'home-page-content']);
-        $pageContent->setMeta('title', ['fr' => 'Accueil', 'en' => 'Home']);
-        $pageContent->setMeta('description', ['fr' => $fakeText, 'en' => $fakeText]);
         (new SeoService)->saveSeoTags($pageContent, [
             'meta_title' => ['fr' => 'Accueil', 'en' => 'Home'],
             'meta_description' => ['fr' => $fakerFr->text(150), 'en' => $fakerEn->text(150)],
         ]);
+        /** @var CarouselBrick $carouselBrick */
+        $carouselBrick = $pageContent->addBrick(Carousel::class, []);
+        $carouselBrick->addMedia(database_path('seeds/files/home/2251x1600.jpg'))
+            ->preservingOriginal()
+            ->withCustomProperties([
+                'label' => ['fr' => 'Titre #1', 'en' => 'Label #1'],
+                'caption' => ['fr' => 'Description #1', 'en' => 'Caption #1'],
+            ])
+            ->toMediaCollection('bricks');
+        $carouselBrick->addMedia(database_path('seeds/files/home/2265x1500.jpg'))
+            ->preservingOriginal()
+            ->withCustomProperties([
+                'label' => ['fr' => 'Titre #2', 'en' => 'Label #2'],
+                'caption' => ['fr' => 'Description #2', 'en' => 'Caption #2'],
+            ])
+            ->toMediaCollection('bricks');
+        $carouselBrick->addMedia(database_path('seeds/files/home/5306x3770.jpg'))
+            ->preservingOriginal()
+            ->withCustomProperties([
+                'label' => ['fr' => 'Titre #3', 'en' => 'Label #3'],
+                'caption' => ['fr' => 'Description #3', 'en' => 'Caption #3'],
+            ])
+            ->toMediaCollection('bricks');
+        $pageContent->addBrick(TitleH1::class, ['title' => ['fr' => 'Bienvenue', 'en' => 'Welcome']]);
+        $pageContent->addBrick(OneTextColumn::class, ['text' => ['fr' => $fakeText, 'en' => $fakeText]]);
     }
 }

@@ -1,21 +1,16 @@
 @extends('layouts.front.full')
 @section('template')
-    <div class="container my-5">
-        <div class="row">
-            <div class="col-12">
-                <h1>@lang('News')</h1>
-            </div>
-        </div>
+    <div class="mt-5 mb-4">
+        {{ Brickables::bricks($pageContent) }}
     </div>
-    <div class="container my-5">
+    <div class="container mt-4 mb-5">
         <div class="row">
             @foreach($articles as $article)
-                <div class="col-sm-4 my-3">
+                <div class="col-sm-6 col-lg-4 my-3">
                     <div class="card">
-                        <img src="{{ mix('/images/lazy/pixel.png') }}"
-                             data-src="{{ $article->getFirstMediaUrl('illustrations', 'card') }}"
-                             class="card-img-top lozad"
-                             alt="{{ $article->title }}">
+                        @if($image = $article->getFirstMedia('news'))
+                            {!! $image->img('card', ['class' => 'w-100 card-img-top', 'alt' => $article->title]) !!}
+                        @endif
                         <div class="card-body">
                             <h2 class="h5 card-title">{{ $article->title }}</h2>
                             <p class="small mt-n2">{{ Carbon\Carbon::parse($article->published_at)->format('d/m/Y') }}</p>
@@ -23,7 +18,7 @@
                                 <p class="card-text small">
                                     @foreach($article->categories as $category)
                                         <a class="btn btn-secondary btn-sm"
-                                           href="{{ route('news', ['category_id' => $category->id]) }}"
+                                           href="{{ route('news.page.show', ['category_id' => $category->id]) }}"
                                            title="{{ $category->name }}">
                                             {{ $category->name }}
                                         </a>

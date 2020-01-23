@@ -8,7 +8,6 @@ require('./utils/sweetalert');
 require('./utils/shave');
 require('./utils/lity');
 require('./utils/moment');
-require('./utils/lozad');
 require('./utils/air-datepicker');
 // bootstrap
 require('bootstrap');

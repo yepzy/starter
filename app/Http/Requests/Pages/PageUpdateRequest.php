@@ -20,7 +20,7 @@ class PageUpdateRequest extends Request
     public function rules()
     {
         $rules = ['active' => ['required', 'boolean']];
-        $localizedRules = $this->localizeRules(array_merge([
+        $localizedRules = $this->localizeRules([
             'url' => [
                 'required',
                 'string',
@@ -28,8 +28,9 @@ class PageUpdateRequest extends Request
                 UniqueTranslationRule::for('pages')->ignore($this->page->id),
             ],
             'nav_title' => ['required', 'string', 'max:255'],
-        ], (new SeoService)->getSeoMetaRules()));
+        ]);
+        $seoMetaRules = (new SeoService)->getSeoMetaRules();
 
-        return array_merge($localizedRules, $rules);
+        return array_merge($rules, $localizedRules, $seoMetaRules);
     }
 }

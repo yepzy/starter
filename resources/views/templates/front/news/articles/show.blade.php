@@ -1,14 +1,15 @@
 @extends('layouts.front.full')
 @section('template')
     {{-- cover --}}
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-12 mb-3">
-                @php($illustration = $article->getFirstMedia('illustrations'))
-                {!! $illustration->img('cover', ['class' => 'mw-100', 'alt' => $illustration->name]) !!}
+    @if($image = $article->getFirstMedia('news'))
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    {!! $image->img('cover', ['class' => 'w-100', 'alt' => $image->name]) !!}
+                </div>
             </div>
         </div>
-    </div>
+    @endif
     {{-- categories / sharing --}}
     <div class="container mt-2 mb-5">
         <div class="row">
@@ -16,7 +17,7 @@
                 @if($article->categories->isNotEmpty())
                     @foreach($article->categories as $category)
                         <a class="btn btn-secondary btn-sm"
-                           href="{{ route('news', ['category_id' => $category->id]) }}"
+                           href="{{ route('news.page.show', ['category_id' => $category->id]) }}"
                            title="{{ $category->name }}">
                             {{ $category->name }}
                         </a>
@@ -51,16 +52,29 @@
             </div>
         </div>
     </div>
+    {{-- title --}}
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4">{{ $article->title }}</h1>
+                <hr>
+            </div>
+        </div>
+    </div>
     {{-- description --}}
-    <div class="container mb-5">
+    <div class="container my-5">
         <div class="row">
             <div class="col-12 text">
-                <h1 class="mb-4">{{ $article->title }}</h1>
                 {!! (new Parsedown)->text($article->description) !!}
-                {{ buttonLink()->route('news')
+            </div>
+        </div>
+    </div>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-12 text">
+                {{ buttonLink()->route('news.page.show')
                     ->prepend('<i class="fas fa-chevron-left fa-fw"></i>')
-                    ->label(__('Back'))
-                    ->containerClasses(['mt-4']) }}
+                    ->label(__('Back')) }}
             </div>
         </div>
     </div>

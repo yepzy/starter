@@ -42,8 +42,8 @@
                             </div>
                         </div>
                         {!! $slide->img('slide', ['class' => 'w-100 card-img-top', 'alt' => $slide->name]) !!}
-                        @php($label = translate($slide->getCustomProperty('label')))
-                        @php($caption = translate($slide->getCustomProperty('caption')))
+                        @php($label = translatedData($slide->getCustomProperty('label')))
+                        @php($caption = translatedData($slide->getCustomProperty('caption')))
                         @if($label || $caption)
                             <div class="card-body">
                                 @if($label)

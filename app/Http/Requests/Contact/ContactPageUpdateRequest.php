@@ -14,12 +14,12 @@ class ContactPageUpdateRequest extends Request
      */
     public function rules()
     {
-        $seoMetaRules = (new SeoService)->getSeoMetaRules();
         $localizedRules = $this->localizeRules([
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:65535'],
         ]);
+        $seoMetaRules = (new SeoService)->getSeoMetaRules();
 
-        return array_merge($localizedRules, $seoMetaRules);
+        return array_merge($seoMetaRules, $localizedRules);
     }
 }

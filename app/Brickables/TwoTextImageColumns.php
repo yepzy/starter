@@ -30,7 +30,7 @@ class TwoTextImageColumns extends Brickable
             'right_image' => array_merge(['required'], $model->validationConstraints('bricks')),
             'invert_order' => ['nullable', 'in:on'],
         ];
-        $localizedRules = (new Request)->localizeRules(['text_left' => ['required', 'string']]);
+        $localizedRules = localizeRules(['text_left' => ['required', 'string']]);
 
         return array_merge($rules, $localizedRules);
     }
@@ -44,7 +44,7 @@ class TwoTextImageColumns extends Brickable
             'right_image' => $model->validationConstraints('bricks'),
             'invert_order' => ['nullable', 'in:on'],
         ];
-        $localizedRules = (new Request)->localizeRules(['text_left' => ['required', 'string']]);
+        $localizedRules = localizeRules(['text_left' => ['required', 'string']]);
 
         return array_merge($rules, $localizedRules);
     }

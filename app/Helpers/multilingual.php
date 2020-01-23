@@ -2,6 +2,8 @@
 
 if (! function_exists('multilingual')) {
     /**
+     * Check if the app is in multilingual mode.
+     *
      * @return bool
      */
     function multilingual(): bool
@@ -12,6 +14,8 @@ if (! function_exists('multilingual')) {
 
 if (! function_exists('supportedLocales')) {
     /**
+     * Get supported locales.
+     *
      * @return array
      */
     function supportedLocales(): array
@@ -27,6 +31,8 @@ if (! function_exists('supportedLocales')) {
 
 if (! function_exists('supportedLocaleKeys')) {
     /**
+     * Get supported locale keys.
+     *
      * @return array
      */
     function supportedLocaleKeys(): array
@@ -37,6 +43,8 @@ if (! function_exists('supportedLocaleKeys')) {
 
 if (! function_exists('currentLocale')) {
     /**
+     * Get current configuration locale.
+     *
      * @return array|string
      */
     function currentLocale()
@@ -47,13 +55,43 @@ if (! function_exists('currentLocale')) {
 
 if (! function_exists('translate')) {
     /**
-     * @param array $data
+     * Get translated data.
+     *
+     * @param mixed $target
+     * @param string|array|int|null $key
      * @param string|null $locale
      *
      * @return array|string
      */
-    function translate(?array $data = [], string $locale = null)
+    function translatedData($target, $key = null, string $locale = null)
     {
-        return multilingual() ? data_get($data, $locale ?: app()->getLocale()) : $data;
+        $data = $key ? data_get($target, $key) : $target;
+        $locale = $locale ?: app()->getLocale();
+
+        return is_array($data) ? data_get($data, $locale) : $data;
+    }
+}
+
+if (! function_exists('localizeRules')) {
+    /**
+     * Translate rules for each activated language.
+     *
+     * @param array $rules
+     *
+     * @return array
+     */
+    function localizeRules(array $rules): array
+    {
+        if (! multilingual()) {
+            return $rules;
+        }
+        $localizedRules = [];
+        foreach ($rules as $ruleKey => $ruleDetails) {
+            foreach (supportedLocaleKeys() as $locale) {
+                $localizedRules[$ruleKey . '.' . $locale] = $ruleDetails;
+            }
+        }
+
+        return $localizedRules;
     }
 }

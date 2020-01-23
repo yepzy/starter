@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fca47db272f490d01ba3657003500cf0",
+    "content-hash": "0b81ee571e31b3b7ee588c52809c6429",
     "packages": [
         {
             "name": "0.0.0/composer-include-files",
@@ -3037,7 +3037,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-bootstrap-components",
-                "reference": "7cfd673c5a67fe36efc8991ce3aeb5c902911992"
+                "reference": "422dd69d60848cff42044f116d866145182afc26"
             },
             "require": {
                 "ext-json": "*",
@@ -3136,7 +3136,7 @@
                 "package",
                 "php"
             ],
-            "time": "2020-01-22T13:58:49+00:00"
+            "time": "2020-01-23T14:20:49+00:00"
         },
         {
             "name": "okipa/laravel-brickables",
@@ -3144,7 +3144,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-brickables",
-                "reference": "2cf95d6f65aad8cfd2c306ba7d361171e6fdb521"
+                "reference": "9f1e764b28c6763e784c6553e3beb46bad290e52"
             },
             "require": {
                 "illuminate/support": "~5.5.0||~5.6.0||~5.7.0||~5.8.0||^6.0",
@@ -3216,7 +3216,7 @@
                 "management",
                 "okipa"
             ],
-            "time": "2020-01-22T11:59:02+00:00"
+            "time": "2020-01-23T15:43:16+00:00"
         },
         {
             "name": "okipa/laravel-failed-jobs-notifier",
@@ -5222,16 +5222,16 @@
         },
         {
             "name": "sentry/sentry",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "335bd24c4a817efdb7c3ec83ca42321a7761df6a"
+                "reference": "6d736f8cefa989f6171e30e1d1bfa214f7f5ab58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/335bd24c4a817efdb7c3ec83ca42321a7761df6a",
-                "reference": "335bd24c4a817efdb7c3ec83ca42321a7761df6a",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/6d736f8cefa989f6171e30e1d1bfa214f7f5ab58",
+                "reference": "6d736f8cefa989f6171e30e1d1bfa214f7f5ab58",
                 "shasum": ""
             },
             "require": {
@@ -5303,26 +5303,26 @@
                 "logging",
                 "sentry"
             ],
-            "time": "2020-01-08T11:27:08+00:00"
+            "time": "2020-01-23T09:40:22+00:00"
         },
         {
             "name": "sentry/sentry-laravel",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-laravel.git",
-                "reference": "724e86b3f96e2b87856b818a2bf53c80e796c279"
+                "reference": "50eb00e825ce615a57408c7a5e3f2599686c5be9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-laravel/zipball/724e86b3f96e2b87856b818a2bf53c80e796c279",
-                "reference": "724e86b3f96e2b87856b818a2bf53c80e796c279",
+                "url": "https://api.github.com/repos/getsentry/sentry-laravel/zipball/50eb00e825ce615a57408c7a5e3f2599686c5be9",
+                "reference": "50eb00e825ce615a57408c7a5e3f2599686c5be9",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": "5.0 - 5.8 | ^6.0",
                 "php": "^7.1",
-                "sentry/sdk": "^2.0"
+                "sentry/sdk": "^2.1"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "2.14.*",
@@ -5372,7 +5372,7 @@
                 "logging",
                 "sentry"
             ],
-            "time": "2019-11-11T11:30:37+00:00"
+            "time": "2020-01-23T09:52:27+00:00"
         },
         {
             "name": "spatie/browsershot",
@@ -10896,7 +10896,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3",
+        "php": "^7.4",
         "ext-json": "*"
     },
     "platform-dev": []

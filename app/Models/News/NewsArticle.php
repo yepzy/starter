@@ -78,7 +78,7 @@ class NewsArticle extends Metable implements HasMedia
      */
     public function registerMediaCollections()
     {
-        $this->addMediaCollection('illustrations')
+        $this->addMediaCollection('news')
             ->singleFile()
             ->acceptsMimeTypes(['image/jpeg', 'image/png'])
             ->registerMediaConversions(function (Media $media = null) {

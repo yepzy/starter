@@ -1,4 +1,4 @@
-<h3 class="pt-4">@lang('SEO')</h3>
+<h3>@lang('SEO')</h3>
 {{ inputText()->name('meta_title')
     ->locales(supportedLocaleKeys())
     ->value(function($locale) use ($model) {

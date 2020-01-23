@@ -6,8 +6,8 @@
         @foreach($slides as $key => $slide)
             <div class="carousel-item{{ $loop->first ? ' active' : null }}">
                 {!! $slide->img('slide', ['class' => 'w-100', 'alt' => $slide->name]) !!}
-                @php($label = translate($slide->getCustomProperty('label')))
-                @php($caption = translate($slide->getCustomProperty('caption')))
+                @php($label = translatedData($slide->getCustomProperty('label')))
+                @php($caption = translatedData($slide->getCustomProperty('caption')))
                 @if($label || $caption)
                     <div class="carousel-caption d-none d-md-block">
                         @if($label)

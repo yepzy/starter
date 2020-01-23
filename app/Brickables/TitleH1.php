@@ -10,12 +10,12 @@ class TitleH1 extends Brickable
     /** @inheritDoc */
     protected function setStoreValidationRules(): array
     {
-        return (new Request)->localizeRules(['title' => ['required', 'string']]);
+        return localizeRules(['title' => ['required', 'string']]);
     }
 
     /** @inheritDoc */
     protected function setUpdateValidationRules(): array
     {
-        return (new Request)->localizeRules(['title' => ['required', 'string']]);
+        return localizeRules(['title' => ['required', 'string']]);
     }
 }

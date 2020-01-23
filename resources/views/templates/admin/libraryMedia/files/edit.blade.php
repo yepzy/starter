@@ -33,7 +33,7 @@
                     ->showRemoveCheckbox(false)
                     ->containerHtmlAttributes(['required'])
                     ->caption((new \App\Models\LibraryMedia\LibraryMediaFile)->constraintsLegend('medias')) }}
-                <h3 class="pt-4">@lang('File')</h3>
+                <h3>@lang('File')</h3>
                 {{ inputText()->name('name')
                     ->locales(supportedLocaleKeys())
                     ->model($file)
@@ -53,7 +53,7 @@
                         ->containerClasses(['form-group', 'mt-4']) }}
                 @endif
                 @if($file)
-                    <h3 class="pt-4">@lang('Clipboard copy')</h3>
+                    <h3>@lang('Clipboard copy')</h3>
                     {{ inputText()->name('url')
                         ->label(__('URL'))
                         ->prepend('<i class="fas fa-link fa-fw"></i>')
