@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Settings\Settings;
 use App\Models\Pages\Page;
+use App\Models\Settings\Settings;
 use Illuminate\Support\Collection;
 
 if (! function_exists('settings')) {
@@ -19,9 +19,7 @@ if (! function_exists('settings')) {
             cache()->forget('settings');
         }
 
-        return cache()->rememberForever('settings', function () {
-            return (new Settings)->with(['media'])->firstOrFail();
-        });
+        return cache()->rememberForever('settings', fn() => (new Settings)->with(['media'])->firstOrFail());
     }
 }
 
@@ -40,8 +38,6 @@ if (! function_exists('pages')) {
             cache()->forget('pages');
         }
 
-        return cache()->rememberForever('pages', function () {
-            return (new Page)->where('active', true)->get();
-        });
+        return cache()->rememberForever('pages', fn() => (new Page)->where('active', true)->get());
     }
 }

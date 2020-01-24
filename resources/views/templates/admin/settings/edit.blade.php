@@ -20,11 +20,7 @@
                 @php($logo = $settings->getFirstMedia('icon'))
                 {{ inputFile()->name('icon')
                     ->value(optional($logo)->file_name)
-                    ->uploadedFile(function() use ($logo) {
-                        return $logo
-                            ? image()->src($logo->getUrl('thumb'))->linkUrl($logo->getUrl())->linkTitle($logo->name)
-                            : null;
-                    })
+                    ->uploadedFile(fn() => $logo ? image()->src($logo->getUrl('thumb'))->linkUrl($logo->getUrl())->linkTitle($logo->name) : null)
                     ->caption($settings->constraintsLegend('icon')) }}
                 <h3>@lang('Contact')</h3>
                 {{ inputEmail()->name('email')->model($settings)->containerHtmlAttributes(['required']) }}

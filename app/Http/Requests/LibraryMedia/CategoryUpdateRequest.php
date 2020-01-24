@@ -14,7 +14,7 @@ class CategoryUpdateRequest extends Request
      */
     public function rules()
     {
-        return $this->localizeRules([
+        return localizeRules([
             'name' => [
                 'required',
                 'string',

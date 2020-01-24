@@ -19,15 +19,11 @@
                 <h3>@lang('Content')</h3>
                 {{ inputText()->name('title')
                     ->locales(supportedLocaleKeys())
-                    ->value(function($locale) use ($pageContent) {
-                        return optional($pageContent)->getMeta('title', null, $locale);
-                    })
+                    ->value(fn($locale) => optional($pageContent)->getMeta('title', null, $locale))
                     ->containerHtmlAttributes(['required']) }}
                 {{ textarea()->name('description')
                     ->locales(supportedLocaleKeys())
-                    ->value(function($locale) use ($pageContent) {
-                        return optional($pageContent)->getMeta('description', null, $locale);
-                    })
+                    ->value(fn($locale) => optional($pageContent)->getMeta('description', null, $locale))
                     ->prepend(false)
                     ->componentClasses(['editor']) }}
                 @include('components.admin.seo.meta-tags', ['model' => $pageContent])

@@ -3,15 +3,9 @@
     <h1>
         <i class="fas fa-paper-plane fa-fw"></i>
         @if($article)
-            @lang('breadcrumbs.parent.edit', [
-                'entity' => __('Articles'), 'detail' => $article->name,
-                'parent' => __('News')
-            ])
+            @lang('breadcrumbs.parent.edit', ['entity' => __('Articles'), 'detail' => $article->name, 'parent' => __('News')])
         @else
-            @lang('breadcrumbs.parent.create', [
-                'entity' => __('Articles'),
-                'parent' => __('News')
-            ])
+            @lang('breadcrumbs.parent.create', ['entity' => __('Articles'), 'parent' => __('News')])
         @endif
     </h1>
     <hr>
@@ -34,11 +28,7 @@
                 @php($image = optional($article)->getFirstMedia('news'))
                 {{ inputFile()->name('news')
                     ->value(optional($image)->file_name)
-                    ->uploadedFile(function() use ($image) {
-                        return $image
-                            ? image()->src($image->getUrl('thumb'))->linkUrl($image->getUrl())->linkTitle($image->name)
-                            : null;
-                    })
+                    ->uploadedFile(fn() => $image ? image()->src($image->getUrl('thumb'))->linkUrl($image->getUrl())->linkTitle($image->name) : null)
                     ->showRemoveCheckbox(false)
                     ->containerHtmlAttributes(['required'])
                     ->caption((new \App\Models\News\NewsArticle)->constraintsLegend('news')) }}

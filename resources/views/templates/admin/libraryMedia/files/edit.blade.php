@@ -27,9 +27,7 @@
                 <h3>@lang('Media')</h3>
                 {{ inputFile()->name('media')
                     ->value(optional(optional($file)->getFirstMedia('medias'))->file_name)
-                    ->uploadedFile(function() use ($file) {
-                        return view('components.admin.table.library-media.thumb', compact('file'));
-                    })
+                    ->uploadedFile(fn() => trim(view('components.admin.table.library-media.thumb', ['file' => $file])))
                     ->showRemoveCheckbox(false)
                     ->containerHtmlAttributes(['required'])
                     ->caption((new \App\Models\LibraryMedia\LibraryMediaFile)->constraintsLegend('medias')) }}
@@ -64,9 +62,7 @@
                         ->locales(supportedLocaleKeys())
                         ->label(__('library-media.labels.html'))
                         ->prepend('<i class="fas fa-code fa-fw"></i>')
-                        ->value(function($locale) use($file) {
-                            return trim(view('components.admin.table.library-media.html-clipboard-content', compact('file', 'locale')));
-                        })
+                        ->value(fn($locale) => trim(view('components.admin.table.library-media.html-clipboard-content', ['file' => $file, 'locale' => $locale])))
                         ->append(view('components.admin.table.library-media.html-copy-link', compact('file')))
                         ->componentHtmlAttributes(['disabled']) }}
                 @endif

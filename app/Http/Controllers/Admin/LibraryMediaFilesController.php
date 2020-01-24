@@ -127,9 +127,10 @@ class LibraryMediaFilesController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function clipboardContent(LibraryMediaFile $file, string $type, ?string $locale)
+    public function clipboardContent(LibraryMediaFile $file, string $type, ?string $locale = null)
     {
         try {
+            $locale = $locale ?: app()->getLocale();
             $clipboardContent = $type === 'url'
                 ? $file->getFirstMedia('medias')->getFullUrl()
                 : trim(view(

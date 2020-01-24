@@ -22,9 +22,11 @@ class ArticleUpdateRequest extends Request
     public function before()
     {
         $this->merge([
-            'published_at' => $this->published_at ? rescue(function () {
-                return Carbon::createFromFormat('d/m/Y H:i', $this->published_at)->toDateTimeString();
-            }, 'XXX', false) : null,
+            'published_at' => $this->published_at ? rescue(
+                fn() => Carbon::createFromFormat('d/m/Y H:i', $this->published_at)->toDateTimeString(),
+                'XXX',
+                false
+            ) : null,
         ]);
     }
 
@@ -42,7 +44,7 @@ class ArticleUpdateRequest extends Request
             'published_at' => ['required', 'date_format:Y-m-d H:i:s'],
             'active' => ['required', 'boolean'],
         ];
-        $localizedRules = $this->localizeRules([
+        $localizedRules = localizeRules([
             'title' => ['required', 'string', 'max:255'],
             'url' => [
                 'required',

@@ -30,14 +30,7 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    /**
-     * Report or log an exception.
-     *
-     * @param \Exception $exception
-     *
-     * @return void
-     * @throws \Exception
-     */
+    /** @inheritDoc */
     public function report(Exception $exception)
     {
         $this->sentryReport($exception);
@@ -55,36 +48,19 @@ class Handler extends ExceptionHandler
             /** @var \App\Models\Users\User|null $user */
             $user = auth()->user();
             if ($user) {
-                app('sentry')->configureScope(function (Scope $scope) use ($user) : void {
-                    $scope->setUser($user->toArray());
-                });
+                app('sentry')->configureScope(fn(Scope $scope) => $scope->setUser($user->toArray()));
             }
             app('sentry')->captureException($exception);
         }
     }
 
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \Exception $exception
-     *
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
-     */
+    /** @inheritDoc */
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
     }
 
-    /**
-     * Convert a validation exception into a response.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \Illuminate\Validation\ValidationException $exception
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /** @inheritDoc */
     protected function invalid($request, ValidationException $exception)
     {
         if (! $request->expectsJson()) {
@@ -94,13 +70,7 @@ class Handler extends ExceptionHandler
         return parent::invalid($request, $exception);
     }
 
-    /**
-     * Render the given HttpException.
-     *
-     * @param \Symfony\Component\HttpKernel\Exception\HttpExceptionInterface $exception
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
+    /** @inheritDoc */
     protected function renderHttpException(HttpExceptionInterface $exception)
     {
         Log::error($exception);

@@ -26,14 +26,12 @@ class FilesService extends Service implements FilesServiceInterface
             'create' => ['name' => 'libraryMedia.file.create'],
             'edit' => ['name' => 'libraryMedia.file.edit'],
             'destroy' => ['name' => 'libraryMedia.file.destroy'],
-        ])->destroyConfirmationHtmlAttributes(function (LibraryMediaFile $file) {
-            return [
-                'data-confirm' => __('notifications.orphan.destroyConfirm', [
-                    'entity' => __('Media library'),
-                    'name' => $file->name,
-                ]),
-            ];
-        })->query(function ($query) use ($request) {
+        ])->destroyConfirmationHtmlAttributes(fn(LibraryMediaFile $file) => [
+            'data-confirm' => __('notifications.orphan.destroyConfirm', [
+                'entity' => __('Media library'),
+                'name' => $file->name,
+            ]),
+        ])->query(function ($query) use ($request) {
             $query->select('library_media_files.*');
             $query->addSelect(multilingual()
                 ? 'library_media_categories.name->' . app()->getLocale() . ' as category_name'
@@ -51,30 +49,26 @@ class FilesService extends Service implements FilesServiceInterface
                 $query->where('library_media_categories.id', $request->category_id);
             }
         })->appends($request->validated());
-        $table->column('thumb')->html(function (LibraryMediaFile $file) {
-            return view('components.admin.table.library-media.thumb', compact('file'));
-        });
-        $table->column('name')->value(function (LibraryMediaFile $file) {
-            return $file->name;
-        })->sortable()->searchable();
+        $table->column('thumb')
+            ->html(fn(LibraryMediaFile $file) => view('components.admin.table.library-media.thumb', compact('file')));
+        $table->column('name')->value(fn(LibraryMediaFile $file) => $file->name)->sortable()->searchable();
         $table->column('category_name')->sortable()->searchable('library_media_categories', ['name']);
         $table->column('mime_type')
             ->title(__('MIME types'))
-            ->html(function (LibraryMediaFile $file) {
-                return '<a class="new-window" href="https://slick.pl/kb/htaccess/complete-list-mime-types">'
-                    . $file->getFirstMedia('medias')->mime_type
-                    . '</a>';
-            })
+            ->html(fn(LibraryMediaFile $file) => '<a class="new-window" '
+                . 'href="https://slick.pl/kb/htaccess/complete-list-mime-types">'
+                . $file->getFirstMedia('medias')->mime_type . '</a>')
             ->sortable()
             ->searchable('media');
-        $table->column('downloadable')->html(function (LibraryMediaFile $file) {
-            return $file->downloadable && $file->canBeDisplayed
+        $table->column('downloadable')
+            ->html(fn(LibraryMediaFile $file) => $file->downloadable && $file->canBeDisplayed
                 ? '<i class="fas fa-check text-success"></i>'
-                : '<i class="fas fa-times text-danger"></i>';
-        })->sortable();
-        $table->column()->title(__('Clipboard copy'))->html(function (LibraryMediaFile $file) {
-            return view('components.admin.table.library-media.copy-clipboard-buttons', compact('file'));
-        });
+                : '<i class="fas fa-times text-danger"></i>')
+            ->sortable();
+        $table->column()->title(__('Clipboard copy'))->html(fn(LibraryMediaFile $file) => view(
+            'components.admin.table.library-media.copy-clipboard-buttons',
+            compact('file')
+        ));
         $table->column('updated_at')->dateTimeFormat('d/m/Y H:i')->sortable(true, 'desc');
         $table->column('created_at')->dateTimeFormat('d/m/Y H:i')->sortable();
 

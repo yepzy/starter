@@ -39,11 +39,7 @@
                 @php($avatar = optional($user)->getFirstMedia('avatar'))
                 {{ inputFile()->name('avatar')
                     ->value(optional($avatar)->file_name)
-                    ->uploadedFile(function() use ($avatar) {
-                        return $avatar
-                            ? image()->src($avatar->getUrl('thumb'))->linkUrl($avatar->getUrl())->linkTitle($avatar->name)
-                            : null;
-                    })
+                    ->uploadedFile(fn() => $avatar ? image()->src($avatar->getUrl('thumb'))->linkUrl($avatar->getUrl())->linkTitle($avatar->name) : null)
                     ->caption((new \App\Models\Users\User)->constraintsLegend('avatar')) }}
                 {{ inputText()->name('last_name')->model($user)->containerHtmlAttributes(['required']) }}
                 {{ inputText()->name('first_name')->model($user)->containerHtmlAttributes(['required']) }}

@@ -8,22 +8,22 @@ require 'recipe/laravel.php';
 // servers
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $servers = [
-    'preprod'    => [
-        'host'             => '<project-preprod-host>', // todo : set project preprod host
-        'branch'           => 'develop',
-        'deploy_path'      => '/var/www/preprod/web/site',
-        'user'             => 'preprod',
-        'http_user'        => 'preprod',
-        'http_group'       => 'users',
+    'preprod' => [
+        'host' => '<project-preprod-host>', // todo : set project preprod host
+        'branch' => 'develop',
+        'deploy_path' => '/var/www/preprod/web/site',
+        'user' => 'preprod',
+        'http_user' => 'preprod',
+        'http_group' => 'users',
         'private_identity' => '~/.ssh/id_rsa',
     ],
     'production' => [
-        'host'             => '<project-production-host>', // todo : set project production host
-        'branch'           => 'master',
-        'deploy_path'      => '/var/www/prod/web/site',
-        'user'             => 'prod',
-        'http_user'        => 'prod',
-        'http_group'       => 'users',
+        'host' => '<project-production-host>', // todo : set project production host
+        'branch' => 'master',
+        'deploy_path' => '/var/www/prod/web/site',
+        'user' => 'prod',
+        'http_user' => 'prod',
+        'http_group' => 'users',
         'private_identity' => '~/.ssh/id_rsa',
     ],
 ];

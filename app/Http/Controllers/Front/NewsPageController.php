@@ -7,7 +7,6 @@ use App\Http\Requests\News\ArticlesIndexRequest;
 use App\Models\News\NewsArticle;
 use App\Models\Pages\PageContent;
 use App\Services\Seo\SeoService;
-use Artesaos\SEOTools\Facades\SEOTools;
 
 class NewsPageController extends Controller
 {
@@ -27,9 +26,7 @@ class NewsPageController extends Controller
             ->where('published_at', '<=', now())
             ->orderBy('published_at', 'desc');
         if ($request->category_id) {
-            $query->whereHas('categories', function ($category) use ($request) {
-                $category->where('id', $request->category_id);
-            });
+            $query->whereHas('categories', fn($category) => $category->where('id', $request->category_id));
         }
         $articles = $query->paginate(6)->appends($request->only('category_id'));
         $css = mix('/css/news/index.css');

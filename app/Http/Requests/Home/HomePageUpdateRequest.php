@@ -14,7 +14,7 @@ class HomePageUpdateRequest extends Request
      */
     public function rules()
     {
-        $localizedRules = $this->localizeRules([
+        $localizedRules = localizeRules([
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:65535'],
         ]);

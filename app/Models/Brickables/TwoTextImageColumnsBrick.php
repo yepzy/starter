@@ -23,12 +23,10 @@ class TwoTextImageColumnsBrick extends Brick implements HasMedia
         $this->addMediaCollection('bricks')
             ->singleFile()
             ->acceptsMimeTypes(['image/jpeg', 'image/png'])
-            ->registerMediaConversions(function (Media $media = null) {
-                $this->addMediaConversion('image')
-                    ->fit(Manipulations::FIT_CROP, 540, 400)
-                    ->withResponsiveImages()
-                    ->keepOriginalImageFormat();
-            });
+            ->registerMediaConversions(fn(Media $media = null) => $this->addMediaConversion('image')
+                ->fit(Manipulations::FIT_CROP, 540, 400)
+                ->withResponsiveImages()
+                ->keepOriginalImageFormat());
     }
 
     /**

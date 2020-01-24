@@ -21,7 +21,7 @@ class FileUpdateRequest extends Request
             'media' => (new LibraryMediaFile)->validationConstraints('medias'),
             'downloadable' => ['required', 'boolean'],
         ];
-        $localizedRules = $this->localizeRules(['name' => ['required', 'string', 'max:255']]);
+        $localizedRules = localizeRules(['name' => ['required', 'string', 'max:255']]);
 
         return array_merge($rules, $localizedRules);
     }

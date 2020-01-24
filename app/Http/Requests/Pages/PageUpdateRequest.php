@@ -20,7 +20,7 @@ class PageUpdateRequest extends Request
     public function rules()
     {
         $rules = ['active' => ['required', 'boolean']];
-        $localizedRules = $this->localizeRules([
+        $localizedRules = localizeRules([
             'url' => [
                 'required',
                 'string',

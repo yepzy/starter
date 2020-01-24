@@ -34,7 +34,7 @@ class PageStoreRequest extends Request
             'slug' => ['required', 'alpha_dash', 'unique:pages'],
             'active' => ['required', 'boolean'],
         ];
-        $localizedRules = $this->localizeRules([
+        $localizedRules = localizeRules([
             'url' => [
                 'required',
                 'string',

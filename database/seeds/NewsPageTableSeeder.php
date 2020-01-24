@@ -28,8 +28,8 @@ class NewsPageTableSeeder extends Seeder
         $pageContent->addBrick(TitleH1::class, ['title' => ['fr' => 'Actualités', 'en' => 'News']]);
         $pageContent->addBrick(OneTextColumn::class, [
             'text' => [
-                'fr' => 'Découvrez ici toutes nos actualités catégorisées. Cliquez sur l\'une des catégories pour filter '
-                    . 'les actualités.',
+                'fr' => 'Découvrez ici toutes nos actualités catégorisées. Cliquez sur l\'une des catégories pour '
+                    . 'filter les actualités.',
                 'en' => 'Discover here all our categorized news. Click on one of the categories to filter the news.',
             ],
         ]);

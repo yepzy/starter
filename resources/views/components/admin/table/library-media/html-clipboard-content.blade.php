@@ -11,7 +11,7 @@
     </a>
 @elseif($file->type === 'audio')
     <audio controls preload="1">
-        <source src="/storage/14/test.mp3?v=1574955679">
+        <source src="{{ $media->getUrl() }}">
         @lang('Your browser does not support the audio tag.')
     </audio>
 @elseif($file->type === 'video')
