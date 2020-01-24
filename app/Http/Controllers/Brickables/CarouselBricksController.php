@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Brickables;
 
+use App\Models\Brickables\CarouselBrick;
 use Illuminate\Http\Request;
 use Okipa\LaravelBrickables\Models\Brick;
 use Spatie\MediaLibrary\Models\Media;
@@ -37,18 +38,17 @@ class CarouselBricksController extends BricksController
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param \Okipa\LaravelBrickables\Models\Brick $brick
+     * @param \App\Models\Brickables\CarouselBrick $brick
      *
      * @return \Spatie\MediaLibrary\Models\Media
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
      */
-    protected function addNewSlide(Request $request, Brick $brick): Media
+    protected function addNewSlide(Request $request, CarouselBrick $brick): Media
     {
         $image = $request->file('image');
 
-        /** @var \Spatie\MediaLibrary\HasMedia\HasMediaTrait $brick */
         return $brick->addMedia($image->getRealPath())
             ->setFileName($image->getClientOriginalName())
             ->withCustomProperties([
@@ -64,5 +64,23 @@ class CarouselBricksController extends BricksController
         if ($request->file('image')) {
             $this->addNewSlide($request, $brick);
         }
+    }
+
+    public function moveUpSlide(Request $request, Media $slide)
+    {
+        $previous = Media::limit(1)
+            ->orderBy('order_column', 'desc')
+            ->where('order_column', '<', $slide->order_column)
+            ->get()
+            ->pluck('id');
+        $after = Media::limit(1)
+            ->orderBy('order_column', 'desc')
+            ->where('order_column', '>', $slide->order_column)
+            ->get()
+            ->pluck('id');
+
+        $ids = [...$previous, $slide->id, ...$after];
+
+        dd($ids);
     }
 }

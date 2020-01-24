@@ -25,11 +25,21 @@
                         <div class="card-header d-flex justify-content-between">
                             <h3 class="m-0">@lang('Slide') #{{ $key + 1 }}</h3>
                             <div class="d-flex">
-                                <form role="form" method="POST" action="">
+                                <form role="form" method="POST" action="{{ route('brick.carousel.slide.move.up', $slide) }}">
                                     @csrf
-                                    {{ submit()->prepend('<i class="fas fa-long-arrow-alt-down fa-fw"></i>')->componentClasses(['btn-link']) }}
+                                    {{ submit()->prepend('<i class="fas fa-long-arrow-alt-up fa-fw"></i>')
+                                        ->componentClasses(['btn-link'])
+                                        ->componentHtmlAttributes(['title' => __('Move up')]) }}
                                 </form>
-                                <form role="form" method="POST" action="{{ route('brick.carousel.slide.destroy', $slide) }}">
+                                <form role="form" method="POST" action="{{ route('brick.carousel.slide.move.down', $slide) }}">
+                                    @csrf
+                                    {{ submit()->prepend('<i class="fas fa-long-arrow-alt-down fa-fw"></i>')
+                                        ->componentClasses(['btn-link'])
+                                        ->componentHtmlAttributes(['title' => __('Move down')]) }}
+                                </form>
+                                <form role="form"
+                                      method="POST"
+                                      action="{{ route('brick.carousel.slide.destroy', $slide) }}">
                                     @csrf
                                     @method('DELETE')
                                     {{ submit()->prepend('<i class="fas fa-trash fa-fw text-danger"></i>')

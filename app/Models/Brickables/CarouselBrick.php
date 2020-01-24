@@ -2,6 +2,7 @@
 
 namespace App\Models\Brickables;
 
+use Illuminate\Database\Eloquent\Builder;
 use Okipa\LaravelBrickables\Models\Brick;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -11,6 +12,8 @@ use Spatie\MediaLibrary\Models\Media;
 class CarouselBrick extends Brick implements HasMedia
 {
     use HasMediaTrait;
+
+
 
     /**
      * Register the media collections.

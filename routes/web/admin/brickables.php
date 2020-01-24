@@ -8,11 +8,11 @@ Brickables::routes();
 // carousel
 Route::post(
     Lang::uri('brick/carousel/move/up/{slide}'),
-    [DispatchController::class, 'moveUpSlide']
+    [CarouselBricksController::class, 'moveUpSlide']
 )->name('brick.carousel.slide.move.up');
 Route::post(
     Lang::uri('brick/carousel/move/down/{slide}'),
-    [DispatchController::class, 'moveDownSlide']
+    [CarouselBricksController::class, 'moveDownSlide']
 )->name('brick.carousel.slide.move.down');
 Route::delete(
     Lang::uri('brick/carousel/slide/destroy/{slide}'),
