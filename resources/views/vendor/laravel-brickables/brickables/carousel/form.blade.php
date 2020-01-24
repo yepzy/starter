@@ -19,11 +19,11 @@
     <div class="row mt-3">
         @php($slides = optional($brick)->getMedia('bricks'))
         @if($slides && $slides->isNotEmpty())
-            @foreach($slides as $key => $slide)
+            @foreach($slides as $slide)
                 <div class="col-sm-6 col-lg-4 col-xl-3">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
-                            <h3 class="m-0">@lang('Slide') #{{ $key + 1 }}</h3>
+                            <h3 class="m-0">#{{ $loop->iteration }}</h3>
                             <div class="d-flex">
                                 <form role="form" method="POST" action="{{ route('brick.carousel.slide.move.up', $slide) }}">
                                     @csrf

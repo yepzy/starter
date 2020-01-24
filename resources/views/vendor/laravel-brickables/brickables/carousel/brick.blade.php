@@ -24,7 +24,7 @@
     @if($slides->count() > 1)
         <ol class="carousel-indicators">
             @foreach($slides as $key => $slide)
-                <li data-target="#carouselExampleCaptions"
+                <li data-target="#label-caption-carousel"
                     data-slide-to="{{ $key }}"
                     class="{{ $loop->first ? 'active' : null }}"></li>
             @endforeach
