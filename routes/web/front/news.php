@@ -7,10 +7,10 @@ use App\Http\Controllers\Front\NewsPageController;
 Route::get(
     Lang::uri('news'),
     [NewsPageController::class, 'show']
-)->name('news.page.show');
+)->name('news');
 
 // articles
 Route::get(
     Lang::uri('news/{article}'),
     [NewsArticlesController::class, 'show']
-)->name('news.article.show')->where('url', '.*');
+)->name('news.show')->where('url', '.*');

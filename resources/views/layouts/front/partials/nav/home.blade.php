@@ -1,4 +1,4 @@
-<li class="nav-item {{ Str::contains(request()->route()->getName(), 'home') ? 'active' : null }}">
+<li class="nav-item{{ currentRouteIs('home') ? ' active' : null }}">
     <a class="nav-link"
        href="{{ route('home') }}"
        title="@lang('Home')">

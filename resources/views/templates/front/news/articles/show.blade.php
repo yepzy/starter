@@ -17,7 +17,7 @@
                 @if($article->categories->isNotEmpty())
                     @foreach($article->categories as $category)
                         <a class="btn btn-secondary btn-sm"
-                           href="{{ route('news.page.show', ['category_id' => $category->id]) }}"
+                           href="{{ route('news', ['category_id' => $category->id]) }}"
                            title="{{ $category->name }}">
                             {{ $category->name }}
                         </a>
@@ -72,7 +72,7 @@
     <div class="container my-5">
         <div class="row">
             <div class="col-12 text">
-                {{ buttonLink()->route('news.page.show')
+                {{ buttonLink()->route('news')
                     ->prepend('<i class="fas fa-chevron-left fa-fw"></i>')
                     ->label(__('Back')) }}
             </div>

@@ -18,7 +18,7 @@
                                 <p class="card-text small">
                                     @foreach($article->categories as $category)
                                         <a class="btn btn-secondary btn-sm"
-                                           href="{{ route('news.page.show', ['category_id' => $category->id]) }}"
+                                           href="{{ route('news', ['category_id' => $category->id]) }}"
                                            title="{{ $category->name }}">
                                             {{ $category->name }}
                                         </a>
@@ -27,7 +27,7 @@
                             @endif
                             <p class="card-text shave description">{!! Str::limit(strip_tags((new Parsedown)->text($article->description)), 500) !!}</p>
                             <a class="btn btn-primary"
-                               href="{{ route('news.article.show', $article->url) }}"
+                               href="{{ route('news.show', $article->url) }}"
                                title="@lang('Know more')">
                                 @lang('Know more')
                             </a>

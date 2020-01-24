@@ -3144,7 +3144,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-brickables",
-                "reference": "9f1e764b28c6763e784c6553e3beb46bad290e52"
+                "reference": "b6534b1714995f46e5dcfdc9ab3c0d71ab2a7e1a"
             },
             "require": {
                 "illuminate/support": "~5.5.0||~5.6.0||~5.7.0||~5.8.0||^6.0",
@@ -3216,7 +3216,7 @@
                 "management",
                 "okipa"
             ],
-            "time": "2020-01-23T15:43:16+00:00"
+            "time": "2020-01-24T12:12:16+00:00"
         },
         {
             "name": "okipa/laravel-failed-jobs-notifier",

@@ -1,9 +1,9 @@
 @php
-    $homePageActive = Str::contains(request()->route()->getName(), ['home.page.edit']);
+    $homePageActive = currentRouteIs('home.page.edit');
     $subMenuActive = $homePageActive;
 @endphp
 <li class="nav-item">
-    <a class="nav-link {{ $subMenuActive ? 'active' : null }}"
+    <a class="nav-link{{ $subMenuActive ? ' active' : null }}"
        href="#homeMenu"
        title="@lang('Home')"
        data-toggle="collapse"
@@ -14,7 +14,7 @@
         @lang('Home')
         <i class="fas fa-caret-down fa-fw"></i>
     </a>
-    <ul id="homeMenu" class="collapse list-unstyled {{ $subMenuActive ? 'show' : null }}">
+    <ul id="homeMenu" class="collapse list-unstyled{{ $subMenuActive ? ' show' : null }}">
         {{-- page --}}
         <li class="nav-item">
             <a class="nav-link {{ $homePageActive ? 'active' : null }}"

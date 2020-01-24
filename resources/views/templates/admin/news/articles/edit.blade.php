@@ -40,7 +40,7 @@
                 {{ inputText()->name('url')
                     ->locales(supportedLocaleKeys())
                     ->model($article)
-                    ->prepend(route('news.article.show', '') . '/')
+                    ->prepend(route('news.show', '') . '/')
                     ->componentClasses(['lowercase'])
                     ->componentHtmlAttributes(['data-autofill-from' => '#text-title'])
                     ->containerHtmlAttributes(['required']) }}

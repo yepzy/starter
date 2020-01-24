@@ -1,10 +1,10 @@
 @php
-    $libraryMediaCategoriesActive = Str::contains(request()->route()->getName(), ['libraryMedia.categories.index', 'libraryMedia.category.create', 'libraryMedia.category.edit']);
-    $libraryMediaFilesActive = Str::contains(request()->route()->getName(), ['libraryMedia.files.index', 'libraryMedia.file.create', 'libraryMedia.file.edit']);
+    $libraryMediaCategoriesActive = currentRouteIs('libraryMedia.categories.index') || currentRouteIs('libraryMedia.category.create') || currentRouteIs('libraryMedia.category.edit');
+    $libraryMediaFilesActive = currentRouteIs('libraryMedia.files.index') || currentRouteIs('libraryMedia.file.create') || currentRouteIs('libraryMedia.file.edit');
     $subMenuActive = $libraryMediaCategoriesActive || $libraryMediaFilesActive;
 @endphp
 <li class="nav-item">
-    <a class="nav-link {{ $subMenuActive ? 'active' : null }}"
+    <a class="nav-link{{ $subMenuActive ? ' active' : null }}"
         href="#libraryMediaMenu"
             title="@lang('Media library')"
             data-toggle="collapse"
@@ -18,7 +18,7 @@
     <ul id="libraryMediaMenu" class="collapse list-unstyled {{ $subMenuActive ? 'show' : null }}">
         {{-- categories --}}
         <li class="nav-item">
-            <a class="nav-link {{ $libraryMediaCategoriesActive ? 'active' : null }}"
+            <a class="nav-link{{ $libraryMediaCategoriesActive ? ' active' : null }}"
                 href="{{ route('libraryMedia.categories.index') }}"
                     title="@lang('Categories')">
                 <i class="fas fa-tags fa-fw"></i>
@@ -27,7 +27,7 @@
         </li>
         {{-- files --}}
         <li class="nav-item">
-            <a class="nav-link {{ $libraryMediaFilesActive ? 'active' : null }}"
+            <a class="nav-link{{ $libraryMediaFilesActive ? ' active' : null }}"
                href="{{ route('libraryMedia.files.index') }}"
                title="@lang('Files')">
                     <i class="fas fa-copy fa-fw"></i>

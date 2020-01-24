@@ -1,9 +1,9 @@
 @php
-    $contactPageActive = Str::contains(request()->route()->getName(), ['contact.page.edit']);
+    $contactPageActive = currentRouteIs('contact.page.edit');
     $subMenuActive = $contactPageActive;
 @endphp
 <li class="nav-item">
-    <a class="nav-link {{ $subMenuActive ? 'active' : null }}"
+    <a class="nav-link{{ $subMenuActive ? ' active' : null }}"
        href="#contactMenu"
        title="@lang('Contact')"
        data-toggle="collapse"
@@ -14,7 +14,7 @@
         @lang('Contact')
         <i class="fas fa-caret-down fa-fw"></i>
     </a>
-    <ul id="contactMenu" class="collapse list-unstyled {{ $subMenuActive ? 'show' : null }}">
+    <ul id="contactMenu" class="collapse list-unstyled{{ $subMenuActive ? ' show' : null }}">
         {{-- page --}}
         <li class="nav-item">
             <a class="nav-link {{ $contactPageActive ? 'active' : null }}"

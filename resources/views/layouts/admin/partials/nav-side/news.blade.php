@@ -1,11 +1,11 @@
 @php
-    $newsPageActive = Str::contains(request()->route()->getName(), ['news.page']);
-    $newsCategoriesActive = Str::contains(request()->route()->getName(), ['news.categories', 'news.category']);
-    $newsArticlesActive = Str::contains(request()->route()->getName(), ['news.articles', 'news.article']);
-    $subMenuActive = $newsArticlesActive || $newsCategoriesActive;
+    $newsPageActive = currentRouteIs('news.page.edit');
+    $newsCategoriesActive = currentRouteIs('news.categories.index') || currentRouteIs('news.category.create') || currentRouteIs('news.category.edit');
+    $newsArticlesActive = currentRouteIs('news.articles.index') || currentRouteIs('news.article.create') || currentRouteIs('news.article.edit');
+    $subMenuActive = $newsPageActive || $newsArticlesActive || $newsCategoriesActive;
 @endphp
 <li class="nav-item">
-    <a class="nav-link {{ $subMenuActive ? 'active' : null }}"
+    <a class="nav-link{{ $subMenuActive ? ' active' : null }}"
        href="#newsMenu"
        title="@lang('News')"
        data-toggle="collapse"
@@ -16,10 +16,10 @@
         @lang('News')
         <i class="fas fa-caret-down fa-fw"></i>
     </a>
-    <ul id="newsMenu" class="collapse list-unstyled {{ $subMenuActive ? 'show' : null }}">
+    <ul id="newsMenu" class="collapse list-unstyled{{ $subMenuActive ? ' show' : null }}">
         {{-- page --}}
         <li class="nav-item">
-            <a class="nav-link {{ $newsPageActive ? 'active' : null }}"
+            <a class="nav-link{{ $newsPageActive ? ' active' : null }}"
                href="{{ route('news.page.edit') }}"
                title="@lang('Page')">
                 <i class="fas fa-desktop fa-fw"></i>
@@ -28,7 +28,7 @@
         </li>
         {{-- categories --}}
         <li class="nav-item">
-            <a class="nav-link {{ $newsCategoriesActive ? 'active' : null }}"
+            <a class="nav-link{{ $newsCategoriesActive ? ' active' : null }}"
                href="{{ route('news.categories.index') }}"
                title="@lang('Categories')">
                 <i class="fas fa-tags fa-fw"></i>
@@ -37,7 +37,7 @@
         </li>
         {{-- articles --}}
         <li class="nav-item">
-            <a class="nav-link {{ $newsArticlesActive ? 'active' : null }}"
+            <a class="nav-link{{ $newsArticlesActive ? ' active' : null }}"
                href="{{ route('news.articles.index') }}"
                title="@lang('Articles')">
                 <i class="fas fa-paper-plane fa-fw"></i>
