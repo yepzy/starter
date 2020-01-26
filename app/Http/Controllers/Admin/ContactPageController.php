@@ -41,10 +41,17 @@ class ContactPageController extends Controller
     {
         /** @var \App\Models\Pages\PageContent $pageContent */
         $pageContent = (new PageContent)->where('slug', 'contact-page-content')->firstOrFail();
-        $pageContent->addBrick(TitleH1::class, $request->only('title'));
-        $request->has('description')
-            ? $pageContent->addBrick(OneTextColumn::class, $request->only('description'))
-            : $pageContent->getFirstBrick(OneTextColumn::class)->delete();
+        // todo: transform in a service
+        $titleH1Brick = $pageContent->getFirstBrick(TitleH1::class);
+        if ($request->title && $request->title !== data_get($titleH1Brick->data, 'title')) {
+            $pageContent->addBrick(TitleH1::class, $request->only('title'));
+        }
+        $oneTextColumnBrick = $pageContent->getFirstBrick(OneTextColumn::class);
+        if ($request->description && $request->description !== data_get($oneTextColumnBrick->data, 'text')) {
+            $pageContent->addBrick(OneTextColumn::class, $request->only('description'));
+        } elseif (! $request->description) {
+            $oneTextColumnBrick->delete();
+        }
         (new SeoService)->saveSeoTagsFromRequest($pageContent, $request);
 
         return back()->with('toast_success', __('notifications.orphan.updated', [

@@ -12,10 +12,12 @@ class PageContent extends Metable implements HasBrickables
 {
     use HasBrickablesTrait;
 
-    protected $singleBrick = [
-        TitleH1::class,
-        OneTextColumn::class
-    ];
+    /**
+     * Define brickables which will only hold one brick.
+     *
+     * @var string
+     */
+    protected $hasSingleBrick = [TitleH1::class, OneTextColumn::class];
 
     /**
      * The database table used by the model.

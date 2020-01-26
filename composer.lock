@@ -3144,7 +3144,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-brickables",
-                "reference": "b6534b1714995f46e5dcfdc9ab3c0d71ab2a7e1a"
+                "reference": "2e68111b450d5b7ee056eeb23b9d23f143d30a21"
             },
             "require": {
                 "illuminate/support": "~5.5.0||~5.6.0||~5.7.0||~5.8.0||^6.0",
@@ -3216,7 +3216,7 @@
                 "management",
                 "okipa"
             ],
-            "time": "2020-01-24T12:12:16+00:00"
+            "time": "2020-01-26T22:33:59+00:00"
         },
         {
             "name": "okipa/laravel-failed-jobs-notifier",
@@ -5541,20 +5541,21 @@
         },
         {
             "name": "spatie/image",
-            "version": "1.7.5",
+            "version": "1.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image.git",
-                "reference": "9e36dcc1c5da4e8756a4fd00228342a9c9953f4b"
+                "reference": "74535b5fd67ace75840c00c408666660843e755e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image/zipball/9e36dcc1c5da4e8756a4fd00228342a9c9953f4b",
-                "reference": "9e36dcc1c5da4e8756a4fd00228342a9c9953f4b",
+                "url": "https://api.github.com/repos/spatie/image/zipball/74535b5fd67ace75840c00c408666660843e755e",
+                "reference": "74535b5fd67ace75840c00c408666660843e755e",
                 "shasum": ""
             },
             "require": {
                 "ext-exif": "*",
+                "ext-mbstring": "*",
                 "league/glide": "^1.4",
                 "php": "^7.0",
                 "spatie/image-optimizer": "^1.0",
@@ -5590,7 +5591,7 @@
                 "image",
                 "spatie"
             ],
-            "time": "2019-11-23T17:56:34+00:00"
+            "time": "2020-01-26T18:56:44+00:00"
         },
         {
             "name": "spatie/image-optimizer",
