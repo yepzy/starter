@@ -33,6 +33,7 @@ class NewsPageController extends Controller
      * @param \App\Http\Requests\News\NewsPageUpdateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      * @throws \Okipa\LaravelBrickables\Exceptions\InvalidBrickableClassException
      * @throws \Okipa\LaravelBrickables\Exceptions\NotRegisteredBrickableClassException
      */
@@ -41,7 +42,9 @@ class NewsPageController extends Controller
         /** @var \App\Models\Pages\PageContent $pageContent */
         $pageContent = (new PageContent)->where('slug', 'news-page-content')->firstOrFail();
         $pageContent->addBrick(TitleH1::class, $request->only('title'));
-        $pageContent->addBrick(OneTextColumn::class, $request->only('description'));
+        $request->has('description')
+            ? $pageContent->addBrick(OneTextColumn::class, $request->only('description'))
+            : $pageContent->getFirstBrick(OneTextColumn::class)->delete();
         (new SeoService)->saveSeoTagsFromRequest($pageContent, $request);
 
         return back()->with('toast_success', __('notifications.orphan.updated', [

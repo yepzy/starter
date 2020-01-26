@@ -23,9 +23,9 @@ class CarouselBrick extends Brick implements HasMedia
      */
     public function registerMediaCollections()
     {
-        $this->addMediaCollection('bricks')
+        $this->addMediaCollection('slides')
             ->acceptsMimeTypes(['image/jpeg', 'image/png'])
-            ->registerMediaConversions(fn(Media $media = null) => $this->addMediaConversion('slide')
+            ->registerMediaConversions(fn(Media $media = null) => $this->addMediaConversion('full')
                 ->fit(Manipulations::FIT_CROP, 2560, 700)
                 ->withResponsiveImages()
                 ->keepOriginalImageFormat());

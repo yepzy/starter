@@ -16,7 +16,7 @@ class ContactPageUpdateRequest extends Request
     {
         $localizedRules = localizeRules([
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:65535'],
+            'description' => ['string', 'max:65535'],
         ]);
         $seoMetaRules = (new SeoService)->getSeoMetaRules();
 

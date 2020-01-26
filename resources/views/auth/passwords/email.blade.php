@@ -5,7 +5,7 @@
         'dropdownClass' => ['dropdown-menu-right'],
         'labelClass' => ['btn', 'btn-link']
     ])
-    @if($icon = settings()->getFirstMedia('icon'))
+    @if($icon = settings()->getFirstMedia('icons'))
         <div class="mx-auto mb-4">
             {{ $icon('auth') }}
         </div>

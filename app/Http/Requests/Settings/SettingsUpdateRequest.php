@@ -19,7 +19,7 @@ class SettingsUpdateRequest extends Request
     public function rules()
     {
         return [
-            'icon' => settings()->validationConstraints('icon'),
+            'icon' => settings()->validationConstraints('icons'),
             'remove_icon' => ['required', 'boolean'],
             'email' => ['required', 'string', 'max:255', 'email'],
             'phone_number' => ['required', 'string', 'max:255', 'phone:AUTO'],

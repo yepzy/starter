@@ -174,7 +174,7 @@ return [
         'updated_at' => 'Updated at',
         'created_at' => 'Created at',
         'media' => 'Media',
-        'icon' => 'Icône',
+        'icon' => 'Icon',
         'address' => 'Address',
         'zip_code' => 'Zip code',
         'city' => 'City',

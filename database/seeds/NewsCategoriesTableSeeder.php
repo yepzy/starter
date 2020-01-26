@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\News\NewsCategory;
-use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class NewsCategoriesTableSeeder extends Seeder
@@ -14,15 +13,11 @@ class NewsCategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $this->faker = Factory::create('fr_EN');
-        for ($ii = 1; $ii <= 5; $ii++) {
-            $name = $this->faker->word();
-            (new NewsCategory)->create([
-                'name' => [
-                    'fr' => $name . ' FR',
-                    'en' => $name . ' EN',
-                ],
-            ]);
-        }
+        (new NewsCategory)->create(['name' => ['fr' => 'Apps Web', 'en' => 'Web apps']]);
+        (new NewsCategory)->create(['name' => ['fr' => 'Apps mobiles', 'en' => 'Mobile apps']]);
+        (new NewsCategory)->create(['name' => ['fr' => 'Site vitrine', 'en' => 'Showcase site']]);
+        (new NewsCategory)->create(['name' => ['fr' => 'Site catalogue', 'en' => 'Catalog site']]);
+        (new NewsCategory)->create(['name' => ['fr' => 'Identité visuelle', 'en' => 'Visual identity']]);
+        (new NewsCategory)->create(['name' => ['fr' => 'Graphisme', 'en' => 'Graphism']]);
     }
 }

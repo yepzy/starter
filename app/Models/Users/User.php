@@ -54,7 +54,7 @@ class User extends Authenticatable implements
      */
     public function registerMediaCollections()
     {
-        $this->addMediaCollection('avatar')
+        $this->addMediaCollection('avatars')
             ->acceptsMimeTypes(['image/jpeg', 'image/png'])
             ->singleFile()
             ->registerMediaConversions(function (Media $media = null) {

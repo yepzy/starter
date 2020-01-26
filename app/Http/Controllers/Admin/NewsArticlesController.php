@@ -55,7 +55,7 @@ class NewsArticlesController extends Controller
         /** @var \App\Models\News\NewsArticle $article */
         $article = (new NewsArticle)->create($request->validated());
         if ($request->file('image')) {
-            $article->addMediaFromRequest('image')->toMediaCollection('news');
+            $article->addMediaFromRequest('image')->toMediaCollection();
         }
         $article->categories()->sync($request->category_ids);
         (new SeoService)->saveSeoTagsFromRequest($article, $request);
@@ -97,7 +97,7 @@ class NewsArticlesController extends Controller
     {
         $article->update($request->validated());
         if ($request->file('image')) {
-            $article->addMediaFromRequest('image')->toMediaCollection('news');
+            $article->addMediaFromRequest('image')->toMediaCollection();
         }
         $article->categories()->sync($request->category_ids);
         (new SeoService)->saveSeoTagsFromRequest($article, $request);

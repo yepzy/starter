@@ -1,11 +1,11 @@
 @php
-    $slides = $brick->getMedia('bricks');
+    $slides = $brick->getMedia('slides');
 @endphp
 <div id="label-caption-carousel" class="carousel slide bg-dark" data-ride="carousel">
     <div class="carousel-inner">
         @foreach($slides as $key => $slide)
             <div class="carousel-item{{ $loop->first ? ' active' : null }}">
-                {!! $slide->img('slide', ['class' => 'w-100', 'alt' => $slide->name]) !!}
+                {!! $slide->img('full', ['class' => 'w-100', 'alt' => $slide->name]) !!}
                 @php($label = translatedData($slide->getCustomProperty('label')))
                 @php($caption = translatedData($slide->getCustomProperty('caption')))
                 @if($label || $caption)

@@ -4,7 +4,7 @@ require('./utils/axios');
 require('./utils/cookieconsent');
 require('./utils/easymde');
 require('./utils/sweetalert');
-//require('./utils/sumoselect');
+require('./utils/sumoselect');
 require('./utils/shave');
 require('./utils/lity');
 require('./utils/moment');

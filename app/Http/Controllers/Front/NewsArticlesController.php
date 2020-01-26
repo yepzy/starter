@@ -19,6 +19,6 @@ class NewsArticlesController extends Controller
         (new SeoService)->displayMetaTagsFromModel($article);
         $css = mix('/css/news/show.css');
 
-        return view('templates.front.news.show', compact('article', 'css'));
+        return view('templates.front.news.articles.show', compact('article', 'css'));
     }
 }

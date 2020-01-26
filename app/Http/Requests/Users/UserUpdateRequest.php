@@ -19,7 +19,7 @@ class UserUpdateRequest extends Request
     public function rules()
     {
         return [
-            'avatar' => (new User)->validationConstraints('avatar'),
+            'avatar' => (new User)->validationConstraints('avatars'),
             'remove_avatar' => ['required', 'boolean'],
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],

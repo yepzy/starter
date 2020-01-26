@@ -17,7 +17,7 @@ class UserStoreRequest extends Request
     public function rules()
     {
         return [
-            'avatar' => (new User)->validationConstraints('avatar'),
+            'avatar' => (new User)->validationConstraints('avatars'),
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],

@@ -20,10 +20,10 @@ class TwoTextImageColumnsBrick extends Brick implements HasMedia
      */
     public function registerMediaCollections()
     {
-        $this->addMediaCollection('bricks')
+        $this->addMediaCollection('images')
             ->singleFile()
             ->acceptsMimeTypes(['image/jpeg', 'image/png'])
-            ->registerMediaConversions(fn(Media $media = null) => $this->addMediaConversion('image')
+            ->registerMediaConversions(fn(Media $media = null) => $this->addMediaConversion('half')
                 ->fit(Manipulations::FIT_CROP, 540, 400)
                 ->withResponsiveImages()
                 ->keepOriginalImageFormat());

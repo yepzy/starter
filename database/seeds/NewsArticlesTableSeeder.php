@@ -84,7 +84,7 @@ EOT;
         $imageUrl = $this->images[array_rand($this->images, 1)];
         $article->addMedia(database_path($imageUrl))
             ->preservingOriginal()
-            ->toMediaCollection('news');
+            ->toMediaCollection('illustrations');
         $categoryIds = $this->categories->random(rand(1, $this->categories->count() / 3))->pluck('id');
         $article->categories()->sync($categoryIds);
         (new SeoService)->saveSeoTags($article, [

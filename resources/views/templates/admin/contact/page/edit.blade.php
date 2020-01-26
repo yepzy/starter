@@ -19,12 +19,12 @@
                 <h3>@lang('Content')</h3>
                 {{ inputText()->name('title')
                     ->locales(supportedLocaleKeys())
-                    ->value(fn($locale) => optional($pageContent)->getMeta('title', null, $locale))
+                    ->value(fn($locale) => translatedData($pageContent->getFirstBrick(\App\Brickables\TitleH1::class), 'data.title'))
                     ->containerHtmlAttributes(['required']) }}
                 {{ textarea()->name('description')
                     ->locales(supportedLocaleKeys())
-                    ->value(fn($locale) => optional($pageContent)->getMeta('description', null, $locale))
                     ->prepend(false)
+                    ->value(fn($locale) => translatedData($pageContent->getFirstBrick(\App\Brickables\OneTextColumn::class), 'data.text'))
                     ->componentClasses(['editor']) }}
                 @include('components.admin.seo.meta-tags', ['model' => $pageContent])
                 <div class="d-flex pt-4">

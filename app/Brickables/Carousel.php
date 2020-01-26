@@ -27,7 +27,7 @@ class Carousel extends Brickable
         /** @var \Spatie\MediaLibrary\HasMedia\HasMedia $model */
         $model = $this->getBrickModel();
         $rules = [
-            'image' => array_merge(['required'], $model->validationConstraints('bricks')),
+            'image' => array_merge(['required'], $model->validationConstraints('slides')),
         ];
         $localizedRules = localizeRules([
             'label' => ['nullable', 'string', 'max:75'],
@@ -43,7 +43,7 @@ class Carousel extends Brickable
         /** @var \Spatie\MediaLibrary\HasMedia\HasMedia $model */
         $model = $this->getBrickModel();
         $rules = [
-            'image' => array_merge(['required'], $model->validationConstraints('bricks')),
+            'image' => array_merge(['required'], $model->validationConstraints('slides')),
         ];
         $localizedRules = localizeRules([
             'label' => ['nullable', 'string', 'max:75'],

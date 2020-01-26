@@ -37,7 +37,7 @@ class CarouselBricksController extends BricksController
      */
     public function moveUpSlide(Media $slide)
     {
-        $slides = $slide->model->getMedia('bricks');
+        $slides = $slide->model->getMedia('slides');
         $prev = $slides->where('order_column', '<', $slide->order_column)->values();
         $next = $slides->where('order_column', '>', $slide->order_column)->values();
         $itemToSwitchIndex = $next->count() ? $next->count() - 1 : $next->count();
@@ -58,7 +58,7 @@ class CarouselBricksController extends BricksController
      */
     public function moveDownSlide(Media $slide)
     {
-        $slides = $slide->model->getMedia('bricks');
+        $slides = $slide->model->getMedia('slides');
         $prev = $slides->where('order_column', '<', $slide->order_column)->values();
         $next = $slides->where('order_column', '>', $slide->order_column)->values();
         $itemToSwitchIndex = $prev->count() - 1;
@@ -94,7 +94,7 @@ class CarouselBricksController extends BricksController
         return $brick->addMedia($image->getRealPath())
             ->setFileName($image->getClientOriginalName())
             ->withCustomProperties(['label' => $request->label, 'caption' => $request->caption])
-            ->toMediaCollection('bricks');
+            ->toMediaCollection('slides');
     }
 
     /** @inheritDoc */

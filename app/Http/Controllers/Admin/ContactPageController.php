@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Brickables\OneTextColumn;
+use App\Brickables\TitleH1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Contact\ContactPageUpdateRequest;
 use App\Models\Pages\PageContent;
@@ -31,12 +33,18 @@ class ContactPageController extends Controller
      * @param \App\Http\Requests\Contact\ContactPageUpdateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     * @throws \Okipa\LaravelBrickables\Exceptions\InvalidBrickableClassException
+     * @throws \Okipa\LaravelBrickables\Exceptions\NotRegisteredBrickableClassException
      */
     public function update(ContactPageUpdateRequest $request): RedirectResponse
     {
         /** @var \App\Models\Pages\PageContent $pageContent */
         $pageContent = (new PageContent)->where('slug', 'contact-page-content')->firstOrFail();
-        $pageContent->saveMetaFromRequest($request, ['title', 'description']);
+        $pageContent->addBrick(TitleH1::class, $request->only('title'));
+        $request->has('description')
+            ? $pageContent->addBrick(OneTextColumn::class, $request->only('description'))
+            : $pageContent->getFirstBrick(OneTextColumn::class)->delete();
         (new SeoService)->saveSeoTagsFromRequest($pageContent, $request);
 
         return back()->with('toast_success', __('notifications.orphan.updated', [

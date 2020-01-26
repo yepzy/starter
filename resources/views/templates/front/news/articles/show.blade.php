@@ -1,7 +1,7 @@
 @extends('layouts.front.full')
 @section('template')
     {{-- cover --}}
-    @if($image = $article->getFirstMedia('news'))
+    @if($image = $article->getFirstMedia('illustrations'))
         <div class="container mt-5">
             <div class="row">
                 <div class="col-12 mb-3">

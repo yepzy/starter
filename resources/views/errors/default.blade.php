@@ -10,7 +10,7 @@
                         'dropdownLabelClasses' => ['btn', 'btn-link'],
                         'dropdownMenuClasses' => ['dropdown-menu-right']
                     ])
-                    @if($icon = settings()->getFirstMedia('icon'))
+                    @if($icon = settings()->getFirstMedia('icons'))
                         {{ $icon('auth') }}
                     @endif
                 </div>

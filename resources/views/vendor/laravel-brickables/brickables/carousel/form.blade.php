@@ -5,7 +5,7 @@
 @section('inputs')
     {{ inputFile()->name('image')
         ->containerHtmlAttributes(['required'])
-        ->caption($brickable->getBrickModel()->constraintsLegend('bricks')) }}
+        ->caption($brickable->getBrickModel()->constraintsLegend('slides')) }}
     {{ inputText()->name('label')->locales(supportedLocaleKeys()) }}
     {{ inputText()->name('caption')->locales(supportedLocaleKeys())->prepend('<i class="fas fa-align-left"></i>') }}
 @endsection
@@ -17,7 +17,7 @@
 @endsection
 @section('append')
     <div class="row mt-3">
-        @php($slides = optional($brick)->getMedia('bricks'))
+        @php($slides = optional($brick)->getMedia('slides'))
         @if($slides && $slides->isNotEmpty())
             @foreach($slides as $slide)
                 <div class="col-sm-6 col-lg-4 col-xl-3">
@@ -51,7 +51,7 @@
                                 </form>
                             </div>
                         </div>
-                        {!! $slide->img('slide', ['class' => 'w-100 card-img-top', 'alt' => $slide->name]) !!}
+                        {!! $slide->img('full', ['class' => 'w-100 card-img-top', 'alt' => $slide->name]) !!}
                         @php($label = translatedData($slide->getCustomProperty('label')))
                         @php($caption = translatedData($slide->getCustomProperty('caption')))
                         @if($label || $caption)

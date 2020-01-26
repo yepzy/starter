@@ -32,6 +32,6 @@ class SettingsTableSeeder extends Seeder
         ]);
         $settings->addMedia(database_path('seeds/files/settings/icon-300-300.png'))
             ->preservingOriginal()
-            ->toMediaCollection('icon');
+            ->toMediaCollection('icons');
     }
 }

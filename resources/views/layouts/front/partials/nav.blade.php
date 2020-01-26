@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}" title="{{ config('app.name') }}">
             @if($icon = settings()->getFirstMedia('icon'))
-                {{ $icon('admin-header') }}
+                {{ $icon('front') }}
             @endif
             {{ config('app.name') }}
         </a>

@@ -36,11 +36,11 @@
             </div>
             <div class="card-body">
                 <h3>@lang('Identity')</h3>
-                @php($avatar = optional($user)->getFirstMedia('avatar'))
+                @php($avatar = optional($user)->getFirstMedia('avatars'))
                 {{ inputFile()->name('avatar')
                     ->value(optional($avatar)->file_name)
                     ->uploadedFile(fn() => $avatar ? image()->src($avatar->getUrl('thumb'))->linkUrl($avatar->getUrl())->linkTitle($avatar->name) : null)
-                    ->caption((new \App\Models\Users\User)->constraintsLegend('avatar')) }}
+                    ->caption((new \App\Models\Users\User)->constraintsLegend('avatars')) }}
                 {{ inputText()->name('last_name')->model($user)->containerHtmlAttributes(['required']) }}
                 {{ inputText()->name('first_name')->model($user)->containerHtmlAttributes(['required']) }}
                 <h3>@lang('Contact')</h3>

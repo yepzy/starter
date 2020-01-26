@@ -8,7 +8,7 @@
             @foreach($articles as $article)
                 <div class="col-sm-6 col-lg-4 my-3">
                     <div class="card">
-                        @if($image = $article->getFirstMedia('news'))
+                        @if($image = $article->getFirstMedia('illustrations'))
                             {!! $image->img('card', ['class' => 'w-100 card-img-top', 'alt' => $article->title]) !!}
                         @endif
                         <div class="card-body">

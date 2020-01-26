@@ -11,7 +11,7 @@ class TwoTextImageBricksController extends BricksController
     protected function stored(Request $request, Brick $brick): void
     {
         /** @var \Spatie\MediaLibrary\HasMedia\HasMediaTrait $brick */
-        $brick->addMediaFromRequest('right_image')->toMediaCollection('bricks');
+        $brick->addMediaFromRequest('image')->toMediaCollection('images');
     }
 
     /** @inheritDoc */
@@ -19,7 +19,7 @@ class TwoTextImageBricksController extends BricksController
     {
         if ($request->file('image')) {
             /** @var \Spatie\MediaLibrary\HasMedia\HasMediaTrait $brick */
-            $brick->addMediaFromRequest('right_image')->toMediaCollection('bricks');
+            $brick->addMediaFromRequest('image')->toMediaCollection('images');
         }
     }
 }

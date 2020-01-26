@@ -3,7 +3,7 @@
     <h1>
         <i class="fas fa-paper-plane fa-fw"></i>
         @if($article)
-            @lang('breadcrumbs.parent.edit', ['entity' => __('Articles'), 'detail' => $article->name, 'parent' => __('News')])
+            @lang('breadcrumbs.parent.edit', ['entity' => __('Articles'), 'detail' => $article->title, 'parent' => __('News')])
         @else
             @lang('breadcrumbs.parent.create', ['entity' => __('Articles'), 'parent' => __('News')])
         @endif
@@ -25,13 +25,13 @@
             </div>
             <div class="card-body">
                 <h3>@lang('Media')</h3>
-                @php($image = optional($article)->getFirstMedia('news'))
-                {{ inputFile()->name('news')
+                @php($image = optional($article)->getFirstMedia('illustrations'))
+                {{ inputFile()->name('image')
                     ->value(optional($image)->file_name)
                     ->uploadedFile(fn() => $image ? image()->src($image->getUrl('thumb'))->linkUrl($image->getUrl())->linkTitle($image->name) : null)
                     ->showRemoveCheckbox(false)
                     ->containerHtmlAttributes(['required'])
-                    ->caption((new \App\Models\News\NewsArticle)->constraintsLegend('news')) }}
+                    ->caption((new \App\Models\News\NewsArticle)->constraintsLegend('illustrations')) }}
                 <h3>@lang('Identity')</h3>
                 {{ inputText()->name('title')
                     ->locales(supportedLocaleKeys())

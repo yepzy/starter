@@ -44,15 +44,15 @@ class Settings extends Model implements HasMedia
      */
     public function registerMediaCollections()
     {
-        $this->addMediaCollection('icon')
+        $this->addMediaCollection('icons')
             ->acceptsMimeTypes(['image/jpeg', 'image/png'])
             ->singleFile()
             ->registerMediaConversions(function (Media $media = null) {
-                $this->addMediaConversion('front-mobile-header')
+                $this->addMediaConversion('front')
                     ->fit(Manipulations::FIT_CROP, 70, 70)
                     ->keepOriginalImageFormat()
                     ->withResponsiveImages();
-                $this->addMediaConversion('admin-header')
+                $this->addMediaConversion('admin')
                     ->fit(Manipulations::FIT_CROP, 30, 30)
                     ->keepOriginalImageFormat();
                 $this->addMediaConversion('mail')
