@@ -16,16 +16,6 @@
                 </h2>
             </div>
             <div class="card-body">
-                <h3>@lang('Content')</h3>
-                {{ inputText()->name('title')
-                    ->locales(supportedLocaleKeys())
-                    ->value(fn($locale) => translatedData($pageContent->getFirstBrick(\App\Brickables\TitleH1::class), 'data.title', $locale))
-                    ->containerHtmlAttributes(['required']) }}
-                {{ textarea()->name('description')
-                    ->locales(supportedLocaleKeys())
-                    ->prepend(false)
-                    ->value(fn($locale) => translatedData($pageContent->getFirstBrick(\App\Brickables\OneTextColumn::class), 'data.text', $locale))
-                    ->componentClasses(['editor']) }}
                 @include('components.admin.seo.meta-tags', ['model' => $pageContent])
                 <div class="d-flex pt-4">
                     {{ submitUpdate() }}
@@ -33,4 +23,9 @@
             </div>
         </div>
     </form>
+    @if($pageContent)
+        <div class="mt-3">
+            {{ Brickables::adminPanel($pageContent) }}
+        </div>
+    @endif
 @endsection

@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Brickables\CarouselBricksController;
-use Okipa\LaravelBrickables\Controllers\DispatchController;
 
 Brickables::routes();
 

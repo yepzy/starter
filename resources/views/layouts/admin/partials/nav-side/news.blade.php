@@ -1,5 +1,5 @@
 @php
-    $newsPageActive = currentRouteIs('news.page.edit');
+    $newsPageActive = currentRouteIs('news.page.edit') || optional(Brickables::getModelFromRequest())->slug === 'news-page-content';
     $newsCategoriesActive = currentRouteIs('news.categories.index') || currentRouteIs('news.category.create') || currentRouteIs('news.category.edit');
     $newsArticlesActive = currentRouteIs('news.articles.index') || currentRouteIs('news.article.create') || currentRouteIs('news.article.edit');
     $subMenuActive = $newsPageActive || $newsArticlesActive || $newsCategoriesActive;

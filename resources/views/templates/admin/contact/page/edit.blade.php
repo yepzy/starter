@@ -1,7 +1,7 @@
 @extends('layouts.admin.full')
 @section('template')
     <h1>
-        <i class="fas fa-envelope fa-fw"></i>
+        <i class="fas fa-desktop fa-fw"></i>
         @lang('breadcrumbs.orphan.edit', ['entity' => __('Contact'), 'detail' => __('Page')])
     </h1>
     <hr>
@@ -16,16 +16,6 @@
                 </h2>
             </div>
             <div class="card-body">
-                <h3>@lang('Content')</h3>
-                {{ inputText()->name('title')
-                    ->locales(supportedLocaleKeys())
-                    ->value(fn($locale) => translatedData($pageContent->getFirstBrick(\App\Brickables\TitleH1::class), 'data.title', $locale))
-                    ->containerHtmlAttributes(['required']) }}
-                {{ textarea()->name('description')
-                    ->locales(supportedLocaleKeys())
-                    ->prepend(false)
-                    ->value(fn($locale) => translatedData($pageContent->getFirstBrick(\App\Brickables\OneTextColumn::class), 'data.text', $locale))
-                    ->componentClasses(['editor']) }}
                 @include('components.admin.seo.meta-tags', ['model' => $pageContent])
                 <div class="d-flex pt-4">
                     {{ submitUpdate() }}
@@ -33,4 +23,9 @@
             </div>
         </div>
     </form>
+    @if($pageContent)
+        <div class="mt-3">
+            {{ Brickables::adminPanel($pageContent) }}
+        </div>
+    @endif
 @endsection

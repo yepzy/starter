@@ -2,7 +2,7 @@
 
 use App\Brickables\OneTextColumn;
 use App\Brickables\TitleH1;
-use App\Models\Pages\PageContent;
+use App\Models\Pages\TitleDescriptionPageContent;
 use App\Services\Seo\SeoService;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
@@ -19,7 +19,8 @@ class ContactPageTableSeeder extends Seeder
     {
         $fakerFr = Factory::create('fr_EN');
         $fakerEn = Factory::create('en_GB');
-        $pageContent = (new PageContent)->create(['slug' => 'contact-page-content']);
+        /** @var \App\Models\Pages\TitleDescriptionPageContent $pageContent */
+        $pageContent = (new TitleDescriptionPageContent)->create(['slug' => 'contact-page-content']);
         (new SeoService)->saveSeoTags($pageContent, [
             'meta_title' => ['fr' => 'Nous contacter', 'en' => 'Contact us'],
             'meta_description' => ['fr' => $fakerFr->text(150), 'en' => $fakerEn->text(150)],

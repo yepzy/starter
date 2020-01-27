@@ -14,12 +14,6 @@ class NewsPageUpdateRequest extends Request
      */
     public function rules()
     {
-        $localizedRules = localizeRules([
-            'title' => ['required', 'string', 'max:255'],
-            'description' => ['string', 'max:65535'],
-        ]);
-        $seoMetaRules = (new SeoService)->getSeoMetaRules();
-
-        return array_merge($localizedRules, $seoMetaRules);
+        return (new SeoService)->getSeoMetaRules();
     }
 }

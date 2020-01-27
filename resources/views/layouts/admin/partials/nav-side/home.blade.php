@@ -1,5 +1,5 @@
 @php
-    $homePageActive = currentRouteIs('home.page.edit');
+    $homePageActive = currentRouteIs('home.page.edit') || optional(Brickables::getModelFromRequest())->slug === 'home-page-content';
     $subMenuActive = $homePageActive;
 @endphp
 <li class="nav-item">
