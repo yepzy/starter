@@ -40,6 +40,7 @@ return [
     'dimensions' => 'L\'image :attribute ne possède pas les dimensions requises.',
     'distinct' => 'Le champ :attribute possède une valeur dupliquée.',
     'email' => 'Le champ :attribute doit être une adresse e-mail valide.',
+    'ends_with' => 'Le champ :attribute doit terminer par l\'une des valeurs suivantes :values.',
     'exists' => 'Le champ :attribute n\'existe pas.',
     'file' => 'Le champ :attribute doit être un fichier.',
     'filled' => 'Le champ :attribute doit avoir une valeur.',
