@@ -13,12 +13,12 @@ notify.toast = notify.mixin({
     timer: 8000
 });
 
-notify.loading = (title = app.sweetalert.pleaseWait, message = app.sweetalert.loading) => {
+notify.loading = (title = app.sweetalert.loading) => {
     return swal.fire({
         toast: true,
         position: 'top-end',
         icon: 'info',
-        title: message,
+        title,
         timerProgressBar: true,
         onBeforeOpen: () => {
             swal.showLoading();

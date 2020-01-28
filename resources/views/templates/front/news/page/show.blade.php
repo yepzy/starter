@@ -25,7 +25,7 @@
                                     @endforeach
                                 </p>
                             @endif
-                            <p class="card-text shave description">{!! Str::limit(strip_tags((new Parsedown)->text($article->description)), 500) !!}</p>
+                            <p class="card-text description">{!! Str::limit(strip_tags((new Parsedown)->text($article->description)), 500) !!}</p>
                             <a class="btn btn-primary"
                                href="{{ route('news.show', $article->url) }}"
                                title="@lang('Know more')">
