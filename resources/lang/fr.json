@@ -98,5 +98,9 @@
     "Update": "Mettre à jour",
     "No file selected.": "Aucun fichier selectionné.",
     "Add new slide": "Ajouter nouvelle slide",
-    "Page content": "Contenu page"
+    "Page content": "Contenu page",
+    "Move up": "Déplacer vers le haut",
+    "Move down": "Déplacer vers le bas",
+    "Edit": "Editer",
+    "Destroy": "Supprimer"
 }

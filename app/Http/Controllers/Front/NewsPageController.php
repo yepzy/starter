@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\News\ArticlesIndexRequest;
 use App\Models\News\NewsArticle;
 use App\Models\Pages\PageContent;
+use App\Models\Pages\TitleDescriptionPageContent;
 use App\Services\Seo\SeoService;
 
 class NewsPageController extends Controller
@@ -18,8 +19,8 @@ class NewsPageController extends Controller
      */
     public function show(ArticlesIndexRequest $request)
     {
-        /** @var \App\Models\Pages\PageContent $pageContent */
-        $pageContent = (new PageContent)->firstOrCreate(['slug' => 'news-page-content']);
+        /** @var \App\Models\Pages\TitleDescriptionPageContent $pageContent */
+        $pageContent = (new TitleDescriptionPageContent)->firstOrCreate(['slug' => 'news-page-content']);
         (new SeoService)->displayMetaTagsFromModel($pageContent);
         $query = (new NewsArticle)->with(['media', 'categories'])
             ->where('active', true)

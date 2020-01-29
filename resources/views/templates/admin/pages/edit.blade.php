@@ -54,7 +54,7 @@
     </form>
     @if($page)
         <div class="mt-3">
-            {{ Brickables::adminPanel($page) }}
+            {{ Brickables::displayAdminPanel($page) }}
         </div>
     @endif
 @endsection

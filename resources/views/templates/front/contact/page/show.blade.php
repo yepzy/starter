@@ -1,7 +1,7 @@
 @extends('layouts.front.full')
 @section('template')
     <div class="mt-5 mb-4">
-        {{ Brickables::bricks($pageContent) }}
+        {{ Brickables::displayBricks($pageContent) }}
     </div>
     <div class="container my-5">
         <div class="row">

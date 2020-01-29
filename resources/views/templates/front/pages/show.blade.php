@@ -1,6 +1,6 @@
 @extends('layouts.front.full')
 @section('template')
     <div class="my-5">
-        {{ Brickables::bricks($page) }}
+        {{ Brickables::displayBricks($page) }}
     </div>
 @endsection

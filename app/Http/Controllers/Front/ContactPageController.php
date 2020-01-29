@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Contact\ContactPageSendMessageRequest;
 use App\Models\Logs\LogContactFormMessage;
 use App\Models\Pages\PageContent;
+use App\Models\Pages\TitleDescriptionPageContent;
 use App\Notifications\ContactFormMessage;
 use App\Services\Seo\SeoService;
 use Notification;
@@ -18,8 +19,8 @@ class ContactPageController extends Controller
      */
     public function show()
     {
-        /** @var \App\Models\Pages\PageContent $pageContent */
-        $pageContent = (new PageContent)->firstOrCreate(['slug' => 'contact-page-content']);
+        /** @var \App\Models\Pages\TitleDescriptionPageContent $pageContent */
+        $pageContent = (new TitleDescriptionPageContent)->firstOrCreate(['slug' => 'contact-page-content']);
         (new SeoService)->displayMetaTagsFromModel($pageContent);
         $css = mix('/css/contact/page/show.css');
 

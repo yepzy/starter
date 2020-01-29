@@ -11,15 +11,15 @@ class TwoTextImageBricksController extends BricksController
     protected function stored(Request $request, Brick $brick): void
     {
         /** @var \Spatie\MediaLibrary\HasMedia\HasMediaTrait $brick */
-        $brick->addMediaFromRequest('image')->toMediaCollection('images');
+        $brick->addMediaFromRequest('right_image')->toMediaCollection('images');
     }
 
     /** @inheritDoc */
     protected function updated(Request $request, Brick $brick): void
     {
-        if ($request->file('image')) {
+        if ($request->file('right_image')) {
             /** @var \Spatie\MediaLibrary\HasMedia\HasMediaTrait $brick */
-            $brick->addMediaFromRequest('image')->toMediaCollection('images');
+            $brick->addMediaFromRequest('right_image')->toMediaCollection('images');
         }
     }
 }

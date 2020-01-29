@@ -7,10 +7,15 @@ use App\Brickables\TitleH1;
 
 class TitleDescriptionPageContent extends PageContent
 {
-    /** okipa/laravel-brickable package configuration. */
+    /**
+     * okipa/laravel-brickable package configuration.
+     */
     public $brickables = [
         'canOnlyHandle' => [TitleH1::class, OneTextColumn::class],
-        'limitedNumberOfBricks' => [TitleH1::class => 1, OneTextColumn::class],
+        'numberOfBricks' => [
+            TitleH1::class => ['min' => 1, 'max' => 1],
+            OneTextColumn::class => ['max' => 1],
+        ],
     ];
 
     /**
