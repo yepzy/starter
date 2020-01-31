@@ -1,9 +1,8 @@
 <?php
 
-use App\Brickables\Carousel;
+use App\Brickables\CarouselFullWidth;
 use App\Brickables\OneTextColumn;
 use App\Brickables\TitleH1;
-use App\Models\Brickables\CarouselBrick;
 use App\Models\Pages\PageContent;
 use App\Services\Seo\SeoService;
 use Faker\Factory;
@@ -51,8 +50,8 @@ EOT;
             'meta_title' => ['fr' => 'Accueil', 'en' => 'Home'],
             'meta_description' => ['fr' => $fakerFr->text(150), 'en' => $fakerEn->text(150)],
         ]);
-        /** @var CarouselBrick $carouselBrick */
-        $carouselBrick = $pageContent->addBrick(Carousel::class, []);
+        /** @var \App\Brickables\CarouselFullWidth $carouselBrick */
+        $carouselBrick = $pageContent->addBrick(CarouselFullWidth::class);
         $carouselBrick->addMedia(database_path('seeds/files/home/2251x1600.jpg'))
             ->preservingOriginal()
             ->withCustomProperties([

@@ -3,16 +3,15 @@
 namespace App\Brickables;
 
 use App\Http\Controllers\Brickables\CarouselBricksController;
-use App\Http\Requests\Request;
-use App\Models\Brickables\CarouselBrick;
+use App\Models\Brickables\CarouselContainerWidthBrick;
 use Okipa\LaravelBrickables\Abstracts\Brickable;
 
-class Carousel extends Brickable
+class CarouselContainerWidth extends Brickable
 {
     /** @inheritDoc */
     protected function setBrickModelClass(): string
     {
-        return CarouselBrick::class;
+        return CarouselContainerWidthBrick::class;
     }
 
     /** @inheritDoc */

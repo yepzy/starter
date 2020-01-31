@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Brickables;
 
-use App\Models\Brickables\CarouselBrick;
 use Illuminate\Http\Request;
 use Okipa\LaravelBrickables\Models\Brick;
 use Spatie\MediaLibrary\Models\Media;
@@ -18,9 +17,11 @@ class CarouselBricksController extends BricksController
     public function destroySlide(Media $slide)
     {
         $brick = $slide->model;
+        /** @var \Okipa\LaravelBrickables\Contracts\HasBrickables $model */
         $model = $brick->model;
+        /** @var \Okipa\LaravelBrickables\Abstracts\Brickable $brickable */
         $brickable = $brick->brickable;
-        $name = $slide->getCustomProperty('label')[app()->getLocale()];
+        $name = translatedData($slide->getCustomProperty('label'));
         $slide->delete();
 
         return back()->with('toast_success', __('notifications.parent.destroyed', [
@@ -75,23 +76,23 @@ class CarouselBricksController extends BricksController
     /** @inheritDoc */
     protected function stored(Request $request, Brick $brick): void
     {
-        /** @var \App\Models\Brickables\CarouselBrick $brick */
         $this->addNewSlide($request, $brick);
     }
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Brickables\CarouselBrick $brick
+     * @param \Okipa\LaravelBrickables\Models\Brick $brick
      *
      * @return \Spatie\MediaLibrary\Models\Media
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
      */
-    protected function addNewSlide(Request $request, CarouselBrick $brick): Media
+    protected function addNewSlide(Request $request, Brick $brick): Media
     {
         $image = $request->file('image');
 
+        /** @var \Spatie\MediaLibrary\HasMedia\HasMedia $brick */
         return $brick->addMedia($image->getRealPath())
             ->setFileName($image->getClientOriginalName())
             ->withCustomProperties(['label' => $request->label, 'caption' => $request->caption])
@@ -102,7 +103,7 @@ class CarouselBricksController extends BricksController
     protected function updated(Request $request, Brick $brick): void
     {
         if ($request->file('image')) {
-            /** @var \App\Models\Brickables\CarouselBrick $brick */
+            /** @var \App\Models\Brickables\CarouselFullWidthBrick $brick */
             $this->addNewSlide($request, $brick);
         }
     }
