@@ -125,7 +125,7 @@ resources:nodev:
 
 phpunit:
   stage: test
-  image: php:7.3-cli # todo : set php version
+  image: php:7.4-cli # todo : set php version
   dependencies:
     - composer
     - resources
@@ -145,7 +145,7 @@ phpunit:
 
 phpcs:
   stage: test
-  image: php:7.3-cli # todo : set php version
+  image: php:7.4-cli # todo : set php version
   dependencies:
     - composer
   script:
@@ -157,7 +157,7 @@ phpcs:
 
 phpmd:
   stage: test
-  image: php:7.3-cli # todo : set php version
+  image: php:7.4-cli # todo : set php version
   dependencies:
     - composer
   script:
@@ -169,7 +169,7 @@ phpmd:
 
 phpstan:
   stage: test
-  image: php:7.3-cli # todo : set php version
+  image: php:7.4-cli # todo : set php version
   dependencies:
     - composer
   before_script:
@@ -210,7 +210,7 @@ phpstan:
 
 preprod:
   stage: deploy
-  image: php:7.3-cli # todo : set php version
+  image: php:7.4-cli # todo : set php version
   variables:
     URL: <project-preprod-url> # todo : set project preprod url
   dependencies:
@@ -232,7 +232,7 @@ preprod:
 
 production:
   stage: deploy
-  image: php:7.3-cli # todo : set php version
+  image: php:7.4-cli # todo : set php version
   variables:
     URL: <project-production-url> # todo : set project production url
   dependencies:
