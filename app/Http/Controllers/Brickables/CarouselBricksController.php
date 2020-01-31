@@ -75,6 +75,7 @@ class CarouselBricksController extends BricksController
     /** @inheritDoc */
     protected function stored(Request $request, Brick $brick): void
     {
+        /** @var \App\Models\Brickables\CarouselBrick $brick */
         $this->addNewSlide($request, $brick);
     }
 
@@ -101,6 +102,7 @@ class CarouselBricksController extends BricksController
     protected function updated(Request $request, Brick $brick): void
     {
         if ($request->file('image')) {
+            /** @var \App\Models\Brickables\CarouselBrick $brick */
             $this->addNewSlide($request, $brick);
         }
     }
