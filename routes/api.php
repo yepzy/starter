@@ -17,6 +17,5 @@
 //    return $request->user();
 //});
 
-Route::fallback(function () {
-    return response()->json(['message' => __('errors.message.404')], 404);
-});
+// 404 fallback catch : do not not place any route declaration under this one ******************************************
+require('api/utils/fallback.php');

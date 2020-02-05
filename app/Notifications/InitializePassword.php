@@ -26,9 +26,11 @@ class InitializePassword extends WelcomeNotification implements ShouldQueue
     /** @inheritDoc */
     public function buildWelcomeNotificationMessage(): MailMessage
     {
+        /** @var \App\Models\Users\User $user */
+        $user = $this->user;
         return (new MailMessage)
             ->subject(__('mails.InitializePassword.subject'))
-            ->greeting(__('mails.notification.greeting.named', ['name' => $this->user->name]))
+            ->greeting(__('mails.notification.greeting.named', ['name' => $user->name]))
             ->line(__('mails.InitializePassword.message', ['app' => config('app.name')]))
             ->action(__('mails.InitializePassword.action'), $this->showWelcomeFormUrl)
             ->line(__('mails.InitializePassword.expiration', ['minutes' => $this->validUntil->diffInRealMinutes()]))

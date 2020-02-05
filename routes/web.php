@@ -1,8 +1,5 @@
 <?php
 
-use CodeZero\LocalizedRoutes\Middleware\SetLocale;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-
 // not localized *******************************************************************************************************
 // utils
 require('web/utils/seo.php');
@@ -44,6 +41,4 @@ Route::localized(function () {
 });
 
 // 404 fallback catch : do not not place any route declaration under this one ******************************************
-Route::fallback(function () {
-    return response()->view('errors.default', ['exception' => new HttpException(404)], 404);
-})->middleware(SetLocale::class);
+require('web/utils/fallback.php');

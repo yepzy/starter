@@ -13,7 +13,6 @@ parameters:
 
     ignoreErrors:
         - '#Call to an undefined method Illuminate\\Http\\Request::validated\(\)#'
-        - '#Access to an undefined property#'
 
     excludes_analyse:
         - ./*/*/FileToBeExcluded.php
