@@ -7,6 +7,7 @@ require('web/utils/download.php');
 
 // localized ***********************************************************************************************************
 Route::localized(function () {
+
     // auth
     require('web/auth/login.php');
     require('web/auth/register.php');
@@ -14,6 +15,7 @@ Route::localized(function () {
     require('web/auth/confirm.php');
     require('web/auth/verify.php');
     require('web/auth/welcome.php');
+    
     // admin
     Route::prefix('admin')->middleware([
         'auth',
@@ -27,12 +29,14 @@ Route::localized(function () {
         require('web/admin/pages.php');
         require('web/admin/brickables.php');
         require('web/admin/libraryMedia.php');
+
         // password reconfirm protection
         Route::middleware(['password.confirm'])->group(function () {
             require('web/admin/users.php');
             require('web/admin/settings.php');
         });
     });
+
     // front
     require('web/front/home.php');
     require('web/front/news.php');
