@@ -2,10 +2,6 @@
     "license": "proprietary",
     "repositories": [
         {
-            "url": "https://github.com/Okipa/laravel-brickables",
-            "type": "git"
-        },
-        {
             "url": "https://github.com/Okipa/laravel-bootstrap-components",
             "type": "git"
         }
@@ -26,7 +22,7 @@
         "laravel/telescope": "^2.0",
         "laravel/tinker": "^2.0",
         "okipa/laravel-bootstrap-components": "2.0.0.x-dev",
-        "okipa/laravel-brickables": "master",
+        "okipa/laravel-brickables": "^1.0",
         "okipa/laravel-failed-jobs-notifier": "^1.0",
         "okipa/laravel-medialibrary-ext": "^7.11.0",
         "okipa/laravel-request-sanitizer": "^1.0",
