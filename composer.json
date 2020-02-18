@@ -1,11 +1,5 @@
 {
     "license": "proprietary",
-    "repositories": [
-        {
-            "url": "https://github.com/Okipa/laravel-bootstrap-components",
-            "type": "git"
-        }
-    ],
     "require": {
         "php": "^7.4",
         "ext-json": "*",
@@ -21,7 +15,7 @@
         "laravel/horizon": "^3.0",
         "laravel/telescope": "^2.0",
         "laravel/tinker": "^2.0",
-        "okipa/laravel-bootstrap-components": "2.0.0.x-dev",
+        "okipa/laravel-bootstrap-components": "^2.0",
         "okipa/laravel-brickables": "^1.0",
         "okipa/laravel-failed-jobs-notifier": "^1.0",
         "okipa/laravel-medialibrary-ext": "^7.11.0",
