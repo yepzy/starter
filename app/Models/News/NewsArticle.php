@@ -3,13 +3,15 @@
 namespace App\Models\News;
 
 use App\Models\Metable;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\Translatable\HasTranslations;
 
-class NewsArticle extends Metable implements HasMedia
+class NewsArticle extends Metable implements HasMedia, Feedable
 {
     use HasMediaTrait;
     use HasTranslations;
@@ -46,10 +48,7 @@ class NewsArticle extends Metable implements HasMedia
      *
      * @var array
      */
-    protected $casts = [
-        'active' => 'boolean',
-        'published_at' => 'datetime',
-    ];
+    protected $casts = ['active' => 'boolean', 'published_at' => 'datetime'];
 
     /**
      * Get the value of the model's route key.
@@ -121,5 +120,29 @@ class NewsArticle extends Metable implements HasMedia
     public function getCategoryIdsAttribute()
     {
         return $this->categories->pluck('id')->toArray();
+    }
+
+    /** @inheritDoc */
+    public function toFeedItem()
+    {
+        $media = $this->getFirstMedia('illustrations');
+
+        return FeedItem::create()->id($this->id)
+            ->title($this->title)
+            ->summary($this->description)
+            ->updated($this->updated_at)
+            ->link(route('news.show', $this->url))
+            ->author(config('app.name'))
+            ->enclosure($media->getUrl())
+            ->enclosureType($media->mime_type)
+            ->enclosureLength($media->size);
+    }
+
+    /**
+     * @return \App\Models\News\NewsArticle[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public static function getFeedItems()
+    {
+        return self::orderBy('published_at', 'desc')->get();
     }
 }

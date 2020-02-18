@@ -1,10 +1,5 @@
 <?php
 
-// not localized *******************************************************************************************************
-// utils
-require('web/utils/seo.php');
-require('web/utils/download.php');
-
 // localized ***********************************************************************************************************
 Route::localized(function () {
 
@@ -15,7 +10,7 @@ Route::localized(function () {
     require('web/auth/confirm.php');
     require('web/auth/verify.php');
     require('web/auth/welcome.php');
-    
+
     // admin
     Route::prefix('admin')->middleware([
         'auth',
@@ -42,7 +37,15 @@ Route::localized(function () {
     require('web/front/news.php');
     require('web/front/contact.php');
     require('web/front/pages.php');
+    require('web/front/rss.php');
 });
+
+// not localized *******************************************************************************************************
+
+// utils
+require('web/utils/seo.php');
+require('web/utils/download.php');
+
 
 // 404 fallback catch : do not not place any route declaration under this one ******************************************
 require('web/utils/fallback.php');

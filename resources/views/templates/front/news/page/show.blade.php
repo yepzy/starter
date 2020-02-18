@@ -3,6 +3,17 @@
     <div class="mt-5 mb-4">
         {{ Brickables::displayBricks($pageContent) }}
     </div>
+    <div class="container">
+        <a class="new-window"
+           href="{{ route('feeds.news') }}"
+           title="@lang(config('feed.feeds.news.title'))">
+            <span class="fa-stack text-primary">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+            </span>
+            @lang(config('feed.feeds.news.title'))
+        </a>
+    </div>
     <div class="container mt-4 mb-5">
         <div class="row">
             @foreach($articles as $article)

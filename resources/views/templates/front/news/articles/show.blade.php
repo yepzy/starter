@@ -49,6 +49,14 @@
                         <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
                     </a>
                 </span>
+                <span class="fa-stack text-primary">
+                    <a class="new-window"
+                       href="{{ route('feeds.news') }}"
+                       title="@lang(config('feed.feeds.news.title'))">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                    </a>
+                </span>
             </div>
         </div>
     </div>

@@ -26,6 +26,7 @@
         "propaganistas/laravel-phone": "^4.0",
         "realrashid/sweet-alert": "^3.0",
         "sentry/sentry-laravel": "^1.0",
+        "spatie/laravel-feed": "^2.6",
         "spatie/laravel-sitemap": "^5.0",
         "spatie/laravel-translatable": "^4.0",
         "spatie/laravel-welcome-notification": "^1.0"

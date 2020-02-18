@@ -103,5 +103,8 @@
     "Move up": "Déplacer vers le haut",
     "Move down": "Déplacer vers le bas",
     "Edit": "Editer",
-    "Destroy": "Supprimer"
+    "Destroy": "Supprimer",
+    "News RSS feed": "Flux RSS des actualités",
+    "Subscribe to our news RSS feed and automatically receive our latest articles.": "Abonnez-vous à nos flux RSS pour recevoir automatiquement nos derniers articles.",
+    "en-gb": "fr-fr"
 }

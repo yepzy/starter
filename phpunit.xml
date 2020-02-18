@@ -45,6 +45,6 @@
         <server name="APP_EVENTS_CACHE" value="bootstrap/cache/events.phpunit.php"/>
     </php>
     <listeners>
-        <listener class="NunoMaduro\Collision\Adapters\Phpunit\Listener" />
+        <listener class="NunoMaduro\Collision\Adapters\Phpunit\Listener"/>
     </listeners>
 </phpunit>
