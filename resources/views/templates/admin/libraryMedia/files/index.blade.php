@@ -25,7 +25,8 @@
 
                         return $array;
                     })->sortBy('name'), 'id', 'name')
-                    ->selected('id', $request->category_id) }}
+                    ->selected('id', $request->category_id)
+                    ->componentClasses(['selector']) }}
                 {{ submitValidate()->prepend('<i class="fas fa-filter"></i>')->label(__('Filter'))->containerClasses(['ml-3']) }}
                 @if($request->has('category_id'))
                     {{ buttonCancel()->route('libraryMedia.files.index')->prepend('<i class="fas fa-undo"></i>')->label(__('Reset'))->containerClasses(['ml-3']) }}

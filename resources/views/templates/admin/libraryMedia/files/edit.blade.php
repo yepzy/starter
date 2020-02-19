@@ -44,6 +44,7 @@
 
                         return $array;
                     })->sortBy('name'), 'id', 'name')
+                    ->componentClasses(['selector'])
                     ->containerHtmlAttributes(['required']) }}
                 @if(! $file || optional($file)->canBeDisplayed)
                     {{ inputToggle()->name('downloadable')

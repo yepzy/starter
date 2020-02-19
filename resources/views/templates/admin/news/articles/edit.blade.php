@@ -55,6 +55,7 @@
                         return $array;
                     })->sortBy('name'), 'id', 'name')
                     ->multiple()
+                    ->componentClasses(['selector'])
                     ->containerHtmlAttributes(['required']) }}
                 {{ textarea()->name('description')
                     ->locales(supportedLocaleKeys())
