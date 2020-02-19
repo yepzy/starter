@@ -21,7 +21,7 @@ class NewsPageController extends Controller
     {
         /** @var \App\Models\Pages\TitleDescriptionPageContent $pageContent */
         $pageContent = (new TitleDescriptionPageContent)->firstOrCreate(['slug' => 'news-page-content']);
-        (new SeoService)->displayMetaTagsFromModel($pageContent);
+        $pageContent->displaySeoMeta();
         $query = (new NewsArticle)->with(['media', 'categories'])
             ->where('active', true)
             ->where('published_at', '<=', now())

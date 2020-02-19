@@ -2,14 +2,16 @@
 
 namespace App\Http\Requests\Users;
 
-use App\Http\Requests\Request;
 use App\Models\Users\User;
+use Illuminate\Foundation\Http\FormRequest;
 
-class UserUpdateRequest extends Request
+class UserUpdateRequest extends FormRequest
 {
-    protected $exceptFromSanitize = ['new_password'];
-
-    protected $safetyChecks = ['remove_avatar' => 'boolean'];
+    /** @inheritDoc */
+    protected function prepareForValidation()
+    {
+        $this->merge(['remove_avatar' => boolval($this->remove_avatar)]);
+    }
 
     /**
      * Get the validation rules that apply to the request.

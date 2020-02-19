@@ -16,7 +16,7 @@ class PagesController extends Controller
      */
     public function show(Page $page)
     {
-        (new SeoService)->displayMetaTagsFromModel($page);
+        $page->displaySeoMeta();
         $css = mix('/css/pages/show.css');
 
         return view('templates.front.pages.show', compact('page', 'css'));

@@ -55,10 +55,10 @@ class NewsArticlesController extends Controller
         /** @var \App\Models\News\NewsArticle $article */
         $article = (new NewsArticle)->create($request->validated());
         if ($request->file('image')) {
-            $article->addMediaFromRequest('image')->toMediaCollection();
+            $article->addMediaFromRequest('image')->toMediaCollection('illustrations');
         }
         $article->categories()->sync($request->category_ids);
-        (new SeoService)->saveSeoTagsFromRequest($article, $request);
+        $article->saveSeoMetaFromRequest($request);
 
         return redirect()->route('news.articles.index')
             ->with('toast_success', __('notifications.parent.created', [
@@ -97,10 +97,10 @@ class NewsArticlesController extends Controller
     {
         $article->update($request->validated());
         if ($request->file('image')) {
-            $article->addMediaFromRequest('image')->toMediaCollection();
+            $article->addMediaFromRequest('image')->toMediaCollection('illustrations');
         }
         $article->categories()->sync($request->category_ids);
-        (new SeoService)->saveSeoTagsFromRequest($article, $request);
+        $article->saveSeoMetaFromRequest($request);
 
         return back()->with('toast_success', __('notifications.parent.updated', [
             'parent' => __('News'),

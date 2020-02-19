@@ -184,7 +184,7 @@ return [
         'position' => 'Position',
         'meta_title' => 'Meta Title',
         'meta_description' => 'Meta Description',
-        'meta_keywords' => 'Meta Keywords',
+        'meta_image' => 'Meta image',
         'thumb' => 'Aperçu',
         'media' => 'Média',
         'downloadable' => 'Téléchargeable',

@@ -16,7 +16,7 @@
                 </h2>
             </div>
             <div class="card-body">
-                @include('components.admin.seo.meta-tags', ['model' => $pageContent])
+                @include('components.admin.seo.meta', ['model' => $pageContent])
                 <div class="d-flex pt-4">
                     {{ submitUpdate() }}
                 </div>

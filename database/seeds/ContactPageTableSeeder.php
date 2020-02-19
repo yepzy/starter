@@ -21,7 +21,7 @@ class ContactPageTableSeeder extends Seeder
         $fakerEn = Factory::create('en_GB');
         /** @var \App\Models\Pages\TitleDescriptionPageContent $pageContent */
         $pageContent = (new TitleDescriptionPageContent)->create(['slug' => 'contact-page-content']);
-        (new SeoService)->saveSeoTags($pageContent, [
+        $pageContent->saveSeoMeta([
             'meta_title' => ['fr' => 'Nous contacter', 'en' => 'Contact us'],
             'meta_description' => ['fr' => $fakerFr->text(150), 'en' => $fakerEn->text(150)],
         ]);

@@ -16,7 +16,7 @@ class HomePageController extends Controller
     {
         /** @var \App\Models\Pages\PageContent $pageContent */
         $pageContent = (new PageContent)->firstOrCreate(['slug' => 'home-page-content']);
-        (new SeoService)->displayMetaTagsFromModel($pageContent);
+        $pageContent->displaySeoMeta();
         $css = mix('/css/home/page/show.css');
 
         return view('templates.front.home.page.show', compact('pageContent', 'css'));

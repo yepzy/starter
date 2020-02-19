@@ -19,7 +19,6 @@
         "okipa/laravel-brickables": "^1.0",
         "okipa/laravel-failed-jobs-notifier": "^1.0",
         "okipa/laravel-medialibrary-ext": "^7.11.0",
-        "okipa/laravel-request-sanitizer": "^1.0",
         "okipa/laravel-table": "^1.0",
         "plank/laravel-metable": "^2.0",
         "predis/predis": "^1.0",

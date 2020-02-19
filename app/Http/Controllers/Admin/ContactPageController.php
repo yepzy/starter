@@ -39,7 +39,7 @@ class ContactPageController extends Controller
     {
         /** @var \App\Models\Pages\TitleDescriptionPageContent $pageContent */
         $pageContent = (new TitleDescriptionPageContent)->where('slug', 'contact-page-content')->firstOrFail();
-        (new SeoService)->saveSeoTagsFromRequest($pageContent, $request);
+        $pageContent->saveSeoMetaFromRequest($request);
 
         return back()->with('toast_success', __('notifications.orphan.updated', [
             'entity' => __('Contact'),

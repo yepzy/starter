@@ -2,34 +2,13 @@
 
 namespace App\Http\Requests\News;
 
-use App\Http\Requests\Request;
+use App\Http\Requests\SeoRequest;
 use App\Models\News\NewsArticle;
-use App\Services\Seo\SeoService;
 use Carbon\Carbon;
 use CodeZero\UniqueTranslation\UniqueTranslationRule;
 
-class ArticleStoreRequest extends Request
+class ArticleStoreRequest extends SeoRequest
 {
-    protected $exceptFromSanitize = ['url'];
-
-    protected $safetyChecks = ['active' => 'boolean', 'category_ids' => 'array'];
-
-    /**
-     * Execute a pre-validation treatment.
-     *
-     * @return void
-     */
-    public function before()
-    {
-        $this->merge([
-            'published_at' => $this->published_at ? rescue(
-                fn() => Carbon::createFromFormat('d/m/Y H:i', $this->published_at)->toDateTimeString(),
-                'XXX',
-                false
-            ) : null,
-        ]);
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -54,8 +33,21 @@ class ArticleStoreRequest extends Request
             ],
             'description' => ['string', 'max:4294967295'],
         ]);
-        $seoMetaRules = (new SeoService)->getSeoMetaRules();
 
-        return array_merge($rules, $localizedRules, $seoMetaRules);
+        return array_merge($rules, $localizedRules, parent::rules());
+    }
+
+    /** @inheritDoc */
+    protected function prepareForValidation()
+    {
+        parent::prepareForValidation();
+        $this->merge([
+            'published_at' => $this->published_at ? rescue(
+                fn() => Carbon::createFromFormat('d/m/Y H:i', $this->published_at)->toDateTimeString(),
+                'XXX',
+                false
+            ) : null,
+            'active' => boolval($this->active),
+        ]);
     }
 }

@@ -60,11 +60,15 @@ EOT;
 
     /**
      * @return void
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
      */
     protected function createArticle(): void
     {
         $titleFr = ucfirst($this->fakerFr->words(3, true)) . ' FR';
         $titleEn = ucfirst($this->fakerEn->words(3, true)) . ' EN';
+        /** @var \App\Models\News\NewsArticle $article */
         $article = (new NewsArticle)->create([
             'url' => [
                 'fr' => Str::slug($titleFr),
@@ -87,7 +91,7 @@ EOT;
             ->toMediaCollection('illustrations');
         $categoryIds = $this->categories->random(rand(1, $this->categories->count() / 3))->pluck('id');
         $article->categories()->sync($categoryIds);
-        (new SeoService)->saveSeoTags($article, [
+        $article->saveSeoMeta([
             'meta_title' => [
                 'fr' => $titleFr,
                 'en' => $titleEn,

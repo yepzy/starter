@@ -160,6 +160,7 @@ return [
         'description' => 'Description',
         'meta_title' => 'Meta title',
         'meta_description' => 'Meta description',
+        'meta_image' => 'Meta image',
         'phone_number' => 'Phone number',
         'message' => 'Message',
         'avatar' => 'Avatar',

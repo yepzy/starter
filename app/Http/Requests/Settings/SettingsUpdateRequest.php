@@ -2,13 +2,15 @@
 
 namespace App\Http\Requests\Settings;
 
-use App\Http\Requests\Request;
+use Illuminate\Foundation\Http\FormRequest;
 
-class SettingsUpdateRequest extends Request
+class SettingsUpdateRequest extends FormRequest
 {
-    protected $exceptFromSanitize = ['phone_number', 'zip_code'];
-
-    protected $safetyChecks = ['remove_icon' => 'boolean'];
+    /** @inheritDoc */
+    protected function prepareForValidation()
+    {
+        $this->merge(['remove_icon' => boolval($this->remove_icon)]);
+    }
 
     /**
      * Get the validation rules that apply to the request.

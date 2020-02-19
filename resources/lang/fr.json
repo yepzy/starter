@@ -106,5 +106,7 @@
     "Destroy": "Supprimer",
     "News RSS feed": "Flux RSS des actualités",
     "Subscribe to our news RSS feed and automatically receive our latest articles.": "Abonnez-vous à nos flux RSS pour recevoir automatiquement nos derniers articles.",
-    "en-gb": "fr-fr"
+    "en-gb": "fr-fr",
+    "Recommended width: :width pixels / recommended height: :height pixels.": "Largeur recommandée : :width pixels / hauteur recommandée : :height pixels.",
+    "Remove": "Supprimer"
 }

@@ -2,11 +2,11 @@
 
 namespace App\Models\Pages;
 
-use App\Models\Metable;
+use App\Models\Abstracts\Seo;
 use Okipa\LaravelBrickables\Contracts\HasBrickables;
 use Okipa\LaravelBrickables\Traits\HasBrickablesTrait;
 
-class PageContent extends Metable implements HasBrickables
+class PageContent extends Seo implements HasBrickables
 {
     use HasBrickablesTrait;
 

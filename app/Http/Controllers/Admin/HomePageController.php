@@ -31,13 +31,15 @@ class HomePageController extends Controller
      * @param \App\Http\Requests\Home\HomePageUpdateRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
+     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
      */
     public function update(HomePageUpdateRequest $request): RedirectResponse
     {
         /** @var \App\Models\Pages\PageContent $pageContent */
         $pageContent = (new PageContent)->where('slug', 'home-page-content')->firstOrFail();
-        $pageContent->saveMetaFromRequest($request, ['title', 'description']);
-        (new SeoService)->saveSeoTagsFromRequest($pageContent, $request);
+        $pageContent->saveSeoMetaFromRequest($request);
 
         return back()->with('toast_success', __('notifications.orphan.updated', [
             'entity' => __('Home'),

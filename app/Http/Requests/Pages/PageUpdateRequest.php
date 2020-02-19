@@ -2,16 +2,11 @@
 
 namespace App\Http\Requests\Pages;
 
-use App\Http\Requests\Request;
-use App\Services\Seo\SeoService;
+use App\Http\Requests\SeoRequest;
 use CodeZero\UniqueTranslation\UniqueTranslationRule;
 
-class PageUpdateRequest extends Request
+class PageUpdateRequest extends SeoRequest
 {
-    protected $exceptFromSanitize = ['url'];
-
-    protected $safetyChecks = ['active' => 'boolean'];
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -29,8 +24,14 @@ class PageUpdateRequest extends Request
             ],
             'nav_title' => ['required', 'string', 'max:255'],
         ]);
-        $seoMetaRules = (new SeoService)->getSeoMetaRules();
 
-        return array_merge($rules, $localizedRules, $seoMetaRules);
+        return array_merge($rules, $localizedRules, parent::rules());
+    }
+
+    /** @inheritDoc */
+    protected function prepareForValidation()
+    {
+        parent::prepareForValidation();
+        $this->merge(['active' => boolval($this->active)]);
     }
 }

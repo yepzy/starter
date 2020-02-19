@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests\Contact;
 
-use App\Http\Requests\Request;
-use App\Services\Seo\SeoService;
+use App\Http\Requests\SeoRequest;
 
-class ContactPageUpdateRequest extends Request
+class ContactPageUpdateRequest extends SeoRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -18,8 +17,7 @@ class ContactPageUpdateRequest extends Request
             'title' => ['required', 'string', 'max:255'],
             'description' => ['string', 'max:65535'],
         ]);
-        $seoMetaRules = (new SeoService)->getSeoMetaRules();
 
-        return array_merge($seoMetaRules, $localizedRules);
+        return array_merge($localizedRules, parent::rules());
     }
 }

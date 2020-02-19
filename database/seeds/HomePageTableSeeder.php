@@ -46,7 +46,7 @@ EOT;
         $fakerEn = Factory::create('en_GB');
         /** @var \App\Models\Pages\PageContent $pageContent */
         $pageContent = (new PageContent)->create(['slug' => 'home-page-content']);
-        (new SeoService)->saveSeoTags($pageContent, [
+        $pageContent->saveSeoMeta([
             'meta_title' => ['fr' => 'Accueil', 'en' => 'Home'],
             'meta_description' => ['fr' => $fakerFr->text(150), 'en' => $fakerEn->text(150)],
         ]);

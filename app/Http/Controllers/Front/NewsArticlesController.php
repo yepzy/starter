@@ -16,7 +16,7 @@ class NewsArticlesController extends Controller
      */
     public function show(NewsArticle $article)
     {
-        (new SeoService)->displayMetaTagsFromModel($article);
+        $article->displaySeoMeta();
         $css = mix('/css/news/show.css');
 
         return view('templates.front.news.articles.show', compact('article', 'css'));

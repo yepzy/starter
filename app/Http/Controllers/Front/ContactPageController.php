@@ -21,7 +21,7 @@ class ContactPageController extends Controller
     {
         /** @var \App\Models\Pages\TitleDescriptionPageContent $pageContent */
         $pageContent = (new TitleDescriptionPageContent)->firstOrCreate(['slug' => 'contact-page-content']);
-        (new SeoService)->displayMetaTagsFromModel($pageContent);
+        $pageContent->displaySeoMeta();
         $css = mix('/css/contact/page/show.css');
 
         return view('templates.front.contact.page.show', compact('pageContent', 'css'));

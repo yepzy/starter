@@ -2,27 +2,12 @@
 
 namespace App\Http\Requests\Pages;
 
-use App\Http\Requests\Request;
-use App\Services\Seo\SeoService;
+use App\Http\Requests\SeoRequest;
 use CodeZero\UniqueTranslation\UniqueTranslationRule;
 use Illuminate\Support\Str;
 
-class PageStoreRequest extends Request
+class PageStoreRequest extends SeoRequest
 {
-    protected $exceptFromSanitize = ['url'];
-
-    protected $safetyChecks = ['active' => 'boolean'];
-
-    /**
-     * Execute a pre-validation treatment.
-     *
-     * @return void
-     */
-    public function before()
-    {
-        $this->merge(['slug' => Str::slug($this->slug)]);
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -43,8 +28,17 @@ class PageStoreRequest extends Request
             ],
             'nav_title' => ['required', 'string', 'max:255'],
         ]);
-        $seoMetaRules = (new SeoService)->getSeoMetaRules();
 
-        return array_merge($rules, $localizedRules, $seoMetaRules);
+        return array_merge($rules, $localizedRules, parent::rules());
+    }
+
+    /** @inheritDoc */
+    protected function prepareForValidation()
+    {
+        parent::prepareForValidation();
+        $this->merge([
+            'slug' => Str::slug($this->slug),
+            'active' => boolval($this->active),
+        ]);
     }
 }

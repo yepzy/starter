@@ -44,7 +44,7 @@
                     ->componentHtmlAttributes(['data-autofill-from' => '#text-nav-title'])
                     ->containerHtmlAttributes(['required']) }}
                 {{ inputToggle()->name('active')->model($page) }}
-                @include('components.admin.seo.meta-tags', ['model' => $page])
+                @include('components.admin.seo.meta', ['model' => $page])
                 <div class="d-flex pt-4">
                     {{ buttonCancel()->route('pages.index')->containerClasses(['mr-2']) }}
                     @if($page){{ submitUpdate() }}@else{{ submitCreate() }}@endif

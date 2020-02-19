@@ -45,9 +45,7 @@ class LibraryMediaFile extends Model implements HasMedia
      *
      * @var array
      */
-    protected $casts = [
-        'downloadable' => 'boolean',
-    ];
+    protected $casts = ['downloadable' => 'boolean'];
 
     /**
      * Register the media collections.

@@ -68,7 +68,7 @@
                     ->componentClasses(['datetime-picker'])
                     ->containerHtmlAttributes(['required']) }}
                 {{ inputToggle()->name('active')->model($article) }}
-                @include('components.admin.seo.meta-tags', ['model' => $article])
+                @include('components.admin.seo.meta', ['model' => $article])
                 <div class="d-flex pt-4">
                     {{ buttonCancel()->route('news.articles.index')->containerClasses(['mr-2']) }}
                     @if($article){{ submitUpdate() }}@else{{ submitCreate() }}@endif

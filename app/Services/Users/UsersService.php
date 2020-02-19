@@ -2,20 +2,14 @@
 
 namespace App\Services\Users;
 
-use App\Http\Requests\Request;
 use App\Models\Users\User;
 use App\Services\Service;
+use Illuminate\Http\Request;
 use Okipa\LaravelTable\Table;
 
 class UsersService extends Service implements UsersServiceInterface
 {
-    /**
-     * Configure the model table list.
-     *
-     * @return \Okipa\LaravelTable\Table
-     * @throws \ErrorException
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     */
+    /** @inheritDoc */
     public function table(): Table
     {
         $table = (new Table)->model(User::class)->routes([
@@ -43,16 +37,7 @@ class UsersService extends Service implements UsersServiceInterface
         return $table;
     }
 
-    /**
-     * Save avatar from request.
-     *
-     * @param \App\Http\Requests\Request $request
-     * @param \App\Models\Users\User $user
-     *
-     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
-     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
-     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
-     */
+    /** @inheritDoc */
     public function saveAvatarFromRequest(Request $request, User $user): void
     {
         if ($request->file('avatar')) {
@@ -62,15 +47,7 @@ class UsersService extends Service implements UsersServiceInterface
         }
     }
 
-    /**
-     * Set default avatar image for the given user.
-     *
-     * @param \App\Models\Users\User $user
-     *
-     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist
-     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileDoesNotExist
-     * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\FileIsTooBig
-     */
+    /** @inheritDoc */
     public function setDefaultAvatar(User $user): void
     {
         $user->addMedia(database_path('seeds/files/users/default-450-450.png'))

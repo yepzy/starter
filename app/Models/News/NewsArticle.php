@@ -2,7 +2,7 @@
 
 namespace App\Models\News;
 
-use App\Models\Metable;
+use App\Models\Abstracts\Seo;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Spatie\Image\Manipulations;
@@ -11,9 +11,8 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\Translatable\HasTranslations;
 
-class NewsArticle extends Metable implements HasMedia, Feedable
+class NewsArticle extends Seo implements HasMedia, Feedable
 {
-    use HasMediaTrait;
     use HasTranslations;
 
     /**
@@ -77,6 +76,7 @@ class NewsArticle extends Metable implements HasMedia, Feedable
      */
     public function registerMediaCollections()
     {
+        parent::registerMediaCollections();
         $this->addMediaCollection('illustrations')
             ->singleFile()
             ->acceptsMimeTypes(['image/jpeg', 'image/png'])
@@ -89,21 +89,6 @@ class NewsArticle extends Metable implements HasMedia, Feedable
                     ->fit(Manipulations::FIT_CROP, 350, 250)
                     ->keepOriginalImageFormat();
             });
-    }
-
-    /**
-     * Register the media conversions.
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     *
-     * @param \Spatie\MediaLibrary\Models\Media|null $media
-     *
-     * @throws \Spatie\Image\Exceptions\InvalidManipulation
-     */
-    public function registerMediaConversions(Media $media = null)
-    {
-        $this->addMediaConversion('thumb')
-            ->fit(Manipulations::FIT_CROP, 40, 40)
-            ->keepOriginalImageFormat();
     }
 
     /**

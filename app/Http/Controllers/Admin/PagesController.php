@@ -45,8 +45,9 @@ class PagesController extends Controller
      */
     public function store(PageStoreRequest $request)
     {
+        /** @var \App\Models\Pages\Page $page */
         $page = (new Page)->create($request->validated());
-        (new SeoService)->saveSeoTagsFromRequest($page, $request);
+        $page->saveSeoMetaFromRequest($request);
         pages(true);
 
         return redirect()->route('pages.index')->with('toast_success', __('notifications.orphan.created', [
@@ -80,7 +81,7 @@ class PagesController extends Controller
     public function update(Page $page, PageUpdateRequest $request)
     {
         $page->update(Arr::except($request->validated(), 'slug'));
-        (new SeoService)->saveSeoTagsFromRequest($page, $request);
+        $page->saveSeoMetaFromRequest($request);
         pages(true);
 
         return back()->with('toast_success', __('notifications.orphan.updated', [

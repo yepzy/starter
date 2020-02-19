@@ -2,9 +2,9 @@
 
 namespace App\Services\Users;
 
-use App\Http\Requests\Request;
 use App\Models\Users\User;
 use App\Services\ServiceInterface;
+use Illuminate\Http\Request;
 use Okipa\LaravelTable\Table;
 
 interface UsersServiceInterface extends ServiceInterface
@@ -21,7 +21,7 @@ interface UsersServiceInterface extends ServiceInterface
     /**
      * Save avatar from request.
      *
-     * @param \App\Http\Requests\Request $request
+     * @param \Illuminate\Http\Request $request
      * @param \App\Models\Users\User $user
      *
      * @throws \Spatie\MediaLibrary\Exceptions\FileCannotBeAdded\DiskDoesNotExist

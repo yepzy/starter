@@ -2,13 +2,11 @@
 
 namespace App\Http\Requests\Users;
 
-use App\Http\Requests\Request;
 use App\Models\Users\User;
+use Illuminate\Foundation\Http\FormRequest;
 
-class UserStoreRequest extends Request
+class UserStoreRequest extends FormRequest
 {
-    protected $exceptFromSanitize = ['password'];
-
     /**
      * Get the validation rules that apply to the request.
      *

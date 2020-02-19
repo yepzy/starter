@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Utils;
 
-use App\Http\Requests\Request;
+use Illuminate\Foundation\Http\FormRequest;
 
-class DownloadFileRequest extends Request
+class DownloadFileRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.

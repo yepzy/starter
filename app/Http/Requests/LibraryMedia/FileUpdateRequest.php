@@ -2,12 +2,16 @@
 
 namespace App\Http\Requests\LibraryMedia;
 
-use App\Http\Requests\Request;
 use App\Models\LibraryMedia\LibraryMediaFile;
+use Illuminate\Foundation\Http\FormRequest;
 
-class FileUpdateRequest extends Request
+class FileUpdateRequest extends FormRequest
 {
-    protected $safetyChecks = ['downloadable' => 'boolean'];
+    /** @inheritDoc */
+    protected function prepareForValidation()
+    {
+        $this->merge(['downloadable' => boolval($this->downloadables)]);
+    }
 
     /**
      * Get the validation rules that apply to the request.

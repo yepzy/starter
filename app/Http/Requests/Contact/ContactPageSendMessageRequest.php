@@ -2,12 +2,10 @@
 
 namespace App\Http\Requests\Contact;
 
-use App\Http\Requests\Request;
+use Illuminate\Foundation\Http\FormRequest;
 
-class ContactPageSendMessageRequest extends Request
+class ContactPageSendMessageRequest extends FormRequest
 {
-    protected $exceptFromSanitize = ['phone_number'];
-
     /**
      * Get the validation rules that apply to the request.
      *

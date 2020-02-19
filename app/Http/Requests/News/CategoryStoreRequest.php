@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\News;
 
-use App\Http\Requests\Request;
 use CodeZero\UniqueTranslation\UniqueTranslationRule;
+use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryStoreRequest extends Request
+class CategoryStoreRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.

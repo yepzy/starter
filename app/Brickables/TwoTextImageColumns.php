@@ -3,7 +3,6 @@
 namespace App\Brickables;
 
 use App\Http\Controllers\Brickables\TwoTextImageBricksController;
-use App\Http\Requests\Request;
 use App\Models\Brickables\TwoTextImageColumnsBrick;
 use Okipa\LaravelBrickables\Abstracts\Brickable;
 

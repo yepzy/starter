@@ -22,7 +22,7 @@ class NewsPageTableSeeder extends Seeder
         $fakerEn = Factory::create('en_GB');
         /** @var \App\Models\Pages\TitleDescriptionPageContent $pageContent */
         $pageContent = (new TitleDescriptionPageContent)->create(['slug' => 'news-page-content']);
-        (new SeoService)->saveSeoTags($pageContent, [
+        $pageContent->saveSeoMeta([
             'meta_title' => ['fr' => 'Actualités', 'en' => 'News'],
             'meta_description' => ['fr' => $fakerFr->text(150), 'en' => $fakerEn->text(150)],
         ]);

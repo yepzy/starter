@@ -2,7 +2,6 @@
 
 namespace App\Brickables;
 
-use App\Http\Requests\Request;
 use Okipa\LaravelBrickables\Abstracts\Brickable;
 
 class TitleH1 extends Brickable

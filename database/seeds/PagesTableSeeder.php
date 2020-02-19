@@ -87,13 +87,15 @@ EOT;
      * @param array $bricks
      * @param array $seoTags
      *
+     * @throws \Okipa\LaravelBrickables\Exceptions\BrickableCannotBeHandledException
      * @throws \Okipa\LaravelBrickables\Exceptions\InvalidBrickableClassException
+     * @throws \Okipa\LaravelBrickables\Exceptions\NotRegisteredBrickableClassException
      */
     protected function createPage(array $data, array $bricks, array $seoTags): void
     {
         /** @var Page $page */
         $page = (new Page)->create($data);
         $page->addBricks($bricks);
-        (new SeoService)->saveSeoTags($page, $seoTags);
+        $page->saveSeoMeta($seoTags);
     }
 }

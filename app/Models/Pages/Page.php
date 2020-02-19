@@ -2,12 +2,12 @@
 
 namespace App\Models\Pages;
 
-use App\Models\Metable;
+use App\Models\Abstracts\Seo;
 use Okipa\LaravelBrickables\Contracts\HasBrickables;
 use Okipa\LaravelBrickables\Traits\HasBrickablesTrait;
 use Spatie\Translatable\HasTranslations;
 
-class Page extends Metable implements HasBrickables
+class Page extends Seo implements HasBrickables
 {
     use HasTranslations;
     use HasBrickablesTrait;

@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\LibraryMedia;
 
-use App\Http\Requests\Request;
+use Illuminate\Foundation\Http\FormRequest;
 
-class FilesIndexRequest extends Request
+class FilesIndexRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
