@@ -7,12 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class FileUpdateRequest extends FormRequest
 {
-    /** @inheritDoc */
-    protected function prepareForValidation()
-    {
-        $this->merge(['downloadable' => boolval($this->downloadables)]);
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -28,5 +22,11 @@ class FileUpdateRequest extends FormRequest
         $localizedRules = localizeRules(['name' => ['required', 'string', 'max:255']]);
 
         return array_merge($rules, $localizedRules);
+    }
+
+    /** @inheritDoc */
+    protected function prepareForValidation()
+    {
+        $this->merge(['downloadable' => boolval($this->downloadable)]);
     }
 }

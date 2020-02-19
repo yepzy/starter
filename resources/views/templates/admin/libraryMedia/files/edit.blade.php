@@ -57,14 +57,14 @@
                         ->label(__('URL'))
                         ->prepend('<i class="fas fa-link fa-fw"></i>')
                         ->value($file->getFirstMedia('medias')->getFullUrl())
-                        ->append(view('components.admin.table.library-media.url-copy-link', compact('file')))
+                        ->append(view('components.admin.library-media.url-copy-link', compact('file')))
                         ->componentHtmlAttributes(['disabled']) }}
                     {{ textarea()->name('html')
                         ->locales(supportedLocaleKeys())
                         ->label(__('library-media.labels.html'))
                         ->prepend('<i class="fas fa-code fa-fw"></i>')
                         ->value(fn($locale) => trim(view('components.admin.table.library-media.html-clipboard-content', ['file' => $file, 'locale' => $locale])))
-                        ->append(view('components.admin.table.library-media.html-copy-link', compact('file')))
+                        ->append(view('components.admin.library-media.html-copy-link', compact('file')))
                         ->componentHtmlAttributes(['disabled']) }}
                 @endif
                 <div class="d-flex pt-4">
