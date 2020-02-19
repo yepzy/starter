@@ -36,5 +36,6 @@ return [
     'parameters' => 'parametres',
     'profile' => 'profil',
     'welcome' => 'bienvenue',
+    "send" => "envoi",
 
 ];

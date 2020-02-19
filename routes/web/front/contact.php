@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Front\ContactPageController;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 Route::get(
     '/contact',
@@ -9,4 +10,4 @@ Route::get(
 Route::post(
     '/contact/message/send',
     [ContactPageController::class, 'sendMessage']
-)->name('contact.sendMessage');
+)->name('contact.sendMessage')->middleware(ProtectAgainstSpam::class);

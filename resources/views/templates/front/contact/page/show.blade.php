@@ -6,7 +6,8 @@
     <div class="container my-5">
         <div class="row">
             <div class="col-md-8">
-                <form action="{{ route('contact.sendMessage') }}" method="POST">
+                <form method="POST" action="{{ route('contact.sendMessage') }}">
+                    @honeypot
                     @csrf()
                     <div class="form-row">
                         <div class="col-md-6">
