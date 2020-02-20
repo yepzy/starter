@@ -3070,16 +3070,16 @@
         },
         {
             "name": "okipa/laravel-brickables",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-brickables.git",
-                "reference": "dfd3212f9af86b87291c03d271134d276efd1fec"
+                "reference": "db199c462ca74115fccbc56843d3356a2e76c683"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Okipa/laravel-brickables/zipball/dfd3212f9af86b87291c03d271134d276efd1fec",
-                "reference": "dfd3212f9af86b87291c03d271134d276efd1fec",
+                "url": "https://api.github.com/repos/Okipa/laravel-brickables/zipball/db199c462ca74115fccbc56843d3356a2e76c683",
+                "reference": "db199c462ca74115fccbc56843d3356a2e76c683",
                 "shasum": ""
             },
             "require": {
@@ -3088,11 +3088,9 @@
                 "spatie/eloquent-sortable": "^3.0"
             },
             "require-dev": {
-                "fzaninotto/faker": "^1.9",
                 "nunomaduro/larastan": "^0.4.3||^0.5",
                 "orchestra/testbench": "^3.8.0||^4.0",
                 "phpmd/phpmd": "^2.8",
-                "phpunit/phpunit": "^8.0",
                 "squizlabs/php_codesniffer": "^3.5"
             },
             "type": "library",
@@ -3140,7 +3138,7 @@
                 "management",
                 "okipa"
             ],
-            "time": "2020-02-14T17:48:35+00:00"
+            "time": "2020-02-20T11:18:36+00:00"
         },
         {
             "name": "okipa/laravel-failed-jobs-notifier",
@@ -3272,16 +3270,16 @@
         },
         {
             "name": "okipa/laravel-medialibrary-ext",
-            "version": "7.17.2",
+            "version": "7.17.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-medialibrary-ext.git",
-                "reference": "4dd1ea0af3da06b46c17fd937e116b9f8502118e"
+                "reference": "e86e023aaf1f38cee6ec6ba101dc32743d956be3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Okipa/laravel-medialibrary-ext/zipball/4dd1ea0af3da06b46c17fd937e116b9f8502118e",
-                "reference": "4dd1ea0af3da06b46c17fd937e116b9f8502118e",
+                "url": "https://api.github.com/repos/Okipa/laravel-medialibrary-ext/zipball/e86e023aaf1f38cee6ec6ba101dc32743d956be3",
+                "reference": "e86e023aaf1f38cee6ec6ba101dc32743d956be3",
                 "shasum": ""
             },
             "require": {
@@ -3362,7 +3360,7 @@
                 "okipa",
                 "spatie"
             ],
-            "time": "2020-02-14T11:23:32+00:00"
+            "time": "2020-02-19T15:02:17+00:00"
         },
         {
             "name": "okipa/laravel-table",

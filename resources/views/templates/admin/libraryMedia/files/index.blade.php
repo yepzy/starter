@@ -25,7 +25,7 @@
 
                         return $array;
                     })->sortBy('name'), 'id', 'name')
-                    ->selected('id', $request->category_id)
+                    ->selected('id', (int) $request->category_id)
                     ->componentClasses(['selector']) }}
                 {{ submitValidate()->prepend('<i class="fas fa-filter"></i>')->label(__('Filter'))->containerClasses(['ml-3']) }}
                 @if($request->has('category_id'))

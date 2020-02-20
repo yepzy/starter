@@ -52,7 +52,12 @@ class FilesService extends Service implements FilesServiceInterface
         $table->column('thumb')
             ->html(fn(LibraryMediaFile $file) => view('components.admin.table.library-media.thumb', compact('file')));
         $table->column('name')->value(fn(LibraryMediaFile $file) => $file->name)->sortable()->searchable();
-        $table->column('category_name')->sortable()->searchable('library_media_categories', ['name']);
+        $table->column('category_name')
+            ->link(fn(LibraryMediaFile $file) => route('libraryMedia.files.index', [
+                'category_id' => $file->category->id,
+            ]))
+            ->value(fn(LibraryMediaFile $file) => $file->category->name)
+            ->sortable();
         $table->column('mime_type')
             ->title(__('MIME types'))
             ->html(fn(LibraryMediaFile $file) => '<a class="new-window" '

@@ -6,6 +6,9 @@
     {{ button()->prepend('<i class="fas fa-code fa-fw"></i>')
         ->label(__('HTML') . ' (' . strtoupper($localeKey). ')')
         ->componentClasses(['btn-outline-primary',  'btn-sm', 'm-1', 'clipboard-copy'])
-        ->componentHtmlAttributes(['data-library-media-id' => $file->id, 'data-type' => 'html'])
-        ->containerHtmlAttributes(['data-locale' => $localeKey]) }}
+        ->componentHtmlAttributes([
+            'data-library-media-id' => $file->id,
+            'data-type' => 'html',
+            'data-locale' => $localeKey
+        ]) }}
 @endforeach

@@ -32,6 +32,17 @@ class CategoriesService extends Service implements CategoriesServiceInterface
             ];
         });
         $table->column('name')->stringLimit(30)->sortable()->searchable();
+        $table->column()
+            ->title(__('Files count'))
+            ->link(fn(LibraryMediaCategory $libraryMediaCategory) => route('libraryMedia.files.index', [
+                'category_id' => $libraryMediaCategory->id,
+            ]))
+            ->button()
+            ->value(function (LibraryMediaCategory $libraryMediaCategory) {
+                $count = $libraryMediaCategory->files->count();
+
+                return trans_choice('[0,1]:count file|[2,*]:count files', $count, compact('count'));
+            });
 
         return $table;
     }

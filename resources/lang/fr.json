@@ -108,5 +108,7 @@
     "Subscribe to our news RSS feed and automatically receive our latest articles.": "Abonnez-vous à nos flux RSS pour recevoir automatiquement nos derniers articles.",
     "en-gb": "fr-fr",
     "Recommended width: :width pixels / recommended height: :height pixels.": "Largeur recommandée : :width pixels / hauteur recommandée : :height pixels.",
-    "Remove": "Supprimer"
+    "Remove": "Supprimer",
+    "Files count" : "Nombre fichiers",
+    "[0,1]:count file|[2,*]:count files": "[0,1]:count fichier|[2,*]:count fichiers"
 }

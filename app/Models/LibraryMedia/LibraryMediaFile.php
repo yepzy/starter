@@ -156,10 +156,10 @@ class LibraryMediaFile extends Model implements HasMedia
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function category()
     {
-        return $this->hasOne(LibraryMediaCategory::class, 'id', 'category_id');
+        return $this->belongsTo(LibraryMediaCategory::class);
     }
 }

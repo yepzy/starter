@@ -31,10 +31,10 @@ class LibraryMediaCategory extends Model
     protected $fillable = ['name'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function libraryMedia()
+    public function files()
     {
-        return $this->belongsTo(LibraryMediaFile::class, 'category_id');
+        return $this->hasMany(LibraryMediaFile::class, 'category_id', 'id');
     }
 }
