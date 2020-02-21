@@ -20,6 +20,6 @@ class Error404Controller extends Controller
      */
     public function webResponse()
     {
-        return response()->view('errors.default', ['exception' => new HttpException(404)], 404);
+        return response()->view('errors.404', ['exception' => new HttpException(404)], 404);
     }
 }
