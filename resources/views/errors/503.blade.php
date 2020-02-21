@@ -13,11 +13,16 @@
                         {{ $icon('auth') }}
                     @endif
                 </div>
-                <h1 class="h3 font-weight-normal text-warning mt-3">
-                    <i class="fas fa-search fa-fw"></i>
-                    @lang('Page not found')
+                <h1 class="h3 font-weight-normal text-info mt-3">
+                    <i class="fas fa-tools fa-fw"></i>
+                    @lang('Maintenance in progress')
                 </h1>
-                {{ buttonBack()->route('home')->label(__('Back to home page'))->containerClasses(['mt-5']) }}
+                @if($exception->getMessage())
+                    <p class="h5">
+                        {{ $exception->getMessage() }}
+                    </p>
+                @endif
+                {{ buttonBack()->route('home')->label(__('Retry'))->containerClasses(['mt-5']) }}
             </div>
         </div>
     </div>

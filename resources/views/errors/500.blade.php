@@ -13,23 +13,26 @@
                         {{ $icon('auth') }}
                     @endif
                 </div>
-                <i class="fas fa-5x fa-exclamation-triangle fa-fw text-danger"></i>
-                <h1 class="h3 font-weight-normal mt-3">
+                <h1 class="h3 font-weight-normal text-danger mt-3">
+                    <i class="fas fa-exclamation-triangle fa-fw"></i>
                     @lang('Error') {{ $exception->getStatusCode() }}
                 </h1>
                 <p class="h5">
-                    @lang('errors.message.' . $exception->getStatusCode())
+                    {{ $exception->getMessage() }}
                 </p>
-                @if(app()->bound('sentry') && ! empty(Sentry::getLastEventID()) && config('sentry.dsn_public'))
-                    <div class="subtitle">Error ID: {{ Sentry::getLastEventID() }}</div>
-                    <script src="https://cdn.ravenjs.com/3.3.0/raven.min.js"></script>
+                @if(app()->bound('sentry') && app('sentry')->getLastEventId() && config('sentry.dsn'))
+                    <div class="subtitle">Error ID: {{ app('sentry')->getLastEventId() }}</div>
+                    <script src="https://browser.sentry-cdn.com/5.12.1/bundle.min.js"
+                            integrity="sha384-y+an4eARFKvjzOivf/Z7JtMJhaN6b+lLQ5oFbBbUwZNNVir39cYtkjW1r6Xjbxg3"
+                            crossorigin="anonymous"></script>
                     <script>
-                        Raven.showReportDialog({
-                            eventId: '{{ Sentry::getLastEventID() }}',
-                            dsn: '{{ config('sentry.dsn_public') }}',
+                        Sentry.init({dsn: '{{ config('sentry.dsn') }}'});
+                        Sentry.showReportDialog({
+                            eventId: '{{ app('sentry')->getLastEventId() }}',
                             user: {
                                 'name': '{{ config('app.name') }}',
                                 'email': '{{ settings()->email }}',
+                                'lang': '{{ app()->getLocale() }}'
                             }
                         });
                     </script>

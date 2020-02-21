@@ -109,6 +109,9 @@
     "en-gb": "fr-fr",
     "Recommended width: :width pixels / recommended height: :height pixels.": "Largeur recommandée : :width pixels / hauteur recommandée : :height pixels.",
     "Remove": "Supprimer",
-    "Files count" : "Nombre fichiers",
-    "[0,1]:count file|[2,*]:count files": "[0,1]:count fichier|[2,*]:count fichiers"
+    "Files count": "Nombre fichiers",
+    "[0,1]:count file|[2,*]:count files": "[0,1]:count fichier|[2,*]:count fichiers",
+    "Maintenance in progress": "Maintenance en cours",
+    "Page not found": "Page non trouvée",
+    "An unexpected error has occurred.": "Une erreur imprévue est survenue."
 }
