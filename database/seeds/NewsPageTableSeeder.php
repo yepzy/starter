@@ -2,9 +2,7 @@
 
 use App\Brickables\OneTextColumn;
 use App\Brickables\TitleH1;
-use App\Models\Pages\PageContent;
 use App\Models\Pages\TitleDescriptionPageContent;
-use App\Services\Seo\SeoService;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 

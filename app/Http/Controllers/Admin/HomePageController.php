@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Home\HomePageUpdateRequest;
 use App\Models\Pages\PageContent;
-use App\Services\Seo\SeoService;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;

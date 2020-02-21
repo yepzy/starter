@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pages\PageContent;
-use App\Services\Seo\SeoService;
 
 class HomePageController extends Controller
 {

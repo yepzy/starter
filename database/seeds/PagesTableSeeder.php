@@ -3,7 +3,6 @@
 use App\Brickables\OneTextColumn;
 use App\Brickables\TitleH1;
 use App\Models\Pages\Page;
-use App\Services\Seo\SeoService;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 

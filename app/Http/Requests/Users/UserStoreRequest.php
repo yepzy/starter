@@ -18,7 +18,7 @@ class UserStoreRequest extends FormRequest
             'avatar' => (new User)->validationConstraints('avatars'),
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'max:255', 'email:rfc,dns,spoof', 'unique:users'],
             'password' => ['string', 'min:' . config('security.password.constraint.min'), 'confirmed'],
         ];
     }

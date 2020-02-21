@@ -28,7 +28,7 @@ class UserUpdateRequest extends FormRequest
             'email' => [
                 'required',
                 'string',
-                'email',
+                'email:rfc,dns,spoof',
                 'max:255',
                 'unique:users,email,' . $this->user->id,
             ],

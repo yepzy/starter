@@ -7,7 +7,6 @@ use App\Http\Requests\Pages\PageStoreRequest;
 use App\Http\Requests\Pages\PageUpdateRequest;
 use App\Models\Pages\Page;
 use App\Services\Pages\PagesService;
-use App\Services\Seo\SeoService;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Support\Arr;
 

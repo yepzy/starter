@@ -2,7 +2,6 @@
 
 use App\Models\News\NewsArticle;
 use App\Models\News\NewsCategory;
-use App\Services\Seo\SeoService;
 use Carbon\Carbon;
 use Faker\Factory;
 use Illuminate\Database\Seeder;

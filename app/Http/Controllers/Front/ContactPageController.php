@@ -5,10 +5,8 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Contact\ContactPageSendMessageRequest;
 use App\Models\Logs\LogContactFormMessage;
-use App\Models\Pages\PageContent;
 use App\Models\Pages\TitleDescriptionPageContent;
 use App\Notifications\ContactFormMessage;
-use App\Services\Seo\SeoService;
 use Notification;
 
 class ContactPageController extends Controller

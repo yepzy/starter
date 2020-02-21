@@ -23,7 +23,7 @@ class SettingsUpdateRequest extends FormRequest
         return [
             'icon' => settings()->validationConstraints('icons'),
             'remove_icon' => ['required', 'boolean'],
-            'email' => ['required', 'string', 'max:255', 'email'],
+            'email' => ['required', 'string', 'max:255', 'email:rfc,dns,spoof'],
             'phone_number' => ['required', 'string', 'max:255', 'phone:AUTO'],
             'address' => ['string', 'max:255'],
             'zip_code' => ['string', 'max:255'],

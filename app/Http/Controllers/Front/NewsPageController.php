@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\News\ArticlesIndexRequest;
 use App\Models\News\NewsArticle;
-use App\Models\Pages\PageContent;
 use App\Models\Pages\TitleDescriptionPageContent;
-use App\Services\Seo\SeoService;
 
 class NewsPageController extends Controller
 {

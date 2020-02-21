@@ -7,7 +7,6 @@ use App\Http\Requests\News\ArticleStoreRequest;
 use App\Http\Requests\News\ArticleUpdateRequest;
 use App\Models\News\NewsArticle;
 use App\Services\News\ArticlesService;
-use App\Services\Seo\SeoService;
 use Artesaos\SEOTools\Facades\SEOTools;
 
 class NewsArticlesController extends Controller
