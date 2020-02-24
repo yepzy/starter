@@ -20,6 +20,7 @@ class PhoneInternational implements Rule
 
     /**
      * Determine if the validation rule passes.
+     * @SuppressWarnings("unused")
      *
      * @param string $attribute
      * @param mixed $value

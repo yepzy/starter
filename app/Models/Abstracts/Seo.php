@@ -4,6 +4,7 @@ namespace App\Models\Abstracts;
 
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
+use Spatie\Image\Image;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -28,7 +29,7 @@ abstract class Seo extends Metable implements HasMedia
             ->acceptsMimeTypes(['image/jpeg', 'image/png'])
             ->registerMediaConversions(function (Media $media = null) {
                 $this->addMediaConversion('image')
-                    ->fit(Manipulations::FIT_CROP, 1200, 600)
+                    ->fit(Manipulations::FIT_CROP, 600, 600)
                     ->keepOriginalImageFormat();
             });
     }
@@ -94,7 +95,13 @@ abstract class Seo extends Metable implements HasMedia
         SEOTools::setDescription($this->getMeta('meta_description'));
         $metaImage = $this->getFirstMedia('seo');
         if ($metaImage) {
-            SeoTools::addImages([$metaImage->getFullUrl('image')]);
+            $metaImageResource = Image::load($metaImage->getPath('image'));
+            SeoTools::addImages([
+                $metaImage->getFullUrl('image'), [
+                    'width' => $metaImageResource->getWidth(),
+                    'height' => $metaImageResource->getHeight(),
+                ],
+            ]);
         }
     }
 }

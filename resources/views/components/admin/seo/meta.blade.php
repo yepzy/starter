@@ -4,7 +4,7 @@
     ->uploadedFile(fn() => $metaImage ? image()->src($metaImage->getUrl('thumb'))->linkUrl($metaImage->getUrl())->linkTitle($metaImage->name) : null)
     ->caption(
         (new \App\Models\Pages\PageContent)->constraintsLegend('seo') . '<br>' .
-        __('Recommended width: :width pixels / recommended height: :height pixels.', ['width' => 1200, 'height' => 600])
+        __('Recommended width: :width pixels / recommended height: :height pixels.', ['width' => 600, 'height' => 600])
     ) }}
 {{ inputText()->name('meta_title')
     ->locales(supportedLocaleKeys())

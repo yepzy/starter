@@ -13,7 +13,6 @@ class HomePageController extends Controller
      */
     public function show()
     {
-        $test->truc();
         /** @var \App\Models\Pages\PageContent $pageContent */
         $pageContent = (new PageContent)->firstOrCreate(['slug' => 'home-page-content']);
         $pageContent->displaySeoMeta();
