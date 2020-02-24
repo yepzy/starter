@@ -28,7 +28,7 @@ abstract class Seo extends Metable implements HasMedia
             ->acceptsMimeTypes(['image/jpeg', 'image/png'])
             ->registerMediaConversions(function (Media $media = null) {
                 $this->addMediaConversion('image')
-                    ->fit(Manipulations::FIT_CROP, 1200, 1200)
+                    ->fit(Manipulations::FIT_CROP, 1200, 600)
                     ->keepOriginalImageFormat();
             });
     }
