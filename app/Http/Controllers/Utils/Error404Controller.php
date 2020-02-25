@@ -12,7 +12,7 @@ class Error404Controller extends Controller
      */
     public function apiResponse()
     {
-        return response()->json(['message' => __('errors.message.404')], 404);
+        return response()->json(['message' => __('Page not found')], 404);
     }
 
     /**
