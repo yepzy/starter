@@ -18,7 +18,7 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
         parent::boot();
 
         // Horizon::routeSmsNotificationsTo('15556667777');
-        $mailNotificationsRecipients = config('monitoring.notifications.email');
+        $mailNotificationsRecipients = config('notifications.recipients.monitoring.email');
         if ($mailNotificationsRecipients) {
             Horizon::routeMailNotificationsTo($mailNotificationsRecipients);
         }

@@ -39,7 +39,7 @@ return [
     ],
 
     'mail' => [
-        'to' => env('MONITORING_NOTIFICATIONS'),
+        'to' => env('MONITORING_EMAIL_NOTIFICATIONS'),
     ],
 
     'slack' => [
