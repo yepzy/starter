@@ -17,7 +17,7 @@ class ArticleUpdateRequest extends SeoRequest
     public function rules()
     {
         $rules = [
-            'illustration' => (new NewsArticle)->validationConstraints('illustration'),
+            'illustration' => (new NewsArticle)->validationRules('illustration'),
             'category_ids' => ['required', 'array'],
             'category_ids.*' => ['required', 'integer', 'exists:news_categories,id'],
             'published_at' => ['required', 'date_format:Y-m-d H:i:s'],

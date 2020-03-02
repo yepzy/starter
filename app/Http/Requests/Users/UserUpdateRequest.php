@@ -21,7 +21,7 @@ class UserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'avatar' => (new User)->validationConstraints('avatars'),
+            'avatar' => (new User)->validationRules('avatars'),
             'remove_avatar' => ['required', 'boolean'],
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],

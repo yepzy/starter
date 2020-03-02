@@ -31,7 +31,7 @@
                     ->uploadedFile(fn() => $image ? image()->src($image->getUrl('thumb'))->linkUrl($image->getUrl())->linkTitle($image->name) : null)
                     ->showRemoveCheckbox(false)
                     ->containerHtmlAttributes(['required'])
-                    ->caption((new \App\Models\News\NewsArticle)->constraintsLegend('illustrations')) }}
+                    ->caption((new \App\Models\News\NewsArticle)->constraintsCaption('illustrations')) }}
                 <h3>@lang('Identity')</h3>
                 {{ inputText()->name('title')
                     ->locales(supportedLocaleKeys())

@@ -15,7 +15,7 @@ class UserStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'avatar' => (new User)->validationConstraints('avatars'),
+            'avatar' => (new User)->validationRules('avatars'),
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'max:255', 'email:rfc,dns,spoof', 'unique:users'],

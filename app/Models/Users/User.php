@@ -17,7 +17,7 @@ use Spatie\WelcomeNotification\ReceivesWelcomeNotification;
 
 class User extends Authenticatable implements
     HasMedia,
-    MustVerifyEmail // todo : comment if this feature is not needed
+    MustVerifyEmail
 {
     use Notifiable;
     use HasMediaTrait;
@@ -28,23 +28,14 @@ class User extends Authenticatable implements
      *
      * @var array
      */
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',
-        'phone_number',
-        'password',
-    ];
+    protected $fillable = ['first_name', 'last_name', 'email', 'phone_number', 'password'];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * Register the media collections.
@@ -85,17 +76,6 @@ class User extends Authenticatable implements
     public function getNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getInitialsAttribute()
-    {
-        $cleanedFirstName = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $this->first_name);
-        $cleanedLastName = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $this->last_name);
-
-        return substr($cleanedFirstName, 0, 1) . substr($cleanedLastName, 0, 1);
     }
 
     /**

@@ -2,7 +2,6 @@
 
 // localized ***********************************************************************************************************
 Route::localized(function () {
-
     // auth
     require('web/auth/login.php');
     require('web/auth/register.php');
@@ -12,10 +11,7 @@ Route::localized(function () {
     require('web/auth/welcome.php');
 
     // admin
-    Route::prefix('admin')->middleware([
-        'auth',
-        'verified', // todo : comment if this feature is not needed
-    ])->group(function () {
+    Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
         require('web/admin/admin.php');
         require('web/admin/dashboard.php');
         require('web/admin/home.php');
@@ -45,7 +41,6 @@ Route::localized(function () {
 // utils
 require('web/utils/seo.php');
 require('web/utils/download.php');
-
 
 // 404 fallback catch : do not not place any route declaration under this one ******************************************
 require('web/utils/fallback.php');
