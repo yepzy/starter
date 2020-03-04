@@ -332,28 +332,28 @@
         },
         {
             "name": "codezero/laravel-localized-routes",
-            "version": "2.2.4",
+            "version": "2.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codezero-be/laravel-localized-routes.git",
-                "reference": "294ac6ce622e6437672f2d664e74480dd85d4b31"
+                "reference": "b144863f4b3627ef9a4f5ee4f33ad89c7482ee37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codezero-be/laravel-localized-routes/zipball/294ac6ce622e6437672f2d664e74480dd85d4b31",
-                "reference": "294ac6ce622e6437672f2d664e74480dd85d4b31",
+                "url": "https://api.github.com/repos/codezero-be/laravel-localized-routes/zipball/b144863f4b3627ef9a4f5ee4f33ad89c7482ee37",
+                "reference": "b144863f4b3627ef9a4f5ee4f33ad89c7482ee37",
                 "shasum": ""
             },
             "require": {
                 "0.0.0/composer-include-files": "^1.5",
                 "codezero/laravel-localizer": "^1.1",
-                "illuminate/support": ">=5.6",
+                "illuminate/support": "^5.6|^6.0|^7.0",
                 "php": "^7.1"
             },
             "require-dev": {
                 "mockery/mockery": "^1.3",
-                "orchestra/testbench": ">=3.6",
-                "phpunit/phpunit": "^7.0|^8.0"
+                "orchestra/testbench": "^3.6|^4.0|^5.0",
+                "phpunit/phpunit": "^7.0|^8.0|^9.0"
             },
             "type": "library",
             "extra": {
@@ -393,31 +393,31 @@
                 "routing",
                 "translation"
             ],
-            "time": "2020-01-17T15:38:10+00:00"
+            "time": "2020-03-03T19:02:20+00:00"
         },
         {
             "name": "codezero/laravel-localizer",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codezero-be/laravel-localizer.git",
-                "reference": "e08d3f1bde2f12986a8898e39119d2f3858147e4"
+                "reference": "a792fead8228df7d92031ad0ef34a6f9db6d34dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codezero-be/laravel-localizer/zipball/e08d3f1bde2f12986a8898e39119d2f3858147e4",
-                "reference": "e08d3f1bde2f12986a8898e39119d2f3858147e4",
+                "url": "https://api.github.com/repos/codezero-be/laravel-localizer/zipball/a792fead8228df7d92031ad0ef34a6f9db6d34dc",
+                "reference": "a792fead8228df7d92031ad0ef34a6f9db6d34dc",
                 "shasum": ""
             },
             "require": {
                 "codezero/browser-locale": "^3.0",
-                "illuminate/support": ">=5.6",
+                "illuminate/support": "^5.6|^6.0|^7.0",
                 "php": "^7.1"
             },
             "require-dev": {
                 "mockery/mockery": "^1.0",
-                "orchestra/testbench": ">=3.6",
-                "phpunit/phpunit": "^7.0|^8.0"
+                "orchestra/testbench": "^3.6|^4.0|^5.0",
+                "phpunit/phpunit": "^7.0|^8.0|^9.0"
             },
             "type": "library",
             "extra": {
@@ -455,7 +455,7 @@
                 "php",
                 "session"
             ],
-            "time": "2019-12-15T19:53:40+00:00"
+            "time": "2020-03-03T17:44:49+00:00"
         },
         {
             "name": "codezero/laravel-unique-translation",
@@ -1852,16 +1852,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.17.1",
+            "version": "v6.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "32d1ed55dd46dcd706ff2e45bb7965be7320b87d"
+                "reference": "077b895d935b7fbcfb1d1eb34217fa4f80a130d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/32d1ed55dd46dcd706ff2e45bb7965be7320b87d",
-                "reference": "32d1ed55dd46dcd706ff2e45bb7965be7320b87d",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/077b895d935b7fbcfb1d1eb34217fa4f80a130d8",
+                "reference": "077b895d935b7fbcfb1d1eb34217fa4f80a130d8",
                 "shasum": ""
             },
             "require": {
@@ -1994,7 +1994,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-02-26T14:23:01+00:00"
+            "time": "2020-03-03T13:14:27+00:00"
         },
         {
             "name": "laravel/horizon",
@@ -2763,16 +2763,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.30.0",
+            "version": "2.31.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "912dff66d2690ca66abddb9b291a1df5f371d3b4"
+                "reference": "bbc0ab53f41a4c6f223c18efcdbd9bc725eb5d2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/912dff66d2690ca66abddb9b291a1df5f371d3b4",
-                "reference": "912dff66d2690ca66abddb9b291a1df5f371d3b4",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/bbc0ab53f41a4c6f223c18efcdbd9bc725eb5d2d",
+                "reference": "bbc0ab53f41a4c6f223c18efcdbd9bc725eb5d2d",
                 "shasum": ""
             },
             "require": {
@@ -2829,7 +2829,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2020-02-07T15:25:46+00:00"
+            "time": "2020-03-01T11:11:58+00:00"
         },
         {
             "name": "nicmart/tree",
@@ -2972,16 +2972,16 @@
         },
         {
             "name": "okipa/laravel-bootstrap-components",
-            "version": "2.1.1",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-bootstrap-components.git",
-                "reference": "421bf12fe782f4fed69fb9d17248524b08050456"
+                "reference": "a69650f54dca436e3543202e497be112ab30989b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Okipa/laravel-bootstrap-components/zipball/421bf12fe782f4fed69fb9d17248524b08050456",
-                "reference": "421bf12fe782f4fed69fb9d17248524b08050456",
+                "url": "https://api.github.com/repos/Okipa/laravel-bootstrap-components/zipball/a69650f54dca436e3543202e497be112ab30989b",
+                "reference": "a69650f54dca436e3543202e497be112ab30989b",
                 "shasum": ""
             },
             "require": {
@@ -3066,7 +3066,7 @@
                 "package",
                 "php"
             ],
-            "time": "2020-02-28T15:10:27+00:00"
+            "time": "2020-03-03T08:58:19+00:00"
         },
         {
             "name": "okipa/laravel-brickables",
@@ -3211,16 +3211,16 @@
         },
         {
             "name": "okipa/laravel-html-helper",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-html-helper.git",
-                "reference": "6cea9efb43d4b49ff350a0afc20be8d5381251a3"
+                "reference": "fb9ac83ac908e8348dfa1784200b98a0a559c06a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Okipa/laravel-html-helper/zipball/6cea9efb43d4b49ff350a0afc20be8d5381251a3",
-                "reference": "6cea9efb43d4b49ff350a0afc20be8d5381251a3",
+                "url": "https://api.github.com/repos/Okipa/laravel-html-helper/zipball/fb9ac83ac908e8348dfa1784200b98a0a559c06a",
+                "reference": "fb9ac83ac908e8348dfa1784200b98a0a559c06a",
                 "shasum": ""
             },
             "require": {
@@ -3266,20 +3266,20 @@
                 "package",
                 "php"
             ],
-            "time": "2020-02-18T14:40:50+00:00"
+            "time": "2020-03-03T09:45:32+00:00"
         },
         {
             "name": "okipa/laravel-medialibrary-ext",
-            "version": "7.18.0",
+            "version": "7.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-medialibrary-ext.git",
-                "reference": "3e8fb909da016bb8a9de751ba86e7611944a1593"
+                "reference": "aa3a5622526bd9ed6dfffa41377bc9555c8896c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Okipa/laravel-medialibrary-ext/zipball/3e8fb909da016bb8a9de751ba86e7611944a1593",
-                "reference": "3e8fb909da016bb8a9de751ba86e7611944a1593",
+                "url": "https://api.github.com/repos/Okipa/laravel-medialibrary-ext/zipball/aa3a5622526bd9ed6dfffa41377bc9555c8896c2",
+                "reference": "aa3a5622526bd9ed6dfffa41377bc9555c8896c2",
                 "shasum": ""
             },
             "require": {
@@ -3360,7 +3360,7 @@
                 "okipa",
                 "spatie"
             ],
-            "time": "2020-03-02T17:47:56+00:00"
+            "time": "2020-03-03T09:00:03+00:00"
         },
         {
             "name": "okipa/laravel-table",
@@ -3492,44 +3492,6 @@
                 "serialize"
             ],
             "time": "2019-11-29T22:36:02+00:00"
-        },
-        {
-            "name": "org_heigl/ghostscript",
-            "version": "2.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/heiglandreas/Org_Heigl_Ghostscript.git",
-                "reference": "2bcd115f047589c28243a66e6bbea993fc91da21"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/heiglandreas/Org_Heigl_Ghostscript/zipball/2bcd115f047589c28243a66e6bbea993fc91da21",
-                "reference": "2bcd115f047589c28243a66e6bbea993fc91da21",
-                "shasum": ""
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0",
-                "phpdocumentor/phpdocumentor": "^2.9",
-                "phpunit/phpunit": "^5.5||^6.0||^7.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Org_Heigl\\Ghostscript\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Andreas Heigl",
-                    "email": "andreas@heigl.org"
-                }
-            ],
-            "description": "A PHP-Wrapper around the Ghostscript-CLI",
-            "time": "2018-02-22T08:37:21+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -4202,29 +4164,29 @@
         },
         {
             "name": "pimple/pimple",
-            "version": "v3.2.3",
+            "version": "v3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Pimple.git",
-                "reference": "9e403941ef9d65d20cba7d54e29fe906db42cf32"
+                "reference": "e55d12f9d6a0e7f9c85992b73df1267f46279930"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/9e403941ef9d65d20cba7d54e29fe906db42cf32",
-                "reference": "9e403941ef9d65d20cba7d54e29fe906db42cf32",
+                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/e55d12f9d6a0e7f9c85992b73df1267f46279930",
+                "reference": "e55d12f9d6a0e7f9c85992b73df1267f46279930",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0",
+                "php": "^7.2.5",
                 "psr/container": "^1.0"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "^3.2"
+                "symfony/phpunit-bridge": "^3.4|^4.4|^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.2.x-dev"
+                    "dev-master": "3.3.x-dev"
                 }
             },
             "autoload": {
@@ -4243,12 +4205,12 @@
                 }
             ],
             "description": "Pimple, a simple Dependency Injection Container",
-            "homepage": "http://pimple.sensiolabs.org",
+            "homepage": "https://pimple.symfony.com",
             "keywords": [
                 "container",
                 "dependency injection"
             ],
-            "time": "2018-01-21T07:42:36+00:00"
+            "time": "2020-03-03T09:12:48+00:00"
         },
         {
             "name": "plank/laravel-metable",
@@ -4353,22 +4315,22 @@
         },
         {
             "name": "propaganistas/laravel-phone",
-            "version": "4.2.2",
+            "version": "4.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Propaganistas/Laravel-Phone.git",
-                "reference": "2dc21369a03ab6a9eb80874d6959d293e9a1b9ba"
+                "reference": "a63ceba3678a666508d4bc6fbc611680b15d2f40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Propaganistas/Laravel-Phone/zipball/2dc21369a03ab6a9eb80874d6959d293e9a1b9ba",
-                "reference": "2dc21369a03ab6a9eb80874d6959d293e9a1b9ba",
+                "url": "https://api.github.com/repos/Propaganistas/Laravel-Phone/zipball/a63ceba3678a666508d4bc6fbc611680b15d2f40",
+                "reference": "a63ceba3678a666508d4bc6fbc611680b15d2f40",
                 "shasum": ""
             },
             "require": {
                 "giggsey/libphonenumber-for-php": "^7.0|^8.0",
-                "illuminate/support": "^5.5|^6.0",
-                "illuminate/validation": "^5.5|^6.0",
+                "illuminate/support": "^5.5|^6.0|^7.0",
+                "illuminate/validation": "^5.5|^6.0|^7.0",
                 "league/iso3166": "^2.0",
                 "php": ">=7.1"
             },
@@ -4410,7 +4372,7 @@
                 "phone",
                 "validation"
             ],
-            "time": "2019-09-04T18:45:21+00:00"
+            "time": "2020-03-03T16:55:31+00:00"
         },
         {
             "name": "psr/container",
@@ -5278,24 +5240,24 @@
         },
         {
             "name": "spatie/eloquent-sortable",
-            "version": "3.7.0",
+            "version": "3.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/eloquent-sortable.git",
-                "reference": "0eb944f90dd88756f93d916bf387e232190a7acf"
+                "reference": "5df5d545003f6443ced9684765759ea2e5cf5d91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/eloquent-sortable/zipball/0eb944f90dd88756f93d916bf387e232190a7acf",
-                "reference": "0eb944f90dd88756f93d916bf387e232190a7acf",
+                "url": "https://api.github.com/repos/spatie/eloquent-sortable/zipball/5df5d545003f6443ced9684765759ea2e5cf5d91",
+                "reference": "5df5d545003f6443ced9684765759ea2e5cf5d91",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "~5.8.0|^6.0",
+                "laravel/framework": "~5.8.0|^6.0|^7.0",
                 "php": "^7.2"
             },
             "require-dev": {
-                "orchestra/testbench": "~3.8.0|^4.0",
+                "orchestra/testbench": "~3.8.0|^4.0|^5.0",
                 "phpunit/phpunit": "^8.0"
             },
             "type": "library",
@@ -5324,7 +5286,7 @@
                 "sort",
                 "sortable"
             ],
-            "time": "2019-09-04T10:53:31+00:00"
+            "time": "2020-03-02T19:45:44+00:00"
         },
         {
             "name": "spatie/image",
@@ -5563,28 +5525,29 @@
         },
         {
             "name": "spatie/laravel-sitemap",
-            "version": "5.6.0",
+            "version": "5.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-sitemap.git",
-                "reference": "2351e0757c9d0ee6afc4908bf1bd528fb389a2bb"
+                "reference": "b2ce1f09f222fa9b79284b8952f967356a3ae0af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-sitemap/zipball/2351e0757c9d0ee6afc4908bf1bd528fb389a2bb",
-                "reference": "2351e0757c9d0ee6afc4908bf1bd528fb389a2bb",
+                "url": "https://api.github.com/repos/spatie/laravel-sitemap/zipball/b2ce1f09f222fa9b79284b8952f967356a3ae0af",
+                "reference": "b2ce1f09f222fa9b79284b8952f967356a3ae0af",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "~5.8.0|^6.0",
+                "illuminate/support": "~5.8.0|^6.0|^7.0",
                 "nesbot/carbon": "^1.21|^2.0",
                 "php": "^7.2",
                 "spatie/crawler": "^4.1.0"
             },
             "require-dev": {
-                "orchestra/testbench": "~3.8.0|^4.0",
-                "phpunit/phpunit": "^8.0",
-                "spatie/phpunit-snapshot-assertions": "^2.0.0",
+                "mockery/mockery": "^1.3",
+                "orchestra/testbench": "~3.8.8|^4.0|^5.0",
+                "phpunit/phpunit": "^8.3|^9.0",
+                "spatie/phpunit-snapshot-assertions": "^3.0.0",
                 "spatie/temporary-directory": "^1.1"
             },
             "type": "library",
@@ -5618,31 +5581,30 @@
                 "laravel-sitemap",
                 "spatie"
             ],
-            "time": "2020-01-20T12:53:10+00:00"
+            "time": "2020-03-03T07:05:15+00:00"
         },
         {
             "name": "spatie/laravel-translatable",
-            "version": "4.2.2",
+            "version": "4.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-translatable.git",
-                "reference": "71a8ba458dabd8bbe417fa65fd21468175ec22cb"
+                "reference": "0f69b268257b3f594450712a95cce6178bb0eb13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/71a8ba458dabd8bbe417fa65fd21468175ec22cb",
-                "reference": "71a8ba458dabd8bbe417fa65fd21468175ec22cb",
+                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/0f69b268257b3f594450712a95cce6178bb0eb13",
+                "reference": "0f69b268257b3f594450712a95cce6178bb0eb13",
                 "shasum": ""
             },
             "require": {
-                "illuminate/database": "~5.8.0|^6.0",
-                "illuminate/support": "~5.8.0|^6.0",
+                "illuminate/database": "~5.8.0|^6.0|^7.0",
+                "illuminate/support": "~5.8.0|^6.0|^7.0",
                 "php": "^7.2"
             },
             "require-dev": {
-                "mockery/mockery": "^1.0",
-                "orchestra/testbench": "~3.8.0|^4.0",
-                "phpunit/phpunit": "^8.0"
+                "mockery/mockery": "^1.3",
+                "orchestra/testbench": "~3.8.0|^4.0|^5.0"
             },
             "type": "library",
             "extra": {
@@ -5691,7 +5653,7 @@
                 "spatie",
                 "translate"
             ],
-            "time": "2020-01-20T07:53:37+00:00"
+            "time": "2020-03-02T19:35:51+00:00"
         },
         {
             "name": "spatie/laravel-welcome-notification",
@@ -5753,25 +5715,24 @@
         },
         {
             "name": "spatie/pdf-to-image",
-            "version": "v2.x-dev",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/pdf-to-image.git",
-                "reference": "6718a89065c34dfadfbb2ca61eb1c3e6a956e503"
+                "reference": "67136abe0db0540b4f29bb461389917ffa1b7e37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/pdf-to-image/zipball/6718a89065c34dfadfbb2ca61eb1c3e6a956e503",
-                "reference": "6718a89065c34dfadfbb2ca61eb1c3e6a956e503",
+                "url": "https://api.github.com/repos/spatie/pdf-to-image/zipball/67136abe0db0540b4f29bb461389917ffa1b7e37",
+                "reference": "67136abe0db0540b4f29bb461389917ffa1b7e37",
                 "shasum": ""
             },
             "require": {
-                "org_heigl/ghostscript": "^2.2",
-                "php": "^7.0"
+                "ext-imagick": "*",
+                "php": "^7.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.2",
-                "spatie/temporary-directory": "^1.1"
+                "phpunit/phpunit": "^8.0"
             },
             "type": "library",
             "autoload": {
@@ -5800,7 +5761,7 @@
                 "pdf-to-image",
                 "spatie"
             ],
-            "time": "2017-06-20T05:58:45+00:00"
+            "time": "2020-01-08T00:13:23+00:00"
         },
         {
             "name": "spatie/robots-txt",
@@ -9332,16 +9293,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.13",
+            "version": "0.12.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "d74fb5ce1ab9f24a7128db90e99dec82440975c3"
+                "reference": "37bdd26a80235d0f9045b49f4151102b7831cbe2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/d74fb5ce1ab9f24a7128db90e99dec82440975c3",
-                "reference": "d74fb5ce1ab9f24a7128db90e99dec82440975c3",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/37bdd26a80235d0f9045b49f4151102b7831cbe2",
+                "reference": "37bdd26a80235d0f9045b49f4151102b7831cbe2",
                 "shasum": ""
             },
             "require": {
@@ -9367,7 +9328,7 @@
                 "MIT"
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
-            "time": "2020-03-02T13:08:55+00:00"
+            "time": "2020-03-02T22:29:43+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",

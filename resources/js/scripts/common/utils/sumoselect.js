@@ -1,10 +1,10 @@
 // https://github.com/HemantNegi/jquery.sumoselect
 
-removeOptionsWithNoValue = ($select) => {
+disableOptionsWithNoValue = ($select) => {
     _.each($select.find('option'), (option) => {
         const $option = $(option);
         if (! $option.val()) {
-            $option.remove();
+            $option.attr('disabled', 'disabled');
         }
     });
 };
@@ -16,7 +16,7 @@ window.triggerSumoSelectDetection = () => {
         _.each(selectorElements, (select) => {
             const $select = $(select);
             if (select.hasAttribute('multiple')) {
-                removeOptionsWithNoValue($select);
+                disableOptionsWithNoValue($select);
             }
             let placeholder = app.sumoSelect.placeholder;
             $select.SumoSelect({
