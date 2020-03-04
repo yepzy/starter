@@ -43,7 +43,7 @@ class CarouselBricksController extends BricksController
         $next = $slides->where('order_column', '>', $slide->order_column)->values();
         $itemToSwitchIndex = $next->count() ? $next->count() - 1 : $next->count();
         if ($next->has($itemToSwitchIndex)) {
-            $prev->push($next->pull($itemToSwitchIndex));
+            $prev->push($next->shift($itemToSwitchIndex));
         }
         $next->prepend($slide);
         $ids = [...$prev->pluck('id'), ...$next->pluck('id')];
@@ -64,7 +64,7 @@ class CarouselBricksController extends BricksController
         $next = $slides->where('order_column', '>', $slide->order_column)->values();
         $itemToSwitchIndex = $prev->count() - 1;
         if ($prev->has($itemToSwitchIndex)) {
-            $next->push($prev->pull($itemToSwitchIndex));
+            $next->prepend($prev->pull($itemToSwitchIndex));
         }
         $prev->push($slide);
         $ids = [...$prev->pluck('id'), ...$next->pluck('id')];
