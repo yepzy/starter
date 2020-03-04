@@ -54,7 +54,7 @@ return [
          */
         'defaults' => [
             'card' => 'summary', // other possible values : summary_large_image / app / player
-            'site' => '@ArthurLorent', // todo : update twitter site
+            'site' => '@acid_solutions', // todo : update twitter site
         ],
     ],
 
