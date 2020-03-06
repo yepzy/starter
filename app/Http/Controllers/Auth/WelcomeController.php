@@ -6,10 +6,9 @@ use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
-use Spatie\WelcomeNotification\WelcomeController;
 use Symfony\Component\HttpFoundation\Response;
 
-class InitializePasswordController extends WelcomeController
+class WelcomeController extends \Spatie\WelcomeNotification\WelcomeController
 {
     /** @inheritDoc */
     public function showWelcomeForm(Request $request, User $user)
