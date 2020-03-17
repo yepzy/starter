@@ -11,7 +11,9 @@ const baseConfig = {
 const selectDateTime = (datePicker, $datePicker) => {
     const filledDate = moment($datePicker.val(), 'DD/MM/YYYY hh:mm');
     if (filledDate.isValid()) {
-        datePicker.data('datepicker').selectDate(filledDate.toDate());
+        const instance = datePicker.data('datepicker');
+        instance.selectDate(filledDate.toDate());
+        instance.date = filledDate.toDate();
     }
 };
 
