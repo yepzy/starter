@@ -1,5 +1,6 @@
 import 'air-datepicker/src/js/air-datepicker';
 import 'air-datepicker/dist/js/i18n/datepicker.fr';
+
 const moment = require('moment');
 
 const baseConfig = {
@@ -12,8 +13,9 @@ const selectDateTime = (datePicker, $datePicker) => {
     const filledDate = moment($datePicker.val(), 'DD/MM/YYYY hh:mm');
     if (filledDate.isValid()) {
         const instance = datePicker.data('datepicker');
-        instance.selectDate(filledDate.toDate());
-        instance.date = filledDate.toDate();
+        const dateObject = filledDate.toDate();
+        instance.selectDate(dateObject);
+        instance.date = dateObject;
     }
 };
 
