@@ -22,7 +22,6 @@ class LoginController extends Controller
 
     use AuthenticatesUsers {
         showLoginForm as traitShowLoginForm;
-        sendLockoutResponse as traitSendLockoutResponse;
     }
 
     /** @inheritDoc */
