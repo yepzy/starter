@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands\Dev;
 
-use Illuminate\Console\Command;
+use App\Console\Commands\CommandAbstract;
 
-class IdeHelperHandler extends Command
+class IdeHelperHandler extends CommandAbstract
 {
     /**
      * The name and signature of the console command.
@@ -20,27 +20,15 @@ class IdeHelperHandler extends Command
      */
     protected $description = 'Handles ide-helper generation through composer.';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
+    public function handle(): void
     {
         $ideHelperProvider = '\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider';
         if (in_array(app()->environment(), ['local', 'development']) && class_exists($ideHelperProvider)) {
+            $this->log('Started IDE helpers generation...', 'info');
             $this->call('ide-helper:generate');
             $this->call('ide-helper:meta');
+            $this->log('Finished IDE helpers generation.', 'success');
         }
+        $this->log('IDE helpers generation is disabled.', 'error');
     }
 }

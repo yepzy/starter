@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands\Seo;
 
-use Illuminate\Console\Command;
+use App\Console\Commands\CommandAbstract;
 use Spatie\Sitemap\SitemapGenerator;
 
-class GenerateSitemap extends Command
+class GenerateSitemap extends CommandAbstract
 {
     /**
      * The console command name.
@@ -13,6 +13,7 @@ class GenerateSitemap extends Command
      * @var string
      */
     protected $signature = 'sitemap:generate';
+
     /**
      * The console command description.
      *
@@ -20,13 +21,10 @@ class GenerateSitemap extends Command
      */
     protected $description = 'Generate the sitemap.';
 
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
-    public function handle()
+    public function handle(): void
     {
-         SitemapGenerator::create(config('app.url'))->writeToFile(public_path('sitemap.xml'));
+        $this->log('Started sitemap automated generation...', 'info');
+        SitemapGenerator::create(config('app.url'))->writeToFile(public_path('sitemap.xml'));
+        $this->log('Finished sitemap automated generation.', 'success');
     }
 }
