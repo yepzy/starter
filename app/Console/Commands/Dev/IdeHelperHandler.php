@@ -23,12 +23,14 @@ class IdeHelperHandler extends CommandAbstract
     public function handle(): void
     {
         $ideHelperProvider = '\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider';
-        if (in_array(app()->environment(), ['local', 'development']) && class_exists($ideHelperProvider)) {
-            $this->log('Started IDE helpers generation...', 'info');
-            $this->call('ide-helper:generate');
-            $this->call('ide-helper:meta');
-            $this->log('Finished IDE helpers generation.', 'success');
+        if (! in_array(app()->environment(), ['local', 'development']) && class_exists($ideHelperProvider)) {
+            $this->log('IDE helpers generation is disabled.', 'error');
+
+            return;
         }
-        $this->log('IDE helpers generation is disabled.', 'error');
+        $this->log('Started IDE helpers generation...', 'info');
+        $this->call('ide-helper:generate');
+        $this->call('ide-helper:meta');
+        $this->log('Finished IDE helpers generation.', 'success');
     }
 }
