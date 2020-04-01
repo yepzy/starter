@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ForgotPasswordController extends Controller
 {
@@ -19,30 +20,40 @@ class ForgotPasswordController extends Controller
     | your application to your users. Feel free to explore this trait.
     |
     */
+
     use SendsPasswordResetEmails {
         showLinkRequestForm as traitShowLinkRequestForm;
         sendResetLinkResponse as traitSendResetLinkResponse;
         sendResetLinkFailedResponse as traitSendResetLinkFailedResponse;
     }
 
-    /** @inheritDoc */
-    public function showLinkRequestForm()
+    public function showLinkRequestForm(): Response
     {
         SEOTools::setTitle(__('Forgotten password'));
 
         return $this->traitShowLinkRequestForm();
     }
 
-    /** @inheritDoc */
-    protected function sendResetLinkResponse(Request $request, $response)
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param string $response
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
+    protected function sendResetLinkResponse(Request $request, string $response)
     {
         alert()->html(__('Success'), __($response), 'success')->showConfirmButton();
 
         return $this->traitSendResetLinkResponse($request, $response);
     }
 
-    /** @inheritDoc */
-    protected function sendResetLinkFailedResponse(Request $request, $response)
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param string $response
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
+    protected function sendResetLinkFailedResponse(Request $request, string $response)
     {
         alert()->html(__('Error'), __($response), 'error')->showConfirmButton();
 

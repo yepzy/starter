@@ -22,7 +22,7 @@
                 <h2 class="m-0">
                     @lang('Data')
                 </h2>
-                @if($article->active)
+                @if(optional($article)->active)
                     {{ buttonLink()->route('news.article.show', [$article->url])
                         ->prepend('<i class="fas fa-external-link-square-alt fa-fw"></i>')
                         ->label(__('Display'))
@@ -37,7 +37,7 @@
                     ->uploadedFile(fn() => $image ? image()->src($image->getUrl('thumb'))->linkUrl($image->getUrl())->linkTitle($image->name) : null)
                     ->showRemoveCheckbox(false)
                     ->containerHtmlAttributes(['required'])
-                    ->caption((new \App\Models\News\NewsArticle)->constraintsCaption('illustrations')) }}
+                    ->caption((new \App\Models\News\NewsArticle)->getMediaCaption('illustrations')) }}
                 <h3>@lang('Identity')</h3>
                 {{ inputText()->name('title')
                     ->locales(supportedLocaleKeys())
