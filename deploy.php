@@ -84,7 +84,7 @@ task('deploy', [
 task('deploy:upload', function () {
     $toUpload = [
         '.utils/', '.utils.custom/', 'app/', 'bootstrap/', 'config/', 'database/', 'node_modules/', 'public/',
-        'resources/', 'routes/', 'vendor/', 'artisan', 'composer.json',
+        'resources/', 'routes/', 'vendor/', 'artisan', 'composer.json', '.git/'
     ];
     $rsyncConfig = ['--delete'];
     foreach ($toUpload as $key => $item) {
