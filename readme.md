@@ -69,7 +69,7 @@ Execute the following commands:
 
 ## Docker
 
-this project uses [Vessel](https://vessel.shippingdocker.com).
+This project uses [Vessel](https://vessel.shippingdocker.com).
 
 Vessel offers a useful bash file containing multiple shortcuts for your Docker environment. You can still run pure `docker` or `docker-compose` commands from the project directory.
 
