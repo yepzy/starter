@@ -11,7 +11,7 @@ composer:
   before_script:
     - composer global require hirak/prestissimo
   script:
-    - composer install --no-progress --no-scripts --ignore-platform-reqs
+    - composer install --optimize-autoloader --no-progress --no-scripts --ignore-platform-reqs
   artifacts:
     expire_in: 1 day
     paths:
@@ -34,7 +34,7 @@ composer:nodev:
     - git submodule sync --recursive .utils
     - git submodule update --init --recursive --remote .utils
   script:
-    - composer install --no-progress --no-scripts --ignore-platform-reqs --no-dev
+    - composer install --optimize-autoloader --no-progress --no-scripts --ignore-platform-reqs --no-dev
   artifacts:
     expire_in: 1 day
     paths:
