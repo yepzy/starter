@@ -9,16 +9,16 @@
 
 ## Team
 
-* Lead dev : [Okipa](https://github.com/Okipa)
-* Quality : [Okipa](https://github.com/Okipa)
-* Management : [Okipa](https://github.com/Okipa)
-* Devs : https://github.com/Okipa/starter/graphs/contributors
+* Lead dev: [Okipa](https://github.com/Okipa)
+* Quality: [Okipa](https://github.com/Okipa)
+* Management: [Okipa](https://github.com/Okipa)
+* Devs: https://github.com/Okipa/starter/graphs/contributors
 
 ## Table of Contents
 
 * [Installation](#installation)
   * [Requirements](#requirements)
-  * [Import](#import)
+  * [Import and git setup](#import-and-git-setup)
   * [DNS setup](#dns-setup)
   * [Project configuration and dependencies installation](#project-configuration-and-dependencies-installation)
 * [Docker](#docker)
@@ -35,18 +35,18 @@
 
 ### Requirements
 
-* Git installed.
-* Docker Community Edition installed : https://docs.docker.com/install.
-* Node last LTS version installed (important to avoid errors).
-* Yarn last stable version installed.
+* Git.
+* Docker Community Edition: https://docs.docker.com/install.
+* Latest Node LTS version (important to avoid errors).
+* Latest Yarn stable version.
 
-### Import
+### Import and git setup
 
-Clone the project `<project-repository>`.
+Clone the project from `<project-repository-url>`.
 
 ### DNS setup
 
-Set your project domain resolution in your virtualhost : `sudo vim /etc/hosts`
+Set your project domain resolution in your virtualhost: `sudo vim /etc/hosts`
 
 ```sh
     # add these lines in your /etc/hosts file
@@ -55,40 +55,29 @@ Set your project domain resolution in your virtualhost : `sudo vim /etc/hosts`
 
 ### Project configuration and dependencies installation
 
-First, execute the following commands on your host machine :
-* `git submodule update --init --recursive --remote --force`
-* `cp .docker/env-example .docker/.env`. Then set the environment variable according to your project needs.
-* `cp .env.example .env`. Then set the environment variable according to your project needs.
-* `.utils/docker/up.sh --build` 
-* `.utils/docker/workspace.sh` 
+Execute the following commands:
 
-Once you are connected into your docker workspace (previous command), execute the following commands :
-* `composer update`
-* `php artisan key:generate`
-* `php artisan storage:link`
-* `php artisan migrate:refresh --seed`
-
-Finally, back on your host machine, execute the following commands :
+* `cp .env.example .env`. Then set the environment variables according to your project needs.
+* `./vessel start`
+* `./vessel composer update`
+* `./vessel artisan key:generate`
+* `./vessel artisan storage:link`
+* `./vessel artisan migrate:fresh --seed`
 * `yarn install`
 * `yarn upgrade`
 * `yarn dev` or `yarn watch`
 
 ## Docker
 
-This project uses the following docker submodule : `<project-docker-repository>`.
+this project uses [Vessel](https://vessel.shippingdocker.com).
 
-### Setup
+Vessel offers a useful bash file containing multiple shortcuts for your Docker environment. You can still run pure `docker` or `docker-compose` commands from the project directory.
 
-* In your `.docker` directory, copy the `env-example` to `.env` in the same directory.
-* Customize the needed values if needed (containers ports, for example).
-
-## Git submodules
-
-To update the project submodules, just execute this command : `./.utils/git/submodules/update.sh` (or `git submodule update --init --recursive --remote --force` when it is the first sync).
+See how to use it on the [official documentation](https://vessel.shippingdocker.com/docs/everyday-usage).
 
 ## Database
 
-* Execute a database reset from your docker `workspace` with the command : `php artisan migrate:refresh --seed` : this will execute all your migrations and seeds.
+* Execute a database reset with the following command: `./vessel artisan migrate:refresh --seed`. This will execute all migrations and seeds.
 
 ## Building resources
 
@@ -100,14 +89,14 @@ You can run these commands from your docker workspace, Node and Yarn are install
 
 ## Testing
 
-* To launch the project test, run the following command : `composer test`.
+* To launch the project test, run the following command: `./vessel composer test`.
 
 ## Debugging
 
-Laravel Telescope and Laravel Horizon are pre-installed :
+Laravel Telescope and Laravel Horizon are pre-installed:
 * To open the `telescope` dashboard,  go to `http://your-project.url/telescope`.
 * To open the `horizon` dashboard,  go to `http://your-project.url/horizon`.
 
 ## Changelog
 
-See [CHANGELOG](CHANGELOG.md) for more information on what has been pushed in production.
+See the [CHANGELOG](CHANGELOG.md) for more information on what has been pushed in production.

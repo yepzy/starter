@@ -7,6 +7,7 @@ require 'recipe/laravel.php';
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // servers
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 $servers = [
     'preprod' => [
         'host' => '<project-preprod-host>', // todo : set project preprod host
@@ -31,6 +32,8 @@ $servers = [
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // servers configuration
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+set('bin/php', '/usr/bin/php7.4');
 set('repository', '<project-repository>'); // todo : set project repository url
 set('keep_releases', 3);
 set('default_stage', 'preprod');
@@ -72,7 +75,6 @@ task('deploy', [
     'cleanup',
     'artisan:queue:restart',
     'supervisor:laravel-queue:restart',
-    'supervisor:laravel-horizon:restart',
     'server:resources:reload',
     'cron:install',
 ])->desc('Releasing compiled project on server');
@@ -83,8 +85,18 @@ task('deploy', [
 
 task('deploy:upload', function () {
     $toUpload = [
-        '.utils/', '.utils.custom/', 'app/', 'bootstrap/', 'config/', 'database/', 'node_modules/', 'public/',
-        'resources/', 'routes/', 'vendor/', 'artisan', 'composer.json', '.git/'
+        '.git/', // required for sentry error catching
+        'app/',
+        'bootstrap/',
+        'config/',
+        'database/',
+        'node_modules/', // required if you have no-dev node dependencies
+        'public/',
+        'resources/',
+        'routes/',
+        'vendor/',
+        'artisan',
+        'composer.json',
     ];
     $rsyncConfig = ['--delete'];
     foreach ($toUpload as $key => $item) {
@@ -97,33 +109,50 @@ task('deploy:upload', function () {
 })->desc('Uploading code to the server');
 
 task('project:dependencies_check', function () {
-    within(get('release_path'), function () {
-        $result = run('./.utils/server/configCheck.sh');
-        if (strpos(strtolower($result), 'are missing from your server') !== false) {
-            throw new \RuntimeException("Project dependencies are missing from the server");
-        }
-    });
-})->desc('Checking server dependencies');
+    $dependencies = [
+        'git',
+        'nginx',
+        'mysql-server',
+        'supervisor',
+        'redis-server',
+        'php-redis',
+        'php-imagick',
+        'jpegoptim',
+        'optipng',
+        'pngquant',
+        'gifsicle',
+        'exif',
+        'ghostscript',
+        'php7.4',
+        'php7.4-cli',
+        'php7.4-fpm',
+        'php7.4-common',
+        'php7.4-bcmath',
+        'php7.4-json',
+        'php7.4-mbstring',
+        'php7.4-intl',
+        'php7.4-xml',
+        'php7.4-mysql',
+        'php7.4-opcache',
+        'php7.4-gd',
+        'php7.4-curl',
+        'php7.4-zip',
+    ];
+    foreach ($dependencies as $dependency) {
+        run('dpkg-query --show --showformat=\'${db:Status-Status}\n\' \'' . $dependency . '\'');
+    }
+})->desc('Verify that server dependencies are installed');
 
 task('supervisor:laravel-queue:restart', function () {
     within(get('release_path'), function () {
-        $result = run('./.utils/supervisor/laravelQueueRestart.sh');
-        if (strpos(strtolower($result), 'file has not been found') !== false) {
-            throw new \RuntimeException("The project laravel-queue supervisor config does not exist");
-        }
+        run('sudo supervisorctl restart all');
     });
 })->desc('Restarting the project laravel-queue supervisor task');
-
-task('supervisor:laravel-horizon:restart', function () {
-    within(get('release_path'), function () {
-        run('./.utils/supervisor/laravelHorizonRestart.sh');
-    });
-})->desc('Restarting the project laravel-horizon supervisor task');
 
 task('server:resources:reload', function () {
     $output = run('sudo service nginx reload');
     writeln('<info>' . $output . '</info>');
-    $output = run('sudo service php7.3-fpm restart');
+    $output = run('sudo service php7.4-fpm restart');
     writeln('<info>' . $output . '</info>');
 })->desc('Reloading the server resources');
 
@@ -135,4 +164,5 @@ task('cron:install', function () {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // custom chainings
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 after('deploy:failed', 'deploy:unlock');

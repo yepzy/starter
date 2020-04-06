@@ -30,20 +30,15 @@ composer:nodev:
   image: composer:latest
   before_script:
     - composer global require hirak/prestissimo
-    - rm -rf .utils
-    - git submodule sync --recursive .utils
-    - git submodule update --init --recursive --remote .utils
   script:
     - composer install --optimize-autoloader --no-progress --no-scripts --ignore-platform-reqs --no-dev
   artifacts:
     expire_in: 1 day
     paths:
-      - .utils/
       - vendor/
   cache:
     key: ${CI_COMMIT_REF_SLUG}-composer-nodev
     paths:
-      - .utils/
       - vendor/
   only:
     refs:
@@ -202,8 +197,6 @@ phpstan:
 
 .permissions_update: &permissions_update |
   find . -type f -not -path "./vendor/*" -exec chmod 664 {} \;
-  find ./.utils -type f -iname "*.sh" -exec chmod +x {} \;
-  find ./.utils.custom -type f -iname "*.sh" -exec chmod +x {} \;
   find . -type d -not -path "./vendor/*" -exec chmod 775 {} \;
 
 .check_returned_http_code: &check_returned_http_code |
