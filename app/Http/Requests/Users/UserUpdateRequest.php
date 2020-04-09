@@ -27,6 +27,6 @@ class UserUpdateRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
-        $this->merge(['remove_avatar' => boolval($this->remove_avatar)]);
+        $this->merge(['remove_avatar' => $this->boolean($this->remove_avatar)]);
     }
 }

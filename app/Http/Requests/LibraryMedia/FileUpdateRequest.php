@@ -21,6 +21,6 @@ class FileUpdateRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
-        $this->merge(['downloadable' => boolval($this->downloadable)]);
+        $this->merge(['downloadable' => $this->boolean($this->downloadable)]);
     }
 }

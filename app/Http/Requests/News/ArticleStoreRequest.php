@@ -2,12 +2,12 @@
 
 namespace App\Http\Requests\News;
 
-use App\Http\Requests\SeoRequest;
+use App\Http\Requests\AbstractSeoRequest;
 use App\Models\News\NewsArticle;
 use Carbon\Carbon;
 use CodeZero\UniqueTranslation\UniqueTranslationRule;
 
-class ArticleStoreRequest extends SeoRequest
+class ArticleStoreRequest extends AbstractSeoRequest
 {
     public function rules(): array
     {
@@ -41,7 +41,7 @@ class ArticleStoreRequest extends SeoRequest
                 'XXX',
                 false
             ) : null,
-            'active' => boolval($this->active),
+            'active' => $this->boolean($this->active),
         ]);
     }
 }

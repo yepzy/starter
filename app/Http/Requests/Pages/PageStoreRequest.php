@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests\Pages;
 
-use App\Http\Requests\SeoRequest;
+use App\Http\Requests\AbstractSeoRequest;
 use CodeZero\UniqueTranslation\UniqueTranslationRule;
 use Illuminate\Support\Str;
 
-class PageStoreRequest extends SeoRequest
+class PageStoreRequest extends AbstractSeoRequest
 {
     public function rules(): array
     {
@@ -32,7 +32,7 @@ class PageStoreRequest extends SeoRequest
         parent::prepareForValidation();
         $this->merge([
             'slug' => Str::slug($this->slug),
-            'active' => boolval($this->active),
+            'active' => $this->boolean($this->active),
         ]);
     }
 }

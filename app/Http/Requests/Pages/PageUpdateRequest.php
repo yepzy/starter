@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Pages;
 
-use App\Http\Requests\SeoRequest;
+use App\Http\Requests\AbstractSeoRequest;
 use CodeZero\UniqueTranslation\UniqueTranslationRule;
 
-class PageUpdateRequest extends SeoRequest
+class PageUpdateRequest extends AbstractSeoRequest
 {
     public function rules(): array
     {
@@ -26,6 +26,6 @@ class PageUpdateRequest extends SeoRequest
     protected function prepareForValidation(): void
     {
         parent::prepareForValidation();
-        $this->merge(['active' => boolval($this->active)]);
+        $this->merge(['active' => $this->boolean($this->active)]);
     }
 }

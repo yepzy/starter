@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Models\Pages\PageContent;
 use Illuminate\Foundation\Http\FormRequest;
 
-abstract class SeoRequest extends FormRequest
+abstract class AbstractSeoRequest extends FormRequest
 {
     public function rules(): array
     {
@@ -20,6 +20,6 @@ abstract class SeoRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
-        $this->merge(['remove_meta_image' => boolval($this->remove_meta_image)]);
+        $this->merge(['remove_meta_image' => $this->boolean($this->remove_meta_image)]);
     }
 }

@@ -24,6 +24,6 @@ class SettingsUpdateRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
-        $this->merge(['remove_icon' => boolval($this->remove_icon)]);
+        $this->merge(['remove_icon' => $this->boolean($this->remove_icon)]);
     }
 }
