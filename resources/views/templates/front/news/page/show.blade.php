@@ -20,7 +20,9 @@
                 <div class="col-sm-6 col-lg-4 my-3">
                     <div class="card">
                         @if($image = $article->getFirstMedia('illustrations'))
-                            {!! $image->img('card', ['class' => 'w-100 card-img-top', 'alt' => $article->title]) !!}
+                            <div>
+                                {!! $image->img('card', ['class' => 'w-100 card-img-top', 'alt' => $article->title]) !!}
+                            </div>
                         @endif
                         <div class="card-body">
                             <h2 class="h5 card-title">{{ $article->title }}</h2>

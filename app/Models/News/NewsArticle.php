@@ -75,6 +75,7 @@ class NewsArticle extends Seo implements HasMedia, Feedable
                     ->nonQueued();
                 $this->addMediaConversion('card')
                     ->fit(Manipulations::FIT_CROP, 350, 250)
+                    ->withResponsiveImages()
                     ->keepOriginalImageFormat()
                     ->nonQueued();
             });
