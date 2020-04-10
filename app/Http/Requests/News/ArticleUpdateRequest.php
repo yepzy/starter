@@ -41,7 +41,7 @@ class ArticleUpdateRequest extends AbstractSeoRequest
                 'XXX',
                 false
             ) : null,
-            'active' => $this->boolean($this->active),
+            'active' => (bool) $this->active,
         ]);
     }
 }

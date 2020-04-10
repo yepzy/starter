@@ -17,7 +17,9 @@ class PhoneInternational implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        $localizedPhoneNumber = Str::replaceFirst('0', '+33', $value);
+        $localizedPhoneNumber = Str::startsWith($value, '0')
+            ? Str::replaceFirst('0', '+33', $value)
+            : $value;
 
         return ! Validator::make(
             ['phone_number_validation' => $localizedPhoneNumber],

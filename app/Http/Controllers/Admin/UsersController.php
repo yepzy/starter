@@ -49,11 +49,11 @@ class UsersController extends Controller
         /** @var \App\Models\Users\User $user */
         $user = (new User)->create(array_merge(
             $request->validated(),
-            ['password' => Hash::make($request->has('password') ? $request->password : Str::random(8))]
+            ['password' => Hash::make($request->password ?: Str::random(8))]
         ));
         (new UsersService)->saveAvatarFromRequest($request, $user);
         $additionalMessage = '';
-        if (! $request->has('password')) {
+        if (! $request->password) {
             $user->sendWelcomeNotification(now()->addMinutes(120));
             $additionalMessage = ' ' . __('A password creation link has been sent.');
         }

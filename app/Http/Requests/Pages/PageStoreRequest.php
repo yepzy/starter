@@ -32,7 +32,7 @@ class PageStoreRequest extends AbstractSeoRequest
         parent::prepareForValidation();
         $this->merge([
             'slug' => Str::slug($this->slug),
-            'active' => $this->boolean($this->active),
+            'active' => (bool) $this->active,
         ]);
     }
 }

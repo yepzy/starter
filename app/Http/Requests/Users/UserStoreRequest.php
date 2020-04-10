@@ -14,7 +14,7 @@ class UserStoreRequest extends FormRequest
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'max:255', 'email:rfc,dns,spoof', 'unique:users'],
-            'password' => ['string', 'min:' . config('security.password.constraint.min'), 'confirmed'],
+            'password' => ['nullable', 'string', 'min:' . config('security.password.constraint.min'), 'confirmed'],
         ];
     }
 }

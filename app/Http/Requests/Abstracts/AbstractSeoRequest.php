@@ -20,6 +20,6 @@ abstract class AbstractSeoRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
-        $this->merge(['remove_meta_image' => $this->boolean($this->remove_meta_image)]);
+        $this->merge(['remove_meta_image' => (bool) $this->remove_meta_image]);
     }
 }

@@ -46,10 +46,12 @@
                 <h3>@lang('Contact')</h3>
                 {{ inputEmail()->name('email')->model($user)->containerHtmlAttributes(['required']) }}
                 <h3>@lang('Security')</h3>
-                <p>
-                    <i class="fas fa-exclamation-triangle fa-fw text-warning"></i>
-                    @lang('If no password is defined for this user, he will be e-mailed a password creation link.')
-                </p>
+                @if(Str::contains(request()->route()->getName(), 'user.create'))
+                    <p>
+                        <i class="fas fa-exclamation-triangle fa-fw text-warning"></i>
+                        @lang('If no password is defined for this user, he will be e-mailed a password creation link.')
+                    </p>
+                @endif
                 {{ inputPassword()->name($user ? 'new_password' : 'password')->caption(
                     __('passwords.minLength', ['count' => config('security.password.constraint.min')]) . '<br/>'
                     . __('passwords.recommendation') . '<br/>'

@@ -26,6 +26,6 @@ class PageUpdateRequest extends AbstractSeoRequest
     protected function prepareForValidation(): void
     {
         parent::prepareForValidation();
-        $this->merge(['active' => $this->boolean($this->active)]);
+        $this->merge(['active' => (bool) $this->active]);
     }
 }

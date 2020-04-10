@@ -3,7 +3,7 @@
     <div class="mt-5 mb-4">
         {{ Brickables::displayBricks($pageContent) }}
     </div>
-    <div class="container">
+    <div class="container my-3">
         <a class="new-window"
            href="{{ route('feeds.news') }}"
            title="@lang(config('feed.feeds.news.title'))">
@@ -14,7 +14,31 @@
             @lang(config('feed.feeds.news.title'))
         </a>
     </div>
-    <div class="container mt-4 mb-5">
+    <div class="container my-3">
+        <div class="row">
+            <form class="col d-flex align-items-end">
+                {{ select()->name('category_id')
+                    ->options((new \App\Models\News\NewsCategory)->orderBy('name')
+                        ->get()
+                        ->map(function($category) {
+                            $category = $category->toArray();
+                            $category['name'] = translatedData($category, 'name');
+
+                            return $category;
+                    }), 'id', 'name')
+                    ->selected('id', (int) request()->category_id)
+                    ->componentClasses(['selector'])
+                    ->containerClasses(['mb-0']) }}
+                {{ submitValidate()->prepend('<i class="fas fa-filter fa-fw"></i>')
+                    ->label(__('Filter'))
+                    ->containerClasses(['ml-3', 'mb-0']) }}
+                @if(request()->has(['category_id']))
+                    {{ buttonBack()->route('news.articles.index')->label(__('Reset'))->containerClasses(['ml-3']) }}
+                @endif
+            </form>
+        </div>
+    </div>
+    <div class="container mt-3 mb-5">
         <div class="row">
             @foreach($articles as $article)
                 <div class="col-sm-6 col-lg-4 my-3">

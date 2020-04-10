@@ -21,6 +21,6 @@ class FileStoreRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
-        $this->merge(['downloadable' => $this->boolean($this->downloadable)]);
+        $this->merge(['downloadable' => (bool) $this->downloadable]);
     }
 }
