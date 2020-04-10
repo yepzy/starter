@@ -151,7 +151,9 @@ return [
     'attributes' => [
         'email' => 'Email',
         'password' => 'Password',
+        'new_password' => 'New password',
         'password_confirmation' => 'Password confirmation',
+        'new_password_confirmation' => 'New password confirmation',
         'remember' => 'Remember me',
         'first_name' => 'First name',
         'last_name' => 'Last name',
