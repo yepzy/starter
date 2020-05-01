@@ -5,6 +5,9 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\URL;
 
 class VerifyEmail extends \Illuminate\Auth\Notifications\VerifyEmail implements ShouldQueue
 {
@@ -14,7 +17,7 @@ class VerifyEmail extends \Illuminate\Auth\Notifications\VerifyEmail implements 
 
     public function __construct()
     {
-        $this->queue = 'high';
+        $this->onQueue('high');
     }
 
     public function toMail($notifiable): MailMessage
@@ -24,10 +27,26 @@ class VerifyEmail extends \Illuminate\Auth\Notifications\VerifyEmail implements 
         }
 
         return (new MailMessage)
-            ->subject(__('mails.emailVerification.subject'))
-            ->greeting(__('mails.notification.greeting.named', ['name' => $notifiable->name]))
-            ->line(__('mails.emailVerification.message'))
-            ->action(__('mails.emailVerification.action'), $this->verificationUrl($notifiable))
-            ->line(__('mails.emailVerification.notice'));
+            ->level('success')
+            ->subject(__('Confirm your email address'))
+            ->greeting(__('Hello') . ' ' . $notifiable->name . ',')
+            ->line(__('To confirm your email address, please click the button below.'))
+            ->action(__('Confirm my email address'), $this->verificationUrl($notifiable))
+            ->line(__('If you did not create an account, no further action is required.'));
+    }
+
+    /**
+     * Get the verification URL for the given notifiable.
+     *
+     * @param mixed $notifiable
+     *
+     * @return string
+     */
+    protected function verificationUrl($notifiable)
+    {
+        return URL::signedRoute('verification.verify', [
+            'id' => $notifiable->getKey(),
+            'hash' => sha1($notifiable->getEmailForVerification()),
+        ], Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)));
     }
 }

@@ -42,12 +42,13 @@ class Page extends Seo implements HasBrickables
 
     /**
      * @param mixed $value
+     * @param null $field
      *
-     * @return \App\Models\Pages\Page
-     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     * @return \App\Models\Pages\Page|null
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function resolveRouteBinding($value): Page
+    public function resolveRouteBinding($value, $field = null): ?Page
     {
-        return $this->where('url->' . app()->getLocale(), $value)->firstOrFail();
+        return $this->where('url->' . app()->getLocale(), $value)->first();
     }
 }

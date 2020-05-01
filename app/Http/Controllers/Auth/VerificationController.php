@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class VerificationController extends Controller
 {
@@ -27,7 +26,12 @@ class VerificationController extends Controller
         verify as traitVerify;
     }
 
-    public function show(Request $request): Response
+    /**
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response|\Illuminate\View\View
+     */
+    public function show(Request $request)
     {
         SEOTools::setTitle(__('Email address verification'));
 
@@ -39,11 +43,16 @@ class VerificationController extends Controller
         return route('admin.index');
     }
 
-    public function resend(Request $request): Response
+    /**
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
+    public function resend(Request $request)
     {
         $response = $this->traitResend($request);
         if (! $request->user()->hasVerifiedEmail()) {
-            alert()->html(__('Success'), __('We have e-mailed your new verification link.'), 'success')
+            alert()->html(__('Success'), __('We have emailed your new verification link.'), 'success')
                 ->showConfirmButton();
         }
 
@@ -53,13 +62,13 @@ class VerificationController extends Controller
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function verify(Request $request): Response
+    public function verify(Request $request)
     {
         $response = $this->traitVerify($request);
-        alert()->html(__('Success'), __('Your e-mail address has been confirmed.'), 'success')->showConfirmButton();
+        alert()->html(__('Success'), __('Your email address has been confirmed.'), 'success')->showConfirmButton();
 
         return $response;
     }

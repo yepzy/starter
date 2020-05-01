@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\NewsArticlesController;
 use App\Http\Controllers\Front\NewsPageController;
 

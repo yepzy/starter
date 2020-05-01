@@ -51,13 +51,14 @@ class NewsArticle extends Seo implements HasMedia, Feedable
 
     /**
      * @param mixed $value
+     * @param null $field
      *
-     * @return \App\Models\News\NewsArticle
-     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     * @return \App\Models\News\NewsArticle|null
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function resolveRouteBinding($value): NewsArticle
+    public function resolveRouteBinding($value, $field = null): ?NewsArticle
     {
-        return $this->where('url->' . app()->getLocale(), $value)->firstOrFail();
+        return $this->where('url->' . app()->getLocale(), $value)->first();
     }
 
     /** @SuppressWarnings(PHPMD.UnusedLocalVariable) */
