@@ -1,6 +1,6 @@
 <Todo : personalize readme>
 
-# Pre-built base for new app development on Laravel 6
+# Pre-built base for new app development on Laravel 7
 
 | Develop | Master |
 |---|---|
