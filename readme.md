@@ -12,7 +12,7 @@
 * Lead dev: [Okipa](https://github.com/Okipa)
 * Quality: [Okipa](https://github.com/Okipa)
 * Management: [Okipa](https://github.com/Okipa)
-* Devs: https://github.com/Okipa/starter/graphs/contributors
+* Devs: https://github.com/ACID-Solutions/starter/graphs/contributors
 
 ## Table of Contents
 
