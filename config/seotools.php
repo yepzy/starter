@@ -19,7 +19,9 @@ return [
             'separator' => ' - ',
             'keywords' => [],
             'canonical' => null, // Set null for using Url::current(), set false to total remove
-            'robots' => env('APP_ENV') !== 'production' ? 'none' : 'all', // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow
+            'robots' => env('APP_ENV') !== 'production'
+                ? 'none'
+                : 'all', // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow
         ],
         /*
          * Webmaster tags are always added.
@@ -55,7 +57,7 @@ return [
          */
         'defaults' => [
             'card' => 'summary', // other possible values : summary_large_image / app / player
-            'site' => '@acid_solutions', // todo : update twitter site
+            'site' => '@acid_solutions', // todo : update twitter site,
         ],
     ],
 

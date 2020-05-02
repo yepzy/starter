@@ -122,9 +122,10 @@
     "Slide moved up.": "Diapositive déplacée vers le haut.",
     "Slide moved down.": "Diapositive déplacée vers le bas.",
     "Hello": "Bonjour",
-    "Sorry": "Désolé",
+    "Hello!": "Bonjour !",
+    "Whoops!": "Oups !",
     "Regards": "Bien à vous",
-    "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below into your web browser:": "Si vous ne parvenez pas à cliquer sur le bouton \":actionText\", copiez/collez le lien ci-dessous dans votre navigateur :",
+    "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\\n into your web browser:": "Si vous ne parvenez pas à cliquer sur le bouton \":actionText\", copiez/collez le lien ci-dessous\\n dans votre navigateur web :",
     "Reset your password": "Réinitialisez votre mot de passe",
     "This email has been sent to you because we have received a password reset request for your account.": "Cet email vous a été envoyé car nous avons reçu une demande de réinitialisation de mot de passe pour votre compte.",
     "Reset password": "Réinitialiser le mot de passe",
@@ -141,5 +142,9 @@
     "Welcome on the :app platform. Your account has been created and to authenticate yourself, you first have to create a secured password.": "Bienvenue sur la plateforme :app. Votre compte a été créé et pour vous y connecter, il vous faut d'abord créer un mot de passe sécurisé.",
     "Create my secured password": "Créer mon mot de passe sécurisé",
     "This link will expire in :minutes minutes.": "Ce lien expirera dans :minutes minutes.",
-    "If you have not requested an account creation, no action is required.": "Si vous n'avez pas réalisé de demande de création de compte, aucune action de votre part n'est nécessaire."
+    "If you have not requested an account creation, no action is required.": "Si vous n'avez pas réalisé de demande de création de compte, aucune action de votre part n'est nécessaire.",
+    "Min. width: :width px.": "Largeur min. : :width px.",
+    "Min. height: :height px.": "Hauteur min. : :height px.",
+    "{1}Accepted type: :types.|[2,*]Accepted types: :types.": "{1}Type accepté : :types.|[2,*]Types acceptés : :types.",
+    "Max. file size: :size Mb.": "Poids max. fichier : :size Mb."
 }
