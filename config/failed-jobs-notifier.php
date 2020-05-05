@@ -31,7 +31,7 @@ return [
      * The channels to which the notification will be sent.
      */
 
-    // todo : customize this value
+    // todo: customize this value
     'channels'     => [
         'mail',
         'slack',
@@ -43,12 +43,12 @@ return [
     ],
 
     'slack' => [
-        // todo : customize this value
+        // todo: customize this value
         'webhook_url' => 'https://your-slack-webhook.slack.com',
     ],
 
     'webhook' => [
-        // todo : customize this value
+        // todo: customize this value
         // rocket chat example
         'url' => 'https://chat.acid.fr/hooks/1234/5678',
     ],

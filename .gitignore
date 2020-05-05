@@ -17,9 +17,6 @@
 # storage
 /storage/*.key
 
-# docker //  todo : to remove once .docker submodule is linked to the projet
-.docker
-
 # composer
 /vendor
 

@@ -10,7 +10,7 @@ require 'recipe/laravel.php';
 
 $servers = [
     'preprod' => [
-        'host' => '<project-preprod-host>', // todo : set project preprod host
+        'host' => '<project-preprod-host>', // todo: set project preprod host
         'branch' => 'develop',
         'deploy_path' => '/var/www/preprod/web/site',
         'user' => 'preprod',
@@ -19,7 +19,7 @@ $servers = [
         'private_identity' => '~/.ssh/id_rsa',
     ],
     'production' => [
-        'host' => '<project-production-host>', // todo : set project production host
+        'host' => '<project-production-host>', // todo: set project production host
         'branch' => 'master',
         'deploy_path' => '/var/www/prod/web/site',
         'user' => 'prod',
@@ -34,15 +34,14 @@ $servers = [
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 set('bin/php', '/usr/bin/php7.4');
-set('repository', '<project-repository>'); // todo : set project repository url
+set('repository', '<project-repository>'); // todo: set project repository url
 set('keep_releases', 3);
 set('default_stage', 'preprod');
 set('allow_anonymous_stats', false);
 set('writable_mode', 'chmod');
 set('writable_use_sudo', false);
 foreach ($servers as $stage => $server) {
-    host($stage)
-        ->stage($stage)
+    host($stage)->stage($stage)
         ->hostname($server['host'])
         ->user($server['user'])
         ->identityFile($server['private_identity'])
@@ -74,7 +73,9 @@ task('deploy', [
     'deploy:unlock',
     'cleanup',
     'artisan:queue:restart',
-    'supervisor:laravel-queue:restart',
+    'supervisor:horizon:restart',
+    'artisan:queue:restart',
+    'supervisor:queue:restart',
     'server:resources:reload',
     'cron:install',
 ])->desc('Releasing compiled project on server');
@@ -143,11 +144,33 @@ task('project:dependencies_check', function () {
     }
 })->desc('Verify that server dependencies are installed');
 
-task('supervisor:laravel-queue:restart', function () {
+task('supervisor:horizon:restart', function () {
     within(get('release_path'), function () {
-        run('sudo supervisorctl restart all');
+        switch (app()->environment()) {
+            // todo: customize workers name
+            case 'preprod':
+                run('sudo supervisorctl restart "laravel-horizon-preprod-worker:*"');
+                break;
+            case 'production':
+                run('sudo supervisorctl restart "laravel-horizon-prod-worker:*"');
+                break;
+        }
     });
-})->desc('Restarting the project laravel-queue supervisor task');
+})->desc('Restarting the horizon supervisor task');
+
+task('supervisor:queue:restart', function () {
+    within(get('release_path'), function () {
+        // todo: customize workers name
+        switch (app()->environment()) {
+            case 'preprod':
+                run('sudo supervisorctl restart "laravel-queue-preprod-worker:*"');
+                break;
+            case 'production':
+                run('sudo supervisorctl restart "laravel-queue-prod-worker:*"');
+                break;
+        }
+    });
+})->desc('Restarting the queue supervisor tasks');
 
 task('server:resources:reload', function () {
     $output = run('sudo service nginx reload');

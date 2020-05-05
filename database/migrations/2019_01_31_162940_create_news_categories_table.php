@@ -15,7 +15,7 @@ class CreateNewsCategoriesTable extends Migration
     {
         Schema::create('news_categories', function (Blueprint $table) {
             $table->id();
-            // todo : change column type with monolingual app
+            // todo: change column type with monolingual app
             $table->json('name');
             $table->timestamps();
         });

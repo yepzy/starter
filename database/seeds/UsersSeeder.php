@@ -8,7 +8,7 @@ class UsersSeeder extends Seeder
 {
     public function run(): void
     {
-        // todo : create needed users
+        // todo: create needed users
         $this->createUser([
             'first_name' => 'Admin',
             'last_name' => 'STARTER',

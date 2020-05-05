@@ -16,9 +16,9 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->string('slug')->unique();
-            // todo : change column type with monolingual app
+            // todo: change column type with monolingual app
             $table->json('nav_title');
-            // todo : change column type with monolingual app
+            // todo: change column type with monolingual app
             $table->json('url');
             $table->boolean('active');
             $table->timestamps();

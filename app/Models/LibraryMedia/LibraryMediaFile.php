@@ -45,7 +45,7 @@ class LibraryMediaFile extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('medias')->acceptsMimeTypes([
-            // todo : only keep mime types you need here
+            // todo: only keep mime types you need here
             // check complete list here : https://slick.pl/kb/htaccess/complete-list-mime-types/
             // image
             'image/jpeg',
