@@ -1,6 +1,6 @@
 <Todo : personalize readme>
 
-# Pre-built base app on Laravel 7
+#  App base built with Laravel 7
 
 | Develop | Master |
 |---|---|

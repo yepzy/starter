@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1e95909a1cacf1aa51109814b78a4413",
+    "content-hash": "50cbd2dcfe6c6e3b9b1f02017d303e85",
     "packages": [
         {
             "name": "0.0.0/composer-include-files",
@@ -3572,16 +3572,16 @@
         },
         {
             "name": "okipa/laravel-table",
-            "version": "2.0.0.x-dev",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-table.git",
-                "reference": "fb4297ff22bb1011079d58ee19aafee2f789e912"
+                "reference": "b493585392108a04715c1afb9ff47618875214b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Okipa/laravel-table/zipball/fb4297ff22bb1011079d58ee19aafee2f789e912",
-                "reference": "fb4297ff22bb1011079d58ee19aafee2f789e912",
+                "url": "https://api.github.com/repos/Okipa/laravel-table/zipball/b493585392108a04715c1afb9ff47618875214b1",
+                "reference": "b493585392108a04715c1afb9ff47618875214b1",
                 "shasum": ""
             },
             "require": {
@@ -3637,7 +3637,7 @@
                 "table",
                 "tables"
             ],
-            "time": "2020-04-30T21:33:56+00:00"
+            "time": "2020-05-02T19:36:02+00:00"
         },
         {
             "name": "opis/closure",
@@ -8348,20 +8348,20 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v4.1.4",
+            "version": "v4.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "feb6dad5ae24b1380827aee1629b730080fde500"
+                "reference": "539bb6927c101a5605d31d11a2d17185a2ce2bf1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/feb6dad5ae24b1380827aee1629b730080fde500",
-                "reference": "feb6dad5ae24b1380827aee1629b730080fde500",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/539bb6927c101a5605d31d11a2d17185a2ce2bf1",
+                "reference": "539bb6927c101a5605d31d11a2d17185a2ce2bf1",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5.9 || ^7.0",
+                "php": "^5.5.9 || ^7.0 || ^8.0",
                 "phpoption/phpoption": "^1.7.2",
                 "symfony/polyfill-ctype": "^1.9"
             },
@@ -8418,7 +8418,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-04-12T15:20:09+00:00"
+            "time": "2020-05-02T14:08:57+00:00"
         },
         {
             "name": "voku/portable-ascii",
@@ -11777,9 +11777,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "okipa/laravel-table": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

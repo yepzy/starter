@@ -72,10 +72,8 @@ task('deploy', [
     'deploy:symlink',
     'deploy:unlock',
     'cleanup',
+    'artisan:horizon:terminate',
     'artisan:queue:restart',
-    'supervisor:horizon:restart',
-    'artisan:queue:restart',
-    'supervisor:queue:restart',
     'server:resources:reload',
     'cron:install',
 ])->desc('Releasing compiled project on server');
@@ -143,34 +141,6 @@ task('project:dependencies_check', function () {
         run('dpkg-query --show --showformat=\'${db:Status-Status}\n\' \'' . $dependency . '\'');
     }
 })->desc('Verify that server dependencies are installed');
-
-task('supervisor:horizon:restart', function () {
-    within(get('release_path'), function () {
-        switch (app()->environment()) {
-            // todo: customize workers name
-            case 'preprod':
-                run('sudo supervisorctl restart "laravel-horizon-preprod-worker:*"');
-                break;
-            case 'production':
-                run('sudo supervisorctl restart "laravel-horizon-prod-worker:*"');
-                break;
-        }
-    });
-})->desc('Restarting the horizon supervisor task');
-
-task('supervisor:queue:restart', function () {
-    within(get('release_path'), function () {
-        // todo: customize workers name
-        switch (app()->environment()) {
-            case 'preprod':
-                run('sudo supervisorctl restart "laravel-queue-preprod-worker:*"');
-                break;
-            case 'production':
-                run('sudo supervisorctl restart "laravel-queue-prod-worker:*"');
-                break;
-        }
-    });
-})->desc('Restarting the queue supervisor tasks');
 
 task('server:resources:reload', function () {
     $output = run('sudo service nginx reload');
