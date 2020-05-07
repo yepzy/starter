@@ -14,7 +14,7 @@ abstract class AbstractSeoRequest extends FormRequest
             'remove_meta_image' => ['required', 'boolean'],
         ], localizeRules([
             'meta_title' => ['required', 'string', 'max:255'],
-            'meta_description' => ['string', 'max:255'],
+            'meta_description' => ['nullable', 'string', 'max:255'],
         ]));
     }
 

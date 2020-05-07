@@ -21,7 +21,7 @@ class UserUpdateRequest extends FormRequest
                 'max:255',
                 'unique:users,email,' . $this->user->id,
             ],
-            'new_password' => ['string', 'min:' . config('security.password.constraint.min'), 'confirmed'],
+            'new_password' => ['nullable', 'string', 'min:' . config('security.password.constraint.min'), 'confirmed'],
         ];
     }
 

@@ -15,7 +15,9 @@ class Handler extends ExceptionHandler
      *
      * @var array
      */
-    protected $dontReport = [];
+    protected $dontReport = [
+        //
+    ];
 
     /**
      * A list of the inputs that are never flashed for validation exceptions.
@@ -65,6 +67,8 @@ class Handler extends ExceptionHandler
     }
 
     /**
+     * Convert a validation exception into a response.
+     *
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Validation\ValidationException $exception
      *
