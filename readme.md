@@ -22,9 +22,6 @@
   * [DNS setup](#dns-setup)
   * [Project configuration and dependencies installation](#project-configuration-and-dependencies-installation)
 * [Docker](#docker)
-  * [Setup](#setup)
-  * [Commands](#commands)
-* [Git submodules](#git-submodules)
 * [Database](#database)
 * [Building resources](#building-resources)
 * [Testing](#testing)
@@ -82,10 +79,11 @@ See how to use it on the [official documentation](https://vessel.shippingdocker.
 ## Building resources
 
 Compile all your project resources (mainly sass and javascript) by executing the following commands.
-You can run these commands from your docker workspace, Node and Yarn are installed. However, running them from your host machine will be quicker.
+You can run these commands from your docker workspace, Node and Yarn are being installed. However, running them from your host machine will be quicker.
+
 * `yarn dev` (does merge but does not minify resources).
 * `yarn prod` (does merge **and** minify).
-* `yarn watch` (recompile automatically when a change is detected in a resource file).
+* `yarn watch` (recompile automatically when a change is being detected in a resource file).
 
 ## Testing
 
