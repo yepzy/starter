@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Pages\PageStoreRequest;
 use App\Http\Requests\Pages\PageUpdateRequest;
 use App\Models\Pages\Page;
-use App\Services\Pages\PagesService;
 use App\Tables\PagesTable;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\RedirectResponse;
@@ -77,7 +76,7 @@ class PagesController extends Controller
         $page->saveSeoMetaFromRequest($request);
         pages(true);
 
-        return back()->with('toast_success', __('notifications.orphan.updated', [
+        return redirect()->route('page.edit', $page)->with('toast_success', __('notifications.orphan.updated', [
             'entity' => __('Pages'),
             'name' => $page->nav_title,
         ]));

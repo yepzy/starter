@@ -92,11 +92,12 @@ class NewsArticlesController extends Controller
         $article->categories()->sync($request->category_ids);
         $article->saveSeoMetaFromRequest($request);
 
-        return back()->with('toast_success', __('notifications.parent.updated', [
-            'parent' => __('News'),
-            'entity' => __('Articles'),
-            'name' => $article->title,
-        ]));
+        return redirect()->route('news.article.edit', $article)
+            ->with('toast_success', __('notifications.parent.updated', [
+                'parent' => __('News'),
+                'entity' => __('Articles'),
+                'name' => $article->title,
+            ]));
     }
 
     /**
