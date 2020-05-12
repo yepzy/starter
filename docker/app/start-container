@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Config /etc/php/7.4/mods-available/xdebug.ini
-sed -i "s/xdebug\.remote_host\=.*/xdebug\.remote_host\=$XDEBUG_HOST/g" /etc/php/7.4/mods-available/xdebug.ini
+#sed -i "s/xdebug\.remote_host\=.*/xdebug\.remote_host\=$XDEBUG_HOST/g" /etc/php/7.4/mods-available/xdebug.ini
 
 # Run PHP-FPM as current user
 if [ ! -z "$WWWUSER" ]; then
