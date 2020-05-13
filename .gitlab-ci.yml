@@ -217,7 +217,7 @@ preprod:
   script:
     - *ssh_init
     - *permissions_update
-    - vendor/bin/dep deploy preprod -vvv
+    - vendor/bin/dep deploy preprod -vv
     - *check_returned_http_code
   environment:
     name: preprod
@@ -239,7 +239,7 @@ production:
   script:
     - *ssh_init
     - *permissions_update
-    - vendor/bin/dep deploy production -vvv
+    - vendor/bin/dep deploy production -vv
     - *check_returned_http_code
   environment:
     name: production
