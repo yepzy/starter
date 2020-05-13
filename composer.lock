@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f88a0adbf709698fd0dc95a820fc14d1",
+    "content-hash": "3bf14afc3a187abc4e97f914a1f8e36a",
     "packages": [
         {
             "name": "0.0.0/composer-include-files",
@@ -3595,6 +3595,77 @@
                 "stuck"
             ],
             "time": "2020-05-07T09:57:05+00:00"
+        },
+        {
+            "name": "okipa/laravel-supervisor-downtime-notifier",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Okipa/laravel-supervisor-downtime-notifier.git",
+                "reference": "3f96e5fb4b09c935415987a312a8c7a7b42b829b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Okipa/laravel-supervisor-downtime-notifier/zipball/3f96e5fb4b09c935415987a312a8c7a7b42b829b",
+                "reference": "3f96e5fb4b09c935415987a312a8c7a7b42b829b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^6.0||^7.0",
+                "laravel-notification-channels/webhook": "^2.0",
+                "laravel/slack-notification-channel": "^2.0",
+                "php": "^7.4"
+            },
+            "require-dev": {
+                "nunomaduro/larastan": "^0.5",
+                "orchestra/testbench": "^4.0||^5.0",
+                "phpmd/phpmd": "^2.8",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Okipa\\LaravelSupervisorDowntimeNotifier\\SupervisorDowntimeNotifierServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Okipa\\LaravelSupervisorDowntimeNotifier\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arthur LORENT",
+                    "email": "arthur.lorent@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Get notified when supervisor is down.",
+            "homepage": "https://github.com/Okipa/laravel-supervisor-downtime-notifier",
+            "keywords": [
+                "down",
+                "downtime",
+                "laravel",
+                "laravel-supervisor-downtime-notifier",
+                "notifier",
+                "notify",
+                "okipa",
+                "package",
+                "php",
+                "process",
+                "processes",
+                "service",
+                "supervisor",
+                "worker",
+                "workers"
+            ],
+            "time": "2020-05-13T13:44:51+00:00"
         },
         {
             "name": "okipa/laravel-table",

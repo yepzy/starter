@@ -41,8 +41,7 @@ return [
     // todo: to customize
     'channels' => ['mail', 'slack', WebhookChannel::class],
 
-    // todo: to customize
-    'mail' => ['to' => 'email@example.test'],
+    'mail' => ['to' => env('MONITORING_EMAIL_NOTIFICATIONS')],
 
     // todo: to customize
     'slack' => ['webhookUrl' => 'https://your-slack-webhook.slack.com'],
