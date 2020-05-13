@@ -27,17 +27,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         if ($this->shouldRun()) {
-            // auth
-            $schedule->command('auth:clear-resets')->daily();
-            // sitemap
-            $schedule->command('sitemap:generate')->twiceDaily();
-            // horizon
             $schedule->command('horizon:snapshot')->everyFiveMinutes();
-            // telescope
+            $schedule->command('sitemap:generate')->twiceDaily();
+            $schedule->command('auth:clear-resets')->daily();
             $schedule->command('telescope:prune')->daily();
-            // stuck failed jobs notifier
-            // https://github.com/Okipa/laravel-failed-jobs-notifier
-            $schedule->command('queue:failed:notify')->twiceDaily(9, 15);
+            // https://github.com/Okipa/laravel-stuck-jobs-notifier
+            $schedule->command('queue:stuck:notify')->twiceDaily(10, 16);
         }
     }
 
