@@ -202,7 +202,7 @@ phpstan:
 .check_returned_http_code: &check_returned_http_code |
   HTTPCODE=$(curl --write-out %{http_code} --silent --output /dev/null $URL)
   echo 'The URL '"$URL"' returned a '"$HTTPCODE"' HTTP code.'
-  if [ "$HTTPCODE" -eq 200 ] || [ "$HTTPCODE" -eq 301 ] ; then exit 0; else exit 1; fi
+  if [ "$HTTPCODE" -eq 200 ] || [ "$HTTPCODE" -eq 301 ] || [ "$HTTPCODE" -eq 302 ] ; then exit 0; else exit 1; fi
 
 preprod:
   stage: deploy
