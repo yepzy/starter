@@ -11,8 +11,8 @@
 /public/favicon.ico
 /public/hot
 /public/mix-manifest.json
-/public/storage
 /public/sitemap.xml
+/public/storage
 
 # storage
 /storage/*.key

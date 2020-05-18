@@ -54,6 +54,7 @@ foreach ($servers as $stage => $server) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // deployment tasks
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 task('deploy', [
     'deploy:info',
     'deploy:prepare',
@@ -97,7 +98,7 @@ task('deploy:upload', function () {
         'artisan',
         'composer.json',
     ];
-    $rsyncConfig = ['--delete'];
+    $rsyncConfig = ['options' => ['--delete', '-q']];
     foreach ($toUpload as $key => $item) {
         if (isset($key) && is_string($key)) {
             upload($key, '{{release_path}}/' . $item, $rsyncConfig);

@@ -1,7 +1,7 @@
 window.notify = swal.mixin({
     customClass: {
-        confirmButton: 'btn btn-outline-primary mx-2',
-        cancelButton: 'btn btn-outline-danger mx-2'
+        confirmButton: 'btn btn-primary mx-2',
+        cancelButton: 'btn btn-danger mx-2'
     },
     cancelButtonText: app.sweetalert.cancel,
     buttonsStyling: false
@@ -12,6 +12,30 @@ notify.toast = notify.mixin({
     position: 'top-end',
     timer: 8000
 });
+
+notify.toastSuccess = (title, html) => {
+    return notify.toast.fire({
+        icon: 'success',
+        title,
+        html
+    });
+};
+
+notify.toastError = (title, html) => {
+    return notify.toast.fire({
+        icon: 'error',
+        title,
+        html
+    });
+};
+
+notify.toastInfo = (title, html) => {
+    return notify.toast.fire({
+        icon: 'info',
+        title,
+        html
+    });
+};
 
 notify.info = (html, title, config = {}) => {
     return notify.fire({

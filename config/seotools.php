@@ -9,6 +9,7 @@ $defaultDescription = 'App description.'; // todo: set default app description
 return [
 
     'meta' => [
+
         /*
          * The default configurations to be used by the meta generator.
          */
@@ -23,6 +24,7 @@ return [
                 ? 'none'
                 : 'all', // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow
         ],
+
         /*
          * Webmaster tags are always added.
          */
@@ -34,10 +36,13 @@ return [
             'yandex' => null, // https://yandex.com/support/webmaster/adding-site/how-to-add-site.html
             'norton' => null, // https://support.norton.com/sp/en/in/home/current/solutions/kb20090410134005EN
         ],
+
         'add_notranslate_class' => false,
+
     ],
 
     'opengraph' => [
+
         /*
          * The default configurations to be used by the opengraph generator.
          */
@@ -52,6 +57,7 @@ return [
     ],
 
     'twitter' => [
+
         /*
          * The default values to be used by the twitter cards generator.
          */
@@ -62,6 +68,7 @@ return [
     ],
 
     'json-ld' => [
+
         /*
          * The default configurations to be used by the json-ld generator.
          */

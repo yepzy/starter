@@ -28,7 +28,6 @@ window.triggerSumoSelectDetection = () => {
                 captionFormatAllSelected: app.sumoSelect.captionFormatAllSelected,
                 locale: app.sumoSelect.locales
             });
-
         });
     }
 };

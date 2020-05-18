@@ -128,7 +128,7 @@ class LibraryMediaFilesController extends Controller
                     'components.admin.table.library-media.html-clipboard-content',
                     compact('file', 'locale')
                 )->toHtml());
-            $message = __('Media « :name » :type copied in clipboard.', [
+            $message = __('Media ":name" :type copied in clipboard.', [
                 'type' => strtoupper($type),
                 'name' => $file->getTranslation('name', $locale),
             ]);

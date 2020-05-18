@@ -47,7 +47,7 @@ composer:nodev:
 
 yarn:
   stage: build
-  image: node:12 # todo: set node version
+  image: node:12
   script:
     - yarn install
   artifacts:
@@ -58,10 +58,14 @@ yarn:
     key: ${CI_COMMIT_REF_SLUG}-yarn
     paths:
       - node_modules/
+  only:
+    refs:
+      - develop
+      - tags
 
 yarn:nodev:
   stage: build
-  image: node:10
+  image: node:12
   script:
     - yarn install --production
   artifacts:
@@ -79,7 +83,7 @@ yarn:nodev:
 
 resources:
   stage: compile
-  image: node:10
+  image: node:12
   dependencies:
     - yarn
     - composer:nodev
@@ -101,7 +105,7 @@ resources:
 
 resources:nodev:
   stage: compile
-  image: node:10
+  image: node:12
   dependencies:
     - yarn
     - composer:nodev
@@ -123,7 +127,7 @@ resources:nodev:
 
 phpunit:
   stage: test
-  image: php:7.4-cli # todo: set php version
+  image: php:7.4-cli
   dependencies:
     - composer
     - resources
@@ -143,7 +147,7 @@ phpunit:
 
 phpcs:
   stage: test
-  image: php:7.4-cli # todo: set php version
+  image: php:7.4-cli
   dependencies:
     - composer
   script:
@@ -155,7 +159,7 @@ phpcs:
 
 phpmd:
   stage: test
-  image: php:7.4-cli # todo: set php version
+  image: php:7.4-cli
   dependencies:
     - composer
   script:
@@ -167,7 +171,7 @@ phpmd:
 
 phpstan:
   stage: test
-  image: php:7.4-cli # todo: set php version
+  image: php:7.4-cli
   dependencies:
     - composer
   before_script:
@@ -206,7 +210,7 @@ phpstan:
 
 preprod:
   stage: deploy
-  image: php:7.4-cli # todo: set php version
+  image: php:7.4-cli
   variables:
     URL: <project-preprod-url> # todo: set project preprod url
   dependencies:
@@ -228,7 +232,7 @@ preprod:
 
 production:
   stage: deploy
-  image: php:7.4-cli # todo: set php version
+  image: php:7.4-cli
   variables:
     URL: <project-production-url> # todo: set project production url
   dependencies:
