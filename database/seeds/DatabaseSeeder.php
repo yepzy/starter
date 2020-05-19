@@ -10,9 +10,6 @@ class DatabaseSeeder extends Seeder
         $this->command->call('queue:flush');
         $this->command->call('queue:restart');
         File::cleanDirectory(storage_path('app/public'));
-        if (app()->environment() !== 'local') {
-            config()->set('medialibrary.queued_conversions', true);
-        }
         $this->call(SettingsSeeder::class);
         $this->call(UsersSeeder::class);
         $this->call(PagesSeeder::class);
