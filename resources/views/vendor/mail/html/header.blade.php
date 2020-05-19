@@ -11,7 +11,7 @@ $base64Logo = 'data:image/' . $type . ';base64,' . $base64Image;
 <td class="header">
 <a href="{{ $url }}" style="display: inline-block;">
 @if ($base64Logo)
-<img src="{{ $base64Logo }}" class="logo" alt="{{ config('app.name') }}">
+<img src="{{ $base64Logo }}" class="logo" alt="{{ config('app.name') }}" style="vertical-align: middle; margin-right: 10px;">
 @endif
 {{ $slot }}
 </a>
