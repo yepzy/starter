@@ -10,6 +10,6 @@
             </div>
             @include('layouts.front.partials.footer')
         </div>
+        @include('layouts.front.partials.end')
     </body>
-    @include('layouts.front.partials.end')
 @endsection

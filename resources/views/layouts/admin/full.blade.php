@@ -9,6 +9,6 @@
                 @yield('template')
             </div>
         </div>
+        @include('layouts.admin.partials.end')
     </body>
-    @include('layouts.admin.partials.end')
 @endsection

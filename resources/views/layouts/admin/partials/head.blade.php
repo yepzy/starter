@@ -9,4 +9,5 @@
     @if(app()->environment() !== 'production'){!! SEO::generate() !!}@else{!! SEO::generate(true) !!}@endif
     <link href="{{ mix('css/admin.css') }}" rel="stylesheet"/>
     @if(! empty($css))<link href="{{ $css }}" rel="stylesheet"/>@endif
+    @shared
 </head>
