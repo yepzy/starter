@@ -96,7 +96,7 @@
             "vendor/bin/phpcbf",
             "vendor/bin/phpcs",
             "vendor/bin/phpmd app,config,database,routes,tests text phpmd.xml",
-            "vendor/bin/phpstan analyse",
+            "vendor/bin/phpstan analyse --error-format=table --memory-limit=2048M",
             "vendor/bin/phpunit"
         ]
     },

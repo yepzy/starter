@@ -132,8 +132,8 @@ phpunit:
     - composer
     - resources
   before_script:
-    - apt update && apt install -y libjpeg62-turbo-dev libpng-dev exif
-    - docker-php-ext-configure gd --with-gd --with-jpeg-dir --with-png-dir
+    - apt update && apt install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev exif
+    - docker-php-ext-configure gd --with-freetype --with-jpeg
     - docker-php-ext-install gd
     - docker-php-ext-install exif
     - pecl install xdebug
@@ -175,9 +175,10 @@ phpstan:
   dependencies:
     - composer
   before_script:
-    - docker-php-ext-install mysqli pdo pdo_mysql bcmath
+    - apt update && apt install -y git
+    - docker-php-ext-install mysqli pdo pdo_mysql
   script:
-    - vendor/bin/phpstan analyse
+    - vendor/bin/phpstan analyse --error-format=table --memory-limit=2048M
     - exit $?
   except:
     refs:
@@ -186,11 +187,10 @@ phpstan:
 
 .rsync_install: &rsync_install
   before_script:
-    - apt-get update -y
-    - apt-get -y install rsync
+    - apt update && apt-get -y install rsync
 
 .ssh_init: &ssh_init |
-  which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
+  which ssh-agent || ( apt-get update && apt-get install openssh-client -y )
   eval $(ssh-agent -s)
   mkdir -p ~/.ssh
   chmod 700 ~/.ssh
