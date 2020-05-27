@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
 use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class ConfirmPasswordController extends Controller
 {
@@ -24,10 +25,7 @@ class ConfirmPasswordController extends Controller
         showConfirmForm as traitShowConfirmForm;
     }
 
-    /**
-     * @return \Illuminate\Http\Response
-     */
-    public function showConfirmForm()
+    public function showConfirmForm(): View
     {
         SEOTools::setTitle(__('Password verification'));
 

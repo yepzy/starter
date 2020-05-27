@@ -134,8 +134,7 @@ phpunit:
   before_script:
     - apt update && apt install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev exif
     - docker-php-ext-configure gd --with-freetype --with-jpeg
-    - docker-php-ext-install gd
-    - docker-php-ext-install exif
+    - docker-php-ext-install gd exif
     - pecl install xdebug
     - docker-php-ext-enable xdebug
   script:
@@ -187,10 +186,10 @@ phpstan:
 
 .rsync_install: &rsync_install
   before_script:
-    - apt update && apt-get -y install rsync
+    - apt update && apt install -y rsync
 
 .ssh_init: &ssh_init |
-  which ssh-agent || ( apt-get update && apt-get install openssh-client -y )
+  which ssh-agent || ( apt update && apt install -y openssh-client )
   eval $(ssh-agent -s)
   mkdir -p ~/.ssh
   chmod 700 ~/.ssh
