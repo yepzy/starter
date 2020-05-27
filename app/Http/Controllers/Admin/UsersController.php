@@ -12,6 +12,7 @@ use Artesaos\SEOTools\Facades\SEOTools;
 use Auth;
 use Hash;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 
@@ -81,10 +82,9 @@ class UsersController extends Controller
      */
     public function update(User $user, UserUpdateRequest $request): RedirectResponse
     {
-        if ($request->new_password) {
-            $request->merge(['password' => Hash::make($request->new_password)]);
-        }
-        $user->update($request->validated());
+        $user->update($request->validated()['new_password']
+            ? array_merge($request->validated(), ['password' => Hash::make($request->validated()['new_password'])])
+            : Arr::except($request->validated(), 'password'));
         (new UsersService)->saveAvatarFromRequest($request, $user);
 
         return back()->with('toast_success', $user->id === Auth::id()
