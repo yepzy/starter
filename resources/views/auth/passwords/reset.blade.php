@@ -24,8 +24,7 @@
                 . __('passwords.recommendation'))
             ->containerHtmlAttributes(['required']) }}
         {{ inputPassword()->name('password_confirmation')->containerHtmlAttributes(['required']) }}
-        {{ submitValidate()->label(__('Save new password'))
-            ->componentClasses(['btn', 'btn-block', 'btn-primary']) }}
+        {{ submitValidate()->label(__('Save new password'))->componentClasses(['btn', 'btn-block', 'btn-primary']) }}
         {{ buttonBack()->route('login')->containerClasses(['mt-3']) }}
     </form>
 @endsection
