@@ -10,7 +10,8 @@
     </h1>
     <hr>
     <form action="{{ $page ? route('page.update', $page) : route('page.store') }}"
-          method="POST">
+          method="POST"
+          enctype="multipart/form-data">
         @csrf
         @if($page)
             @method('PUT')
