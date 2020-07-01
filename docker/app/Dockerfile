@@ -27,7 +27,6 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" > /etc/apt
        php-redis \
        php7.4-imagick \
     && php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
-    && su - vessel -c "/usr/bin/composer global require hirak/prestissimo" \
     && mkdir /run/php \
     && apt-get -y autoremove \
     && apt-get clean \

@@ -16,6 +16,7 @@
 
 # storage
 /storage/*.key
+/storage/media-library
 
 # composer
 /vendor
@@ -35,5 +36,5 @@ Homestead.yaml
 #testing
 .phpunit.result.cache
 
-# storage
-/storage/medialibrary
+# Mac OS
+**/.DS_Store
