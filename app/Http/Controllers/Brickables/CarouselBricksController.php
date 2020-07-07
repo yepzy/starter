@@ -38,11 +38,11 @@ class CarouselBricksController extends BricksController
         $slides = $slide->model->getMedia('slides');
         $prev = $slides->where('order_column', '<', $slide->order_column)->values();
         $next = $slides->where('order_column', '>', $slide->order_column)->values();
-        $itemToSwitchIndex = $next->count() ? $next->count() - 1 : $next->count();
-        if ($next->has($itemToSwitchIndex)) {
-            $prev->push($next->pull($itemToSwitchIndex));
+        $itemToSwitchIndex = $prev->count() - 1;
+        if ($prev->has($itemToSwitchIndex)) {
+            $next->push($prev->pull($itemToSwitchIndex));
         }
-        $next->prepend($slide);
+        $prev->push($slide);
         $ids = [...$prev->pluck('id'), ...$next->pluck('id')];
         Media::setNewOrder($ids);
 
@@ -55,11 +55,11 @@ class CarouselBricksController extends BricksController
         $slides = $slide->model->getMedia('slides');
         $prev = $slides->where('order_column', '<', $slide->order_column)->values();
         $next = $slides->where('order_column', '>', $slide->order_column)->values();
-        $itemToSwitchIndex = $prev->count() - 1;
-        if ($prev->has($itemToSwitchIndex)) {
-            $next->push($prev->pull($itemToSwitchIndex));
+        $itemToSwitchIndex = $next->count() ? $next->count() - 1 : $next->count();
+        if ($next->has($itemToSwitchIndex)) {
+            $prev->push($next->pull($itemToSwitchIndex));
         }
-        $prev->push($slide);
+        $next->prepend($slide);
         $ids = [...$prev->pluck('id'), ...$next->pluck('id')];
         Media::setNewOrder($ids);
 
@@ -90,10 +90,13 @@ class CarouselBricksController extends BricksController
     {
         $image = $request->file('image');
 
-        /** @var \Spatie\MediaLibrary\HasMedia $brick */
+        /** @var \App\Models\Brickables\CarouselBrick $brick */
         return $brick->addMedia($image->getRealPath())
             ->setFileName($image->getClientOriginalName())
-            ->withCustomProperties(['label' => $request->label, 'caption' => $request->caption])
+            ->withCustomProperties([
+                'label' => $request->label,
+                'caption' => $request->caption,
+            ])
             ->toMediaCollection('slides');
     }
 
@@ -107,7 +110,7 @@ class CarouselBricksController extends BricksController
     protected function updated(Request $request, Brick $brick): void
     {
         if ($request->file('image')) {
-            /** @var \App\Models\Brickables\CarouselFullWidthBrick $brick */
+            /** @var \App\Models\Brickables\CarouselBrick $brick */
             $this->addNewSlide($request, $brick);
         }
     }
