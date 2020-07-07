@@ -3,6 +3,7 @@
 namespace App\Tables;
 
 use App\Models\Pages\Page;
+use Illuminate\Support\Facades\Lang;
 use Okipa\LaravelTable\Abstracts\AbstractTable;
 use Okipa\LaravelTable\Table;
 
@@ -38,9 +39,13 @@ class PagesTable extends AbstractTable
      */
     protected function columns(Table $table): void
     {
-        $table->column('slug')->sortable()->searchable();
-        $table->column('url')->title(__('Display'))->html(fn(Page $page) => view('components.admin.table.display', [
-            'url' => route('page.show', $page->url),
+        $table->column('unique_key')->sortable()->searchable();
+        $table->column('slug')
+            ->value(fn(Page $page) => '/' . (Lang::has('routes.page') ? __('routes.page') : 'page') . '/' . $page->slug)
+            ->sortable()
+            ->searchable();
+        $table->column()->title(__('Display'))->html(fn(Page $page) => view('components.admin.table.display', [
+            'url' => route('page.show', $page->slug),
             'active' => $page->active,
         ]));
         $table->column('active')->sortable()->html(fn(Page $page) => view('components.admin.table.active', [
