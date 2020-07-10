@@ -53,9 +53,6 @@ class NewsArticlesTable extends AbstractTable
                     : null;
             })->implode(' ');
         });
-        $table->column('slug')->value(fn(NewsArticle $newsArticle) => '/' . (Lang::has('routes.news')
-                ? __('routes.news')
-                : 'news') . '/' . $newsArticle->slug);
         $table->column()->title(__('Display'))->html(fn(NewsArticle $newsArticle) => view(
             'components.admin.table.display',
             ['url' => route('news.article.show', $newsArticle->slug), 'active' => $newsArticle->active]

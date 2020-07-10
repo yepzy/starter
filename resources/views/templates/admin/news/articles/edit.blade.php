@@ -46,7 +46,7 @@
                 {{ inputText()->name('slug')
                     ->locales(supportedLocaleKeys())
                     ->model($article)
-                    ->prepend('/' . (Lang::has('routes.news') ? __('routes.news') : 'news') . '/')
+                    ->prepend(fn(string $locale) => route('news.article.show', '', false, $locale) . '/')
                     ->componentHtmlAttributes(['data-slugify', 'data-autofill-from' => '#text-title'])
                     ->containerHtmlAttributes(['required']) }}
                 <h3>@lang('Information')</h3>
@@ -65,7 +65,7 @@
                 {{ textarea()->name('description')
                     ->locales(supportedLocaleKeys())
                     ->model($article)
-                    ->prepend(false)
+                    ->prepend(null)
                     ->componentClasses(['editor']) }}
                 <h3>@lang('Publication')</h3>
                 {{ inputText()->name('published_at')

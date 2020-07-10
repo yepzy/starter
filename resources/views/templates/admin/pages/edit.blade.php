@@ -39,7 +39,7 @@
                 {{ inputText()->name('slug')
                     ->locales(supportedLocaleKeys())
                     ->model($page)
-                    ->prepend('/' . (Lang::has('routes.page') ? __('routes.page') : 'page') . '/')
+                    ->prepend(fn(string $locale) => route('page.show', '', false, $locale) . '/')
                     ->componentHtmlAttributes(['data-slugify', 'data-autofill-from' => '#text-nav-title'])
                     ->containerHtmlAttributes(['required']) }}
                 {{ inputToggle()->name('active')->model($page) }}
