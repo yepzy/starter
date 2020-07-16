@@ -1,6 +1,7 @@
 <div id="sidenav" class="collapse navbar-collapse bg-dark align-items-start py-3">
     <ul class="navbar-nav nav flex-column flex-fill w-100">
         @include('layouts.admin.partials.nav-side.dashboard')
+        <hr class="w-100">
         @include('layouts.admin.partials.nav-side.home')
         @include('layouts.admin.partials.nav-side.news')
         @include('layouts.admin.partials.nav-side.contact')

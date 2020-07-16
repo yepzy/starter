@@ -15,7 +15,7 @@
         @lang('Media library')
         <i class="fas fa-caret-down fa-fw"></i>
     </a>
-    <ul id="libraryMediaMenu" class="collapse list-unstyled {{ $subMenuActive ? 'show' : null }}">
+    <ul id="libraryMediaMenu" class="collapse list-unstyled{{ $subMenuActive ? ' show' : null }}">
         {{-- categories --}}
         <li class="nav-item">
             <a class="nav-link{{ $libraryMediaCategoriesActive ? ' active' : null }}"
