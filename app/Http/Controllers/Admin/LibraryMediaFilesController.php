@@ -146,7 +146,7 @@ class LibraryMediaFilesController extends Controller
                 }
                 $returnCode = Response::HTTP_OK;
                 $clipboardContent = trim(view(
-                    'components.admin.table.library-media.clipboard-copy.display-html',
+                    'components.admin.library-media.clipboard-copy.display-html',
                     compact('file', 'media', 'locale')
                 )->toHtml());
                 $message = __('Clipboard copy: :name - :type.', [
@@ -157,7 +157,7 @@ class LibraryMediaFilesController extends Controller
             case 'download':
                 $returnCode = Response::HTTP_OK;
                 $clipboardContent = trim(view(
-                    'components.admin.table.library-media.clipboard-copy.download-html',
+                    'components.admin.library-media.clipboard-copy.download-html',
                     compact('file', 'media', 'locale')
                 )->toHtml());
                 $message = __('Clipboard copy: :name - :type.', [

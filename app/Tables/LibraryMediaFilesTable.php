@@ -69,7 +69,7 @@ class LibraryMediaFilesTable extends AbstractTable
     protected function columns(Table $table): void
     {
         $table->column('thumb')
-            ->html(fn(LibraryMediaFile $file) => view('components.admin.table.library-media.thumb', compact('file')));
+            ->html(fn(LibraryMediaFile $file) => view('components.admin.library-media.thumb', compact('file')));
         $table->column('name')->value(fn(LibraryMediaFile $file) => $file->name)->sortable()->searchable();
         $table->column('category_name')
             ->link(fn(LibraryMediaFile $file) => route('libraryMedia.files.index', [
@@ -85,7 +85,7 @@ class LibraryMediaFilesTable extends AbstractTable
             ->sortable()
             ->searchable('media');
         $table->column()->title(__('Clipboard copy'))->html(fn(LibraryMediaFile $file) => view(
-            'components.admin.table.library-media.clipboard-copy.buttons',
+            'components.admin.library-media.clipboard-copy.buttons',
             compact('file')
         ));
         $table->column('updated_at')->dateTimeFormat('d/m/Y H:i')->sortable(true, 'desc');
