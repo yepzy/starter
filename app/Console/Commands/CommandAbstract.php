@@ -20,13 +20,13 @@ abstract class CommandAbstract extends Command
         }
         switch ($level) {
             case 'success':
-                $this->info($message);
+                $this->output->success($message);
                 break;
             case 'info':
                 $this->line($message);
                 break;
             case 'error':
-                $this->error($message);
+                $this->output->error($message);
                 break;
         }
     }
