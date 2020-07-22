@@ -1,6 +1,6 @@
 <Todo : personalize readme>
 
-#  App base built with Laravel 7
+# App base built with Laravel 7
 
 | Develop | Master |
 |---|---|
@@ -60,7 +60,7 @@ Execute the following commands:
 * `./vessel composer update`
 * `./vessel artisan key:generate`
 * `./vessel artisan storage:link`
-* `./vessel artisan migrate:fresh --seed`
+* `./vessel artisan migrate:refresh --seed`
 * `yarn install`
 * `yarn upgrade`
 * `yarn dev` or `yarn watch`

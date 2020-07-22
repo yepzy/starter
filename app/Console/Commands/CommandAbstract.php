@@ -8,7 +8,7 @@ use InvalidArgumentException;
 
 abstract class CommandAbstract extends Command
 {
-    protected function log(string $message, string $level): void
+    protected function log(string $message, ?string $level = 'info'): void
     {
         $acceptedLevels = ['success', 'info', 'error'];
         if (! (in_array($level, $acceptedLevels))) {
@@ -22,11 +22,12 @@ abstract class CommandAbstract extends Command
             case 'success':
                 $this->output->success($message);
                 break;
-            case 'info':
-                $this->line($message);
-                break;
             case 'error':
                 $this->output->error($message);
+                break;
+            case 'info':
+            default:
+                $this->output->title($message);
                 break;
         }
     }
