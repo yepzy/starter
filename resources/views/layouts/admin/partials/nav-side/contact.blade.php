@@ -4,17 +4,17 @@
 @endphp
 <li class="nav-item">
     <a class="nav-link{{ $subMenuActive ? ' active' : null }}"
-       href="#contactMenu"
+       href="#contact-menu"
        title="@lang('Contact')"
        data-toggle="collapse"
        role="button"
        aria-expanded="false"
-       aria-controls="newsMenu">
+       aria-controls="contact-menu">
         <i class="fas fa-envelope fa-fw"></i>
         @lang('Contact')
         <i class="fas fa-caret-down fa-fw"></i>
     </a>
-    <ul id="contactMenu" class="collapse list-unstyled{{ $subMenuActive ? ' show' : null }}">
+    <ul id="contact-menu" class="collapse list-unstyled{{ $subMenuActive ? ' show' : null }}">
         {{-- page --}}
         <li class="nav-item">
             <a class="nav-link {{ $contactPageActive ? 'active' : null }}"

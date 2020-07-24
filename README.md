@@ -52,8 +52,6 @@ Set your project domain resolution in your virtualhost: `sudo vim /etc/hosts`
 
 ### Project configuration and dependencies installation
 
-Execute the following commands:
-
 * `composer install --no-scripts --ignore-platform-reqs`
 * `cp .env.example .env`. Then set the environment variables according to your project needs.
 * `./vessel start`

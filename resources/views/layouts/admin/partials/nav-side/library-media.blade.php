@@ -5,17 +5,17 @@
 @endphp
 <li class="nav-item">
     <a class="nav-link{{ $subMenuActive ? ' active' : null }}"
-        href="#libraryMediaMenu"
+        href="#library-media-menu"
             title="@lang('Media library')"
             data-toggle="collapse"
             role="button"
             aria-expanded="false"
-            aria-controls="newsMenu">
+            aria-controls="library-media-menu">
         <i class="fas fa-photo-video fa-fw"></i>
         @lang('Media library')
         <i class="fas fa-caret-down fa-fw"></i>
     </a>
-    <ul id="libraryMediaMenu" class="collapse list-unstyled{{ $subMenuActive ? ' show' : null }}">
+    <ul id="library-media-menu" class="collapse list-unstyled{{ $subMenuActive ? ' show' : null }}">
         {{-- categories --}}
         <li class="nav-item">
             <a class="nav-link{{ $libraryMediaCategoriesActive ? ' active' : null }}"

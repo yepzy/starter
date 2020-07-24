@@ -6,17 +6,17 @@
 @endphp
 <li class="nav-item">
     <a class="nav-link{{ $subMenuActive ? ' active' : null }}"
-       href="#newsMenu"
+       href="#news-menu"
        title="@lang('News')"
        data-toggle="collapse"
        role="button"
        aria-expanded="false"
-       aria-controls="newsMenu">
+       aria-controls="news-menu">
         <i class="fas fa-newspaper fa-fw"></i>
         @lang('News')
         <i class="fas fa-caret-down fa-fw"></i>
     </a>
-    <ul id="newsMenu" class="collapse list-unstyled{{ $subMenuActive ? ' show' : null }}">
+    <ul id="news-menu" class="collapse list-unstyled{{ $subMenuActive ? ' show' : null }}">
         {{-- page --}}
         <li class="nav-item">
             <a class="nav-link{{ $newsPageActive ? ' active' : null }}"
