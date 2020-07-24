@@ -14,7 +14,7 @@
         <hr class="w-100">
         {{-- back to the front --}}
         <li class="nav-item">
-            <a class="nav-link new-window" href="{{ route('home') }}" title="@lang('Back to the front')">
+            <a class="nav-link new-window" href="{{ route('home.page.show') }}" title="@lang('Back to the front')">
                 <i class="fas fa-undo fa-fw"></i>
                 @lang('Back to the front')
             </a>
