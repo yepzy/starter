@@ -58,6 +58,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
      * This gate determines who can access Telescope in non-local environments.
      *
      * @return void
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     protected function gate()
     {
