@@ -26,7 +26,10 @@ class LibraryMediaFilesController extends Controller
     public function index(FilesIndexRequest $request): View
     {
         $table = (new LibraryMediaFilesTable($request))->setup();
-        SEOTools::setTitle(__('breadcrumbs.orphan.index', ['entity' => __('Media library')]));
+        SEOTools::setTitle(__('breadcrumbs.parent.index', [
+            'parent' => __('Media library'),
+            'entity' => __('Files'),
+        ]));
         (new FilesService)->injectJavascriptInView();
         $js = mix('/js/library-media/index.js');
 
