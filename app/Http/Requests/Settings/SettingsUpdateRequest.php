@@ -15,7 +15,6 @@ class SettingsUpdateRequest extends FormRequest
     {
         return [
             'icon' => array_merge(['required'], settings()->getMediaValidationRules('icons')),
-            'remove_icon' => ['required', 'boolean'],
             'email' => ['required', 'string', 'max:255', 'email:rfc,dns,spoof'],
             'phone_number' => ['required', 'string', 'max:255', new PhoneInternational],
             'address' => ['required', 'string', 'max:255'],
