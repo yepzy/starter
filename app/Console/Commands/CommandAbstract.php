@@ -10,7 +10,7 @@ abstract class CommandAbstract extends Command
 {
     protected function log(string $message, ?string $level = 'info'): void
     {
-        $acceptedLevels = ['success', 'info', 'error'];
+        $acceptedLevels = ['title', 'info', 'success', 'error'];
         if (! (in_array($level, $acceptedLevels))) {
             throw new InvalidArgumentException('Invalid level provided. Level should be one of these: '
                 . collect($acceptedLevels)->implode(', ') . '. ' . $level . ' given.');
@@ -19,15 +19,17 @@ abstract class CommandAbstract extends Command
             Log::debug($message);
         }
         switch ($level) {
+            case 'title':
+                $this->output->title($message);
+                break;
+            case 'info':
+                $this->output->comment($message);
+                break;
             case 'success':
                 $this->output->success($message);
                 break;
             case 'error':
                 $this->output->error($message);
-                break;
-            case 'info':
-            default:
-                $this->output->title($message);
                 break;
         }
     }
