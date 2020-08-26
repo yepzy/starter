@@ -1,7 +1,7 @@
 @extends('layouts.front.full')
 @section('template')
     <div class="mt-5 mb-4">
-        {{ Brickables::displayBricks($pageContent) }}
+        {!! $pageContent->displayBricks() !!}
     </div>
     <div class="container my-3">
         <a class="new-window"
@@ -18,14 +18,7 @@
         <div class="row">
             <form class="col d-flex align-items-end">
                 {{ select()->name('category_id')
-                    ->options((new \App\Models\News\NewsCategory)->orderBy('name')
-                        ->get()
-                        ->map(function($category) {
-                            $category = $category->toArray();
-                            $category['name'] = translatedData($category, 'name');
-
-                            return $category;
-                    }), 'id', 'name')
+                    ->options((new App\Models\News\NewsCategory)->orderBy('name')->get()->map(fn(App\Models\News\NewsCategory $category) => ['id' => $category->id, 'name' => $category->name]), 'id', 'name')
                     ->selected('id', (int) request()->category_id)
                     ->componentClasses(['selector'])
                     ->containerClasses(['mb-0']) }}

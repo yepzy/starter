@@ -2,9 +2,11 @@
     <div class="carousel-inner">
         @foreach($slides as $key => $slide)
             <div class="carousel-item{{ $loop->first ? ' active' : null }}">
-                {!! $slide->img($conversionName, ['class' => 'w-100', 'alt' => $slide->name]) !!}
-                @php($label = translatedData($slide->getCustomProperty('label')))
-                @php($caption = translatedData($slide->getCustomProperty('caption')))
+                {!! $slide->getFirstMedia('images')->img($conversionName, ['class' => 'w-100', 'alt' => $slide->name]) !!}
+                @php
+                    $label = $slide->label;
+                    $caption = $slide->caption;
+                @endphp
                 @if($label || $caption)
                     <div class="carousel-caption d-none d-md-block">
                         @if($label)
@@ -36,14 +38,3 @@
         </a>
     @endif
 </div>
-@push('scripts')
-    <script type="text/javascript">
-        $(window).bind('load', function () {
-            setTimeout(function(){
-                const carousel = $('#{{ $carouselId }}');
-                const sizes = carousel.find('.carousel-item.active > img').attr('sizes');
-                carousel.find('.carousel-item:not(.active) > img').attr('sizes', sizes);
-            }, 500);
-        });
-    </script>
-@endpush

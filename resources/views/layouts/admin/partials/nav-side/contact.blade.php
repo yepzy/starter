@@ -1,5 +1,6 @@
 @php
-    $contactPageActive = currentRouteIs('contact.page.edit') || optional(Brickables::getModelFromRequest())->slug === 'contact-page-content';
+    $contactPageActive = currentRouteIs('contact.page.edit')
+        || optional(Brickables::getModelFromRequest())->unique_key === 'contact_page_content';
     $subMenuActive = $contactPageActive;
 @endphp
 <li class="nav-item">

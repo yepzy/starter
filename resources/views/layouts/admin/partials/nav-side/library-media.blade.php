@@ -1,6 +1,10 @@
 @php
-    $libraryMediaCategoriesActive = currentRouteIs('libraryMedia.categories.index') || currentRouteIs('libraryMedia.category.create') || currentRouteIs('libraryMedia.category.edit');
-    $libraryMediaFilesActive = currentRouteIs('libraryMedia.files.index') || currentRouteIs('libraryMedia.file.create') || currentRouteIs('libraryMedia.file.edit');
+    $libraryMediaCategoriesActive = currentRouteIs('libraryMedia.categories.index')
+        || currentRouteIs('libraryMedia.category.create')
+        || currentRouteIs('libraryMedia.category.edit');
+    $libraryMediaFilesActive = currentRouteIs('libraryMedia.files.index')
+        || currentRouteIs('libraryMedia.file.create')
+        || currentRouteIs('libraryMedia.file.edit');
     $subMenuActive = $libraryMediaCategoriesActive || $libraryMediaFilesActive;
 @endphp
 <li class="nav-item">

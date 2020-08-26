@@ -1,8 +1,15 @@
 @php
-    $newsPageActive = currentRouteIs('news.page.edit') || optional(Brickables::getModelFromRequest())->slug === 'news-page-content';
-    $newsCategoriesActive = currentRouteIs('news.categories.index') || currentRouteIs('news.category.create') || currentRouteIs('news.category.edit');
-    $newsArticlesActive = currentRouteIs('news.articles.index') || currentRouteIs('news.article.create') || currentRouteIs('news.article.edit');
-    $subMenuActive = $newsPageActive || $newsArticlesActive || $newsCategoriesActive;
+    $newsPageActive = currentRouteIs('news.page.edit')
+        || optional(Brickables::getModelFromRequest())->unique_key === 'news_page_content';
+    $newsCategoriesActive = currentRouteIs('news.categories.index')
+        || currentRouteIs('news.category.create')
+        || currentRouteIs('news.category.edit');
+    $newsArticlesActive = currentRouteIs('news.articles.index')
+        || currentRouteIs('news.article.create')
+        || currentRouteIs('news.article.edit');
+    $subMenuActive = $newsPageActive
+        || $newsArticlesActive
+        || $newsCategoriesActive;
 @endphp
 <li class="nav-item">
     <a class="nav-link{{ $subMenuActive ? ' active' : null }}"

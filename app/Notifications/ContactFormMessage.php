@@ -19,6 +19,8 @@ class ContactFormMessage extends Notification implements ShouldQueue
 
     protected string $email;
 
+    protected ?string $phoneNumber = null;
+
     protected string $message;
 
     protected bool $isCopyToSender;
@@ -27,6 +29,7 @@ class ContactFormMessage extends Notification implements ShouldQueue
         string $firstName,
         string $lastName,
         string $email,
+        ?string $phoneNumber,
         string $message,
         bool $isCopyToSender = false
     ) {
@@ -34,6 +37,7 @@ class ContactFormMessage extends Notification implements ShouldQueue
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
+        $this->phoneNumber = $phoneNumber;
         $this->message = $message;
         $this->isCopyToSender = $isCopyToSender;
     }
@@ -61,13 +65,13 @@ class ContactFormMessage extends Notification implements ShouldQueue
             ->line('**' . __('validation.attributes.first_name') . ' :** ' . $this->firstName)
             ->line('**' . __('validation.attributes.email')
                 . ' :** [' . $this->email . '](mailto:' . $this->email . ')');
-        if (data_get($this->data, 'phone_number')) {
-            $mailMessage->line('**' . __('Phone number:') . '**  [' . data_get($this->data, 'phone_number') . ']'
-                . '(tel:' . data_get($this->data, 'phone_number') . ')');
+        if ($this->phoneNumber) {
+            $mailMessage->line('**' . __('Phone number:') . '**  [' . $this->phoneNumber . ']'
+                . '(tel:' . $this->phoneNumber . ')');
         }
         $mailMessage->line('**' . __('validation.attributes.message') . ' :** «');
-        $messageLines = explode('<br />', nl2br($this->data['message']));
-        foreach ($messageLines as $line) {
+        $messageLines = explode('<br />', nl2br($this->message));
+        foreach (array_filter($messageLines) as $line) {
             $mailMessage->line($line);
         }
         $mailMessage->line(' »');

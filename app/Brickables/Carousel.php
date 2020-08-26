@@ -3,14 +3,21 @@
 namespace App\Brickables;
 
 use App\Http\Controllers\Brickables\CarouselBricksController;
+use App\Http\Requests\Brickables\Carousel\CarouselStoreRequest;
+use App\Http\Requests\Brickables\Carousel\CarouselUpdateRequest;
 use App\Models\Brickables\CarouselBrick;
 use Okipa\LaravelBrickables\Abstracts\Brickable;
 
 class Carousel extends Brickable
 {
-    protected function setBrickModelClass(): string
+    public function validateStoreInputs(): array
     {
-        return CarouselBrick::class;
+        return app(CarouselStoreRequest::class)->validated();
+    }
+
+    public function validateUpdateInputs(): array
+    {
+        return app(CarouselUpdateRequest::class)->validated();
     }
 
     protected function setBricksControllerClass(): string
@@ -18,35 +25,17 @@ class Carousel extends Brickable
         return CarouselBricksController::class;
     }
 
-    protected function setStoreValidationRules(): array
+    protected function setBrickModelClass(): string
     {
-        /** @var \App\Models\Brickables\CarouselBrick $model */
-        $model = $this->getBrickModel();
-        $rules = [
-            'full_width' => ['nullable', 'in:on'],
-            'image' => array_merge(['required'], $model->getMediaValidationRules('slides')),
-        ];
-        $localizedRules = localizeRules([
-            'label' => ['nullable', 'string', 'max:75'],
-            'caption' => ['nullable', 'string', 'max:150'],
-        ]);
-
-        return array_merge($rules, $localizedRules);
+        return CarouselBrick::class;
     }
 
-    protected function setUpdateValidationRules(): array
+    /**
+     * @return string|null
+     * @throws \Exception
+     */
+    protected function setJsResourcePath(): ?string
     {
-        /** @var \App\Models\Brickables\CarouselBrick $model */
-        $model = $this->getBrickModel();
-        $rules = [
-            'full_width' => ['nullable', 'in:on'],
-            'image' => $model->getMediaValidationRules('slides'),
-        ];
-        $localizedRules = localizeRules([
-            'label' => ['nullable', 'string', 'max:75'],
-            'caption' => ['nullable', 'string', 'max:150'],
-        ]);
-
-        return array_merge($rules, $localizedRules);
+        return mix('/js/brickables/carousel.js');
     }
 }

@@ -5,6 +5,8 @@ namespace App\Models\News;
 use App\Models\Abstracts\Seo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use Parsedown;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Spatie\Image\Manipulations;
@@ -15,8 +17,6 @@ use Spatie\Translatable\HasTranslations;
 class NewsArticle extends Seo implements HasMedia, Feedable
 {
     use HasTranslations;
-
-    public array $translatable = ['slug', 'title', 'description'];
 
     /**
      * The database table used by the model.
@@ -32,6 +32,8 @@ class NewsArticle extends Seo implements HasMedia, Feedable
      */
     protected $fillable = ['title', 'slug', 'description', 'active', 'published_at'];
 
+    public array $translatable = ['slug', 'title', 'description'];
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -41,7 +43,7 @@ class NewsArticle extends Seo implements HasMedia, Feedable
 
     public static function getFeedItems(): Collection
     {
-        return self::orderBy('published_at', 'desc')->get();
+        return self::orderBy('published_at', 'desc')->with(['media', 'categories'])->get();
     }
 
     public function getRouteKey(): string
@@ -98,12 +100,14 @@ class NewsArticle extends Seo implements HasMedia, Feedable
 
         return FeedItem::create()->id($this->id)
             ->title($this->title)
-            ->summary($this->description)
+            ->summary(Str::limit(strip_tags((new Parsedown)->text($this->description))))
             ->updated($this->updated_at)
             ->link(route('news.article.show', $this->slug))
             ->author(config('app.name'))
+            ->category($this->categories->pluck('name'))
             ->enclosure($media->getUrl())
             ->enclosureType($media->mime_type)
-            ->enclosureLength($media->size);
+            ->enclosureLength($media->size)
+            ->updated($this->updated_at);
     }
 }

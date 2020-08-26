@@ -40,6 +40,7 @@ class ContactPageController extends Controller
                 $request->validated()['first_name'],
                 $request->validated()['last_name'],
                 $request->validated()['email'],
+                $request->validated()['phone_number'],
                 $request->validated()['message'],
             ))->locale(app()->getLocale()));
         Notification::route('mail', settings()->email)
@@ -47,6 +48,7 @@ class ContactPageController extends Controller
                 $request->validated()['first_name'],
                 $request->validated()['last_name'],
                 $request->validated()['email'],
+                $request->validated()['phone_number'],
                 $request->validated()['message'],
                 true
             ))->locale(app()->getLocale()));
