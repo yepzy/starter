@@ -31,7 +31,6 @@ class ContactPageController extends Controller
      */
     public function update(ContactPageUpdateRequest $request): RedirectResponse
     {
-        /** @var \App\Models\Pages\TitleDescriptionPageContent $pageContent */
         $pageContent = (new TitleDescriptionPageContent)->where('unique_key', 'contact_page_content')->firstOrFail();
         $pageContent->saveSeoMetaFromRequest($request);
 

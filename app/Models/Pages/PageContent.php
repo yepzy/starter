@@ -13,7 +13,7 @@ class PageContent extends Seo implements HasBrickables
     use HasBrickablesTrait;
 
     public array $brickables = [
-        'numberOfBricks' => [
+        'number_of_bricks' => [
             TitleH1::class => ['min' => 1, 'max' => 1],
             Carousel::class => ['max' => 1],
         ],

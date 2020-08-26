@@ -47,7 +47,6 @@ class UsersController extends Controller
      */
     public function store(UserStoreRequest $request): RedirectResponse
     {
-        /** @var \App\Models\Users\User $user */
         $user = (new User)->create(array_merge(
             $request->validated(),
             ['password' => Hash::make($request->password ?: Str::random(8))]

@@ -19,7 +19,6 @@ class ContactPageController extends Controller
      */
     public function show(): View
     {
-        /** @var \App\Models\Pages\TitleDescriptionPageContent $pageContent */
         $pageContent = (new TitleDescriptionPageContent)->firstOrCreate(['unique_key' => 'contact_page_content']);
         $pageContent->displaySeoMeta();
         $css = mix('/css/contact/page/show.css');

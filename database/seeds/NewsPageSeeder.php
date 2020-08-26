@@ -17,7 +17,6 @@ class NewsPageSeeder extends Seeder
     {
         $fakerFr = Factory::create('fr_FR');
         $fakerEn = Factory::create('en_GB');
-        /** @var \App\Models\Pages\TitleDescriptionPageContent $pageContent */
         $pageContent = (new TitleDescriptionPageContent)->create(['unique_key' => 'news_page_content']);
         $pageContent->saveSeoMeta([
             'meta_title' => ['fr' => 'Actualités', 'en' => 'News'],

@@ -8,11 +8,11 @@ use App\Brickables\TitleH1;
 class TitleDescriptionPageContent extends PageContent
 {
     public array $brickables = [
-        'canOnlyHandle' => [
+        'can_only_handle' => [
             TitleH1::class,
             OneTextColumn::class
         ],
-        'numberOfBricks' => [
+        'number_of_bricks' => [
             TitleH1::class => ['min' => 1, 'max' => 1],
             OneTextColumn::class => ['max' => 1],
         ],

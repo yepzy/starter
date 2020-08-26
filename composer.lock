@@ -3533,12 +3533,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-brickables.git",
-                "reference": "644c041d6afe6609bd9ed97b9e3e8b73052493c3"
+                "reference": "2a6fad6a893ed2bce7dc82076a500d8046a88762"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Okipa/laravel-brickables/zipball/644c041d6afe6609bd9ed97b9e3e8b73052493c3",
-                "reference": "644c041d6afe6609bd9ed97b9e3e8b73052493c3",
+                "url": "https://api.github.com/repos/Okipa/laravel-brickables/zipball/2a6fad6a893ed2bce7dc82076a500d8046a88762",
+                "reference": "2a6fad6a893ed2bce7dc82076a500d8046a88762",
                 "shasum": ""
             },
             "require": {
@@ -3597,7 +3597,7 @@
                 "management",
                 "okipa"
             ],
-            "time": "2020-08-26T13:02:51+00:00"
+            "time": "2020-08-26T15:45:51+00:00"
         },
         {
             "name": "okipa/laravel-html-helper",
