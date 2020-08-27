@@ -37,28 +37,63 @@ window.triggerDatePickerElementsDetection = () => {
 triggerDatePickerElementsDetection();
 
 // datetime picker *****************************************************************************************************
-const selectDateTime = (datePicker, $datePicker) => {
-    const filledDate = moment($datePicker.val(), 'DD/MM/YYYY hh:mm');
-    if (filledDate.isValid()) {
-        const instance = datePicker.data('datepicker');
-        const dateObject = filledDate.toDate();
+const selectDateTime = (dateTimePicker, $dateTimePicker) => {
+    const filledDateTime = moment($dateTimePicker.val(), 'DD/MM/YYYY hh:mm');
+    if (filledDateTime.isValid()) {
+        const instance = dateTimePicker.data('datepicker');
+        const dateObject = filledDateTime.toDate();
         instance.selectDate(dateObject);
         instance.date = dateObject;
     }
 };
 window.triggerDateTimePickerElementsDetection = () => {
-    const dateTimeElements = $('.datetime-picker');
-    _.each(dateTimeElements, (dateTimeElement) => {
-        const $datePicker = $(dateTimeElement);
-        const datePicker = $datePicker.datepicker({
+    const $dateTimePickers = $('.datetime-picker');
+    _.each($dateTimePickers, (item) => {
+        const $dateTimePicker = $(item);
+        const dateTimePicker = $dateTimePicker.datepicker({
             ...baseConfig,
             ...{
                 timepicker: true,
                 dateFormat: 'dd/mm/yyyy',
                 timeFormat: 'hh:ii'
             },
-            onShow: () => selectDateTime(datePicker, $datePicker)
+            onShow: () => selectDateTime(dateTimePicker, $dateTimePicker)
         });
     });
 };
 triggerDateTimePickerElementsDetection();
+
+// month range picker **************************************************************************************************
+const selectDateRange = (monthRangePicker, $monthRangePicker) => {
+    let filledDates = $monthRangePicker.val().split(' - ');
+    filledDates = _.map(filledDates, (date) => {
+        const dateInstance = moment(date, 'MM/YYYY');
+        return dateInstance.isValid() && dateInstance.toDate();
+    });
+    const instance = monthRangePicker.data('datepicker');
+    instance.selectDate(filledDates);
+    instance.date = filledDates;
+};
+window.triggerMonthRangePickerElementsDetection = () => {
+    const $monthRangePickers = $('.month-range-picker');
+    if ($monthRangePickers.length) {
+        _.each($monthRangePickers, (item) => {
+            const $monthRangePicker = $(item);
+            const monthRangePicker = $monthRangePicker.datepicker({
+                ...baseConfig,
+                ...{
+                    range: true,
+                    multipleDatesSeparator: ' - ',
+                    minView: 'months',
+                    view: 'months',
+                    dateFormat: 'mm/yyyy',
+                    toggleSelected: false,
+                    maxDate : new Date()
+                },
+                onShow: () => selectDateRange(monthRangePicker, $monthRangePicker)
+            });
+        });
+    }
+};
+
+triggerMonthRangePickerElementsDetection();
