@@ -172,5 +172,6 @@
     "Slides management will be available after the brick creation.": "La gestion des diapos sera accessible une fois la brique crée.",
     "Slides": "Diapos",
     "Carousel": "Carrousel",
-    "No slides were added to this carousel.": "Aucune diapo n'a été ajoutée à ce carrousel."
+    "No slides were added to this carousel.": "Aucune diapo n'a été ajoutée à ce carrousel.",
+    "Invalid signature": "Signature non valide"
 }
