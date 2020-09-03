@@ -34,7 +34,7 @@
                 @php($image = optional($article)->getFirstMedia('illustrations'))
                 {{ inputFile()->name('illustration')
                     ->value(optional($image)->file_name)
-                    ->uploadedFile(fn() => $image ? image()->src($image->getUrl('thumb'))->linkUrl($image->getUrl())->linkTitle($image->name) : null)
+                    ->uploadedFile(fn() => view('components.admin.media.thumb', ['image' => $image]))
                     ->showRemoveCheckbox(false)
                     ->containerHtmlAttributes(['required'])
                     ->caption((new \App\Models\News\NewsArticle)->getMediaCaption('illustrations')) }}

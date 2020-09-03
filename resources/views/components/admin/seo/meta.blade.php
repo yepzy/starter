@@ -1,7 +1,7 @@
 <h3>@lang('SEO')</h3>
 @php($metaImage = optional($model)->getFirstMedia('seo'))
 {{ inputFile()->name('meta_image')
-    ->uploadedFile(fn() => $metaImage ? image()->src($metaImage->getUrl('thumb'))->linkUrl($metaImage->getUrl())->linkTitle($metaImage->name) : null)
+    ->uploadedFile(fn() => view('components.admin.media.thumb', ['image' => $metaImage]))
     ->caption(
         (new \App\Models\Pages\PageContent)->getMediaCaption('seo') . '<br>' .
         __('Recommended width: :width pixels / recommended height: :height pixels.', ['width' => 600, 'height' => 600])

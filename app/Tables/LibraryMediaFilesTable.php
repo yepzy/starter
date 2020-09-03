@@ -71,12 +71,12 @@ class LibraryMediaFilesTable extends AbstractTable
         $table->column('id')->sortable();
         $table->column('thumb')
             ->html(fn(LibraryMediaFile $file) => view('components.admin.library-media.thumb', compact('file')));
-        $table->column('name')->value(fn(LibraryMediaFile $file) => $file->name)->sortable()->searchable();
+        $table->column('name')->stringLimit(25)->sortable()->searchable();
         $table->column('category_name')
             ->link(fn(LibraryMediaFile $file) => route('libraryMedia.files.index', [
                 'category_id' => $file->category->id,
             ]))
-            ->value(fn(LibraryMediaFile $file) => $file->category->name)
+            ->stringLimit(25)
             ->sortable();
         $table->column('mime_type')
             ->title(__('MIME types'))

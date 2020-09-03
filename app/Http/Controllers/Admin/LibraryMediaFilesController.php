@@ -140,7 +140,7 @@ class LibraryMediaFilesController extends Controller
                 ]);
                 break;
             case 'display':
-                if (! $file->is_displayable) {
+                if (! $file->can_be_displayed_on_page) {
                     $returnCode = Response::HTTP_NOT_FOUND;
                     $clipboardContent = null;
                     $message = __('This type of media can\'t be displayed.');

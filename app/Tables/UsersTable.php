@@ -41,14 +41,14 @@ class UsersTable extends AbstractTable
      */
     protected function columns(Table $table): void
     {
-        $table->column('id')->sortable(true);
+        $table->column('id')->sortable();
         $table->column('thumb')->html(function (User $user) {
-            return view('components.admin.table.thumb', ['image' => $user->getFirstMedia('profile_pictures')]);
+            return view('components.admin.media.thumb', ['image' => $user->getFirstMedia('profile_pictures')]);
         });
-        $table->column('first_name')->sortable()->searchable();
-        $table->column('last_name')->sortable()->searchable();
-        $table->column('email')->sortable()->searchable();
+        $table->column('first_name')->stringLimit(25)->sortable()->searchable();
+        $table->column('last_name')->stringLimit(25)->sortable()->searchable();
+        $table->column('email')->stringLimit(25)->sortable()->searchable();
         $table->column('created_at')->dateTimeFormat('d/m/Y H:i')->sortable();
-        $table->column('updated_at')->dateTimeFormat('d/m/Y H:i')->sortable();
+        $table->column('updated_at')->dateTimeFormat('d/m/Y H:i')->sortable(true, 'desc');
     }
 }

@@ -122,9 +122,19 @@ class LibraryMediaFile extends Model implements HasMedia
         return config('library-media.icons.' . $this->type);
     }
 
-    public function getIsDisplayableAttribute(): bool
+    public function getHasPreviewImageAttribute(): bool
     {
-        return ! in_array($this->type, ['file', 'pdf']);
+        return in_array($this->type, ['image', 'pdf']);
+    }
+
+    public function getCanBePreviewedInPopInAttribute(): bool
+    {
+        return in_array($this->type, ['image', 'pdf', 'audio', 'video']);
+    }
+
+    public function getCanBeDisplayedOnPageAttribute(): bool
+    {
+        return in_array($this->type, ['image', 'pdf', 'audio', 'video']);
     }
 
     public function category(): BelongsTo

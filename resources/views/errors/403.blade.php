@@ -15,7 +15,7 @@
                 </div>
                 <h1 class="h3 font-weight-normal text-danger mt-3">
                     <i class="far fa-times-circle fa-fw"></i>
-                    @lang('Invalid signature')
+                    @lang($exception->getMessage())
                 </h1>
                 {{ buttonBack()->route('home.page.show')->label(__('Back to home page'))->containerClasses(['mt-5']) }}
             </div>

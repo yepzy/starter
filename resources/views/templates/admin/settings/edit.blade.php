@@ -20,7 +20,7 @@
                 @php($logo = $settings->getFirstMedia('icons'))
                 {{ inputFile()->name('icon')
                     ->value(optional($logo)->file_name)
-                    ->uploadedFile(fn() => $logo ? image()->src($logo->getUrl('thumb'))->linkUrl($logo->getUrl())->linkTitle($logo->name) : null)
+                    ->uploadedFile(fn() => view('components.admin.media.thumb', ['image' => $logo]))
                     ->caption($settings->getMediaCaption('icons'))
                     ->containerHtmlAttributes(['required']) }}
                 <h3>@lang('Contact')</h3>

@@ -7,9 +7,9 @@
         ->componentClasses(['editor'])
         ->containerHtmlAttributes(['required']) }}
     @php($image = optional($brick)->getFirstMedia('images'))
-    {{ inputFile()->name('right_image')
+    {{ inputFile()->name('image_right')
         ->value(optional($image)->file_name)
-        ->uploadedFile(fn() =>  $image ? image()->src($image->getUrl('thumb'))->linkUrl($image->getUrl())->linkTitle($image->name) : null)
+        ->uploadedFile(fn() => view('components.admin.media.thumb', ['image' => $image]))
         ->showRemoveCheckbox(false)
         ->containerHtmlAttributes(['required'])
         ->caption($brickable->getBrickModel()->getMediaCaption('images')) }}

@@ -18,7 +18,7 @@ class TwoTextImageBricksController extends BricksController
     protected function stored(Request $request, Brick $brick): void
     {
         /** @var \App\Models\Brickables\TwoTextImageColumnsBrick $brick */
-        $brick->addMediaFromRequest('right_image')->toMediaCollection('images');
+        $brick->addMediaFromRequest('image_right')->toMediaCollection('images');
     }
 
     /**
@@ -30,9 +30,9 @@ class TwoTextImageBricksController extends BricksController
      */
     protected function updated(Request $request, Brick $brick): void
     {
-        if ($request->file('right_image')) {
+        if ($request->file('image_right')) {
             /** @var \App\Models\Brickables\TwoTextImageColumnsBrick $brick */
-            $brick->addMediaFromRequest('right_image')->toMediaCollection('images');
+            $brick->addMediaFromRequest('image_right')->toMediaCollection('images');
         }
     }
 }

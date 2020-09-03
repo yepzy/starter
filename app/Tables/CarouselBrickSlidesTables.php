@@ -67,12 +67,12 @@ class CarouselBrickSlidesTables extends AbstractTable
      */
     protected function columns(Table $table): void
     {
+        $table->column('id');
         $table->column('thumb')->html(fn(CarouselBrickSlide $slide) => view(
-            'components.admin.table.thumb',
+            'components.admin.media.thumb',
             ['image' => $slide->getFirstMedia('images')]
         ));
-        $table->column('label')->value(fn(CarouselBrickSlide $slide) => $slide->label);
-        $table->column('caption')->value(fn(CarouselBrickSlide $slide) => $slide->caption);
+        $table->column('label')->stringLimit(25)->value(fn(CarouselBrickSlide $slide) => $slide->label);
         $table->column('position')->html(fn(CarouselBrickSlide $slide) => '<span class="d-none id">'
             . $slide->id . '</span>'
             . '<span class="position">' . $slide->position . '</span>');
@@ -80,5 +80,7 @@ class CarouselBrickSlidesTables extends AbstractTable
             'components.admin.table.bool',
             ['bool' => $slide->active]
         ));
+        $table->column('created_at')->dateTimeFormat('d/m/Y H:i');
+        $table->column('updated_at')->dateTimeFormat('d/m/Y H:i');
     }
 }
