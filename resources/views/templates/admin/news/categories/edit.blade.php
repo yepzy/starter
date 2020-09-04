@@ -3,16 +3,9 @@
     <h1>
         <i class="fas fa-tags fa-fw"></i>
         @if($category)
-            @lang('breadcrumbs.parent.edit', [
-                'parent' => __('News'),
-                'entity' => __('Categories'),
-                'detail' => $category->name,
-            ])
+            @lang('breadcrumbs.parent.edit', ['parent' => __('News'), 'entity' => __('Categories'), 'detail' => $category->name])
         @else
-            @lang('breadcrumbs.parent.create', [
-                'parent' => __('News'),
-                'entity' => __('Categories'),
-            ])
+            @lang('breadcrumbs.parent.create', ['parent' => __('News'), 'entity' => __('Categories')])
         @endif
     </h1>
     <hr>

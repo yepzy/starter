@@ -3,16 +3,9 @@
     <h1>
         <i class="fas fa-chalkboard-teacher fa-fw"></i>
         @if($slide)
-            @lang('breadcrumbs.parent.edit', [
-                'parent' => $brick->model->getReadableClassName() . ' > ' . __('Content bricks') . ' > ' . __('Carousel'),
-                'entity' => __('Slides'),
-                'detail' => $slide->label
-            ])
+            @lang('breadcrumbs.parent.edit', ['parent' => $brick->model->getReadableClassName() . ' > ' . __('Content bricks') . ' > ' . __('Carousel'), 'entity' => __('Slides'), 'detail' => $slide->label])
         @else
-            @lang('breadcrumbs.parent.create', [
-                'parent' => $brick->model->getReadableClassName() . ' > ' . __('Content bricks') . ' > ' . __('Carousel'),
-                'entity' => __('Slides')
-            ])
+            @lang('breadcrumbs.parent.create', ['parent' => $brick->model->getReadableClassName() . ' > ' . __('Content bricks') . ' > ' . __('Carousel'), 'entity' => __('Slides')])
         @endif
     </h1>
     <hr>
