@@ -1,11 +1,11 @@
 const $upperCaseElements = $('[data-uppercase]');
 
 window.triggerUpperCaseElementsDetection = () => {
-    $upperCaseElements.each((key, element) => {
-        const $this = $(element);
-        $this.on('propertychange change keyup input paste script', () => {
-            const upperCase = $this.val().toUpperCase();
-            $this.val(upperCase);
+    $upperCaseElements.each((key, input) => {
+        const $input = $(input);
+        $input.on('propertychange change keyup input paste script', () => {
+            const upperCase = $input.val().toUpperCase();
+            $input.val(upperCase);
         });
     });
 };

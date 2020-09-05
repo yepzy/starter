@@ -3,6 +3,8 @@
 namespace App\Tables;
 
 use App\Models\News\NewsArticle;
+use App\Models\News\NewsCategory;
+use Illuminate\Support\Str;
 use Okipa\LaravelTable\Abstracts\AbstractTable;
 use Okipa\LaravelTable\Table;
 
@@ -23,12 +25,12 @@ class NewsArticlesTable extends AbstractTable
                 'edit' => ['name' => 'news.article.edit'],
                 'destroy' => ['name' => 'news.article.destroy'],
             ])
-            ->destroyConfirmationHtmlAttributes(function (NewsArticle $newsArticle) {
+            ->destroyConfirmationHtmlAttributes(function (NewsArticle $article) {
                 return [
                     'data-confirm' => __('notifications.parent.destroyConfirm', [
                         'parent' => __('News'),
                         'entity' => __('Articles'),
-                        'name' => $newsArticle->title,
+                        'name' => $article->title,
                     ]),
                 ];
             });
@@ -44,21 +46,25 @@ class NewsArticlesTable extends AbstractTable
     protected function columns(Table $table): void
     {
         $table->column('id')->sortable();
-        $table->column('thumb')->html(fn(NewsArticle $newsArticle) => view(
-            'components.admin.table.thumb',
-            ['image' => $newsArticle->getFirstMedia('illustrations')]
+        $table->column('thumb')->html(fn(NewsArticle $article) => view(
+            'components.admin.media.thumb',
+            ['image' => $article->getFirstMedia('illustrations')]
         ));
-        $table->column('title')->stringLimit(50)->sortable()->searchable();
+        $table->column('title')->stringLimit(25)->sortable()->searchable();
         $table->column()
             ->title(__('Categories'))
-            ->value(fn(NewsArticle $newsArticle) => $newsArticle->categories->pluck('name')->implode(', '));
-        $table->column()->title(__('Display'))->html(fn(NewsArticle $newsArticle) => view(
+            ->value(fn(NewsArticle $article) => $article->categories->map(function (NewsCategory $category) {
+                $category->name = Str::limit($category->name, 25);
+
+                return $category;
+            })->implode('name', ', '));
+        $table->column()->title(__('Display'))->html(fn(NewsArticle $article) => view(
             'components.admin.table.display',
-            ['url' => route('news.article.show', $newsArticle->slug), 'active' => $newsArticle->active]
+            ['url' => route('news.article.show', $article->slug), 'active' => $article->active]
         ));
-        $table->column('active')->sortable()->html(fn(NewsArticle $newsArticle) => view(
+        $table->column('active')->sortable()->html(fn(NewsArticle $article) => view(
             'components.admin.table.bool',
-            ['bool' => $newsArticle->active]
+            ['bool' => $article->active]
         ));
         $table->column('created_at')->dateTimeFormat('d/m/Y H:i')->sortable();
         $table->column('updated_at')->dateTimeFormat('d/m/Y H:i')->sortable();

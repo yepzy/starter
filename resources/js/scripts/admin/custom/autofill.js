@@ -9,8 +9,9 @@ window.triggerAutofillElementsDetection = () => {
             ? $sourceInput // monolingual source input
             : $($input.data('autofillFrom') + '-' + (inputLocale || app.locale)); // multilingual source input
         let manualInterventionRealized = false;
+        const alreadyFilled = !! $input.val();
         $sourceInput.on('propertychange change keyup input paste', (event) => {
-            if (! manualInterventionRealized) {
+            if (! manualInterventionRealized && ! alreadyFilled) {
                 const slug = $(event.target).val();
                 $input.val(slug);
                 $input.trigger('script');

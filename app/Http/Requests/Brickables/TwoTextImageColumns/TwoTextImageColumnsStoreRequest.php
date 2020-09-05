@@ -10,7 +10,7 @@ class TwoTextImageColumnsStoreRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'right_image' => array_merge(
+            'image_right' => array_merge(
                 ['required'],
                 (new TwoTextImageColumnsBrick)->getMediaValidationRules('images')
             ),

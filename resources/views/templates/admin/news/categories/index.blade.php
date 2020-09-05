@@ -2,10 +2,7 @@
 @section('template')
     <h1>
         <i class="fas fa-tags fa-fw"></i>
-        @lang('breadcrumbs.parent.index', [
-            'parent' => __('News'),
-            'entity' => __('Categories'),
-        ])
+        @lang('breadcrumbs.parent.index', ['parent' => __('News'), 'entity' => __('Categories')])
     </h1>
     <hr>
     <div class="card">

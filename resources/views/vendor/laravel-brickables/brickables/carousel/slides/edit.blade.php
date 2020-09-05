@@ -3,16 +3,9 @@
     <h1>
         <i class="fas fa-chalkboard-teacher fa-fw"></i>
         @if($slide)
-            @lang('breadcrumbs.parent.edit', [
-                'parent' => $brick->model->getReadableClassName() . ' > ' . __('Content bricks') . ' > ' . __('Carousel'),
-                'entity' => __('Slides'),
-                'detail' => $slide->label
-            ])
+            @lang('breadcrumbs.parent.edit', ['parent' => $brick->model->getReadableClassName() . ' > ' . __('Content bricks') . ' > ' . __('Carousel'), 'entity' => __('Slides'), 'detail' => $slide->label])
         @else
-            @lang('breadcrumbs.parent.create', [
-                'parent' => $brick->model->getReadableClassName() . ' > ' . __('Content bricks') . ' > ' . __('Carousel'),
-                'entity' => __('Slides')
-            ])
+            @lang('breadcrumbs.parent.create', ['parent' => $brick->model->getReadableClassName() . ' > ' . __('Content bricks') . ' > ' . __('Carousel'), 'entity' => __('Slides')])
         @endif
     </h1>
     <hr>
@@ -37,7 +30,7 @@
                 @php($image = optional($slide)->getFirstMedia('images'))
                 {{ inputFile()->name('image')
                     ->value(optional($image)->file_name)
-                    ->uploadedFile(fn() => $image ? image()->src($image->getUrl('thumb'))->linkUrl($image->getUrl())->linkTitle($image->name) : null)
+                    ->uploadedFile(fn() => view('components.admin.media.thumb', ['image' => $image]))
                     ->showRemoveCheckbox(false)
                     ->containerHtmlAttributes(['required'])
                     ->caption((new \App\Models\Brickables\CarouselBrickSlide)->getMediaCaption('images')) }}

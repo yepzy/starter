@@ -2,6 +2,9 @@
 
 namespace Deployer;
 
+use Illuminate\Support\Str;
+use RuntimeException;
+
 require 'recipe/laravel.php';
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -60,8 +63,8 @@ task('deploy', [
     'deploy:prepare',
     'deploy:lock',
     'deploy:release',
-    'deploy:upload',
     'project:dependencies_check',
+    'deploy:upload',
     'deploy:shared',
     'deploy:writable',
     'artisan:storage:link',
@@ -139,7 +142,10 @@ task('project:dependencies_check', function () {
         'php7.4-zip',
     ];
     foreach ($dependencies as $dependency) {
-        run('dpkg-query --show --showformat=\'${db:Status-Status}\n\' \'' . $dependency . '\'');
+        $output = run('dpkg-query --show --showformat=\'${db:Status-Status}\n\' \'' . $dependency . '\'');
+        if (Str::contains(strtolower($output), 'not-installed')) {
+            throw new RuntimeException('Project dependency "' . $dependency . '" is not installed on the server.');
+        }
     }
 })->desc('Verify that server dependencies are installed');
 

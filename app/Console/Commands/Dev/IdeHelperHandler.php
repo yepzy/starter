@@ -7,18 +7,10 @@ use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 
 class IdeHelperHandler extends CommandAbstract
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $signature = 'ide-helper:handle';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
+    /** @var string */
     protected $description = 'Handles ide-helper generation through composer.';
 
     public function handle(): void
