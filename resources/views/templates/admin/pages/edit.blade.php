@@ -39,14 +39,14 @@
                     {{ inputText()->name('unique_key')
                         ->model($page)
                         ->prepend('<i class="fas fa-key fa-fw"></i>')
-                        ->componentHtmlAttributes(['data-snakify', 'data-autofill-from' => '#text-nav-title'])
+                        ->componentHtmlAttributes(['data-snakecase', 'data-autofill-from' => '#text-nav-title'])
                         ->containerHtmlAttributes(['required'])}}
                 @endif
                 {{ inputText()->name('slug')
                     ->locales(supportedLocaleKeys())
                     ->model($page)
                     ->prepend(fn(string $locale) => route('page.show', '', false, $locale) . '/')
-                    ->componentHtmlAttributes(['data-slugify', 'data-autofill-from' => '#text-nav-title'])
+                    ->componentHtmlAttributes(['data-kebabcase', 'data-autofill-from' => '#text-nav-title'])
                     ->containerHtmlAttributes(['required']) }}
                 <h3>@lang('Publication')</h3>
                 {{ inputToggle()->name('active')->model($page) }}

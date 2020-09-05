@@ -47,7 +47,7 @@
                     ->locales(supportedLocaleKeys())
                     ->model($article)
                     ->prepend(fn(string $locale) => route('news.article.show', '', false, $locale) . '/')
-                    ->componentHtmlAttributes(['data-slugify', 'data-autofill-from' => '#text-title'])
+                    ->componentHtmlAttributes(['data-kebabcase', 'data-autofill-from' => '#text-title'])
                     ->containerHtmlAttributes(['required']) }}
                 <h3>@lang('Information')</h3>
                 {{ select()->name('category_ids')

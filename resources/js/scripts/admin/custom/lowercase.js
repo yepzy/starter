@@ -1,7 +1,7 @@
-const $lowercaseElements = $('[data-lowercase]');
+const $lowerCaseElements = $('[data-lowercase]');
 
-window.triggerLowercaseElementsDetection = () => {
-    $lowercaseElements.each((key, element) => {
+window.triggerLowerCaseElementsDetection = () => {
+    $lowerCaseElements.each((key, element) => {
         const $this = $(element);
         $this.on('propertychange change keyup input paste script', () => {
             const lowercase = $this.val().toLowerCase();
@@ -10,6 +10,6 @@ window.triggerLowercaseElementsDetection = () => {
     });
 };
 
-if ($lowercaseElements.length) {
-    triggerLowercaseElementsDetection();
+if ($lowerCaseElements.length) {
+    triggerLowerCaseElementsDetection();
 }
