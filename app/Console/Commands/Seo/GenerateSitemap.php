@@ -7,10 +7,10 @@ use Spatie\Sitemap\SitemapGenerator;
 
 class GenerateSitemap extends CommandAbstract
 {
-    /** @var string */
+    /** @var string $signature*/
     protected $signature = 'sitemap:generate';
 
-    /** @var string */
+    /** @var string $description*/
     protected $description = 'Generate the sitemap.';
 
     public function handle(): void

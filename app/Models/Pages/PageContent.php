@@ -19,17 +19,9 @@ class PageContent extends Seo implements HasBrickables
         ],
     ];
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
+    /** @var string $table */
     protected $table = 'page_contents';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    /** @var array $fillable */
     protected $fillable = ['unique_key'];
 }

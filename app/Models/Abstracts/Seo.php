@@ -13,8 +13,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 abstract class Seo extends Metable implements HasMedia
 {
-    use InteractsWithMedia;
-    use ExtendsMediaAbilities;
+    use InteractsWithMedia, ExtendsMediaAbilities;
 
     protected array $seoTags = ['meta_title', 'meta_description'];
 

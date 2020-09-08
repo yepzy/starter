@@ -6,24 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class LogContactFormMessage extends Model
 {
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
+    /** @var string $table */
     protected $table = 'log_contact_form_messages';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    /** @var array $fillable */
     protected $fillable = ['data'];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
+    /** @var array $cast */
     protected $casts = ['data' => 'array'];
 }

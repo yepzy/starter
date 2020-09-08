@@ -76,6 +76,7 @@ class LibraryMediaFilesTable extends AbstractTable
             ->link(fn(LibraryMediaFile $file) => route('libraryMedia.files.index', [
                 'category_id' => $file->category->id,
             ]))
+            ->value(fn(LibraryMediaFile $file) => $file->category->name)
             ->stringLimit(25)
             ->sortable();
         $table->column('mime_type')

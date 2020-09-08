@@ -28,7 +28,7 @@ class TwoTextImageColumnsBrick extends Brick implements HasMedia
     }
 
     /**
-     * @param \Spatie\MediaLibrary\MediaCollections\Models\Media $media
+     * @param \Spatie\MediaLibrary\MediaCollections\Models\Media|null $media
      *
      * @throws \Spatie\Image\Exceptions\InvalidManipulation
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)

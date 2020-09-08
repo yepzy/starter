@@ -7,10 +7,10 @@ use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 
 class IdeHelperHandler extends CommandAbstract
 {
-    /** @var string */
+    /** @var string $table */
     protected $signature = 'ide-helper:handle';
 
-    /** @var string */
+    /** @var string $description*/
     protected $description = 'Handles ide-helper generation through composer.';
 
     public function handle(): void

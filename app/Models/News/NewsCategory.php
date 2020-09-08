@@ -12,18 +12,10 @@ class NewsCategory extends Model
 
     public array $translatable = ['name'];
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
+    /** @var string $table */
     protected $table = 'news_categories';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    /** @var array $fillable */
     protected $fillable = ['name'];
 
     public function articles(): BelongsToMany

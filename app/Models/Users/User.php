@@ -18,23 +18,12 @@ use Spatie\WelcomeNotification\ReceivesWelcomeNotification;
 
 class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
-    use Notifiable;
-    use ReceivesWelcomeNotification;
-    use InteractsWithMedia;
-    use ExtendsMediaAbilities;
+    use Notifiable, ReceivesWelcomeNotification, InteractsWithMedia, ExtendsMediaAbilities;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    /** @var array $fillable */
     protected $fillable = ['first_name', 'last_name', 'email', 'phone_number', 'password'];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    /** @var array $hidden */
     protected $hidden = ['password', 'remember_token'];
 
     /** @SuppressWarnings(PHPMD.UnusedLocalVariable) */

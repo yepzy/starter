@@ -14,27 +14,17 @@ use Spatie\Translatable\HasTranslations;
 
 class LibraryMediaFile extends Model implements HasMedia
 {
-    use HasTranslations;
-    use InteractsWithMedia;
-    use ExtendsMediaAbilities;
+    use HasTranslations, InteractsWithMedia, ExtendsMediaAbilities;
 
     public array $translatable = ['name'];
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
+    /** @var string $table */
     protected $table = 'library_media_files';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    /** @var array $fillable */
     protected $fillable = ['category_id', 'name'];
 
-    /** @SuppressWarnings(PHPMD.UnusedLocalVariable) */
+    /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('medias')->withResponsiveImages()->acceptsMimeTypes([
@@ -88,10 +78,10 @@ class LibraryMediaFile extends Model implements HasMedia
     }
 
     /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     * @param \Spatie\MediaLibrary\MediaCollections\Models\Media $media
+     * @param \Spatie\MediaLibrary\MediaCollections\Models\Media|null $media
      *
      * @throws \Spatie\Image\Exceptions\InvalidManipulation
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function registerMediaConversions(Media $media = null): void
     {

@@ -11,21 +11,12 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Settings extends Model implements HasMedia
 {
-    use InteractsWithMedia;
-    use ExtendsMediaAbilities;
+    use InteractsWithMedia, ExtendsMediaAbilities;
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
+    /** @var string $table */
     protected $table = 'settings';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    /** @var array $fillable */
     protected $fillable = [
         'email',
         'phone_number',
@@ -67,7 +58,7 @@ class Settings extends Model implements HasMedia
     }
 
     /**
-     * @param \Spatie\MediaLibrary\MediaCollections\Models\Media $media
+     * @param \Spatie\MediaLibrary\MediaCollections\Models\Media|null $media
      *
      * @throws \Spatie\Image\Exceptions\InvalidManipulation
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)

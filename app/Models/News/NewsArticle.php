@@ -18,27 +18,15 @@ class NewsArticle extends Seo implements HasMedia, Feedable
 {
     use HasTranslations;
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
+    /** @var string $table */
     protected $table = 'news_articles';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    /** @var array $fillable */
     protected $fillable = ['title', 'slug', 'description', 'active', 'published_at'];
 
     public array $translatable = ['slug', 'title', 'description'];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
+    /** @var array $cast */
     protected $casts = ['active' => 'boolean', 'published_at' => 'datetime'];
 
     public static function getFeedItems(): Collection
@@ -63,7 +51,7 @@ class NewsArticle extends Seo implements HasMedia, Feedable
         return $this->where('slug->' . app()->getLocale(), $value)->first();
     }
 
-    /** @SuppressWarnings(PHPMD.UnusedLocalVariable) */
+    /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
     public function registerMediaCollections(): void
     {
         parent::registerMediaCollections();

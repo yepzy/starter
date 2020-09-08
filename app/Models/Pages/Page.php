@@ -9,30 +9,17 @@ use Spatie\Translatable\HasTranslations;
 
 class Page extends Seo implements HasBrickables
 {
-    use HasTranslations;
-    use HasBrickablesTrait;
+    use HasTranslations, HasBrickablesTrait;
 
     public array $translatable = ['slug', 'nav_title'];
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
+    /** @var string $table */
     protected $table = 'pages';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    /** @var array $fillable */
     protected $fillable = ['unique_key', 'nav_title', 'slug', 'active'];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
+    /** @var array $cast */
     protected $casts = ['active' => 'boolean'];
 
     public function getRouteKey(): string

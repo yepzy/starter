@@ -20,8 +20,12 @@ class CarouselBrickSlide extends Model implements HasMedia, Sortable
 
     public array $sortable = ['order_column_name' => 'position', 'sort_when_creating' => true];
 
+    public array $translatable = ['label', 'caption'];
+
+    /** @var string $table */
     protected $table = 'carousel_brick_slides';
 
+    /** @var array $fillable */
     protected $fillable = [
         'brick_id',
         'label',
@@ -30,9 +34,7 @@ class CarouselBrickSlide extends Model implements HasMedia, Sortable
         'active',
     ];
 
-    public array $translatable = ['label', 'caption'];
-
-    /** @SuppressWarnings(PHPMD.UnusedLocalVariable) */
+    /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('images')
