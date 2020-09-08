@@ -47,7 +47,7 @@ composer:nodev:
 
 yarn:
   stage: build
-  image: node:12
+  image: node:14
   script:
     - yarn install
   artifacts:
@@ -65,7 +65,7 @@ yarn:
 
 yarn:nodev:
   stage: build
-  image: node:12
+  image: node:14
   script:
     - yarn install --production
   artifacts:
@@ -83,7 +83,7 @@ yarn:nodev:
 
 resources:nodev:
   stage: compile
-  image: node:12
+  image: node:14
   dependencies:
     - yarn
     - composer:nodev
