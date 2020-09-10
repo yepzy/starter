@@ -72,7 +72,6 @@ class LibraryMediaFile extends Model implements HasMedia
             'video/ogg',
             'video/mp4',
             'video/mpeg',
-            'video/x-msvideo',
             'video/x-m4v',
         ])->singleFile();
     }

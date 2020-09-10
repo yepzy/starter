@@ -173,5 +173,6 @@
     "Slides": "Diapos",
     "Carousel": "Carrousel",
     "No slides were added to this carousel.": "Aucune diapo n'a été ajoutée à ce carrousel.",
-    "Invalid signature": "Signature non valide"
+    "Invalid signature": "Signature non valide",
+    "Error ID:": "ID erreur :"
 }

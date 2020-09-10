@@ -18,10 +18,10 @@
                     @lang('Error') {{ $exception->getStatusCode() }}
                 </h1>
                 <p class="h5">
-                    {{ $exception->getMessage() }}
+                    @lang($exception->getMessage())
                 </p>
                 @if(app()->bound('sentry') && app('sentry')->getLastEventId() && config('sentry.dsn'))
-                    <div class="subtitle">Error ID: {{ app('sentry')->getLastEventId() }}</div>
+                    <div class="subtitle">@lang('Error ID:') {{ app('sentry')->getLastEventId() }}</div>
                     <script src="https://browser.sentry-cdn.com/5.12.1/bundle.min.js"
                             integrity="sha384-y+an4eARFKvjzOivf/Z7JtMJhaN6b+lLQ5oFbBbUwZNNVir39cYtkjW1r6Xjbxg3"
                             crossorigin="anonymous"></script>
