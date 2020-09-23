@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Cache\Console\ClearCommand;
 use Illuminate\Database\Seeder;
 use Illuminate\Queue\Console\RestartCommand;
@@ -18,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersSeeder::class);
         $this->call(PagesSeeder::class);
         $this->call(LibraryMediaCategoriesSeeder::class);
+        $this->call(LibraryMediaFilesSeeder::class);
         $this->call(HomePageSeeder::class);
         $this->call(NewsPageSeeder::class);
         $this->call(NewsCategoriesSeeder::class);

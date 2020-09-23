@@ -47,7 +47,7 @@ class UsersController extends Controller
      */
     public function store(UserStoreRequest $request): RedirectResponse
     {
-        $user = (new User)->create(array_merge(
+        $user = User::create(array_merge(
             $request->validated(),
             ['password' => Hash::make($request->password ?: Str::random(8))]
         ));
@@ -60,13 +60,13 @@ class UsersController extends Controller
 
         return redirect()->route('users.index')->with('toast_success', __('notifications.orphan.created', [
                 'entity' => __('Users'),
-                'name' => $user->name,
+                'name' => $user->full_name,
             ]) . $additionalMessage);
     }
 
     public function edit(User $user): View
     {
-        SEOTools::setTitle(__('breadcrumbs.orphan.edit', ['entity' => __('Users'), 'detail' => $user->name]));
+        SEOTools::setTitle(__('breadcrumbs.orphan.edit', ['entity' => __('Users'), 'detail' => $user->full_name]));
 
         return view('templates.admin.users.edit', compact('user'));
     }
@@ -90,7 +90,7 @@ class UsersController extends Controller
             ? __('notifications.name.updated', ['name' => __('My profile')])
             : __('notifications.orphan.updated', [
                 'entity' => __('Users'),
-                'name' => $user->name,
+                'name' => $user->full_name,
             ]));
     }
 
@@ -106,7 +106,7 @@ class UsersController extends Controller
 
         return back()->with('toast_success', __('notifications.orphan.destroyed', [
             'entity' => __('Users'),
-            'name' => $user->name,
+            'name' => $user->full_name,
         ]));
     }
 

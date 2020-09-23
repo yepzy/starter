@@ -2,17 +2,17 @@
 
 namespace App\Http\Requests\News;
 
-use App\Http\Requests\AbstractSeoRequest;
+use App\Http\Requests\Abstracts\SeoRequest;
 use App\Models\News\NewsArticle;
 use Carbon\Carbon;
 use CodeZero\UniqueTranslation\UniqueTranslationRule;
 
-class ArticleStoreRequest extends AbstractSeoRequest
+class ArticleStoreRequest extends SeoRequest
 {
     public function rules(): array
     {
         $rules = [
-            'illustration' => array_merge(['required'], (new NewsArticle)->getMediaValidationRules('illustration')),
+            'illustration' => array_merge(['required'], NewsArticle::getMediaValidationRules('illustration')),
             'category_ids' => ['required', 'array'],
             'category_ids.*' => ['required', 'integer', 'exists:news_categories,id'],
             'published_at' => ['required', 'date_format:Y-m-d H:i:s'],

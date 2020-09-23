@@ -19,7 +19,7 @@ if (! function_exists('settings')) {
             cache()->forget('settings');
         }
 
-        return cache()->rememberForever('settings', fn() => (new Settings)->with(['media'])->firstOrFail());
+        return cache()->rememberForever('settings', fn() => Settings::with(['media'])->firstOrFail());
     }
 }
 
@@ -38,6 +38,6 @@ if (! function_exists('pages')) {
             cache()->forget('pages');
         }
 
-        return cache()->rememberForever('pages', fn() => (new Page)->where('active', true)->get());
+        return cache()->rememberForever('pages', fn() => Page::where('active', true)->get());
     }
 }

@@ -13,11 +13,12 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 abstract class Seo extends Metable implements HasMedia
 {
-    use InteractsWithMedia, ExtendsMediaAbilities;
+    use InteractsWithMedia;
+    use ExtendsMediaAbilities;
 
     protected array $seoTags = ['meta_title', 'meta_description'];
 
-    /** @SuppressWarnings(PHPMD.UnusedLocalVariable) */
+    /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('seo')

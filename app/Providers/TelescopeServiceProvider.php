@@ -58,12 +58,12 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
      * This gate determines who can access Telescope in non-local environments.
      *
      * @return void
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function gate()
     {
         Gate::define('viewTelescope', function ($user) {
-            // todo: customize access in production
+            // todo: to customize
             return auth()->check();
         });
     }

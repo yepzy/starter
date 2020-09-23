@@ -11,7 +11,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Settings extends Model implements HasMedia
 {
-    use InteractsWithMedia, ExtendsMediaAbilities;
+    use InteractsWithMedia;
+    use ExtendsMediaAbilities;
 
     /** @var string $table */
     protected $table = 'settings';
@@ -29,7 +30,7 @@ class Settings extends Model implements HasMedia
         'google_tag_manager_id',
     ];
 
-    /** @SuppressWarnings(PHPMD.UnusedLocalVariable) */
+    /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('icons')
