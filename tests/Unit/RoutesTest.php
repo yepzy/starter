@@ -6,7 +6,8 @@ use Tests\TestCase;
 
 class RoutesTest extends TestCase
 {
-    public function testRouteList()
+    /** @test */
+    public function it_can_execute_route_list_command()
     {
         $this->artisan('route:list')->assertExitCode(0);
     }

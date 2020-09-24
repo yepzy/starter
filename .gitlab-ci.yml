@@ -103,24 +103,6 @@ resources:nodev:
       - develop
       - tags
 
-phpunit:
-  stage: test
-  image: php:7.4-cli
-  dependencies:
-    - composer
-  before_script:
-    - apt update && apt install -y git libfreetype6-dev libjpeg62-turbo-dev libpng-dev exif
-    - docker-php-ext-configure gd --with-freetype --with-jpeg
-    - docker-php-ext-install gd exif
-    - pecl install xdebug
-    - docker-php-ext-enable xdebug
-  script:
-    - vendor/bin/phpunit --coverage-text --colors=never
-  except:
-    refs:
-      - develop
-      - tags
-
 phpcs:
   stage: test
   image: php:7.4-cli
@@ -139,7 +121,7 @@ phpmd:
   dependencies:
     - composer
   script:
-    - vendor/bin/phpmd app,config,database,routes,tests text phpmd.xml
+    - vendor/bin/phpmd app,config,database,routes text phpmd.xml
   except:
     refs:
       - develop
@@ -160,6 +142,32 @@ phpstan:
     refs:
       - develop
       - tags
+
+phpunit:
+  stage: test
+  image: php:7.4-cli
+  services:
+    - mysql:5.7
+  dependencies:
+    - composer
+  before_script:
+    - apt update && apt install -y git libfreetype6-dev libjpeg62-turbo-dev libpng-dev exif
+    - docker-php-ext-configure gd --with-freetype --with-jpeg
+    - docker-php-ext-install gd exif pdo_mysql
+    - pecl install pcov
+    - docker-php-ext-enable pcov
+  script:
+    - vendor/bin/phpunit --testdox --coverage-text --log-junit=coverage/phpunit/junit.xml
+  except:
+    refs:
+      - develop
+      - tags
+  artifacts:
+    when: always
+    paths:
+      - coverage/phpunit/junit.xml
+    reports:
+      junit: coverage/phpunit/junit.xml
 
 .rsync_install: &rsync_install
   before_script:

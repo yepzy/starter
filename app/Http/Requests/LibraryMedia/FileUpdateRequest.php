@@ -11,7 +11,7 @@ class FileUpdateRequest extends FormRequest
     {
         $rules = [
             'category_id' => ['required', 'integer', 'exists:library_media_categories,id'],
-            'media' => LibraryMediaFile::getMediaValidationRules('media'),
+            'media' => (new LibraryMediaFile)->getMediaValidationRules('media'),
         ];
         $localizedRules = localizeRules(['name' => ['required', 'string', 'max:255']]);
 

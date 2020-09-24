@@ -9,6 +9,6 @@ class CarouselBrick extends Brick
 {
     public function slides(): HasMany
     {
-        return $this->hasMany(CarouselBrickSlide::class, 'brick_id')->ordered();
+        return $this->hasMany(CarouselBrickSlide::class, 'brick_id');
     }
 }

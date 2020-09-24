@@ -27,11 +27,11 @@ class ResetPasswordController extends Controller
         sendResetFailedResponse as traitSendResetFailedResponse;
     }
 
-    public function showResetForm(Request $request, ?string $token = null): View
+    public function showResetForm(Request $request): View
     {
         SEOTools::setTitle(__('Define new password'));
 
-        return $this->traitShowResetForm($request, $token);
+        return $this->traitShowResetForm($request);
     }
 
     /**

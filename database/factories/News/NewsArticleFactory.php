@@ -5,8 +5,8 @@ namespace Database\Factories\News;
 use App\Models\News\NewsArticle;
 use App\Models\News\NewsCategory;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class NewsArticleFactory extends Factory
 {
@@ -64,7 +64,7 @@ EOT;
             $newsArticle->addMedia(database_path('seeders/files/news/' . $imagePath))
                 ->preservingOriginal()
                 ->toMediaCollection('illustrations');
-            $categoryIds = NewsCategory::get()->random(random_int(1, 2))->pluck('id');
+            $categoryIds = NewsCategory::inRandomOrder()->get()->first()->pluck('id');
             $newsArticle->categories()->sync($categoryIds);
             $newsArticle->saveSeoMeta([
                 'meta_title' => [

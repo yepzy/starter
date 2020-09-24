@@ -94,19 +94,22 @@
             "@php artisan ide-helper:handle"
         ],
         "post-update-cmd": [
+            "@php artisan horizon:publish --ansi",
+            "@php artisan telescope:publish --ansi",
+            "@ide-helper"
+        ],
+        "ide-helper": [
             "@php artisan ide-helper:eloquent",
             "@php artisan ide-helper:generate",
             "@php artisan ide-helper:model --dir=app/Models --nowrite",
-            "@php artisan ide-helper:meta",
-            "@php artisan horizon:publish --ansi",
-            "@php artisan telescope:publish --ansi"
+            "@php artisan ide-helper:meta"
         ],
         "test": [
             "vendor/bin/phpcbf",
             "vendor/bin/phpcs",
-            "vendor/bin/phpmd app,config,database,routes,tests text phpmd.xml",
+            "vendor/bin/phpmd app,config,database,routes text phpmd.xml",
             "vendor/bin/phpstan analyse --error-format=table --memory-limit=2048M",
-            "vendor/bin/phpunit"
+            "vendor/bin/phpunit --testdox --coverage-text"
         ]
     },
     "minimum-stability": "dev",

@@ -1,6 +1,6 @@
 @php
     $carouselId = 'carousel-brick-' . $brick->id;
-    $slides = $brick->slides->where('active', true);
+    $slides = $brick->slides->where('active', true)->sortBy('position');
     $fullWidth = data_get($brick, 'data.full_width');
     $conversionName = $fullWidth ? 'full' : 'containerized';
 @endphp

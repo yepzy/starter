@@ -12,7 +12,7 @@ class TwoTextImageColumnsStoreRequest extends FormRequest
         $rules = [
             'image_right' => array_merge(
                 ['required'],
-                TwoTextImageColumnsBrick::getMediaValidationRules('images')
+                (new TwoTextImageColumnsBrick)->getMediaValidationRules('images')
             ),
             'invert_order' => ['required', 'boolean'],
         ];
