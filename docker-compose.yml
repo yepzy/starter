@@ -45,7 +45,6 @@ services:
       - vessel
   mysqltesting:
     image: mysql:5.7
-    tmpfs: /var/lib/mysql
     ports:
       - "${MYSQL_TESTING_PORT}:3306"
     environment:

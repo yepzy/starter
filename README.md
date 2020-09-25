@@ -84,6 +84,10 @@ You can run these commands from your docker workspace, Node and Yarn are being i
 * `yarn prod` (does merge **and** minify).
 * `yarn watch` (recompile automatically when a change is being detected in a resource file).
 
+## IDE helper
+
+* To manually generate IDE helper files, run the following command: `./vessel composer ide-helper`.
+
 ## Testing
 
 * To launch the project test, run the following command: `./vessel composer test`.
