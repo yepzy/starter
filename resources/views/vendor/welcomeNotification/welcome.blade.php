@@ -14,18 +14,16 @@
         <i class="fas fa-hand-spock fa-fw"></i>
         @lang('Welcome')
     </h1>
-    <form method="POST" class="w-100">
+    <form class="w-100" method="POST">
         @csrf
         <input type="hidden" name="email" value="{{ $user->email }}"/>
         @include('components.common.form.notice')
         <p>@lang('Welcome on :app ! To be able to login to your new account please define a secured password with the fields bellow.', ['app' => config('app.name')])</p>
         {{ inputPassword()->name('password')
-            ->caption(__('passwords.minLength', ['count' => config('security.password.constraint.min')]) . '<br/>'
-                . __('passwords.recommendation'))
-            ->containerHtmlAttributes(['required']) }}
-        {{ inputPassword()->name('password_confirmation')->containerHtmlAttributes(['required']) }}
-        {{ submitValidate()->label(__('Save new password'))
-            ->componentClasses(['btn', 'btn-block', 'btn-primary']) }}
-        {{ buttonCancel()->route('home.page.show')->containerClasses(['mt-3']) }}
+            ->componentHtmlAttributes(['required', 'autofocus', 'autocomplete' => 'new-password']) }}
+        {{ inputPassword()->name('password_confirmation')
+            ->componentHtmlAttributes(['required', 'autocomplete' => 'new-password']) }}
+        {{ submitValidate()->label(__('Save new password'))->componentClasses(['btn-block', 'btn-primary', 'form-group']) }}
+        {{ buttonCancel()->route('home.page.show') }}
     </form>
 @endsection

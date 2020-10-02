@@ -15,11 +15,11 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/validation": "^2.4",
         "laravel-notification-channels/webhook": "^2.1",
+        "laravel/fortify": "^1.5",
         "laravel/framework": "^8.0",
         "laravel/horizon": "^5.0",
         "laravel/telescope": "^4.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^3.0",
         "okipa/laravel-bootstrap-components": "^3.0",
         "okipa/laravel-brickables": "^2.0",
         "okipa/laravel-medialibrary-ext": "^8.0",
@@ -29,15 +29,17 @@
         "plank/laravel-metable": "^3.0",
         "propaganistas/laravel-phone": "^4.0",
         "realrashid/sweet-alert": "^3.0",
-        "sentry/sentry-laravel": "^1.0",
+        "sentry/sentry-laravel": "^2.0",
         "spatie/laravel-feed": "^3.0",
-        "spatie/laravel-honeypot": "^2.0",
+        "spatie/laravel-honeypot": "^3.0",
+        "spatie/laravel-medialibrary": "^8.9",
         "spatie/laravel-sitemap": "^5.0",
         "spatie/laravel-translatable": "^4.0",
         "spatie/laravel-welcome-notification": "^2.0",
         "spatie/pdf-to-image": "^2.0"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-master",
         "barryvdh/laravel-ide-helper": "^2.0",
         "beyondcode/laravel-dump-server": "^1.0",
         "facade/ignition": "^2.3.6",
@@ -89,9 +91,6 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ],
-        "post-install-cmd": [
-            "@php artisan ide-helper:handle"
         ],
         "post-update-cmd": [
             "@php artisan horizon:publish --ansi",

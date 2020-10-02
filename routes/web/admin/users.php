@@ -27,7 +27,3 @@ Route::delete(
     Lang::uri('user/{user}/destroy'),
     [UsersController::class, 'destroy']
 )->name('user.destroy');
-Route::get(
-    Lang::uri('user/profile/edit'),
-    [UsersController::class, 'profile']
-)->name('user.profile.edit');

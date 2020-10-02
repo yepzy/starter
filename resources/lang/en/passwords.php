@@ -18,8 +18,5 @@ return [
     'throttled' => 'Please wait before retrying.',
     'token' => 'This password reset token is invalid.',
     'user' => "We can't find a user with that email address.",
-    'minLength' => 'Min. number of characters : :count.',
-    'recommendation' => 'Recommendation: mix uppercase, lowercase letters, numbers and special characters.',
-    'fillForUpdate' => 'Only fill if you want to change the current password.',
 
 ];

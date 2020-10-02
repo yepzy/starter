@@ -14,25 +14,22 @@
         <i class="fas fa-user-plus fa-fw"></i>
         @lang('Registration area')
     </h1>
-    <form method="POST" class="w-100">
+    @include('components.common.form.notice')
+    <form class="w-100" method="POST">
         @csrf
-        @include('components.common.form.notice')
         {{ inputText()->name('first_name')
             ->prepend('<i class="fas fa-user"></i>')
-            ->containerHtmlAttributes(['required']) }}
+            ->componentHtmlAttributes(['required', 'autofocus', 'autocomplete' => 'given-name']) }}
         {{ inputText()->name('last_name')
             ->prepend('<i class="fas fa-user"></i>')
-            ->containerHtmlAttributes(['required']) }}
+            ->componentHtmlAttributes(['required', 'autocomplete' => 'family-name']) }}
         {{ inputEmail()->name('email')
-            ->containerHtmlAttributes(['required']) }}
+            ->componentHtmlAttributes(['required', 'autocomplete' => 'email']) }}
         {{ inputPassword()->name('password')
-            ->caption(__('passwords.minLength', ['count' => config('security.password.constraint.min')]) . '<br/>'
-                . __('passwords.recommendation'))
-            ->containerHtmlAttributes(['required']) }}
+            ->componentHtmlAttributes(['required', 'autocomplete' => 'new-password']) }}
         {{ inputPassword()->name('password_confirmation')
-            ->containerHtmlAttributes(['required']) }}
-        {{ submitValidate()->label(__('Create account'))
-            ->componentClasses(['btn', 'btn-block', 'btn-primary']) }}
-        {{ buttonCancel()->route('login')->containerClasses(['mt-3']) }}
+            ->componentHtmlAttributes(['required', 'autocomplete' => 'new-password']) }}
+        {{ submitValidate()->label(__('Create account'))->componentClasses(['btn-block', 'btn-primary', 'form-group']) }}
+        {{ buttonCancel()->route('login') }}
     </form>
 @endsection
