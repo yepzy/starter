@@ -25,16 +25,6 @@ class InsertJavascript
             'sumoSelect' => __('sumoselect'),
             'gdprPage' => ['route' => $gdprPage ? route('page.show', $gdprPage) : null],
         ]);
-        // admin only
-        if ($request->is('admin/*') || $request->is('*/admin/*')) {
-            share([
-                'multilingual' => [
-                    'template' => [
-                        'formLangSwitcher' => view('components.admin.multilingual.form-lang-switcher')->toHtml(),
-                    ],
-                ],
-            ]);
-        }
 
         return $next($request);
     }
