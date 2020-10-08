@@ -1,6 +1,8 @@
-const $snakeCaseElements = $('[data-snakecase]');
-
-window.triggerSnakeCaseElementsDetection = () => {
+const triggerSnakeCaseElementsDetection = () => {
+    const $snakeCaseElements = $('[data-snakecase]');
+    if (! $snakeCaseElements.length) {
+        return;
+    }
     $snakeCaseElements.each((key, input) => {
         const $input = $(input);
         $input.on('propertychange change keyup input paste script', () => {
@@ -12,6 +14,4 @@ window.triggerSnakeCaseElementsDetection = () => {
     });
 };
 
-if ($snakeCaseElements.length) {
-    triggerSnakeCaseElementsDetection();
-}
+triggerSnakeCaseElementsDetection();

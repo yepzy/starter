@@ -1,10 +1,12 @@
-const listenToNoClickEvents = (noClickElements) => {
-    noClickElements.click((event) => {
+const listenToNoClickEvents = () => {
+    const $noClickElements = $('[data-no-click]');
+    if ($noClickElements.length) {
+        return false;
+    }
+    $noClickElements.click((event) => {
         event.preventDefault();
         return false;
     });
 };
-const noClickElements = $('[data-no-click]');
-if(noClickElements.length){
-    listenToNoClickEvents(noClickElements);
-}
+
+listenToNoClickEvents();

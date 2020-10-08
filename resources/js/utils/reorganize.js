@@ -1,10 +1,11 @@
 import 'jquery-ui-sortable';
+import notify from './notify';
 
-window.reorganizables = ($reorganizableContainer, sortableItemsSelector, reorganizingRoute) => {
-    $reorganizableContainer.sortable({
+export default ($sortableItemsContainer, sortableItemsSelector, reorganizingRoute) => {
+    $sortableItemsContainer.sortable({
         cursor: 'move',
         update: () => {
-            const reorganizedList = $reorganizableContainer.find(sortableItemsSelector);
+            const reorganizedList = $sortableItemsContainer.find(sortableItemsSelector);
             let orderedIds = [];
             _.each(reorganizedList, (item) => {
                 orderedIds.push($(item).find('.id').text());
@@ -22,4 +23,3 @@ window.reorganizables = ($reorganizableContainer, sortableItemsSelector, reorgan
         }
     });
 };
-

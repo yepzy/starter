@@ -87,6 +87,7 @@
                 <div class="card-body">
                     {{ inputText()->name('published_at')
                         ->value(($article ? $article->published_at : now())->format('d/m/Y H:i'))
+                        ->caption(__('You can set a future publication date: this article will not be published until this date is reached.'))
                         ->prepend('<i class="fas fa-calendar-alt"></i>')
                         ->componentHtmlAttributes(['required', 'data-datetime-picker']) }}
                     {{ inputToggle()->name('active')->model($article) }}

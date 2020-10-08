@@ -1,6 +1,6 @@
 // https://github.com/HemantNegi/jquery.sumoselect
 
-disableOptionsWithNoValue = ($select) => {
+const disableOptionsWithNoValue = ($select) => {
     _.each($select.find('option'), (option) => {
         const $option = $(option);
         if (! $option.val()) {
@@ -9,7 +9,7 @@ disableOptionsWithNoValue = ($select) => {
     });
 };
 
-window.triggerSumoSelectDetection = () => {
+const triggerSumoSelectDetection = () => {
     const selectorElements = $('select[data-selector]');
     if (selectorElements.length) {
         $.SumoSelect = require('sumoselect');

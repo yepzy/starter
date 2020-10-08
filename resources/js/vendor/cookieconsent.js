@@ -7,8 +7,14 @@ window.cookieconsent.initialise({
         link: app.cookieConsent.link,
         href: app.gdprPage.route
     },
+
     elements: {
-        dismiss: '<a aria-label="dismiss cookie message" tabindex="0" class="cc-btn cc-dismiss btn btn-outline-primary">{{dismiss}}</a>'
+        dismiss: '<a'
+            + 'aria-label="dismiss cookie message"'
+            + 'tabindex="0"'
+            + 'class="cc-btn cc-dismiss btn btn-outline-primary">'
+            + '{{dismiss}}'
+            + '</a>'
     },
     revokable: false,
     law: {

@@ -19,7 +19,7 @@ const selectDate = (datePicker, $datePicker) => {
         instance.date = dateObject;
     }
 };
-window.triggerDatePickerElementsDetection = () => {
+const triggerDatePickerElementsDetection = () => {
     const $datePickers = $('[data-date-picker]');
     if ($datePickers.length) {
         _.each($datePickers, (item) => {
@@ -46,7 +46,7 @@ const selectDateTime = (dateTimePicker, $dateTimePicker) => {
         instance.date = dateObject;
     }
 };
-window.triggerDateTimePickerElementsDetection = () => {
+const triggerDateTimePickerElementsDetection = () => {
     const $dateTimePickers = $('[data-datetime-picker]');
     _.each($dateTimePickers, (item) => {
         const $dateTimePicker = $(item);
@@ -74,7 +74,7 @@ const selectDateRange = (monthRangePicker, $monthRangePicker) => {
     instance.selectDate(filledDates);
     instance.date = filledDates;
 };
-window.triggerMonthRangePickerElementsDetection = () => {
+const triggerMonthRangePickerElementsDetection = () => {
     const $monthRangePickers = $('[data-month-range-picker]');
     if ($monthRangePickers.length) {
         _.each($monthRangePickers, (item) => {
@@ -95,5 +95,4 @@ window.triggerMonthRangePickerElementsDetection = () => {
         });
     }
 };
-
 triggerMonthRangePickerElementsDetection();

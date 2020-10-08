@@ -1,4 +1,4 @@
-window.triggerInputFileChangeDetection = (fileInputElements) => {
+const triggerInputFileChangeDetection = (fileInputElements) => {
     _.each(fileInputElements, (inputFileElement) => {
         const $this = $(inputFileElement);
         $this.change(() => {
@@ -16,3 +16,5 @@ const fileInputElements = $('input[type=file]');
 if (fileInputElements.length) {
     triggerInputFileChangeDetection(fileInputElements);
 }
+
+export default triggerInputFileChangeDetection;

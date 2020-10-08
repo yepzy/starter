@@ -1,6 +1,8 @@
-const $autofillElements = $('[data-autofill-from]');
-
-window.triggerAutofillElementsDetection = () => {
+const triggerAutofillElementsDetection = () => {
+    const $autofillElements = $('[data-autofill-from]');
+    if (! $autofillElements.length) {
+        return false;
+    }
     $autofillElements.each((key, input) => {
         const $input = $(input);
         const inputLocale = $input.data('locale');
@@ -26,6 +28,4 @@ window.triggerAutofillElementsDetection = () => {
     });
 };
 
-if ($autofillElements.length) {
-    triggerAutofillElementsDetection();
-}
+triggerAutofillElementsDetection();

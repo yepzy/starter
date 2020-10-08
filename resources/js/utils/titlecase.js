@@ -1,5 +1,3 @@
-const $titleCaseElements = $('[data-titlecase]');
-
 const toTitleCase = (string) => {
     const sentence = string.toLowerCase().split(' ');
     for (let ii = 0; ii < sentence.length; ii ++) {
@@ -10,7 +8,11 @@ const toTitleCase = (string) => {
     return sentence.join(' ');
 };
 
-window.triggerTitleCaseElementsDetection = () => {
+const triggerTitleCaseElementsDetection = () => {
+    const $titleCaseElements = $('[data-titlecase]');
+    if (! $titleCaseElements.length) {
+        return false;
+    }
     $titleCaseElements.each((key, input) => {
         const $input = $(input);
         $input.on('propertychange change keyup input paste script', () => {
@@ -20,6 +22,4 @@ window.triggerTitleCaseElementsDetection = () => {
     });
 };
 
-if ($titleCaseElements.length) {
-    triggerTitleCaseElementsDetection();
-}
+triggerTitleCaseElementsDetection();

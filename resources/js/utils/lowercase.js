@@ -1,15 +1,15 @@
-const $lowerCaseElements = $('[data-lowercase]');
-
-window.triggerLowerCaseElementsDetection = () => {
+const triggerLowerCaseElementsDetection = () => {
+    const $lowerCaseElements = $('[data-lowercase]');
+    if (! $lowerCaseElements.length) {
+        return false;
+    }
     $lowerCaseElements.each((key, input) => {
         const $input = $(input);
         $input.on('propertychange change keyup input paste script', () => {
-            const lowercase = $this.val().toLowerCase();
+            const lowercase = $input.val().toLowerCase();
             $input.val(lowercase);
         });
     });
 };
 
-if ($lowerCaseElements.length) {
-    triggerLowerCaseElementsDetection();
-}
+triggerLowerCaseElementsDetection();

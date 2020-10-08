@@ -1,5 +1,9 @@
-window.listenToNewWindowEvents = (newsWindowElements) => {
-    _.each(newsWindowElements, (newsWindowElement) => {
+const listenToNewWindowEvents = () => {
+    const $newsWindowElements = $('[data-new-window]');
+    if (! $newsWindowElements.length) {
+        return false;
+    }
+    _.each($newsWindowElements, (newsWindowElement) => {
         const $this = $(newsWindowElement);
         $this.click((e) => {
             e.preventDefault();
@@ -9,8 +13,4 @@ window.listenToNewWindowEvents = (newsWindowElements) => {
     });
 };
 
-const newsWindowElements = $('[data-new-window]');
-
-if (newsWindowElements.length) {
-    listenToNewWindowEvents(newsWindowElements);
-}
+listenToNewWindowEvents();

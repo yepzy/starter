@@ -1,6 +1,8 @@
-const $upperCaseElements = $('[data-uppercase]');
-
-window.triggerUpperCaseElementsDetection = () => {
+const triggerUpperCaseElementsDetection = () => {
+    const $upperCaseElements = $('[data-uppercase]');
+    if (! $upperCaseElements.length) {
+        return false;
+    }
     $upperCaseElements.each((key, input) => {
         const $input = $(input);
         $input.on('propertychange change keyup input paste script', () => {
@@ -10,6 +12,4 @@ window.triggerUpperCaseElementsDetection = () => {
     });
 };
 
-if ($upperCaseElements.length) {
-    triggerUpperCaseElementsDetection();
-}
+triggerUpperCaseElementsDetection();

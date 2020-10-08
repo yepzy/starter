@@ -1,3 +1,5 @@
+import notify from '../../../utils/notify';
+
 const copyToClipboard = (string) => {
     const el = document.createElement('textarea');
     el.value = string;
@@ -18,15 +20,9 @@ $('.clipboard-copy').click(function (e) {
     route = route.replace('__LOCALE__', locale || '');
     axios.get(route).then((response) => {
         copyToClipboard(response.data.clipboardContent);
-        notify.toast.fire({
-            icon: 'success',
-            title: response.data.message
-        });
+        notify.toastSuccess(response.data.message);
     }).catch((error) => {
         console.error(error);
-        notify.toast.fire({
-            icon: 'error',
-            title: error.response.data.message
-        });
+        notify.toastError(error.response.data.message);
     });
 });

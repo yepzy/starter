@@ -13,6 +13,9 @@ class NewsArticlesController extends Controller
         if (! $article->active) {
             abort(404);
         }
+        if (! $article->published_at->gte(now())) {
+            abort(404);
+        }
         $article->displaySeoMeta();
 
         return view('templates.front.news.articles.show', compact('article'));

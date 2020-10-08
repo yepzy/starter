@@ -1,6 +1,8 @@
-const $kebabCaseElements = $('[data-kebabcase]');
-
-window.triggerKebabCaseElementsDetection = () => {
+const triggerKebabCaseElementsDetection = () => {
+    const $kebabCaseElements = $('[data-kebabcase]');
+    if (! $kebabCaseElements.length) {
+        return false;
+    }
     $kebabCaseElements.each((key, input) => {
         const $input = $(input);
         $input.on('propertychange change keyup input paste script', () => {
@@ -13,6 +15,4 @@ window.triggerKebabCaseElementsDetection = () => {
     });
 };
 
-if ($kebabCaseElements.length) {
-    triggerKebabCaseElementsDetection();
-}
+triggerKebabCaseElementsDetection();

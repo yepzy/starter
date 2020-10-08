@@ -48,6 +48,18 @@ mix
     .sass('resources/sass/global/_front.scss', 'public/css/front.css')
 
     // config **********************************************************************************************************
+    .webpackConfig({
+        module: {
+            rules: [
+                {
+                    enforce: 'pre',
+                    test: /\.(js)$/,
+                    loader: 'eslint-loader',
+                    exclude: /node_modules/
+                }
+            ]
+        }
+    })
     .options({processCssUrls: false})
     .autoload({
         lodash: ['_'],
@@ -55,7 +67,7 @@ mix
         jquery: ['$', 'jQuery', 'window.jQuery'],
         'popper.js': ['Popper'],
         'sweetalert2': ['swal'],
-        cookieconsent: ['cookieconsent', 'window.cookieconsent'],
+        cookieconsent: ['cookieconsent', 'window.cookieconsent']
     })
     .extract(['bootstrap', 'lodash', 'axios', 'jquery', 'popper.js', 'sweetalert2', 'cookieconsent'])
     .sourceMaps()

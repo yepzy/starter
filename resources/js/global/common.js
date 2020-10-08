@@ -4,7 +4,7 @@
 require('../vendor/jquery');
 require('../vendor/axios');
 require('../vendor/cookieconsent');
-require('../vendor/sweetalert');
+require('../utils/notify');
 require('../vendor/sumoselect');
 require('../vendor/lity');
 require('../vendor/moment');

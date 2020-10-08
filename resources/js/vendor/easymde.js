@@ -1,4 +1,4 @@
-window.triggerEditorElementsDetection = () => {
+const triggerEditorElementsDetection = () => {
     const editorElements = $('textarea[data-editor]');
     if (editorElements.length) {
         const EasyMde = require('easymde');
