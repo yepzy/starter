@@ -55,8 +55,6 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
       - vesselmysqltesting:/var/lib/mysql
-#      - ./docker/mysql/conf.d:/etc/mysql/conf.d
-#      - ./docker/mysql/logs:/var/log/mysql
     networks:
       - vessel
   redis:
