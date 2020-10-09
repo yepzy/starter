@@ -16,8 +16,6 @@
             <directory suffix=".php">./app</directory>
         </include>
         <exclude>
-            <directory suffix=".php">./app/Channels/</directory>
-            <directory suffix=".php">./app/Console/</directory>
             <file>./app/Exceptions/Handler.php</file>
             <file>./app/Http/Kernel.php</file>
             <file>./app/Http/Middleware/Authenticate.php</file>

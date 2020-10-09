@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\News\NewsArticle;
 use App\Models\News\NewsCategory;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
