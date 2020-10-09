@@ -10,7 +10,7 @@ class FileUpdateRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'category_id' => ['required', 'integer', 'exists:library_media_categories,id'],
+            'category_id' => ['required', 'integer', 'exists:' . LibraryMediaFile::class . ',id'],
             'media' => (new LibraryMediaFile)->getMediaValidationRules('media'),
         ];
         $localizedRules = localizeRules(['name' => ['required', 'string', 'max:255']]);

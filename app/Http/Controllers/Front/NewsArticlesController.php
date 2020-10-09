@@ -13,7 +13,7 @@ class NewsArticlesController extends Controller
         if (! $article->active) {
             abort(404);
         }
-        if (! $article->published_at->gte(now())) {
+        if ($article->published_at->gt(now())) {
             abort(404);
         }
         $article->displaySeoMeta();

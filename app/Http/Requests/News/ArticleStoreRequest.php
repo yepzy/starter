@@ -14,7 +14,7 @@ class ArticleStoreRequest extends SeoRequest
         $rules = [
             'illustration' => array_merge(['required'], (new NewsArticle)->getMediaValidationRules('illustration')),
             'category_ids' => ['required', 'array'],
-            'category_ids.*' => ['required', 'integer', 'exists:news_categories,id'],
+            'category_ids.*' => ['required', 'integer', 'exists:' . NewsArticle::class . ',id'],
             'published_at' => ['required', 'date_format:Y-m-d H:i:s'],
             'active' => ['required', 'boolean'],
         ];
