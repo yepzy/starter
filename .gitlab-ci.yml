@@ -146,13 +146,19 @@ phpstan:
 phpunit:
   stage: test
   image: php:7.4-cli
+  variables:
+    MYSQL_ROOT_PASSWORD: secret
+    MYSQL_DATABASE: testing
+    MYSQL_USER: testing
+    MYSQL_PASSWORD: secret
+    DB_HOST: mysql
   services:
     - mysql:8.0
   dependencies:
     - composer
   before_script:
-    - apt update && apt install -y git libfreetype6-dev libjpeg62-turbo-dev libpng-dev exif
-    - docker-php-ext-configure gd --with-freetype --with-jpeg
+    - apt update && apt install -y git libfreetype6-dev libjpeg62-turbo-dev libpng-dev libwebp-dev exif
+    - docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp
     - docker-php-ext-install gd exif pdo_mysql
     - pecl install pcov
     - docker-php-ext-enable pcov
