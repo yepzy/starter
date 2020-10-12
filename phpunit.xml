@@ -16,16 +16,11 @@
             <directory suffix=".php">./app</directory>
         </include>
         <exclude>
+            <file>./app/Console/Kernel.php</file>
             <file>./app/Exceptions/Handler.php</file>
             <file>./app/Http/Kernel.php</file>
-            <file>./app/Http/Middleware/Authenticate.php</file>
-            <file>./app/Http/Middleware/EncryptCookies.php</file>
-            <file>./app/Http/Middleware/PreventRequestsDuringMaintenance.php</file>
-            <file>./app/Http/Middleware/RedirectIfAuthenticated.php</file>
-            <file>./app/Http/Middleware/TrimStrings.php</file>
-            <file>./app/Http/Middleware/TrustHosts.php</file>
-            <file>./app/Http/Middleware/TrustProxies.php</file>
-            <file>./app/Http/Middleware/VerifyCsrfToken.php</file>
+            <directory>./app/Http/Middleware</directory>
+            <directory>./app/Providers</directory>
         </exclude>
     </coverage>
     <php>

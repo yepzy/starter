@@ -7,6 +7,7 @@
         ->componentHtmlAttributes(['required', 'data-editor']) }}
     {{ textarea()->name('text_right')
         ->locales(supportedLocaleKeys())
-        ->prepend(null)->value(fn($locale) => translatedData($brick, 'data.text_right', $locale))
+        ->prepend(null)
+        ->value(fn($locale) => translatedData($brick, 'data.text_right', $locale))
         ->componentHtmlAttributes(['required', 'data-editor']) }}
 @endsection
