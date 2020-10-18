@@ -14,7 +14,7 @@
         @csrf
         @if($category)
             @method('PUT')
-        @endif()
+        @endif
         <div class="d-flex">
             {{ buttonBack()->route('libraryMedia.categories.index')->containerClasses(['mr-3']) }}
             @if($category){{ submitUpdate() }}@else{{ submitCreate() }}@endif

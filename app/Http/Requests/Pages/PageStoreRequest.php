@@ -3,14 +3,16 @@
 namespace App\Http\Requests\Pages;
 
 use App\Http\Requests\Abstracts\SeoRequest;
+use App\Models\Pages\Page;
 use CodeZero\UniqueTranslation\UniqueTranslationRule;
+use Illuminate\Validation\Rule;
 
 class PageStoreRequest extends SeoRequest
 {
     public function rules(): array
     {
         $rules = [
-            'unique_key' => ['required', 'snakecase',  'max:255', 'unique:pages'],
+            'unique_key' => ['required', 'snakecase', 'max:255', Rule::unique(Page::class)],
             'active' => ['required', 'boolean'],
         ];
         $localizedRules = localizeRules([

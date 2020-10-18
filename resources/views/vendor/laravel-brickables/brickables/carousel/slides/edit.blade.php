@@ -24,7 +24,7 @@
         @csrf
         @if($slide)
             @method('PUT')
-        @endif()
+        @endif
         <div class="d-flex">
             {{ buttonBack()->route('brick.edit', ['brick' => $brick, 'admin_panel_url' => request()->admin_panel_url])->containerClasses(['mr-3']) }}
             @if($slide){{ submitUpdate() }}@else{{ submitCreate() }}@endif

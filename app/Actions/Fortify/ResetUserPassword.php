@@ -19,7 +19,7 @@ class ResetUserPassword implements ResetsUserPasswords
      * @return void
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function reset($user, array $input)
+    public function reset($user, array $input): void
     {
         Validator::make($input, ['password' => array_merge(['required'], $this->passwordRules())])->validate();
         $user->forceFill(['password' => Hash::make($input['password'])])->save();

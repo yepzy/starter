@@ -15,7 +15,7 @@
         @csrf
         @if($file)
             @method('PUT')
-        @endif()
+        @endif
         <div class="d-flex">
             {{ buttonBack()->route('libraryMedia.files.index')->containerClasses(['mr-3']) }}
             @if($file){{ submitUpdate() }}@else{{ submitCreate() }}@endif

@@ -6,6 +6,7 @@ use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\Users\User;
 use App\Rules\PhoneInternational;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserUpdateRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class UserUpdateRequest extends FormRequest
                 'string',
                 'email:rfc,dns,spoof',
                 'max:255',
-                'unique:users,email,' . $this->user->id,
+                Rule::unique(User::class)->ignore($this->user->id),
             ],
             'new_password' => array_merge(['nullable'], $this->passwordRules()),
         ];

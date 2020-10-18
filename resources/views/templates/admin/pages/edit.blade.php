@@ -15,7 +15,7 @@
         @csrf
         @if($page)
             @method('PUT')
-        @endif()
+        @endif
         <div class="d-flex">
             {{ buttonBack()->route('pages.index')->containerClasses(['mr-3']) }}
             @if($page){{ submitUpdate() }}@else{{ submitCreate() }}@endif
