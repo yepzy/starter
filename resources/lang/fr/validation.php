@@ -90,6 +90,7 @@ return [
         'string' => 'Le champ :attribute doit compter au minimum :min caractère(s).',
         'array' => 'Le champ :attribute doit contenir au minimum :min élément(s).',
     ],
+    'multiple_of' => 'Le champ :attribute doit être un multiple de :value.',
     'not_in' => 'Le champ :attribute est invalide.',
     'not_regex' => 'Le format du champ :attribute est invalide.',
     'numeric' => 'Le champ :attribute doit être un nombre.',

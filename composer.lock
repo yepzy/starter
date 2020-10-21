@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ba459f6237a3a0da09e6abc540a7342",
+    "content-hash": "a7b043925540cc1d8c89989aa9e0dab2",
     "packages": [
         {
             "name": "0.0.0/composer-include-files",
@@ -4660,16 +4660,16 @@
         },
         {
             "name": "plank/laravel-metable",
-            "version": "3.0.0",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plank/laravel-metable.git",
-                "reference": "49dbb430380a71b981dc7ea31a92201abe985a2c"
+                "reference": "1f34a0f2817a9db38569f11ea42ecea134f43bfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/plank/laravel-metable/zipball/49dbb430380a71b981dc7ea31a92201abe985a2c",
-                "reference": "49dbb430380a71b981dc7ea31a92201abe985a2c",
+                "url": "https://api.github.com/repos/plank/laravel-metable/zipball/1f34a0f2817a9db38569f11ea42ecea134f43bfa",
+                "reference": "1f34a0f2817a9db38569f11ea42ecea134f43bfa",
                 "shasum": ""
             },
             "require": {
@@ -4708,7 +4708,7 @@
                 }
             ],
             "description": "A package for attaching arbitrary data to Eloquent models",
-            "time": "2020-09-13T21:29:12+00:00"
+            "time": "2020-10-15T00:26:51+00:00"
         },
         {
             "name": "pragmarx/google2fa",
