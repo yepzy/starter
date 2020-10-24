@@ -24,10 +24,10 @@
             @include('components.admin.seo.meta', ['model' => $pageContent])
         </div>
     </form>
+    <hr class="mt-n1">
     @if($pageContent)
-        <hr class="mt-n1">
-        <div class="mt-3">
-            {!! $pageContent->displayAdminPanel() !!}
-        </div>
+        {!! $pageContent->displayAdminPanel() !!}
+    @else
+        @include('components.admin.brickables.manage-content-once-created')
     @endif
 @endsection

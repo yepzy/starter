@@ -69,10 +69,10 @@
             </div>
         </div>
     </form>
+    <hr class="mt-n1">
     @if($page)
-        <hr class="mt-n1">
-        <div class="mt-3">
-            {!! $page->displayAdminPanel() !!}
-        </div>
+        {!! $page->displayAdminPanel() !!}
+    @else
+        @include('components.admin.brickables.manage-content-once-created')
     @endif
 @endsection

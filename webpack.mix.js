@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+require('laravel-mix-purgecss');
 
 // Fix found here to avoid custom files versioning issue : https://github.com/JeffreyWay/laravel-mix/issues/1193.
 mix.copyDirectoryOutsideMixWorkflow = function (from, to) {
@@ -48,17 +49,20 @@ mix
     .sass('resources/sass/global/_front.scss', 'public/css/front.css')
 
     // config **********************************************************************************************************
-    .webpackConfig({
-        module: {
-            rules: [
-                {
-                    enforce: 'pre',
-                    test: /\.(js)$/,
-                    loader: 'eslint-loader',
-                    exclude: /node_modules/
-                }
-            ]
-        }
+//    .webpackConfig({
+//        module: {
+//            rules: [
+//                {
+//                    enforce: 'pre',
+//                    test: /\.(js)$/,
+//                    loader: 'eslint-loader',
+//                    exclude: /node_modules/
+//                }
+//            ]
+//        }
+//    })
+    .purgeCss({
+        enabled: true,
     })
     .options({processCssUrls: false})
     .autoload({
