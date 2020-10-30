@@ -1,7 +1,7 @@
 {
     "license": "proprietary",
     "require": {
-        "php": "^7.4",
+        "php": "^7.4||^8.0",
         "ext-json": "*",
         "artesaos/seotools": "^0.19.0",
         "coderello/laravel-shared-data": "^3.0",
@@ -16,7 +16,7 @@
         "intervention/validation": "^2.4",
         "laravel-notification-channels/webhook": "^2.1",
         "laravel/fortify": "^1.5",
-        "laravel/framework": "^8.0",
+        "laravel/framework": "^8.12",
         "laravel/horizon": "^5.0",
         "laravel/telescope": "^4.0",
         "laravel/tinker": "^2.5",
@@ -43,7 +43,7 @@
         "barryvdh/laravel-ide-helper": "^2.0",
         "beyondcode/laravel-dump-server": "^1.0",
         "facade/ignition": "^2.5",
-        "fzaninotto/faker": "^1.0",
+        "fakerphp/faker": "^1.9.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "nunomaduro/larastan": "^0.6",
