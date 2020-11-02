@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 
 class HttpsProtocolMiddleware
 {
@@ -14,7 +15,7 @@ class HttpsProtocolMiddleware
      *
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         if (! $request->secure() && in_array(app()->environment(), ['preprod', 'production'])) {
             return redirect()->secure($request->getRequestUri(), 301);

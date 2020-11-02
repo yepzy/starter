@@ -18,9 +18,8 @@
         <div class="row">
             <form class="col d-flex align-items-end">
                 {{ select()->name('category_id')
-                    ->options((new App\Models\News\NewsCategory)->orderBy('name')->get()->map(fn(App\Models\News\NewsCategory $category) => ['id' => $category->id, 'name' => $category->name]), 'id', 'name')
+                    ->options(App\Models\News\NewsCategory::orderBy('name')->get()->map(fn(App\Models\News\NewsCategory $category) => ['id' => $category->id, 'name' => $category->name]), 'id', 'name')
                     ->selected('id', (int) request()->category_id)
-                    ->componentHtmlAttributes(['data-selector'])
                     ->containerClasses(['mb-0']) }}
                 {{ submitValidate()->prepend('<i class="fas fa-filter fa-fw"></i>')
                     ->label(__('Filter'))

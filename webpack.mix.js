@@ -49,20 +49,17 @@ mix
     .sass('resources/sass/global/_front.scss', 'public/css/front.css')
 
     // config **********************************************************************************************************
-//    .webpackConfig({
-//        module: {
-//            rules: [
-//                {
-//                    enforce: 'pre',
-//                    test: /\.(js)$/,
-//                    loader: 'eslint-loader',
-//                    exclude: /node_modules/
-//                }
-//            ]
-//        }
-//    })
-    .purgeCss({
-        enabled: true,
+    .webpackConfig({
+        module: {
+            rules: [
+                {
+                    enforce: 'pre',
+                    test: /\.(js)$/,
+                    loader: 'eslint-loader',
+                    exclude: /node_modules/
+                }
+            ]
+        }
     })
     .options({processCssUrls: false})
     .autoload({

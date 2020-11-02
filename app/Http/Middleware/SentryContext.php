@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 use Sentry\State\Scope;
 use function Sentry\configureScope;
 
@@ -16,7 +17,7 @@ class SentryContext
      *
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         if (app()->bound('sentry')) {
             configureScope(function (Scope $scope): void {

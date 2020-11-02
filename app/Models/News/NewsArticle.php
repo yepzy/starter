@@ -89,7 +89,7 @@ class NewsArticle extends Seo implements HasMedia, Feedable
         return FeedItem::create()->id((string) $this->id)
             ->title($this->title)
             ->summary(Str::limit(strip_tags((new Parsedown)->text($this->description))))
-            ->link(route('news.article.show', $this))
+            ->link(route('news.article.show', [$this]))
             ->author(config('app.name'))
             ->category($this->categories->pluck('name'))
             ->enclosure(optional($media)->getUrl())

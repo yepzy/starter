@@ -33,7 +33,7 @@ return [
     /*
      * The fully qualified class name of the model used for temporary uploads.
      */
-    'temporary_upload_model' => Spatie\MediaLibraryPro\Models\TemporaryUpload::class,
+    //'temporary_upload_model' => Spatie\MediaLibraryPro\Models\TemporaryUpload::class,
 
     /*
      * This is the class that is responsible for naming generated files.

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 
 class InsertJavascript
 {
@@ -15,14 +16,13 @@ class InsertJavascript
      * @return mixed
      * @throws \Exception
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         $gdprPage = pages()->where('unique_key', 'gdpr_page')->first();
         share([
             'locale' => app()->getLocale(),
             'sweetalert' => __('sweetalert'),
             'cookieConsent' => __('cookieconsent'),
-            'sumoSelect' => __('sumoselect'),
             'gdprPage' => ['route' => $gdprPage ? route('page.show', $gdprPage) : null],
         ]);
 
