@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 // localized ***********************************************************************************************************
 Route::localized(function () {
 
-    // Todo: remove this block if your app is not multilingual.
+    // Todo: remove this block and the routes php files if your app is not multilingual.
     // fortify
     Route::group(['middleware' => config('fortify.middleware', ['web'])], static function () {
         require('web/fortify/login.php');

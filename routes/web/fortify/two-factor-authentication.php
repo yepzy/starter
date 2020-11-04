@@ -7,9 +7,11 @@ use Laravel\Fortify\Http\Controllers\TwoFactorAuthenticationController;
 use Laravel\Fortify\Http\Controllers\TwoFactorQrCodeController;
 
 if (Features::enabled(Features::twoFactorAuthentication())) {
-    Route::get(Lang::uri('/two-factor-challenge'), [TwoFactorAuthenticatedSessionController::class, 'create'])
-        ->middleware(['guest'])
-        ->name('two-factor.login');
+    if (config('fortify.views', true)) {
+        Route::get(Lang::uri('/two-factor-challenge'), [TwoFactorAuthenticatedSessionController::class, 'create'])
+            ->middleware(['guest'])
+            ->name('two-factor.login');
+    }
     Route::post(Lang::uri('/two-factor-challenge'), [TwoFactorAuthenticatedSessionController::class, 'store'])
         ->middleware(['guest'])
         ->name('two-factor.login.store');
@@ -22,12 +24,15 @@ if (Features::enabled(Features::twoFactorAuthentication())) {
     Route::delete(Lang::uri('/user/two-factor-authentication'), [TwoFactorAuthenticationController::class, 'destroy'])
         ->middleware($twoFactorMiddleware)
         ->name('two-factor.deactivate');
+    // Deactivated unused Livewire routes
+//    if (config('fortify.views', true)) {
 //    Route::get(Lang::uri('/user/two-factor-qr-code'), [TwoFactorQrCodeController::class, 'show'])
 //        ->middleware($twoFactorMiddleware)
 //        ->name('two-factor.qr');
 //    Route::get(Lang::uri('/user/two-factor-recovery-codes'), [RecoveryCodeController::class, 'index'])
 //        ->middleware($twoFactorMiddleware)
 //        ->name('two-factor.recovery');
+//    }
     Route::post(Lang::uri('/user/two-factor-recovery-codes'), [RecoveryCodeController::class, 'store'])
         ->middleware($twoFactorMiddleware)
         ->name('two-factor.recovery.regen');
