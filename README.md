@@ -1,4 +1,5 @@
-<Todo : personalize readme>
+<!-- Todo: personalize readme -->
+<!-- Todo: search every `Todo:` occurrence in starter and customize what needs to be. -->
 
 # App base built with Laravel 8
 

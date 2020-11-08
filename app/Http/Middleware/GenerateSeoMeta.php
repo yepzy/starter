@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Route;
 use SEO;
@@ -18,7 +19,7 @@ class GenerateSeoMeta
      * @return mixed
      * @throws \Exception
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         SEO::opengraph()->addProperty('locale', currentLocale()['regional']);
         if (multilingual()) {

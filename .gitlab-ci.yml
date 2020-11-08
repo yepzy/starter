@@ -8,8 +8,6 @@ stages:
 composer:
   stage: build
   image: composer:latest
-  before_script:
-    - composer global require hirak/prestissimo
   script:
     - composer install --optimize-autoloader --no-progress --no-scripts --ignore-platform-reqs
   artifacts:
@@ -28,8 +26,6 @@ composer:
 composer:nodev:
   stage: build
   image: composer:latest
-  before_script:
-    - composer global require hirak/prestissimo
   script:
     - composer install --optimize-autoloader --no-progress --no-scripts --ignore-platform-reqs --no-dev
   artifacts:

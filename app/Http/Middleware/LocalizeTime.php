@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 class LocalizeTime
@@ -16,7 +17,7 @@ class LocalizeTime
      * @return mixed
      * @throws \Exception
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         setlocale(LC_TIME, currentLocale()['regional'] . '.UTF-8');
         Carbon::setLocale(app()->getLocale());

@@ -74,9 +74,7 @@ return [
     |
     */
 
-    'middleware' => [
-        //'web'
-    ],
+    'middleware' => ['web'],
 
     /*
     |--------------------------------------------------------------------------
@@ -95,6 +93,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Register View Routes
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify if the routes returning views should be disabled as
+    | you may not need them when building your own application. This may be
+    | especially true if you're writing a custom single-page application.
+    |
+    */
+
+    'views' => true,
+
+    /*
+    |--------------------------------------------------------------------------
     | Features
     |--------------------------------------------------------------------------
     |
@@ -107,7 +118,7 @@ return [
     'features' => [
         Features::registration(),
         Features::resetPasswords(),
-        Features::emailVerification(),
+         Features::emailVerification(),
         Features::updateProfileInformation(),
         Features::updatePasswords(),
         Features::twoFactorAuthentication([
