@@ -34,10 +34,10 @@
 
 ### Requirements
 
-* Git.
-* Docker Community Edition: https://docs.docker.com/install.
-* Latest Node LTS version (important to avoid errors).
-* Latest Yarn stable version.
+* Git
+* Docker Community Edition: https://docs.docker.com/install
+* Latest Node stable version
+* Latest Yarn stable version
 
 ### Import and git setup
 
@@ -45,7 +45,7 @@ Clone the project from `<project-repository-url>`.
 
 ### DNS setup
 
-Set your project domain resolution in your virtualhost: `sudo vim /etc/hosts`
+Set your project domain resolution in your virtualhost: `sudo vim /etc/hosts`.
 
 ```sh
     # add these lines in your /etc/hosts file
@@ -75,7 +75,7 @@ See how to use it on the [official documentation](https://vessel.shippingdocker.
 
 ## Database
 
-* Execute a database reset with the following command: `./vessel artisan migrate:refresh --seed`. This will execute all migrations and seeds.
+Execute a database reset with the following command: `./vessel artisan migrate:refresh --seed`. This will execute all migrations and seeds.
 
 ## Building resources
 
@@ -88,17 +88,17 @@ You can run these commands from your docker workspace, Node and Yarn are being i
 
 ## IDE helper
 
-* To manually generate IDE helper files, run the following command: `./vessel composer ide-helper`.
+To manually generate IDE helper files, run the following command: `./vessel composer ide-helper`.
 
 ## Testing
 
-* To launch the project test, run the following command: `./vessel composer test`.
+To launch the project test, run the following command: `./vessel composer test`.
 
 ## Debugging
 
 Laravel Telescope and Laravel Horizon are pre-installed:
-* To open the `telescope` dashboard, add `/telescope` to the base URL.
-* To open the `horizon` dashboard, add `/horizon` to the base URL.
+* To open the `telescope` dashboard, add `/telescope` to the base URL
+* To open the `horizon` dashboard, add `/horizon` to the base URL
 
 ## Changelog
 
