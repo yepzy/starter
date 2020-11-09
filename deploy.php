@@ -88,12 +88,12 @@ task('deploy', [
 
 task('deploy:upload', function () {
     $toUpload = [
-        '.git/', // required for sentry error catching
+        '.git/', // Required for sentry error catching.
         'app/',
         'bootstrap/',
         'config/',
         'database/',
-        'node_modules/', // required if you have no-dev node dependencies
+        'node_modules/', // Required if you have no-dev node dependencies.
         'public/',
         'resources/',
         'routes/',
@@ -162,7 +162,7 @@ task('cron:install', function () {
 })->desc('Adding the laravel cron to the user crontab');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// custom chaining
+// Custom chaining
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 after('deploy:failed', 'deploy:unlock');

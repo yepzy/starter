@@ -37,5 +37,5 @@ Homestead.yaml
 #testing
 .phpunit.result.cache
 
-# Mac OS
+# MacOS
 **/.DS_Store

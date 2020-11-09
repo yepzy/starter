@@ -25,6 +25,7 @@
 * [Docker](#docker)
 * [Database](#database)
 * [Building resources](#building-resources)
+* [IDE helper](#ide-helper)
 * [Testing](#testing)
 * [Debugging](#debugging)
 * [Changelog](#changelog)
