@@ -1,10 +1,10 @@
+@if(session('status'))
+    @php
+        alert()->html(__('Success'), session('status'), 'success')->showConfirmButton();
+    @endphp
+@endif
 @extends('layouts.admin.auth')
 @section('content')
-    @if(session('status'))
-        @php
-            alert()->html(__('Success'), session('status'), 'success')->showConfirmButton();
-        @endphp
-    @endif
     @include('components.common.multilingual.lang-switcher', [
         'containerClasses' => ['text-right', 'mb-3'],
         'dropdownLabelClasses' => ['btn', 'btn-link'],
@@ -19,14 +19,14 @@
         <i class="fas fa-sign-in-alt fa-fw"></i>
         @lang('Sign in area')
     </h1>
-    <form class="w-100" method="POST">
+    <form class="w-100" method="POST" novalidate>
         @csrf
         @include('components.common.form.notice')
         {{ inputEmail()->name('email')
             ->componentHtmlAttributes(['required', 'autofocus', 'autocomplete' => 'email']) }}
         {{ inputPassword()->name('password')
             ->componentHtmlAttributes(['required', 'autocomplete' => 'current-password']) }}
-        {{ inputToggle()->name('remember') }}
+        {{ inputSwitch()->name('remember') }}
         {{ submitValidate()->label(__('Login'))->componentClasses(['btn-block', 'btn-primary', 'form-group']) }}
         @php
             $registrationEnabled = Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::registration());

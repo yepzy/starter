@@ -22,11 +22,10 @@
     <p>
         @lang('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.')
     </p>
-    <form method="POST" class="w-100" action="{{ route('password.email') }}">
+    <form class="w-100" method="POST" action="{{ route('password.email') }}" novalidate>
         @csrf
         @include('components.common.form.notice')
         {{ inputEmail()->name('email')
-            ->caption(__('Fill in your email to receive instructions for resetting your password.'))
             ->componentHtmlAttributes(['required', 'autofocus', 'autocomplete' => 'email']) }}
         {{ submit()->prepend('<i class="fas fa-paper-plane fa-fw"></i>')
             ->label(__('Send reset email'))

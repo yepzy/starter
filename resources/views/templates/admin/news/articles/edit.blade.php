@@ -9,9 +9,10 @@
         @endif
     </h1>
     <hr>
-    <form action="{{ $article ? route('news.article.update', $article) : route('news.article.store') }}"
-          method="POST"
-          enctype="multipart/form-data">
+    <form method="POST"
+          action="{{ $article ? route('news.article.update', $article) : route('news.article.store') }}"
+          enctype="multipart/form-data"
+          novalidate>
         @csrf
         @if($article)
             @method('PUT')
@@ -90,7 +91,7 @@
                         ->caption(__('You can set a future publication date: this article will not be published until this date is reached.'))
                         ->prepend('<i class="fas fa-calendar-alt"></i>')
                         ->componentHtmlAttributes(['required', 'data-datetime-picker']) }}
-                    {{ inputToggle()->name('active')->model($article) }}
+                    {{ inputSwitch()->name('active')->model($article) }}
                 </div>
             </div>
         </div>

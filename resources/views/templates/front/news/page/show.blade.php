@@ -16,7 +16,7 @@
     </div>
     <div class="container my-3">
         <div class="row">
-            <form class="col d-flex align-items-end">
+            <form class="col d-flex align-items-end" novalidate>
                 {{ select()->name('category_id')
                     ->options(App\Models\News\NewsCategory::orderBy('name')->get()->map(fn(App\Models\News\NewsCategory $category) => ['id' => $category->id, 'name' => $category->name]), 'id', 'name')
                     ->selected('id', (int) request()->category_id)
@@ -37,7 +37,7 @@
                     <div class="card">
                         @if($image = $article->getFirstMedia('illustrations'))
                             <div>
-                                {!! $image->img('card', ['class' => 'w-100 card-img-top', 'alt' => $article->title]) !!}
+                                {!! $image->img('card', ['class' => 'w-100 h-auto card-img-top', 'alt' => $article->title]) !!}
                             </div>
                         @endif
                         <div class="card-body">

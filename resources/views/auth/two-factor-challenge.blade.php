@@ -1,10 +1,10 @@
+@if(session('status'))
+    @php
+        alert()->html(__('Success'), session('status'), 'success')->showConfirmButton();
+    @endphp
+@endif
 @extends('layouts.admin.auth')
 @section('content')
-    @if(session('status'))
-        @php
-            alert()->html(__('Success'), session('status'), 'success')->showConfirmButton();
-        @endphp
-    @endif
     @include('components.common.multilingual.lang-switcher', [
         'containerClasses' => ['text-right', 'mb-3'],
         'dropdownLabelClasses' => ['btn', 'btn-link'],
@@ -27,7 +27,7 @@
             @lang('Please confirm access to your account by entering the authentication code provided by your authenticator application.')
         @endif
     </p>
-    <form class="w-100" method="POST">
+    <form class="w-100" method="POST" novalidate>
         @csrf
         @if(request()->recovery)
             {{ inputText()->prepend('<i class="fas fa-code"></i>')

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 
 class ProfileController
 {
@@ -33,7 +33,7 @@ class ProfileController
         if (! Hash::check($request->password, Auth::user()->password)) {
             throw ValidationException::withMessages([
                 'password' => [__('This password does not match our records.')],
-            ]);
+            ])->errorBag('deleteAccount');
         }
         $user = Auth::user();
         Auth::logout();

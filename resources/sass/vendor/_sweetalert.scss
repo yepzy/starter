@@ -1,7 +1,44 @@
-// Imports
-$swal2-success: $success;
-$swal2-error: $danger;
-$swal2-warning: $warning;
-$swal2-info: $info;
-$swal2-question: $info;
-@import '~sweetalert2/src/sweetalert2';
+.swal2-success {
+    color: $success !important;
+    border-color: $success !important;
+
+    [class^='swal2-x-mark-line'] {
+        background-color: $success !important;
+    }
+}
+
+.swal2-error {
+    color: $danger !important;
+    border-color: $danger !important;
+
+    [class^='swal2-x-mark-line'] {
+        background-color: $danger !important;
+    }
+}
+
+.swal2-info {
+    color: $info !important;
+    border-color: $info !important;
+
+    [class^='swal2-x-mark-line'] {
+        background-color: $info !important;
+    }
+}
+
+.swal2-question {
+    color: $info !important;
+    border-color: $info !important;
+
+    [class^='swal2-x-mark-line'] {
+        background-color: $info !important;
+    }
+}
+
+.swal2-warning {
+    color: $warning !important;
+    border-color: $warning !important;
+
+    [class^='swal2-x-mark-line'] {
+        background-color: $warning !important;
+    }
+}
