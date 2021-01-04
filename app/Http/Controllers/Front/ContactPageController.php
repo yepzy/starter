@@ -7,9 +7,9 @@ use App\Http\Requests\Contact\ContactPageSendMessageRequest;
 use App\Models\Logs\LogContactFormMessage;
 use App\Models\Pages\TitleDescriptionPageContent;
 use App\Notifications\ContactFormMessage;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\View;
-use Notification;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Notification;
 
 class ContactPageController extends Controller
 {
@@ -53,6 +53,6 @@ class ContactPageController extends Controller
             ))->locale(app()->getLocale()));
         LogContactFormMessage::create(['data' => $request->validated()]);
 
-        return back()->with('toast_success', __('Your message have been sent, thank you for your interest.'));
+        return back()->with('toast_success', __('Your message has been sent, we have emailed you a copy.'));
     }
 }
