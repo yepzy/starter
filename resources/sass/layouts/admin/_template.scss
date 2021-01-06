@@ -1,9 +1,10 @@
 #template {
-    padding: ($navbar-brand-height + $template-md-padding) $template-sm-padding $template-sm-padding $template-sm-padding;
+    padding: ($navbar-brand-height * 2 + $template-desktop-padding) $template-mobile-padding $template-mobile-padding $template-mobile-padding;
 }
 
-@include media-breakpoint-up(md) {
+@include media-breakpoint-up(xl) {
+
     #template {
-        padding: ($navbar-brand-height + $template-md-padding) $template-md-padding $template-md-padding ($navbar-left-sidebar-width + $template-md-padding);
+        padding: ($navbar-brand-height + $template-desktop-padding) $template-desktop-padding $template-desktop-padding ($navbar-left-sidebar-width + $template-desktop-padding);
     }
 }

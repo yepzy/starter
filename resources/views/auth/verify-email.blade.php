@@ -17,16 +17,16 @@
     @endif
     <h1 class="h3 mb-3 font-weight-normal">
         <i class="fas fa-sign-in-alt fa-fw"></i>
-        @lang('Email address verification')
+        {{ __('Email address verification') }}
     </h1>
     <p>
-        @lang('We need to ensure that your email address is valid.')
+        {{ __('We need to ensure that your email address is valid.') }}
     </p>
     <p>
-        @lang('Could you verify it by clicking on the link we just emailed to you?')
+        {{ __('Could you verify it by clicking on the link we just emailed to you?') }}
     </p>
     <p>
-        @lang('If you didn\'t receive the email, we will gladly send you another.')
+        {{ __('If you didn\'t receive the email, we will gladly send you another.') }}
     </p>
     <form method="POST" action="{{ route('verification.send') }}" novalidate>
         @csrf

@@ -3,8 +3,8 @@
         || currentRouteIs('user.create')
         || currentRouteIs('user.edit') ? ' active' : null }}"
        href="{{ route('users.index') }}"
-       title="@lang('Users')">
+       title="{{ __('Users') }}">
         <i class="fas fa-users fa-fw"></i>
-        @lang('Users')
+        {{ __('Users') }}
     </a>
 </li>

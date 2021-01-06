@@ -3,7 +3,7 @@
         <a id="language-selector"
            class="dropdown-toggle{{ ! empty($dropdownLabelClasses) ? ' ' . implode(' ', $dropdownLabelClasses) : '' }}"
            href=""
-           title="@lang('Language')"
+           title="{{ __('Language') }}"
            data-toggle="dropdown"
            aria-haspopup="true"
            aria-expanded="false">

@@ -3,7 +3,8 @@
     min-height: $navbar-brand-height;
     z-index: $zindex-fixed;
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(xl) {
+        position: fixed;
         min-width: $navbar-left-sidebar-width;
     }
 
@@ -11,7 +12,7 @@
         height: $navbar-brand-height;
         background-color: $navbar-nav-active-bg-color;
 
-        @include media-breakpoint-up(md) {
+        @include media-breakpoint-up(xl) {
             min-width: $navbar-left-sidebar-width;
         }
 
@@ -37,7 +38,7 @@
         height: $navbar-brand-height;
         width: 100%;
 
-        @include media-breakpoint-up(md) {
+        @include media-breakpoint-up(xl) {
             position: initial;
             padding: 0;
             width: auto;
@@ -67,17 +68,21 @@
                 }
             }
 
-            .dropdown-item {
+            .dropdown-menu {
+                position: absolute;
 
-                &.active {
-                    background-color: $navbar-nav-active-sub-bg-color;
-                    color: $body-color;
-                }
+                .dropdown-item {
 
-                &:hover {
+                    &.active {
+                        background-color: $navbar-nav-active-sub-bg-color;
+                        color: $body-color;
+                    }
 
-                    .nav-link {
-                        color: $navbar-nav-active-sub-color;
+                    &:hover {
+
+                        .nav-link {
+                            color: $navbar-nav-active-sub-color;
+                        }
                     }
                 }
             }
@@ -94,7 +99,7 @@
             top: $navbar-brand-height;
         }
 
-        @include media-breakpoint-up(md) {
+        @include media-breakpoint-up(xl) {
             position: absolute;
             width: $navbar-left-sidebar-width;
             top: $navbar-brand-height;
@@ -108,17 +113,16 @@
 
         .navbar-nav {
 
-            // first level side menu elements
+            // First level side menu elements
             .nav-item {
 
                 .nav-link {
-
-                    @include media-breakpoint-up(md) {
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                        max-width: $navbar-left-sidebar-width;
-                    }
+                    min-width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    max-width: $navbar-left-sidebar-width;
+                    padding: $nav-link-padding-y $nav-link-padding-x;
 
                     &.active {
                         background-color: darken($dark, 10%);
@@ -131,7 +135,7 @@
                     }
                 }
 
-                // collapsing side sub menu elements
+                // Collapsing side sub menu elements
                 .collapse, .collapsing {
                     background-color: $light;
 

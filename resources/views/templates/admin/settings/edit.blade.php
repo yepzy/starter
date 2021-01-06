@@ -2,53 +2,30 @@
 @section('template')
     <h1>
         <i class="fas fa-cogs fa-fw"></i>
-        @lang('breadcrumbs.orphan.index', ['entity' => __('Settings')])
+        {{ __('breadcrumbs.orphan.index', ['entity' => __('Settings')]) }}
     </h1>
     <hr>
-    <form class="w-100"
-          method="POST"
+    <form method="POST"
           action="{{ route('settings.update') }}"
           enctype="multipart/form-data"
           novalidate>
         @csrf
         @method('PUT')
         {{ submitUpdate() }}
-        <p>
-            @include('components.common.form.notice')
-        </p>
-        <div class="card-columns">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="m-0">
-                        @lang('Media')
-                    </h2>
-                </div>
-                <div class="card-body">
+        <x-common.forms.notice class="mt-3"/>
+        <div class="row mb-n3" data-masonry>
+            <div class="col-xl-6 mb-3">
+                <x-admin.forms.card title="{{ __('Media') }}">
                     @php($logo = $settings->getFirstMedia('icons'))
                     {{ inputFile()->name('icon')
                         ->value(optional($logo)->file_name)
                         ->uploadedFile(fn() => view('components.admin.media.thumb', ['image' => $logo]))
                         ->showRemoveCheckbox(false)
                         ->caption($settings->getMediaCaption('icons')) }}
-                </div>
+                </x-admin.forms.card>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="m-0">
-                        @lang('Tracking and property')
-                    </h2>
-                </div>
-                <div class="card-body">
-                    {{ inputText()->name('google_tag_manager_id')->model($settings)->prepend('<i class="fab fa-google"></i>') }}
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="m-0">
-                        @lang('Contact')
-                    </h2>
-                </div>
-                <div class="card-body">
+            <div class="col-xl-6 mb-3">
+                <x-admin.forms.card title="{{ __('Contact') }}">
                     {{ inputEmail()->name('email')
                         ->model($settings)
                         ->componentHtmlAttributes(['required', 'autocomplete' => 'email']) }}
@@ -67,20 +44,20 @@
                         ->model($settings)
                         ->prepend('<i class="fas fa-thumbtack"></i>')
                         ->componentHtmlAttributes(['required', 'autocomplete' => 'locality']) }}
-                </div>
+                </x-admin.forms.card>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="m-0">
-                        @lang('Links')
-                    </h2>
-                </div>
-                <div class="card-body">
+            <div class="col-xl-6 mb-3">
+                <x-admin.forms.card title="{{ __('Links') }}">
                     {{ inputText()->name('facebook')->model($settings)->prepend('<i class="fab fa-facebook"></i>') }}
                     {{ inputText()->name('twitter')->model($settings)->prepend('<i class="fab fa-twitter"></i>') }}
                     {{ inputText()->name('instagram')->model($settings)->prepend('<i class="fab fa-instagram"></i>') }}
                     {{ inputText()->name('youtube')->model($settings)->prepend('<i class="fab fa-youtube"></i>') }}
-                </div>
+                </x-admin.forms.card>
+            </div>
+            <div class="col-xl-6 mb-3">
+                <x-admin.forms.card title="{{ __('Tracking and property') }}">
+                    {{ inputText()->name('google_tag_manager_id')->model($settings)->prepend('<i class="fab fa-google"></i>') }}
+                </x-admin.forms.card>
             </div>
         </div>
     </form>

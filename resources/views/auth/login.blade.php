@@ -17,11 +17,11 @@
     @endif
     <h1 class="h3 mb-3 font-weight-normal">
         <i class="fas fa-sign-in-alt fa-fw"></i>
-        @lang('Sign in area')
+        {{ __('Sign in area') }}
     </h1>
-    <form class="w-100" method="POST" novalidate>
+    <form method="POST" novalidate>
         @csrf
-        @include('components.common.form.notice')
+        <x-common.forms.notice class="mt-3"/>
         {{ inputEmail()->name('email')
             ->componentHtmlAttributes(['required', 'autofocus', 'autocomplete' => 'email']) }}
         {{ inputPassword()->name('password')
@@ -35,13 +35,13 @@
         @if($registrationEnabled || $resetPasswordsEnabled)
             <div class="d-flex justify-content-between form-group">
                 @if($registrationEnabled)
-                    <a href="{{ route('register') }}" title="@lang('Create account')">
-                        @lang('Create account')
+                    <a href="{{ route('register') }}" title="{{ __('Create account') }}">
+                        {{ __('Create account') }}
                     </a>
                 @endif
                 @if($resetPasswordsEnabled)
-                    <a href="{{ route('password.request') }}" title="@lang('Forgotten password')">
-                        @lang('Forgotten password')
+                    <a href="{{ route('password.request') }}" title="{{ __('Forgotten password') }}">
+                        {{ __('Forgotten password') }}
                     </a>
                 @endif
             </div>

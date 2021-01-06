@@ -13,26 +13,35 @@ const getMimeType = (url) => {
     });
 };
 
-_.each(document.querySelectorAll('[data-lightbox]'), (item) => {
-    item.addEventListener('click', function (e) {
-        e.preventDefault();
-        const url = this.getAttribute('href');
-        getMimeType(url).then((mimeType) => {
-            const isAudio = mimeType.startsWith('audio/');
-            const lightbox = GLightbox({
-                skin: isAudio ? 'clean audio' : 'clean',
-                elements: [
-                    isAudio
-                        ? {
-                            content: '<audio class="w-100" controls autoplay><source src="' + url + '"/></audio>',
-                            height: 'auto'
-                        }
-                        : {href: url}
-                ],
-                zoomable: false,
-                draggable: false
+const triggerLightboxElementsDetection = () => {
+    const lightboxElements = document.querySelectorAll('[data-lightbox]');
+    if (lightboxElements.length) {
+        const GLightbox = require('glightbox');
+        _.each(lightboxElements, (lightboxElement) => {
+            lightboxElement.addEventListener('click', function (e) {
+                e.preventDefault();
+                const url = this.getAttribute('href');
+                getMimeType(url).then((mimeType) => {
+                    const isAudio = mimeType.startsWith('audio/');
+                    const lightbox = GLightbox({
+                        skin: isAudio ? 'clean audio' : 'clean',
+                        elements: [
+                            isAudio
+                                ? {
+                                    content: '<audio class="w-100" controls autoplay><source src="'
+                                        + url + '"/></audio>',
+                                    height: 'auto'
+                                }
+                                : {href: url}
+                        ],
+                        zoomable: false,
+                        draggable: false
+                    });
+                    lightbox.open();
+                });
             });
-            lightbox.open();
         });
-    });
-});
+    }
+};
+
+triggerLightboxElementsDetection();

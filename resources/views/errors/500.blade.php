@@ -15,13 +15,13 @@
                 </div>
                 <h1 class="h3 font-weight-normal text-danger mt-3">
                     <i class="fas fa-exclamation-triangle fa-fw"></i>
-                    @lang('Error') {{ $exception->getStatusCode() }}
+                    {{ __('Error') }} {{ $exception->getStatusCode() }}
                 </h1>
                 <p class="h5">
-                    @lang($exception->getMessage())
+                    {{ __($exception->getMessage()) }}
                 </p>
                 @if(app()->bound('sentry') && app('sentry')->getLastEventId() && config('sentry.dsn'))
-                    <div class="subtitle">@lang('Error ID:') {{ app('sentry')->getLastEventId() }}</div>
+                    <div class="subtitle">{{ __('Error ID:') }} {{ app('sentry')->getLastEventId() }}</div>
                     <script src="https://browser.sentry-cdn.com/5.12.1/bundle.min.js"
                             integrity="sha384-y+an4eARFKvjzOivf/Z7JtMJhaN6b+lLQ5oFbBbUwZNNVir39cYtkjW1r6Xjbxg3"
                             crossorigin="anonymous"></script>

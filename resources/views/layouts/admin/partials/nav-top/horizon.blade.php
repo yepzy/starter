@@ -1,9 +1,9 @@
 <li class="nav-item">
     <a class="nav-link"
        href="/horizon"
-       title="@lang('Redis queues monitoring.')"
+       title="{{ __('Redis queues monitoring.') }}"
        data-new-window>
         <i class="fas fa-mountain fa-fw text-success"></i>
-        @lang('Horizon')
+        <span class="d-none d-xl-inline">{{ __('Horizon') }}</span>
     </a>
 </li>

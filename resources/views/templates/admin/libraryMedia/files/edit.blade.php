@@ -3,9 +3,9 @@
     <h1>
         <i class="fas fa-photo-video fa-fw"></i>
         @if($file)
-            @lang('breadcrumbs.orphan.edit', ['entity' => __('Media library'), 'detail' => $file->name])
+            {{ __('breadcrumbs.orphan.edit', ['entity' => __('Media library'), 'detail' => $file->name]) }}
         @else
-            @lang('breadcrumbs.orphan.create', ['entity' => __('Media library')])
+            {{ __('breadcrumbs.orphan.create', ['entity' => __('Media library')]) }}
         @endif
     </h1>
     <hr>
@@ -21,17 +21,10 @@
             {{ buttonBack()->route('libraryMedia.files.index')->containerClasses(['mr-3']) }}
             @if($file){{ submitUpdate() }}@else{{ submitCreate() }}@endif
         </div>
-        <p>
-            @include('components.common.form.notice')
-        </p>
-        <div class="card-columns">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="m-0">
-                        @lang('File')
-                    </h2>
-                </div>
-                <div class="card-body">
+        <x-common.forms.notice class="mt-3"/>
+        <div class="row mb-n3" data-masonry>
+            <div class="col-xl-6 mb-3">
+                <x-admin.forms.card title="{{ __('File') }}">
                     {{ inputFile()->name('media')
                         ->value(optional(optional($file)->getFirstMedia('media'))->file_name)
                         ->uploadedFile(fn() => trim(view('components.admin.library-media.thumb', ['file' => $file])))
@@ -46,20 +39,13 @@
                         ->model($file)
                         ->options((new App\Models\LibraryMedia\LibraryMediaCategory)->orderBy('name')->get()->map(fn(App\Models\LibraryMedia\LibraryMediaCategory $category) => ['id' => $category->id, 'name' => $category->name]), 'id', 'name')
                         ->componentHtmlAttributes(['required', 'data-selector']) }}
-                </div>
+                </x-admin.forms.card>
             </div>
             @if($file)
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="m-0">
-                            @lang('Clipboard copy')
-                        </h2>
-                    </div>
-                    <div class="card-body">
-                        <p>@lang('Click on buttons below to copy the related content to your clipboard.')</p>
-                        @include('components.admin.library-media.clipboard-copy.buttons')
-                    </div>
-                </div>
+                <x-admin.forms.card title="{{ __('Clipboard copy') }}">
+                    <p>{{ __('Click on buttons below to copy the related content to your clipboard.') }}</p>
+                    @include('components.admin.library-media.clipboard-copy.buttons')
+                </x-admin.forms.card>
             @endif
         </div>
     </form>

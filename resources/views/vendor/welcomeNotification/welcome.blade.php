@@ -12,13 +12,13 @@
     @endif
     <h1 class="h3 mb-3 font-weight-normal">
         <i class="fas fa-hand-spock fa-fw"></i>
-        @lang('Welcome')
+        {{ __('Welcome') }}
     </h1>
-    <form class="w-100" method="POST" novalidate>
+    <form method="POST" novalidate>
         @csrf
         <input type="hidden" name="email" value="{{ $user->email }}"/>
-        @include('components.common.form.notice')
-        <p>@lang('Welcome on :app ! To be able to login to your new account please define a secured password with the fields bellow.', ['app' => config('app.name')])</p>
+        <x-common.forms.notice class="mt-3"/>
+        <p>{{ __('Welcome on :app ! To be able to login to your new account please define a secured password with the fields bellow.', ['app' => config('app.name')]) }}</p>
         {{ inputPassword()->name('password')
             ->componentHtmlAttributes(['required', 'autofocus', 'autocomplete' => 'new-password']) }}
         {{ inputPassword()->name('password_confirmation')

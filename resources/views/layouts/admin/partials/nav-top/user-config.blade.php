@@ -6,7 +6,7 @@
            aria-haspopup="true"
            aria-expanded="false">
             {{ auth()->user()->getFirstMedia('profile_pictures')->img('top-nav', ['class' => 'rounded-circle mr-1']) }}
-            <span class="d-none d-sm-inline-block">
+            <span class="d-none d-xl-inline">
                 {{ auth()->user()->full_name }}
             </span>
         </a>
@@ -14,9 +14,9 @@
             @if(Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updateProfileInformation()))
                 <a href="{{ route('profile.edit') }}"
                    class="dropdown-item{{ currentRouteIs('profile.edit') ? ' active' : null }}"
-                   title="@lang('Profile')">
+                   title="{{ __('Profile') }}">
                     <i class="fas fa-user-circle fa-fw"></i>
-                    @lang('Profile')
+                    {{ __('Profile') }}
                 </a>
                 <div class="dropdown-divider"></div>
             @endif
@@ -24,10 +24,10 @@
                 @csrf()
                 <button type="submit"
                         class="dropdown-item btn btn-link"
-                        title="@lang('Logout')"
-                        data-confirm="@lang('Are you sure you want to logout?')">
+                        title="{{ __('Logout') }}"
+                        data-confirm="{{ __('Are you sure you want to logout?') }}">
                     <i class="fas fa-sign-out-alt fa-fw"></i>
-                    @lang('Logout')
+                    {{ __('Logout') }}
                 </button>
             </form>
         </div>

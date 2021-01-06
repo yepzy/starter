@@ -1,8 +1,10 @@
+// More information on https://github.com/Ionaru/easy-markdown-editor
+
 const triggerEditorElementsDetection = () => {
-    const editorElements = $('textarea[data-editor]');
+    const editorElements = document.querySelectorAll('textarea[data-editor]');
     if (editorElements.length) {
         const EasyMde = require('easymde');
-        editorElements.each((key, editor) => {
+        _.each(editorElements, (key, editor) => {
             const easyMde = new EasyMde({
                 element: editor,
                 forceSync: true,
@@ -18,7 +20,7 @@ const triggerEditorElementsDetection = () => {
                             el.innerHTML = '0';
                         },
                         onUpdate: (el) => {
-                            el.innerHTML = easyMde.value().length;
+                            el.innerHTML = easyMde.value().length.toString();
                         }
                     }
                 ]

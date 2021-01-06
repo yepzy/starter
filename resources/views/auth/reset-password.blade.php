@@ -12,10 +12,10 @@
     @endif
     <h1 class="h3 mb-3 font-weight-normal">
         <i class="fas fa-sync fa-fw"></i>
-        @lang('Define new password')
+        {{ __('Define new password') }}
     </h1>
-    @include('components.common.form.notice')
-    <form class="w-100" method="POST" action="{{ route('password.update') }}" novalidate>
+    <x-common.forms.notice class="mt-3"/>
+    <form method="POST" action="{{ route('password.update') }}" novalidate>
         @csrf
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
         {{ inputEmail()->name('email')

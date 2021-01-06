@@ -5,7 +5,7 @@
         <div class="container mt-5">
             <div class="row">
                 <div class="col-12 mb-3">
-                    {!! $image->img('cover', ['class' => 'w-100 h-auto', 'alt' => $image->name]) !!}
+                    {!! $image->img('cover', ['class' => 'img-fluid', 'alt' => $image->name]) !!}
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
             <div class="col-sm-6 mt-3 mt-sm-0 text-sm-right">
                 <span class="fa-stack text-primary">
                     <a href="https://twitter.com/home?status={{ request()->url() }}"
-                       title="@lang('Share on :name', ['name' => 'Twitter'])"
+                       title="{{ __('Share on :name', ['name' => 'Twitter']) }}"
                        data-new-window>
                         <i class="fas fa-circle fa-stack-2x"></i>
                         <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
@@ -35,7 +35,7 @@
                 </span>
                 <span class="fa-stack text-primary">
                     <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request()->url() }}&title=&summary=&source={{ request()->getHttpHost() }}"
-                       title="@lang('Share on :name', ['name' => 'Linkedin'])"
+                       title="{{ __('Share on :name', ['name' => 'Linkedin']) }}"
                        data-new-window>
                         <i class="fas fa-circle fa-stack-2x"></i>
                         <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
@@ -43,7 +43,7 @@
                 </span>
                 <span class="fa-stack text-primary">
                     <a href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}"
-                       title="@lang('Share on :name', ['name' => 'Facebook'])"
+                       title="{{ __('Share on :name', ['name' => 'Facebook']) }}"
                        data-new-window>
                         <i class="fas fa-circle fa-stack-2x"></i>
                         <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
@@ -51,7 +51,7 @@
                 </span>
                 <span class="fa-stack text-primary">
                     <a href="{{ route('feeds.news') }}"
-                       title="@lang(config('feed.feeds.news.title'))"
+                       title="{{ __(config('feed.feeds.news.title')) }}"
                        data-new-window>
                         <i class="fas fa-circle fa-stack-2x"></i>
                         <i class="fas fa-rss fa-stack-1x fa-inverse"></i>

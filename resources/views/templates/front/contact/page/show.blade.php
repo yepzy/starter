@@ -40,7 +40,7 @@
                                 ->componentHtmlAttributes(['required', 'rows' => 5]) }}
                         </div>
                         <div class="col-md-8">
-                            @include('components.common.form.notice')
+                            <x-common.forms.notice/>
                         </div>
                         <div class="col-md-4 text-right">
                             {{ submit()->prepend('<i class="fas fa-paper-plane fa-fw"></i>')->label(__('Send')) }}
@@ -51,10 +51,10 @@
                         @endphp
                         @if($termsOfServicePage && $gdprPage)
                             <div class="col-md-12 small mt-3">
-                                @lang('By clicking on the "Send" button, I acknowledge that I have read the :terms_of_service_page_link, :gdpr_page_link pages and that this data will be used in the context of the commercial relationship that may result from it.', [
+                                {{ __('By clicking on the "Send" button, I acknowledge that I have read the :terms_of_service_page_link, :gdpr_page_link pages and that this data will be used in the context of the commercial relationship that may result from it.', [
                                     'terms_of_service_page_link' => '<a href="' . route('page.show', $termsOfServicePage) . '" title="' . $termsOfServicePage->nav_title . '" data-new-window>' . $termsOfServicePage->nav_title . '</a>',
                                     'gdpr_page_link' => '<a href="' . route('page.show', $gdprPage) . '" title="' . $gdprPage->nav_title . '" data-new-window>' . $gdprPage->nav_title . '</a>',
-                                ])
+                                ]) }}
                             </div>
                         @endif
                         @php
@@ -63,11 +63,11 @@
                         @endphp
                         @if($email && $fullPostalAddress)
                             <div class="col-md-12 small mt-1">
-                                @lang('Your personal data is subject to computer processing by :company, in order to answer your questions and/or complaints. You have a right of access, rectification, opposition, limitation and portability by contacting: :email or by mail to: :postal_address. You also have the right to lodge a complaint with the CNIL.', [
+                                {{ __('Your personal data is subject to computer processing by :company, in order to answer your questions and/or complaints. You have a right of access, rectification, opposition, limitation and portability by contacting: :email or by mail to: :postal_address. You also have the right to lodge a complaint with the CNIL.', [
                                     'company' => config('app.name'),
                                     'email' => $email,
                                     'postal_address' => $fullPostalAddress
-                                ])
+                                ]) }}
                             </div>
                         @endif
                     </div>
@@ -79,7 +79,7 @@
                     <div class="card-header">
                         <h2 class="h4 m-0">
                             <i class="far fa-address-book fa-fw"></i>
-                            @lang('Contact us')
+                            {{ __('Contact us') }}
                         </h2>
                     </div>
                     <div class="card-body">
@@ -111,7 +111,7 @@
                                href="https://www.google.com/maps/embed/v1/place?key={{ config('services.google.key') }}&q={{ str_replace([' ', ','], '+', $fullPostalAddress) }}"
                                data-lightbox>
                                 <i class="fas fa-search-location fa-fw"></i>
-                                @lang('See on the map')
+                                {{ __('See on the map') }}
                             </a>
                         </div>
                     @endif

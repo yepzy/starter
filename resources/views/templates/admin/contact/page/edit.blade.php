@@ -2,11 +2,10 @@
 @section('template')
     <h1>
         <i class="fas fa-desktop fa-fw"></i>
-        @lang('breadcrumbs.orphan.edit', ['entity' => __('Contact'), 'detail' => __('Page')])
+        {{ __('breadcrumbs.orphan.edit', ['entity' => __('Contact'), 'detail' => __('Page')]) }}
     </h1>
     <hr>
-    <form class="w-100"
-          method="POST"
+    <form method="POST"
           action="{{ route('contact.page.update') }}"
           enctype="multipart/form-data"
           novalidate>
@@ -21,17 +20,13 @@
                 ->componentHtmlAttributes(['data-new-window'])
                 ->containerClasses(['ml-3']) }}
         </div>
-        <p>
-            @include('components.common.form.notice')
-        </p>
-        <div class="card-columns">
-            @include('components.admin.seo.meta', ['model' => $pageContent])
+        <x-common.forms.notice class="mt-3"/>
+        <div class="row mb-n3" data-masonry>
+            <div class="col-xl-6 mb-3">
+                <x-admin.forms.seo-meta-card :model="$pageContent"/>
+            </div>
         </div>
     </form>
-    <hr class="mt-n1">
-    @if($pageContent)
-        {!! $pageContent->displayAdminPanel() !!}
-    @else
-        @include('components.admin.brickables.manage-content-once-created')
-    @endif
+    <hr>
+    {!! $pageContent->displayAdminPanel() !!}
 @endsection

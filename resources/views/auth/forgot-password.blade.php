@@ -17,14 +17,14 @@
     @endif
     <h1 class="h3 mb-3 font-weight-normal">
         <i class="fas fa-unlock-alt fa-fw"></i>
-        @lang('Forgotten password')
+        {{ __('Forgotten password') }}
     </h1>
     <p>
-        @lang('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.')
+        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
     </p>
-    <form class="w-100" method="POST" action="{{ route('password.email') }}" novalidate>
+    <form method="POST" action="{{ route('password.email') }}" novalidate>
         @csrf
-        @include('components.common.form.notice')
+        <x-common.forms.notice class="mt-3"/>
         {{ inputEmail()->name('email')
             ->componentHtmlAttributes(['required', 'autofocus', 'autocomplete' => 'email']) }}
         {{ submit()->prepend('<i class="fas fa-paper-plane fa-fw"></i>')

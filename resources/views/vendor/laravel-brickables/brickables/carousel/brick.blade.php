@@ -13,7 +13,7 @@
         <div class="carousel-inner">
             @foreach($slides as $key => $slide)
                 <div class="carousel-item{{ $loop->first ? ' active' : null }}">
-                    {!! $slide->getFirstMedia('images')->img($conversionName, ['class' => 'w-100 h-auto', 'alt' => $slide->name]) !!}
+                    {!! $slide->getFirstMedia('images')->img($conversionName, ['class' => 'img-fluid', 'alt' => $slide->name]) !!}
                     @php
                         $label = $slide->label;
                         $caption = $slide->caption;
@@ -41,11 +41,11 @@
             </ol>
             <a class="carousel-control-prev" href="#{{ $carouselId }}" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">@lang('Previous')</span>
+                <span class="sr-only">{{ __('Previous') }}</span>
             </a>
             <a class="carousel-control-next" href="#{{ $carouselId }}" role="button" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">@lang('Next')</span>
+                <span class="sr-only">{{ __('Next') }}</span>
             </a>
         @endif
     </div>
@@ -55,6 +55,6 @@
     @endunless
 @elseif(request()->is('admin/*') || request()->is('*/admin/*'))
     <i class="fas fa-info-circle fa-fw text-info mr-1"></i>
-    @lang('No slides were added to this carousel.')
+    {{ __('No slides were added to this carousel.') }}
 @endif
 

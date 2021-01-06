@@ -17,17 +17,17 @@
     @endif
     <h1 class="h3 mb-3 font-weight-normal">
         <i class="fas fa-sign-in-alt fa-fw"></i>
-        @lang('Two Factor Authentication')
+        {{ __('Two Factor Authentication') }}
     </h1>
-    @include('components.common.form.notice')
+    <x-common.forms.notice class="mt-3"/>
     <p>
         @if(request()->recovery)
-            @lang('Please confirm access to your account by entering one of your emergency recovery codes.')
+            {{ __('Please confirm access to your account by entering one of your emergency recovery codes.') }}
         @else
-            @lang('Please confirm access to your account by entering the authentication code provided by your authenticator application.')
+            {{ __('Please confirm access to your account by entering the authentication code provided by your authenticator application.') }}
         @endif
     </p>
-    <form class="w-100" method="POST" novalidate>
+    <form method="POST" novalidate>
         @csrf
         @if(request()->recovery)
             {{ inputText()->prepend('<i class="fas fa-code"></i>')
@@ -43,14 +43,14 @@
             ->componentClasses(['btn-block', 'btn-primary', 'form-group']) }}
         <div class="d-flex form-group">
             @if(request()->recovery)
-                <a href="{{ route(Request::route()->getName()) }}" title="@lang('Use an authentication code')">
+                <a href="{{ route(Request::route()->getName()) }}" title="{{ __('Use an authentication code') }}">
                     <i class="fas fa-exchange-alt fa-fw"></i>
-                    @lang('Use an authentication code')
+                    {{ __('Use an authentication code') }}
                 </a>
             @else
-                <a href="{{ route(Request::route()->getName(), ['recovery' => true]) }}" title="@lang('Use a recovery code')">
+                <a href="{{ route(Request::route()->getName(), ['recovery' => true]) }}" title="{{ __('Use a recovery code') }}">
                     <i class="fas fa-exchange-alt fa-fw"></i>
-                    @lang('Use a recovery code')
+                    {{ __('Use a recovery code') }}
                 </a>
             @endif
         </div>

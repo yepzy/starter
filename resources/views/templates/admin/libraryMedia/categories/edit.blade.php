@@ -3,9 +3,9 @@
     <h1>
         <i class="fas fa-tags fa-fw"></i>
         @if($category)
-            @lang('breadcrumbs.parent.edit', ['parent' => __('Media library'), 'entity' => __('Categories'), 'detail' => $category->name])
+            {{ __('breadcrumbs.parent.edit', ['parent' => __('Media library'), 'entity' => __('Categories'), 'detail' => $category->name]) }}
         @else
-            @lang('breadcrumbs.parent.create', ['parent' => __('Media library'), 'entity' => __('Categories')])
+            {{ __('breadcrumbs.parent.create', ['parent' => __('Media library'), 'entity' => __('Categories')]) }}
         @endif
     </h1>
     <hr>
@@ -20,22 +20,15 @@
             {{ buttonBack()->route('libraryMedia.categories.index')->containerClasses(['mr-3']) }}
             @if($category){{ submitUpdate() }}@else{{ submitCreate() }}@endif
         </div>
-        <p>
-            @include('components.common.form.notice')
-        </p>
-        <div class="card-columns">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="m-0">
-                        @lang('Identity')
-                    </h2>
-                </div>
-                <div class="card-body">
+        <x-common.forms.notice class="mt-3"/>
+        <div class="row mb-n3" data-masonry>
+            <div class="col-xl-6 mb-3">
+                <x-admin.forms.card title="{{ __('Identity') }}">
                     {{ inputText()->name('name')
                         ->locales(supportedLocaleKeys())
                         ->model($category)
                         ->componentHtmlAttributes(['required']) }}
-                </div>
+                </x-admin.forms.card>
             </div>
         </div>
     </form>

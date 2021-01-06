@@ -5,13 +5,13 @@
     </div>
     <div class="container my-3">
         <a href="{{ route('feeds.news') }}"
-           title="@lang(config('feed.feeds.news.title'))"
+           title="{{ __(config('feed.feeds.news.title')) }}"
            data-new-window>
             <span class="fa-stack text-primary">
                 <i class="fas fa-circle fa-stack-2x"></i>
                 <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
             </span>
-            @lang(config('feed.feeds.news.title'))
+            {{ __(config('feed.feeds.news.title')) }}
         </a>
     </div>
     <div class="container my-3">
@@ -37,7 +37,7 @@
                     <div class="card">
                         @if($image = $article->getFirstMedia('illustrations'))
                             <div>
-                                {!! $image->img('card', ['class' => 'w-100 h-auto card-img-top', 'alt' => $article->title]) !!}
+                                {!! $image->img('card', ['class' => 'img-fluid card-img-top', 'alt' => $article->title]) !!}
                             </div>
                         @endif
                         <div class="card-body">
@@ -57,8 +57,8 @@
                             <p class="card-text description mt-3">{!! Str::limit(strip_tags((new Parsedown)->text($article->description)), 500) !!}</p>
                             <a class="btn btn-primary"
                                href="{{ route('news.article.show', $article->slug) }}"
-                               title="@lang('Know more')">
-                                @lang('Know more')
+                               title="{{ __('Know more') }}">
+                                {{ __('Know more') }}
                             </a>
                         </div>
                     </div>

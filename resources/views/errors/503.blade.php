@@ -15,10 +15,10 @@
                 </div>
                 <h1 class="h3 font-weight-normal text-info mt-3">
                     <i class="fas fa-tools fa-fw"></i>
-                    @lang('Maintenance in progress')
+                    {{ __('Maintenance in progress') }}
                 </h1>
                 <p class="h5">
-                    @lang('Service currently unavailable.')
+                    {{ __('Service currently unavailable.') }}
                 </p>
                 {{ buttonBack()->route('home.page.show')->label(__('Retry'))->containerClasses(['mt-5']) }}
             </div>

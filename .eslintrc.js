@@ -16,7 +16,6 @@ module.exports = {
         '$': true,
         'moment': true,
         'axios': true,
-        'GLightbox': true
     },
     'rules': {
         'max-len': [2, 120],

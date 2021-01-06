@@ -1,5 +1,5 @@
 <div id="sidenav" class="collapse navbar-collapse bg-dark align-items-start py-3">
-    <ul class="navbar-nav nav flex-column flex-fill w-100">
+    <ul class="navbar-nav nav flex-column flex-fill">
         @include('layouts.admin.partials.nav-side.dashboard')
         <hr class="w-100">
         @include('layouts.admin.partials.nav-side.home')
@@ -16,10 +16,10 @@
         <li class="nav-item">
             <a class="nav-link"
                href="{{ route('home.page.show') }}"
-               title="@lang('Back to the front')"
+               title="{{ __('Back to the front') }}"
                data-new-window>
                 <i class="fas fa-undo fa-fw"></i>
-                @lang('Back to the front')
+                {{ __('Back to the front') }}
             </a>
         </li>
     </ul>

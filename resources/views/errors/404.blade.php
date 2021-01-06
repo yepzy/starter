@@ -15,7 +15,7 @@
                 </div>
                 <h1 class="h3 font-weight-normal text-danger mt-3">
                     <i class="fas fa-search fa-fw"></i>
-                    @lang('Page not found')
+                    {{ __('Page not found') }}
                 </h1>
                 {{ buttonBack()->route('home.page.show')->label(__('Back to home page'))->containerClasses(['mt-5']) }}
             </div>

@@ -5,6 +5,7 @@ require('./common');
 
 // Vendor
 require('../vendor/easymde');
+require('../vendor/masonry');
 
 // Utils
 require('../utils/autofill');

@@ -14,13 +14,13 @@
 <li class="nav-item">
     <a class="nav-link{{ $subMenuActive ? ' active' : null }}"
        href="#news-menu"
-       title="@lang('News')"
+       title="{{ __('News') }}"
        data-toggle="collapse"
        role="button"
        aria-expanded="false"
        aria-controls="news-menu">
         <i class="fas fa-newspaper fa-fw"></i>
-        @lang('News')
+        {{ __('News') }}
         <i class="fas fa-caret-down fa-fw"></i>
     </a>
     <ul id="news-menu" class="collapse list-unstyled{{ $subMenuActive ? ' show' : null }}">
@@ -28,27 +28,27 @@
         <li class="nav-item">
             <a class="nav-link{{ $newsPageActive ? ' active' : null }}"
                href="{{ route('news.page.edit') }}"
-               title="@lang('Page')">
+               title="{{ __('Page') }}">
                 <i class="fas fa-desktop fa-fw"></i>
-                @lang('Page')
+                {{ __('Page') }}
             </a>
         </li>
         {{-- categories --}}
         <li class="nav-item">
             <a class="nav-link{{ $newsCategoriesActive ? ' active' : null }}"
                href="{{ route('news.categories.index') }}"
-               title="@lang('Categories')">
+               title="{{ __('Categories') }}">
                 <i class="fas fa-tags fa-fw"></i>
-                @lang('Categories')
+                {{ __('Categories') }}
             </a>
         </li>
         {{-- articles --}}
         <li class="nav-item">
             <a class="nav-link{{ $newsArticlesActive ? ' active' : null }}"
                href="{{ route('news.articles.index') }}"
-               title="@lang('Articles')">
+               title="{{ __('Articles') }}">
                 <i class="fas fa-paper-plane fa-fw"></i>
-                @lang('Articles')
+                {{ __('Articles') }}
             </a>
         </li>
     </ul>

@@ -3,9 +3,9 @@
     <h1>
         <i class="fas fa-paper-plane fa-fw"></i>
         @if($article)
-            @lang('breadcrumbs.parent.edit', ['entity' => __('Articles'), 'detail' => $article->title, 'parent' => __('News')])
+            {{ __('breadcrumbs.parent.edit', ['entity' => __('Articles'), 'detail' => $article->title, 'parent' => __('News')]) }}
         @else
-            @lang('breadcrumbs.parent.create', ['entity' => __('Articles'), 'parent' => __('News')])
+            {{ __('breadcrumbs.parent.create', ['entity' => __('Articles'), 'parent' => __('News')]) }}
         @endif
     </h1>
     <hr>
@@ -29,24 +29,17 @@
                     ->containerClasses(['ml-3']) }}
             @endif
         </div>
-        <p>
-            @include('components.common.form.notice')
-        </p>
-        <div class="card-columns">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="m-0">
-                        @lang('Identity')
-                    </h2>
-                </div>
-                <div class="card-body">
+        <x-common.forms.notice class="mt-3"/>
+        <div class="row mb-n3" data-masonry>
+            <div class="col-xl-6 mb-3">
+                <x-admin.forms.card title="{{ __('Identity') }}">
                     @php($image = optional($article)->getFirstMedia('illustrations'))
                     {{ inputFile()->name('illustration')
                         ->value(optional($image)->file_name)
                         ->uploadedFile(fn() => view('components.admin.media.thumb', ['image' => $image]))
                         ->showRemoveCheckbox(false)
                         ->componentHtmlAttributes(['required'])
-                        ->caption((new \App\Models\News\NewsArticle)->getMediaCaption('illustrations')) }}
+                        ->caption((new App\Models\News\NewsArticle)->getMediaCaption('illustrations')) }}
                     {{ inputText()->name('title')
                         ->locales(supportedLocaleKeys())
                         ->model($article)
@@ -59,40 +52,35 @@
                     {{ select()->name('category_ids')
                         ->model($article)
                         ->prepend('<i class="fas fa-tags"></i>')
-                        ->options(App\Models\News\NewsCategory::get()->map(fn(App\Models\News\NewsCategory $category) => ['id' => $category->id, 'name' => $category->name])->sortBy('name'), 'id', 'name')
+                        ->options(App\Models\News\NewsCategory::get()->map(fn(App\Models\News\NewsCategory $category) => [
+                            'id' => $category->id,
+                            'name' => $category->name
+                        ])->sortBy('name'), 'id', 'name')
                         ->multiple()
                         ->componentHtmlAttributes(['required', 'data-selector']) }}
-                </div>
+                </x-admin.forms.card>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="m-0">
-                        @lang('Content')
-                    </h2>
-                </div>
-                <div class="card-body">
+            <div class="col-xl-6 mb-3">
+                <x-admin.forms.card title="{{ __('Content') }}">
                     {{ textarea()->name('description')
                         ->locales(supportedLocaleKeys())
                         ->model($article)
                         ->prepend(null)
                         ->componentHtmlAttributes(['data-editor']) }}
-                </div>
+                </x-admin.forms.card>
             </div>
-            @include('components.admin.seo.meta', ['model' => $article])
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="m-0">
-                        @lang('Publication')
-                    </h2>
-                </div>
-                <div class="card-body">
+            <div class="col-xl-6 mb-3">
+                <x-admin.forms.seo-meta-card :model="$article"/>
+            </div>
+            <div class="col-xl-6 mb-3">
+                <x-admin.forms.card title="{{ __('Publication') }}">
                     {{ inputText()->name('published_at')
                         ->value(($article->published_at ?? now())->format('d/m/Y H:i'))
                         ->caption(__('You can set a future publication date: this article will not be published until this date is reached.'))
                         ->prepend('<i class="fas fa-calendar-alt"></i>')
                         ->componentHtmlAttributes(['required', 'data-datetime-picker']) }}
                     {{ inputSwitch()->name('active')->model($article) }}
-                </div>
+                </x-admin.forms.card>
             </div>
         </div>
     </form>

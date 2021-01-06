@@ -1,7 +1,7 @@
 @extends('layouts.admin.full')
 @section('template')
-    <h1>@lang('Dashboard')</h1>
+    <h1>{{ __('Dashboard') }}</h1>
     <hr>
-    <p>@lang('Welcome to your dashboard.')</p>
+    <p>{{ __('Welcome to your dashboard.') }}</p>
 @endsection
 

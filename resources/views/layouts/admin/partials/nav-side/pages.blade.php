@@ -4,8 +4,8 @@
         || currentRouteIs('page.edit')
         || optional(Brickables::getModelFromRequest())->getMorphClass() === App\Models\Pages\Page::class ? ' active' : null }}"
        href="{{ route('pages.index') }}"
-       title="@lang('Pages')">
+       title="{{ __('Pages') }}">
         <i class="fas fa-file-alt fa-fw"></i>
-        @lang('Pages')
+        {{ __('Pages') }}
     </a>
 </li>

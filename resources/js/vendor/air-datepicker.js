@@ -1,7 +1,7 @@
 import 'air-datepicker/src/js/air-datepicker';
 import 'air-datepicker/dist/js/i18n/datepicker.fr';
 
-// configuration *******************************************************************************************************
+// Configuration *******************************************************************************************************
 const moment = require('moment');
 const baseConfig = {
     language: app.locale,
@@ -9,7 +9,7 @@ const baseConfig = {
     position: 'top left'
 };
 
-// date picker *********************************************************************************************************
+// Date picker *********************************************************************************************************
 const selectDate = (datePicker, $datePicker) => {
     const filledDate = moment($datePicker.val(), 'DD/MM/YYYY');
     if (filledDate.isValid()) {
@@ -36,7 +36,7 @@ const triggerDatePickerElementsDetection = () => {
 };
 triggerDatePickerElementsDetection();
 
-// datetime picker *****************************************************************************************************
+// Datetime picker *****************************************************************************************************
 const selectDateTime = (dateTimePicker, $dateTimePicker) => {
     const filledDateTime = moment($dateTimePicker.val(), 'DD/MM/YYYY hh:mm');
     if (filledDateTime.isValid()) {
@@ -63,7 +63,7 @@ const triggerDateTimePickerElementsDetection = () => {
 };
 triggerDateTimePickerElementsDetection();
 
-// month range picker **************************************************************************************************
+// Month range picker **************************************************************************************************
 const selectDateRange = (monthRangePicker, $monthRangePicker) => {
     let filledDates = $monthRangePicker.val().split(' - ');
     filledDates = _.map(filledDates, (date) => {

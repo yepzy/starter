@@ -2,10 +2,10 @@
     <li class="nav-item">
         <a class="nav-link"
            href="/telescope"
-           title="@lang('Debug assistant.')"
+           title="{{ __('Debug assistant.') }}"
            data-new-window>
             <i class="fas fa-binoculars fa-fw text-success"></i>
-            @lang('Telescope')
+            <span class="d-none d-xl-inline">{{ __('Telescope') }}</span>
         </a>
     </li>
 @endif

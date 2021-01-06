@@ -1,10 +1,10 @@
 const mix = require('laravel-mix');
 
-// Fix found here to avoid custom files versioning issue : https://github.com/JeffreyWay/laravel-mix/issues/1193.
-mix.copyDirectoryOutsideMixWorkflow = function (from, to) {
-    new File(from).copyTo(new File(to).path());
-    return this;
-}.bind(mix);
+//// Fix found here to avoid custom files versioning issue : https://github.com/JeffreyWay/laravel-mix/issues/1193.
+//mix.copyDirectoryOutsideMixWorkflow = function (from, to) {
+//    new File(from).copyTo(new File(to).path());
+//    return this;
+//}.bind(mix);
 
 /*
  |--------------------------------------------------------------------------
@@ -19,8 +19,8 @@ mix.copyDirectoryOutsideMixWorkflow = function (from, to) {
 
 mix
     .copy('resources/favicon.ico', 'public/favicon.ico')
-    .copyDirectoryOutsideMixWorkflow('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/fonts/fontawesome')
-    .copyDirectoryOutsideMixWorkflow('resources/images', 'public/images')
+    .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/fonts/fontawesome')
+    .copy('resources/images', 'public/images')
 
     // JS **************************************************************************************************************
     // Admin
@@ -67,9 +67,8 @@ mix
         jquery: ['$', 'jQuery', 'window.jQuery'],
         'popper.js': ['Popper'],
         cookieconsent: ['cookieconsent', 'window.cookieconsent'],
-        glightbox: ['GLightbox', 'window.GLightbox'],
     })
-    .extract(['bootstrap', 'lodash', 'axios', 'jquery', 'popper.js', 'cookieconsent', 'glightbox'])
+    .extract(['bootstrap', 'lodash', 'axios', 'jquery', 'popper.js', 'cookieconsent'])
     .sourceMaps()
     .version([
         'public/images/',

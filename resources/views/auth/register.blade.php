@@ -12,10 +12,10 @@
     @endif
     <h1 class="h3 mb-3 font-weight-normal">
         <i class="fas fa-user-plus fa-fw"></i>
-        @lang('Registration area')
+        {{ __('Registration area') }}
     </h1>
-    @include('components.common.form.notice')
-    <form class="w-100" method="POST" novalidate>
+    <x-common.forms.notice class="mt-3"/>
+    <form method="POST" novalidate>
         @csrf
         {{ inputText()->name('first_name')
             ->prepend('<i class="fas fa-user"></i>')
