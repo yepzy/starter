@@ -7,13 +7,14 @@ use Laravel\Fortify\Http\Controllers\TwoFactorAuthenticationController;
 use Laravel\Fortify\Http\Controllers\TwoFactorQrCodeController;
 
 if (Features::enabled(Features::twoFactorAuthentication())) {
+    $twoFactorLimiter = config('fortify.limiters.two-factor');
     if (config('fortify.views', true)) {
         Route::get(Lang::uri('/two-factor-challenge'), [TwoFactorAuthenticatedSessionController::class, 'create'])
             ->middleware(['guest'])
             ->name('two-factor.login');
     }
     Route::post(Lang::uri('/two-factor-challenge'), [TwoFactorAuthenticatedSessionController::class, 'store'])
-        ->middleware(['guest'])
+        ->middleware(array_filter(['guest', $twoFactorLimiter ? 'throttle:'.$twoFactorLimiter : null]))
         ->name('two-factor.login.store');
     $twoFactorMiddleware = Features::optionEnabled(Features::twoFactorAuthentication(), 'confirmPassword')
         ? ['auth', 'password.confirm']

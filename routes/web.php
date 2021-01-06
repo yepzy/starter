@@ -5,13 +5,13 @@ use Illuminate\Support\Facades\Route;
 // Localized ***********************************************************************************************************
 Route::localized(function () {
 
-    // Todo: you can remove this block and the routes php files if your app is not multilingual.
+    // Todo: you can remove this block and all the `fortify` route php files if your app is not multilingual.
     // Todo: Also remove the `Fortify::ignoreRoutes();` line in the `App\Providers\FortifyServiceProvider`.
     // Fortify
     Route::group([
         'namespace' => 'Laravel\Fortify\Http\Controllers',
-        'domain' => config('fortify.domain', null),
-        'prefix' => config('fortify.path'),
+        'domain' => config('fortify.domain'),
+        'prefix' => config('fortify.prefix'),
     ], function () {
         Route::group(['middleware' => config('fortify.middleware', ['web'])], static function () {
             require('web/fortify/login.php');

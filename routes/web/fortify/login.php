@@ -2,7 +2,6 @@
 
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
-$enableViews = config('fortify.views', true);
 if (config('fortify.views', true)) {
     Route::get(Lang::uri('/login'), [AuthenticatedSessionController::class, 'create'])
         ->middleware(['guest'])
