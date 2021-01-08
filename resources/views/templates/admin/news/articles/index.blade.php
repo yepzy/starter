@@ -5,14 +5,7 @@
         {{ __('breadcrumbs.parent.index', ['parent' => __('News'), 'entity' => __('Articles')]) }}
     </h1>
     <hr>
-    <div class="card">
-        <div class="card-header">
-            <h2 class="m-0">
-                {{ __('List') }}
-            </h2>
-        </div>
-        <div class="card-body">
-            {{ $table }}
-        </div>
-    </div>
+    <x-admin.forms.card title="{{ __('List') }}">
+        <livewire:table :tableClass="'App\Tables\NewsArticlesTable'">
+    </x-admin.forms.card>
 @endsection
