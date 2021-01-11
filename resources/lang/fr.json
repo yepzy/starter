@@ -229,5 +229,9 @@
     "You can set a future publication date: this article will not be published until this date is reached.": "Vous pouvez définir une future date de publication : cet article ne sera publié que lorsque cette date sera atteinte.",
     "You will be able to manage content once the creation is complete.": "Vous pourrez gérer le contenu une fois la création terminée.",
     "Two factor authentication has been enabled.": "La double authentification a été activée.",
-    "Two factor authentication has been disabled.": "La double authentification a été désactivée."
+    "Two factor authentication has been disabled.": "La double authentification a été désactivée.",
+    "The welcome link does not have a valid signature or is expired.": "Le lien de bienvenue est ne possède pas de signature valide ou a expiré.",
+    "Could not find a user to be welcomed.": "Aucun utilisateur à accueillir n'a été trouvé.",
+    "The welcome link has already been used.": "Le lien de bienvenue a déjà été utilisé.",
+    "The welcome link has expired.": "Le lien de bienvenue a expiré."
 }
