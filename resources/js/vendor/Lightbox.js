@@ -1,5 +1,7 @@
 // More information on https://github.com/biati-digital/glightbox
 
+import GLightbox from 'glightbox';
+
 const getMimeType = (url) => {
     return new Promise(function (resolve) {
         const xhr = new XMLHttpRequest();
@@ -13,11 +15,10 @@ const getMimeType = (url) => {
     });
 };
 
-const triggerLightboxElementsDetection = () => {
-    const lightboxElements = document.querySelectorAll('[data-lightbox]');
-    if (lightboxElements.length) {
-        const GLightbox = require('glightbox');
-        _.each(lightboxElements, (lightboxElement) => {
+export default class Lightbox {
+
+    static init = () => {
+        _.each(document.querySelectorAll('[data-lightbox]'), (lightboxElement) => {
             lightboxElement.addEventListener('click', function (e) {
                 e.preventDefault();
                 const url = this.getAttribute('href');
@@ -41,7 +42,6 @@ const triggerLightboxElementsDetection = () => {
                 });
             });
         });
-    }
-};
+    };
 
-triggerLightboxElementsDetection();
+}

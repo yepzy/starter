@@ -28,7 +28,7 @@
                 <span class="fa-stack text-primary">
                     <a href="https://twitter.com/home?status={{ request()->url() }}"
                        title="{{ __('Share on :name', ['name' => 'Twitter']) }}"
-                       data-new-window>
+                       target="_blank">
                         <i class="fas fa-circle fa-stack-2x"></i>
                         <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
                     </a>
@@ -36,7 +36,7 @@
                 <span class="fa-stack text-primary">
                     <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request()->url() }}&title=&summary=&source={{ request()->getHttpHost() }}"
                        title="{{ __('Share on :name', ['name' => 'Linkedin']) }}"
-                       data-new-window>
+                       target="_blank">
                         <i class="fas fa-circle fa-stack-2x"></i>
                         <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
                     </a>
@@ -44,7 +44,7 @@
                 <span class="fa-stack text-primary">
                     <a href="https://www.facebook.com/sharer/sharer.php?u={{ request()->url() }}"
                        title="{{ __('Share on :name', ['name' => 'Facebook']) }}"
-                       data-new-window>
+                       target="_blank">
                         <i class="fas fa-circle fa-stack-2x"></i>
                         <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
                     </a>
@@ -52,7 +52,7 @@
                 <span class="fa-stack text-primary">
                     <a href="{{ route('feeds.news') }}"
                        title="{{ __(config('feed.feeds.news.title')) }}"
-                       data-new-window>
+                       target="_blank">
                         <i class="fas fa-circle fa-stack-2x"></i>
                         <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
                     </a>

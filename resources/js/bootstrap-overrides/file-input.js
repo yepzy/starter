@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const triggerInputFileChangeDetection = (fileInputElements) => {
     _.each(fileInputElements, (inputFileElement) => {
         const $this = $(inputFileElement);

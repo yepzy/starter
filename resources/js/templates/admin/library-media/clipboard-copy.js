@@ -1,4 +1,8 @@
-import notify from '../../../utils/notify';
+import axios from 'axios';
+import AxiosConfig from '../../../vendor/AxiosConfig';
+import notify from '../../../vendor/Notify';
+
+AxiosConfig.setCsrfToken(axios);
 
 const copyToClipboard = (string) => {
     const el = document.createElement('textarea');

@@ -1,10 +1,11 @@
-import notify from './notify';
+import Notify from '../vendor/Notify';
+import _ from 'lodash';
 
 let confirmationGiven;
 
 const askConfirmation = (event, message, actionOnceConfirmed) => {
     confirmationGiven = false;
-    notify.confirm(message).then((result) => {
+    Notify.confirm(message).then((result) => {
         if (result.value) {
             confirmationGiven = true;
             actionOnceConfirmed();

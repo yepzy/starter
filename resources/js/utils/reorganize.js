@@ -1,5 +1,6 @@
+import _ from 'lodash';
 import 'jquery-ui-sortable';
-import notify from './notify';
+import Notify from '../vendor/Notify';
 
 export default ($sortableItemsContainer, sortableItemsSelector, reorganizingRoute) => {
     $sortableItemsContainer.sortable({
@@ -17,7 +18,7 @@ export default ($sortableItemsContainer, sortableItemsSelector, reorganizingRout
                 notify.toastSuccess(response.data.message);
             }).catch((error) => {
                 if (error.response) {
-                    notify.toastError(error.response.data.message);
+                    Notify.toastError(error.response.data.message);
                 }
             });
         }

@@ -32,8 +32,8 @@ mix
     // Brickables
     .js('resources/js/brickables/carousel.js', 'public/js/brickables')
     // Base
-    .js('resources/js/global/admin.js', 'public/js/admin.js')
-    .js('resources/js/global/front.js', 'public/js/front.js')
+    .js('resources/js/app/admin.js', 'public/js/admin.js')
+    .js('resources/js/app/front.js', 'public/js/front.js')
 
     // SASS ************************************************************************************************************
     // Admin
@@ -44,8 +44,8 @@ mix
     // Brickables
     .sass('resources/sass/brickables/carousel.scss', 'public/css/brickables')
     // Base
-    .sass('resources/sass/global/_admin.scss', 'public/css/admin.css')
-    .sass('resources/sass/global/_front.scss', 'public/css/front.css')
+    .sass('resources/sass/app/_admin.scss', 'public/css/admin.css')
+    .sass('resources/sass/app/_front.scss', 'public/css/front.css')
 
     // Config **********************************************************************************************************
     .webpackConfig({
@@ -62,13 +62,13 @@ mix
     })
     .options({processCssUrls: false})
     .autoload({
-        lodash: ['_'],
-        axios: ['axios'],
         jquery: ['$', 'jQuery', 'window.jQuery'],
         'popper.js': ['Popper'],
         cookieconsent: ['cookieconsent', 'window.cookieconsent'],
+        moment: ['moment-timezone'],
+        bootstrap: ['bootstrap']
     })
-    .extract(['bootstrap', 'lodash', 'axios', 'jquery', 'popper.js', 'cookieconsent'])
+    .extract(['bootstrap', 'jquery', 'popper.js', 'cookieconsent', 'moment-timezone'])
     .sourceMaps()
     .version([
         'public/images/',

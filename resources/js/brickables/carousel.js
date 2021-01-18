@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 $(window).on('load', () => {
     _.each($('.carousel'), (carousel) => {
         const $carousel = $(carousel);
