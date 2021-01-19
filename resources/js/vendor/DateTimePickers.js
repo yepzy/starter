@@ -41,7 +41,7 @@ const selectDateRange = (monthRangePicker, $monthRangePicker) => {
 
 export default class DateTimePickers {
 
-    init = () => {
+    static init = () => {
         self.initDatePicker();
         self.initDateTimePicker();
         self.initDateTimePicker();
