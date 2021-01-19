@@ -63,10 +63,9 @@ mix
     .options({processCssUrls: false})
     .autoload({
         jquery: ['$', 'jQuery', 'window.jQuery'],
-        'popper.js': ['Popper'],
+        'popper.js': ['Popper', 'window.Popper'],
         cookieconsent: ['cookieconsent', 'window.cookieconsent'],
-        moment: ['moment-timezone'],
-        bootstrap: ['bootstrap']
+        'moment-timezone': ['moment', 'window.moment'],
     })
     .extract(['bootstrap', 'jquery', 'popper.js', 'cookieconsent', 'moment-timezone'])
     .sourceMaps()

@@ -1,6 +1,7 @@
 // More information on https://github.com/biati-digital/glightbox
 
 import GLightbox from 'glightbox';
+import _ from 'lodash';
 
 const getMimeType = (url) => {
     return new Promise(function (resolve) {
@@ -17,7 +18,7 @@ const getMimeType = (url) => {
 
 export default class Lightbox {
 
-    static init = () => {
+    static init() {
         _.each(document.querySelectorAll('[data-lightbox]'), (lightboxElement) => {
             lightboxElement.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -42,6 +43,6 @@ export default class Lightbox {
                 });
             });
         });
-    };
+    }
 
 }

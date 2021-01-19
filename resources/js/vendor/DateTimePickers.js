@@ -41,13 +41,13 @@ const selectDateRange = (monthRangePicker, $monthRangePicker) => {
 
 export default class DateTimePickers {
 
-    static init = () => {
-        self.initDatePicker();
-        self.initDateTimePicker();
-        self.initDateTimePicker();
-    };
+    static init() {
+        this.initDatePicker();
+        this.initDateTimePicker();
+        this.initDateTimePicker();
+    }
 
-    static initDatePicker = () => {
+    static initDatePicker() {
         _.each(document.querySelectorAll('[data-date-picker]'), (item) => {
             const $datePicker = $(item);
             const datePicker = $datePicker.datepicker({
@@ -58,9 +58,9 @@ export default class DateTimePickers {
                 onShow: () => selectDate(datePicker, $datePicker)
             });
         });
-    };
+    }
 
-    static initDateTimePicker = () => {
+    static initDateTimePicker() {
         _.each(document.querySelectorAll('[data-datetime-picker]'), (item) => {
             const $dateTimePicker = $(item);
             const dateTimePicker = $dateTimePicker.datepicker({
@@ -73,9 +73,9 @@ export default class DateTimePickers {
                 onShow: () => selectDateTime(dateTimePicker, $dateTimePicker)
             });
         });
-    };
+    }
 
-    static initTimeRangePicker = () => {
+    static initTimeRangePicker() {
         _.each(document.querySelectorAll('[data-month-range-picker]'), (item) => {
             const $monthRangePicker = $(item);
             const monthRangePicker = $monthRangePicker.datepicker({
@@ -92,6 +92,6 @@ export default class DateTimePickers {
                 onShow: () => selectDateRange(monthRangePicker, $monthRangePicker)
             });
         });
-    };
+    }
 
 }

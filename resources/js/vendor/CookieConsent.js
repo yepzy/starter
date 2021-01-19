@@ -1,8 +1,8 @@
-// Doc available @ https://cookieconsent.insites.com/documentation/javascript-api
+// More information on https://cookieconsent.insites.com/documentation/javascript-api
 
 export default class CookieConsent {
 
-    static init = () => {
+    static init() {
         window.cookieconsent.initialise({
             container: document.getElementById('layout'),
             content: {
@@ -25,6 +25,6 @@ export default class CookieConsent {
             },
             location: false
         });
-    };
+    }
 
 }

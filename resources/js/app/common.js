@@ -1,3 +1,5 @@
+import 'bootstrap';
+import bsCustomFileInput from 'bs-custom-file-input'
 import Moment from '../vendor/Moment';
 import CookieConsent from '../vendor/CookieConsent';
 import SweetAlert from '../vendor/SweetAlert';
@@ -8,16 +10,12 @@ import ConfirmationRequest from '../utils/ConfirmationRequest';
 // Scripts that will be used globally on both front and admin panel.
 
 // Vendor
+bsCustomFileInput.init();
 Moment.configure();
 CookieConsent.init();
 SweetAlert.init();
 Lightbox.init();
 DateTimePickers.init();
 
-// Bootstrap overrides
-require('../bootstrap-overrides/file-input');
-require('../bootstrap-overrides/nav');
-
 // Utils
 ConfirmationRequest.init();
-require('../utils/no-click');

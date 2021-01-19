@@ -8,6 +8,9 @@ return [
     'confirm' => 'Confirm',
     'cancel' => 'Cancel',
     'error' => 'Error',
+    'info' => 'Information',
+    'question' => 'Question',
+    'warning' => 'Warning',
     'invalid' => 'Invalid fields have been detected.',
     'unexpected' => 'An unexpected error has occurred.',
 

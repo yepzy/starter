@@ -1,5 +1,7 @@
 // More information on https://github.com/Ionaru/easy-markdown-editor
 
+import _ from 'lodash';
+
 const triggerEditorElementsDetection = () => {
     const editorElements = document.querySelectorAll('textarea[data-editor]');
     if (editorElements.length) {

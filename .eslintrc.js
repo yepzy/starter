@@ -14,6 +14,7 @@ module.exports = {
         'app': true,
         '$': true,
         'moment': true,
+        'cookieconsent': true
     },
     'rules': {
         'max-len': [2, 120],

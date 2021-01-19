@@ -45,68 +45,68 @@ const formatArgumentsFromEvent = (args) => {
 
 export default class SweetAlert {
 
-    static init = () => {
-        self.triggerFromSession();
-        self.listenToEvents();
-    };
+    static init() {
+        this.triggerFromSession();
+        this.listenToEvents();
+    }
 
-    static triggerFromSession = () => {
+    static triggerFromSession() {
         if (app.session_notify_config) {
             baseConfig.fire(app.session_notify_config);
         }
-    };
+    }
 
     /**
      * @param {string} html
      * @param {string} title
      * @param {Object} config
      */
-    static alertSuccess = (html, title = app.notify.success, config = {}) => {
+    static alertSuccess(html, title = app.notify.success, config = {}) {
         return popInConfig.fire({icon: 'success', title, html, ...config});
-    };
+    }
 
     /**
      * @param {string} html
      * @param {string} title
      * @param {Object} config
      */
-    static alertError = (html = app.notify.unexpected, title = app.notify.error, config = {}) => {
+    static alertError(html = app.notify.unexpected, title = app.notify.error, config = {}) {
         return popInConfig.fire({icon: 'error', title, html, ...config});
-    };
+    }
 
     /**
      * @param {string} html
      * @param {string} title
      * @param {Object} config
      */
-    static alertInfo = (html, title, config = {}) => {
+    static alertInfo(html, title = app.notify.info, config = {}) {
         return popInConfig.fire({icon: 'info', title, html, ...config});
-    };
+    }
 
     /**
      * @param {string} html
      * @param {string} title
      * @param {Object} config
      */
-    static alertQuestion = (html, title, config = {}) => {
+    static alertQuestion(html, title = app.notify.question, config = {}) {
         return popInConfig.fire({icon: 'question', title, html, ...config});
-    };
+    }
 
     /**
      * @param {string} html
      * @param {string} title
      * @param {Object} config
      */
-    static alertWarning = (html, title, config = {}) => {
+    static alertWarning(html, title = app.notify.warning, config = {}) {
         return popInConfig.fire({icon: 'warning', title, html, ...config});
-    };
+    }
 
     /**
      * @param {string} html
      * @param {string} title
      * @param {Object} config
      */
-    static alertLoading = (html = app.notify.loading, title = app.notify.please_wait, config = {}) => {
+    static alertLoading(html = app.notify.loading, title = app.notify.please_wait, config = {}) {
         return Swal.fire({
             icon: 'info',
             title,
@@ -118,14 +118,14 @@ export default class SweetAlert {
             willOpen: () => Swal.showLoading(),
             ...config
         });
-    };
+    }
 
     /**
      * @param {string} html
      * @param {string} title
      * @param {Object} config
      */
-    static alertConfirm = (html, title = app.notify.confirm_request, config = {}) => {
+    static alertConfirm(html, title = app.notify.confirm_request, config = {}) {
         return popInConfig.fire({
             icon: 'warning',
             title,
@@ -133,68 +133,66 @@ export default class SweetAlert {
             showCancelButton: true,
             ...config
         });
-    };
+    }
 
     /**
      * @param {string} title
-     * @param {string} html
+     * @param {string|null} html
      * @param {Object} config
      */
-    static toastSuccess = (title, html, config) => {
+    static toastSuccess(title, html = null, config = {}) {
         return toastConfig.fire({icon: 'success', title, html, ...config});
-    };
+    }
 
     /**
      * @param {string} title
-     * @param {string} html
+     * @param {string|null} html
      * @param {Object} config
      */
-    static toastError = (title, html, config) => {
+    static toastError(title, html = null, config = {}) {
         return toastConfig.fire({icon: 'error', title, html, ...config});
-    };
+    }
 
     /**
      * @param {string} title
-     * @param {string} html
+     * @param {string|null} html
      * @param {Object} config
      */
-    static toastInfo = (title, html, config) => {
+    static toastInfo(title, html = null, config = {}) {
         return toastConfig.fire({icon: 'info', title, html, ...config});
-    };
+    }
 
     /**
      * @param {string} title
-     * @param {string} html
+     * @param {string|null} html
      * @param {Object} config
      */
-    static toastQuestion = (title, html, config) => {
+    static toastQuestion(title, html = null, config = {}) {
         return toastConfig.fire({icon: 'question', title, html, ...config});
-    };
+    }
 
     /**
      * @param {string} title
-     * @param {string} html
+     * @param {string|null} html
      * @param {Object} config
      */
-    static toastWarning = (title, html, config) => {
+    static toastWarning(title, html = null, config = {}) {
         return toastConfig.fire({icon: 'warning', title, html, ...config});
-    };
+    }
 
     /**
      * @param {string} title
-     * @param {string} html
+     * @param {string|null} html
      * @param {Object} config
      */
-    static toastInvalid = (title = app.notify.invalid, html, config) => {
+    static toastInvalid(title = app.notify.invalid, html = null, config = {}) {
         return toastConfig.fire({icon: 'error', title, html, ...config});
-    };
+    }
 
-    static listenToEvents = () => {
-
+    static listenToEvents() {
         window.addEventListener('popin', event => {
             return popInConfig.fire(formatArgumentsFromEvent(event.detail));
         });
-
         window.addEventListener('popin:success', event => {
             return this.alertSuccess(
                 event.detail.html,
@@ -202,7 +200,6 @@ export default class SweetAlert {
                 formatArgumentsFromEvent(event.detail.config)
             );
         });
-
         window.addEventListener('popin:error', event => {
             return this.alertError(
                 event.detail.html,
@@ -210,7 +207,6 @@ export default class SweetAlert {
                 formatArgumentsFromEvent(event.detail.config)
             );
         });
-
         window.addEventListener('popin:info', event => {
             return this.alertInfo(
                 event.detail.html,
@@ -218,7 +214,6 @@ export default class SweetAlert {
                 formatArgumentsFromEvent(event.detail.config)
             );
         });
-
         window.addEventListener('popin:question', event => {
             return this.alertQuestion(
                 event.detail.html,
@@ -226,7 +221,6 @@ export default class SweetAlert {
                 formatArgumentsFromEvent(event.detail.config)
             );
         });
-
         window.addEventListener('popin:warning', event => {
             return this.alertWarning(
                 event.detail.html,
@@ -234,7 +228,6 @@ export default class SweetAlert {
                 formatArgumentsFromEvent(event.detail.config)
             );
         });
-
         window.addEventListener('popin:loading', event => {
             return this.alertLoading(
                 event.detail.html,
@@ -242,7 +235,6 @@ export default class SweetAlert {
                 formatArgumentsFromEvent(event.detail.config)
             );
         });
-
         window.addEventListener('popin:confirm', event => {
             return this.alertConfirm(
                 event.detail.html,
@@ -250,11 +242,9 @@ export default class SweetAlert {
                 formatArgumentsFromEvent(event.detail.config)
             );
         });
-
         window.addEventListener('toast', event => {
             return toastConfig.fire(formatArgumentsFromEvent(event.detail));
         });
-
         window.addEventListener('toast:success', event => {
             return this.toastSuccess(
                 event.detail.title,
@@ -262,7 +252,6 @@ export default class SweetAlert {
                 formatArgumentsFromEvent(event.detail.config)
             );
         });
-
         window.addEventListener('toast:error', event => {
             return this.toastError(
                 event.detail.title,
@@ -270,7 +259,6 @@ export default class SweetAlert {
                 formatArgumentsFromEvent(event.detail.config)
             );
         });
-
         window.addEventListener('toast:info', event => {
             return this.toastInfo(
                 event.detail.title,
@@ -278,7 +266,6 @@ export default class SweetAlert {
                 formatArgumentsFromEvent(event.detail.config)
             );
         });
-
         window.addEventListener('toast:question', event => {
             return this.toastQuestion(
                 event.detail.title,
@@ -286,7 +273,6 @@ export default class SweetAlert {
                 formatArgumentsFromEvent(event.detail.config)
             );
         });
-
         window.addEventListener('toast:warning', event => {
             return this.toastWarning(
                 event.detail.title,
@@ -294,7 +280,6 @@ export default class SweetAlert {
                 formatArgumentsFromEvent(event.detail.config)
             );
         });
-
         window.addEventListener('toast:invalid', event => {
             return this.toastInvalid(
                 event.detail.title,
@@ -302,6 +287,6 @@ export default class SweetAlert {
                 formatArgumentsFromEvent(event.detail.config)
             );
         });
-    };
+    }
 
 }

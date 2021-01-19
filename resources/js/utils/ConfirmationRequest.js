@@ -15,14 +15,14 @@ const askConfirmation = (message, confirmedCallback) => {
 
 export default class ConfirmationRequest {
 
-    static init = () => {
+    static init() {
         _.each(document.querySelectorAll('button[data-confirm], a[data-confirm]'), (element) => {
             const message = element.dataset.confirm;
             if (element instanceof HTMLButtonElement) {
                 if (! element.form) {
                     return false;
                 }
-                element.form.onsubmit((e) => {
+                element.form.addEventListener('submit', (e) => {
                     if (! confirmationGiven) {
                         e.preventDefault();
                         askConfirmation(message, () => {
@@ -36,7 +36,7 @@ export default class ConfirmationRequest {
                 if (! element.href) {
                     return false;
                 }
-                element.form.onclick((e) => {
+                element.form.addEventListener('click', (e) => {
                     if (! confirmationGiven) {
                         e.preventDefault();
                         askConfirmation(message, () => {
@@ -46,6 +46,6 @@ export default class ConfirmationRequest {
                 });
             }
         });
-    };
+    }
 
 }

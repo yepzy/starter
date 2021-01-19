@@ -1,8 +1,8 @@
 import axios from 'axios';
-import Axios from '../../../vendor/AxiosConfig';
-import notify from '../../../vendor/Notify';
+import Axios from '../../../vendor/Axios';
+import SweetAlert from '../../../vendor/SweetAlert';
 
-Axios.setCsrfToken(axios);
+Axios.configure(axios);
 
 const copyToClipboard = (string) => {
     const el = document.createElement('textarea');
@@ -24,9 +24,9 @@ $('.clipboard-copy').click(function (e) {
     route = route.replace('__LOCALE__', locale || '');
     axios.get(route).then((response) => {
         copyToClipboard(response.data.clipboardContent);
-        notify.toastSuccess(response.data.message);
+        SweetAlert.toastSuccess(response.data.message);
     }).catch((error) => {
         console.error(error);
-        notify.toastError(error.response.data.message);
+        SweetAlert.toastError(error.response.data.message);
     });
 });

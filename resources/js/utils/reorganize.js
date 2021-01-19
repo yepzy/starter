@@ -1,6 +1,10 @@
+import axios from 'axios';
 import _ from 'lodash';
 import 'jquery-ui-sortable';
-import Notify from '../vendor/Notify';
+import Axios from '../vendor/Axios';
+import SweetAlert from '../vendor/SweetAlert';
+
+Axios.configure(axios);
 
 export default ($sortableItemsContainer, sortableItemsSelector, reorganizingRoute) => {
     $sortableItemsContainer.sortable({
@@ -15,10 +19,10 @@ export default ($sortableItemsContainer, sortableItemsSelector, reorganizingRout
                 _.each(reorganizedList, (item, key) => {
                     $(item).find('.position').text(key + 1);
                 });
-                notify.toastSuccess(response.data.message);
+                SweetAlert.toastSuccess(response.data.message);
             }).catch((error) => {
                 if (error.response) {
-                    Notify.toastError(error.response.data.message);
+                    SweetAlert.toastError(error.response.data.message);
                 }
             });
         }
