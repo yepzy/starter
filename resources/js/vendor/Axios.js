@@ -1,6 +1,6 @@
-export default class AxiosConfig {
+export default class Axios {
 
-    static setCsrfToken = (axios) => {
+    static configure = (axios) => {
         axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
         let token = document.head.querySelector('meta[name="csrf-token"]');
         if (token) {

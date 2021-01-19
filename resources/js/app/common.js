@@ -1,23 +1,23 @@
-import CookieConsentConfig from '../vendor/CookieConsentConfig';
-import MomentConfig from '../vendor/MomentConfig';
-import Notify from '../vendor/Notify';
+import Moment from '../vendor/Moment';
+import CookieConsent from '../vendor/CookieConsent';
+import SweetAlert from '../vendor/SweetAlert';
 import Lightbox from '../vendor/Lightbox';
 import DateTimePickers from '../vendor/DateTimePickers';
+import ConfirmationRequest from '../utils/ConfirmationRequest';
 
 // Scripts that will be used globally on both front and admin panel.
 
 // Vendor
-CookieConsentConfig.setup();
-MomentConfig.setup();
-Notify.init();
+Moment.configure();
+CookieConsent.init();
+SweetAlert.init();
 Lightbox.init();
 DateTimePickers.init();
-
 
 // Bootstrap overrides
 require('../bootstrap-overrides/file-input');
 require('../bootstrap-overrides/nav');
 
 // Utils
-require('../utils/confirm');
+ConfirmationRequest.init();
 require('../utils/no-click');

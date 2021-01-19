@@ -3275,16 +3275,16 @@
         },
         {
             "name": "league/mime-type-detection",
-            "version": "1.6.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/mime-type-detection.git",
-                "reference": "abab7860d86533ae520523c7f6b5e74ca071116b"
+                "reference": "3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/abab7860d86533ae520523c7f6b5e74ca071116b",
-                "reference": "abab7860d86533ae520523c7f6b5e74ca071116b",
+                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3",
+                "reference": "3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3",
                 "shasum": ""
             },
             "require": {
@@ -3315,7 +3315,7 @@
             "description": "Mime-type detection for Flysystem",
             "support": {
                 "issues": "https://github.com/thephpleague/mime-type-detection/issues",
-                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.6.0"
+                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.7.0"
             },
             "funding": [
                 {
@@ -3327,7 +3327,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-18T20:19:53+00:00"
+            "time": "2021-01-18T20:58:21+00:00"
         },
         {
             "name": "livewire/livewire",
@@ -12533,12 +12533,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "5688b64287a502c56061ab3f400f05e190d5fa5a"
+                "reference": "fe0752ad377d3167e7419a7fb2d4924af9858c69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/5688b64287a502c56061ab3f400f05e190d5fa5a",
-                "reference": "5688b64287a502c56061ab3f400f05e190d5fa5a",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/fe0752ad377d3167e7419a7fb2d4924af9858c69",
+                "reference": "fe0752ad377d3167e7419a7fb2d4924af9858c69",
                 "shasum": ""
             },
             "conflict": {
@@ -12666,7 +12666,7 @@
                 "paragonie/random_compat": "<2",
                 "passbolt/passbolt_api": "<2.11",
                 "paypal/merchant-sdk-php": "<3.12",
-                "pear/archive_tar": "<1.4.11",
+                "pear/archive_tar": "<1.4.12",
                 "personnummer/personnummer": "<3.0.2",
                 "phpfastcache/phpfastcache": ">=5,<5.0.13",
                 "phpmailer/phpmailer": "<6.1.6",
@@ -12847,7 +12847,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-18T19:42:28+00:00"
+            "time": "2021-01-19T06:26:43+00:00"
         },
         {
             "name": "sebastian/cli-parser",

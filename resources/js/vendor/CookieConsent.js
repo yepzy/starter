@@ -1,8 +1,8 @@
 // Doc available @ https://cookieconsent.insites.com/documentation/javascript-api
 
-export default class CookieConsentConfig {
+export default class CookieConsent {
 
-    static setup = () => {
+    static init = () => {
         window.cookieconsent.initialise({
             container: document.getElementById('layout'),
             content: {
