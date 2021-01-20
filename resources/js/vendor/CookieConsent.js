@@ -6,9 +6,9 @@ export default class CookieConsent {
         window.cookieconsent.initialise({
             container: document.getElementById('layout'),
             content: {
-                message: app.cookieConsent.message,
-                dismiss: app.cookieConsent.dismiss,
-                link: app.cookieConsent.link,
+                message: app.cookieconsent.message,
+                dismiss: app.cookieconsent.dismiss,
+                link: app.cookieconsent.link,
                 href: app.gdprPage.route
             },
             elements: {

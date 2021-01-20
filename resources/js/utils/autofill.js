@@ -1,31 +1,34 @@
-const triggerAutofillElementsDetection = () => {
-    const $autofillElements = $('[data-autofill-from]');
-    if (! $autofillElements.length) {
-        return false;
+import _ from 'lodash';
+
+/**
+ * @param {string} sourceInputValue
+ * @param {HTMLInputElement} targetedInput
+ * @param {boolean} updated
+ */
+const autoFill = (sourceInputValue, targetedInput, updated) => {
+    if (! updated && ! sourceInputValue) {
+        targetedInput.value = sourceInputValue;
     }
-    $autofillElements.each((key, input) => {
-        const $input = $(input);
-        const inputLocale = $input.data('locale');
-        let $sourceInput = $($input.data('autofillFrom'));
-        $sourceInput = $sourceInput.length
-            ? $sourceInput // monolingual source input
-            : $($input.data('autofillFrom') + '-' + (inputLocale || app.locale)); // multilingual source input
-        let manualInterventionRealized = false;
-        const alreadyFilled = !! $input.val();
-        $sourceInput.on('propertychange change keyup input paste', (event) => {
-            if (! manualInterventionRealized && ! alreadyFilled) {
-                const slug = $(event.target).val();
-                $input.val(slug);
-                $input.trigger('script');
-            }
-        });
-        $sourceInput.focusout(() => {
-            manualInterventionRealized = true;
-        });
-        $input.focusout(() => {
-            manualInterventionRealized = true;
-        });
-    });
 };
 
-triggerAutofillElementsDetection();
+export default class AutoFillInputFrom {
+
+    static init() {
+        _.each(document.querySelectorAll('input[data-autofill-from]'), (element) => {
+            let sourceElement = document.querySelector(element.dataset.autofillFrom);
+            // Try to get multilingual source input if the monolingual one is not found.
+            sourceElement = sourceElement
+                ? sourceElement
+                : document.querySelector(element.dataset.autofillFrom + '-' + (element.dataset.locale || app.locale));
+            let updated = false;
+            sourceElement.addEventListener('propertychange', (e) => autoFill(e.target.value, element, updated));
+            sourceElement.addEventListener('change', (e) => autoFill(e.target.value, element, updated));
+            sourceElement.addEventListener('keyup', (e) => autoFill(e.target.value, element, updated));
+            sourceElement.addEventListener('input', (e) => autoFill(e.target.value, element, updated));
+            sourceElement.addEventListener('paste', (e) => autoFill(e.target.value, element, updated));
+            sourceElement.addEventListener('focusout', () => updated = true);
+            element.addEventListener('focusout', () => updated = true);
+        });
+    }
+
+}

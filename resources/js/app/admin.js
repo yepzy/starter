@@ -1,11 +1,14 @@
 // Scripts that will be used globally on the admin panel.
 
+import EasyMdeEditor from '../vendor/EasyMdeEditor';
+import MasonryGrid from '../vendor/MasonryGrid';
+
 // Common global scripts
 require('./common');
 
 // Vendor
-require('../vendor/easymde');
-require('../vendor/masonry');
+EasyMdeEditor.init();
+MasonryGrid.init();
 
 // Utils
 require('../utils/autofill');
