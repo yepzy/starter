@@ -1,10 +1,12 @@
 import _ from 'lodash';
 import SweetAlert from '../vendor/SweetAlert';
 
-let confirmationGiven;
-
-const askConfirmation = (message, confirmedCallback) => {
-    confirmationGiven = false;
+/**
+ * @param {boolean} confirmationGiven
+ * @param {string} message
+ * @param {function(): void} confirmedCallback
+ */
+const askConfirmation = (confirmationGiven, message, confirmedCallback) => {
     SweetAlert.alertConfirm(message).then((result) => {
         if (result.value) {
             confirmationGiven = true;
@@ -16,35 +18,35 @@ const askConfirmation = (message, confirmedCallback) => {
 export default class ConfirmationRequest {
 
     static init() {
-        _.each(document.querySelectorAll('button[data-confirm], a[data-confirm]'), (element) => {
-            const message = element.dataset.confirm;
-            if (element instanceof HTMLButtonElement) {
-                if (! element.form) {
-                    return false;
-                }
-                element.form.addEventListener('submit', (e) => {
-                    if (! confirmationGiven) {
-                        e.preventDefault();
-                        askConfirmation(message, () => {
-                            element.form.submit();
-                        });
-                    }
-                });
+        _.each(document.querySelectorAll('[type=submit][data-confirm]'), (element) => {
+            if (! element.form) {
                 return false;
             }
-            if (element instanceof HTMLLinkElement) {
-                if (! element.href) {
-                    return false;
+            let confirmationGiven = false;
+            const message = element.dataset.confirm;
+            element.form.addEventListener('submit', (e) => {
+                if (! confirmationGiven) {
+                    e.preventDefault();
+                    askConfirmation(confirmationGiven, message, () => {
+                        element.form.submit();
+                    });
                 }
-                element.form.addEventListener('click', (e) => {
-                    if (! confirmationGiven) {
-                        e.preventDefault();
-                        askConfirmation(message, () => {
-                            window.location.href = element.href;
-                        });
-                    }
-                });
+            });
+        });
+        _.each(document.querySelectorAll(':not([type=submit])[data-confirm]'), (element) => {
+            if (! element.href) {
+                return false;
             }
+            let confirmationGiven = false;
+            const message = element.dataset.confirm;
+            element.form.addEventListener('click', (e) => {
+                if (! confirmationGiven) {
+                    e.preventDefault();
+                    askConfirmation(confirmationGiven, message, () => {
+                        window.location.href = element.href;
+                    });
+                }
+            });
         });
     }
 
