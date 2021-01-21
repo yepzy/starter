@@ -1,4 +1,6 @@
+
 <?php
+
 /**
  * @see https://github.com/coderello/laravel-shared-data
  */
