@@ -5,7 +5,6 @@ namespace App\Tables;
 use App\Models\News\NewsArticle;
 use App\Models\News\NewsCategory;
 use Illuminate\Support\Str;
-use Livewire\Livewire;
 use Okipa\LaravelTable\Abstracts\AbstractTable;
 use Okipa\LaravelTable\Table;
 
@@ -65,11 +64,7 @@ class NewsArticlesTable extends AbstractTable
         ));
         $table->column('active')
             ->sortable()
-            ->html(fn(NewsArticle $article) => Livewire::mount('boolean-toggle', [
-                'model' => $article,
-                'field' => 'active',
-                'componentClassToRefresh' => get_class($this)
-            ])->html());
+            ->html(fn(NewsArticle $article) => view('components.admin.table.bool', ['bool' => $article->active]));
         $table->column('created_at')->dateTimeFormat('d/m/Y H:i')->sortable();
         $table->column('updated_at')->dateTimeFormat('d/m/Y H:i')->sortable();
         $table->column('published_at')->dateTimeFormat('d/m/Y H:i')->sortable(true, 'desc');

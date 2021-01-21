@@ -10,5 +10,4 @@
     <link href="{{ mix('css/admin.css') }}" rel="stylesheet"/>
     @isset($css)<link href="{{ $css }}" rel="stylesheet"/>@endisset
     @brickablesCss
-    @livewireStyles
 </head>

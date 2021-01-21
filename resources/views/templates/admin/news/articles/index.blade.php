@@ -6,6 +6,6 @@
     </h1>
     <hr>
     <x-admin.forms.card title="{{ __('List') }}">
-        <livewire:table :tableClass="'App\Tables\NewsArticlesTable'">
+        {{ $table }}
     </x-admin.forms.card>
 @endsection
