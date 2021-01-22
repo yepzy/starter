@@ -1,3 +1,3 @@
-import reorganize from '../../../../utils/reorganize';
+import Sortable from '../../../../vendor/Sortable';
 
-reorganize($('#carousel-brick-slides-table tbody'), 'tr', app.carousel_brick_slides.reorganize_route);
+Sortable.setup('#carousel-brick-slides-table tbody', 'tr', app.carousel_brick_slides.reorganize_route)

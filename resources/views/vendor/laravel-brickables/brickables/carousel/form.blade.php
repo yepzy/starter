@@ -9,7 +9,9 @@
     <x-admin.forms.card title="{{ __('Slides') }}" class="mt-3">
         @if($brick)
             @include('components.admin.table.drag-and-drop')
-            {{ $table }}
+            <div data-sortable data-sortable-items="tr">
+                {{ $table }}
+            </div>
         @else
             <i class="fas fa-info-circle fa-fw text-info"></i>
             {{ __('Slides management will be available after the brick creation.') }}
