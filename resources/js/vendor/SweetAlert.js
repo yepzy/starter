@@ -13,7 +13,6 @@ const popInConfig = baseConfig.mixin({
     showConfirmButton: true,
     showCancelButton: false,
     allowOutsideClick: false,
-    confirmButtonText: app.notify.confirm,
     cancelButtonText: app.notify.cancel
 });
 
@@ -130,6 +129,7 @@ export default class SweetAlert {
             icon: 'warning',
             title,
             html,
+            confirmButtonText: app.notify.confirm,
             showCancelButton: true,
             ...config
         });
