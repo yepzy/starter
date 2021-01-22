@@ -10,10 +10,10 @@ const baseConfig = Swal.mixin({
 
 const popInConfig = baseConfig.mixin({
     showCloseButton: true,
-    showConfirmButton: true,
-    showCancelButton: false,
+    showConfirmButton: false,
+    showCancelButton: true,
     allowOutsideClick: false,
-    cancelButtonText: app.notify.cancel
+    cancelButtonText: app.notify.close
 });
 
 const toastConfig = baseConfig.mixin({
@@ -129,8 +129,10 @@ export default class SweetAlert {
             icon: 'warning',
             title,
             html,
-            confirmButtonText: app.notify.confirm,
+            showConfirmButton: true,
             showCancelButton: true,
+            confirmButtonText: app.notify.confirm,
+            cancelButtonText: app.notify.cancel,
             ...config
         });
     }
