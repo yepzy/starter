@@ -22,13 +22,7 @@ class CarouselBricksController extends BricksController
     {
         $view = parent::edit($brick, $request);
         $table = (new CarouselBrickSlidesTables($brick, $request->admin_panel_url))->setup();
-        share([
-            'carousel_brick_slides' => [
-                'reorganize_route' => route('brick.carousel.slides.reorganize'),
-            ],
-        ]);
-        $js = mix('/js/templates/admin/brickables/carousel/edit.js');
-        $view->with(compact('table', 'js'));
+        $view->with(compact('table'));
 
         return $view;
     }

@@ -9,7 +9,10 @@
     <x-admin.forms.card title="{{ __('Slides') }}" class="mt-3">
         @if($brick)
             @include('components.admin.table.drag-and-drop')
-            <div data-sortable data-sortable-items="tr">
+            <div data-sortable
+                 data-sortable-container-selector="#carousel-brick-slides-table tbody"
+                 data-sortable-elements-selector="tr"
+                 data-sortable-reorder-url="{{ route('brick.carousel.slides.reorder') }}">
                 {{ $table }}
             </div>
         @else

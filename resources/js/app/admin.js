@@ -1,5 +1,6 @@
 import EasyMdeEditor from '../vendor/EasyMdeEditor';
 import MasonryGrid from '../vendor/MasonryGrid';
+import Html5Sortable from '../vendor/Html5Sortable';
 import AutoFillInputFrom from '../utils/AutoFillInputFrom';
 import LowerCaseInputValue from '../utils/LowerCaseInputValue';
 import UpperCaseInputValue from '../utils/UpperCaseInputValue';
@@ -15,6 +16,7 @@ require('./common');
 // Vendor
 EasyMdeEditor.init();
 MasonryGrid.init();
+Html5Sortable.init();
 
 // Utils
 AutoFillInputFrom.init();

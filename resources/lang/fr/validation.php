@@ -41,7 +41,7 @@ return [
     'distinct' => 'Le champ :attribute possède une valeur dupliquée.',
     'email' => 'Le champ :attribute doit être une adresse email valide.',
     'ends_with' => 'Le champ :attribute doit terminer par l\'une des valeurs suivantes :values.',
-    'exists' => 'Le champ :attribute n\'existe pas.',
+    'exists' => 'Le champ :attribute est invalide.',
     'file' => 'Le champ :attribute doit être un fichier.',
     'filled' => 'Le champ :attribute doit avoir une valeur.',
     'gt' => [

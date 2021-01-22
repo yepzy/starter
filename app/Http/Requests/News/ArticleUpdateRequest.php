@@ -6,6 +6,7 @@ use App\Http\Requests\Abstracts\SeoRequest;
 use App\Models\News\NewsArticle;
 use Carbon\Carbon;
 use CodeZero\UniqueTranslation\UniqueTranslationRule;
+use Illuminate\Validation\Rule;
 
 class ArticleUpdateRequest extends SeoRequest
 {
@@ -14,7 +15,7 @@ class ArticleUpdateRequest extends SeoRequest
         $rules = [
             'illustration' => app(NewsArticle::class)->getMediaValidationRules('illustration'),
             'category_ids' => ['required', 'array'],
-            'category_ids.*' => ['required', 'integer', 'exists:' . NewsArticle::class . ',id'],
+            'category_ids.*' => ['required', 'integer', Rule::exists(NewsArticle::class, 'id')],
             'published_at' => ['required', 'date_format:Y-m-d H:i:s'],
             'active' => ['required', 'boolean'],
         ];

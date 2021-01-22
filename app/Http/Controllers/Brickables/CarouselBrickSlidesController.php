@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Brickables;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Brickables\Carousel\CarouselSlidesReorderRequest;
 use App\Http\Requests\Brickables\Carousel\CarouselSlidesReorganizeRequest;
 use App\Http\Requests\Brickables\Carousel\CarouselSlideStoreRequest;
 use App\Http\Requests\Brickables\Carousel\CarouselSlideUpdateRequest;
 use App\Models\Brickables\CarouselBrick;
 use App\Models\Brickables\CarouselBrickSlide;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Contracts\View\View;
 
 class CarouselBrickSlidesController extends Controller
 {
@@ -94,10 +95,10 @@ class CarouselBrickSlidesController extends Controller
         ]));
     }
 
-    public function reorganize(CarouselSlidesReorganizeRequest $request): JsonResponse
+    public function reorder(CarouselSlidesReorderRequest $request): JsonResponse
     {
         CarouselBrickSlide::setNewOrder($request->validated()['ordered_ids']);
 
-        return response()->json(['message' => 'La liste a été réorganisée.'], 200);
+        return response()->json(['message' => __('The list has been reordered.')], 200);
     }
 }
