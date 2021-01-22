@@ -1,16 +1,17 @@
-import _ from 'lodash';
+import {each, snakeCase} from 'lodash';
+
+let timeout;
 
 /** @param {HTMLInputElement} input */
 const convertValueToSnakeCase = (input) => {
-    input.value = input.value.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
-        .map(x => x.toLowerCase())
-        .join('_');
+    clearTimeout(timeout);
+    timeout = setTimeout(() => input.value = snakeCase(input.value), 300);
 };
 
 export default class SnakeCaseInputValue {
 
     static init() {
-        _.each(document.querySelectorAll('[data-snakecase]'), (element) => {
+        each(document.querySelectorAll('[data-snakecase]'), (element) => {
             element.addEventListener('propertychange', () => convertValueToSnakeCase(element));
             element.addEventListener('change', () => convertValueToSnakeCase(element));
             element.addEventListener('keyup', () => convertValueToSnakeCase(element));

@@ -1,14 +1,17 @@
-import _ from 'lodash';
+import {each, toLower} from 'lodash';
+
+let timeout;
 
 /** @param {HTMLInputElement} input */
 const convertValueToLowerCase = (input) => {
-    input.value = input.value.toLowerCase();
+    clearTimeout(timeout);
+    timeout = setTimeout(() => input.value = toLower(input.value), 300);
 };
 
 export default class LowerCaseInputValue {
 
     static init() {
-        _.each(document.querySelectorAll('[data-uppercase]'), (element) => {
+        each(document.querySelectorAll('[data-uppercase]'), (element) => {
             element.addEventListener('propertychange', () => convertValueToLowerCase(element));
             element.addEventListener('change', () => convertValueToLowerCase(element));
             element.addEventListener('keyup', () => convertValueToLowerCase(element));

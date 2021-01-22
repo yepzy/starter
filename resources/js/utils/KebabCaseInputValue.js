@@ -1,17 +1,18 @@
-import _ from 'lodash';
+import {each, kebabCase} from 'lodash';
+
+let timeout;
 
 /** @param {HTMLInputElement} input */
 const convertValueToKebabCase = (input) => {
-    input.value = input.value
-        .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
-        .map(x => x.toLowerCase())
-        .join('-');
+    clearTimeout(timeout);
+    timeout = setTimeout(() => input.value = kebabCase(input.value), 300);
 };
 
 export default class KebabCaseInputValue {
 
     static init() {
-        _.each(document.querySelectorAll('[data-kebabcase]'), (element) => {
+        each(document.querySelectorAll('[data-kebabcase]'), (element) => {
+            console.log(element);
             element.addEventListener('propertychange', () => convertValueToKebabCase(element));
             element.addEventListener('change', () => convertValueToKebabCase(element));
             element.addEventListener('keyup', () => convertValueToKebabCase(element));

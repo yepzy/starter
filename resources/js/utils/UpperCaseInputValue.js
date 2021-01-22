@@ -1,14 +1,17 @@
-import _ from 'lodash';
+import {each, toUpper} from 'lodash';
+
+let timeout;
 
 /** @param {HTMLInputElement} input */
 const convertValueToUpperCase = (input) => {
-    input.value = input.value.toUpperCase();
+    clearTimeout(timeout);
+    timeout = setTimeout(() => input.value = toUpper(input.value), 300);
 };
 
 export default class UpperCaseInputValue {
 
     static init() {
-        _.each(document.querySelectorAll('[data-uppercase]'), (element) => {
+        each(document.querySelectorAll('[data-uppercase]'), (element) => {
             element.addEventListener('propertychange', () => convertValueToUpperCase(element));
             element.addEventListener('change', () => convertValueToUpperCase(element));
             element.addEventListener('keyup', () => convertValueToUpperCase(element));

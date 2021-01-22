@@ -3543,6 +3543,11 @@ html-minifier-terser@^5.1.1:
     relateurl "^0.2.7"
     terser "^4.6.3"
 
+html5sortable@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/html5sortable/-/html5sortable-0.10.0.tgz#b206b6ce435ebabba7095996943c2071d1b79338"
+  integrity sha512-/F2sUHnSlqXY8Pg1AxLjR5i/ijngpkl2u1x6a6JfwSsoVRZ5b/ZO9MDZopSSzjo7bTZinQbXACTrZI6mpGugMw==
+
 htmlparser2@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-4.1.0.tgz#9a4ef161f2e4625ebf7dfbe6c0a2f52d18a59e78"

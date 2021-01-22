@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import {each} from 'lodash';
 import SweetAlert from '../vendor/SweetAlert';
 
 /**
@@ -18,7 +18,7 @@ const askConfirmation = (confirmationGiven, message, confirmedCallback) => {
 export default class ConfirmationRequest {
 
     static init() {
-        _.each(document.querySelectorAll('[type=submit][data-confirm]'), (element) => {
+        each(document.querySelectorAll('[type=submit][data-confirm]'), (element) => {
             if (! element.form) {
                 return false;
             }
@@ -33,7 +33,7 @@ export default class ConfirmationRequest {
                 }
             });
         });
-        _.each(document.querySelectorAll(':not([type=submit])[data-confirm]'), (element) => {
+        each(document.querySelectorAll(':not([type=submit])[data-confirm]'), (element) => {
             if (! element.href) {
                 return false;
             }

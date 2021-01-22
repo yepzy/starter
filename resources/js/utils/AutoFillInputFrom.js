@@ -1,48 +1,44 @@
-import _ from 'lodash';
+import {each} from 'lodash';
 
 /**
- * @param {HTMLInputElement} sourceInput
- * @param {HTMLInputElement} targetedInput
+ * @param {string} fromInputValue
+ * @param {HTMLInputElement} toInput
  * @param {boolean} updated
  */
-const autoFillInputFrom = (sourceInput, targetedInput, updated) => {
-    if (! updated && ! sourceInput.value) {
-        targetedInput.value = sourceInput.value;
+const autoFill = (fromInputValue, toInput, updated) => {
+    if (! updated) {
+        toInput.value = fromInputValue;
+        toInput.dispatchEvent(new Event('change'));
     }
 };
 
 export default class AutoFillInputFrom {
 
     static init() {
-        _.each(document.querySelectorAll('input[data-autofill-from]'), (element) => {
-            let sourceElement = document.querySelector(element.dataset.autofillFrom);
+        each(document.querySelectorAll('input[data-autofill-from]'), (element) => {
+            let fromInput = document.querySelector(element.dataset.autofillFrom);
             // Try to get multilingual source input if the monolingual one is not found.
-            sourceElement = sourceElement
-                ? sourceElement
+            fromInput = fromInput
+                ? fromInput
                 : document.querySelector(element.dataset.autofillFrom + '-' + (element.dataset.locale || app.locale));
             let updated = false;
-            sourceElement.addEventListener(
-                'propertychange',
-                () => autoFillInputFrom(sourceElement, element, updated)
-            );
-            sourceElement.addEventListener(
-                'change',
-                () => autoFillInputFrom(sourceElement, element, updated)
-            );
-            sourceElement.addEventListener(
-                'keyup',
-                () => autoFillInputFrom(sourceElement, element, updated)
-            );
-            sourceElement.addEventListener(
-                'input',
-                () => autoFillInputFrom(sourceElement, element, updated)
-            );
-            sourceElement.addEventListener(
-                'paste',
-                () => autoFillInputFrom(sourceElement, element, updated)
-            );
-            sourceElement.addEventListener('focusout', () => updated = true);
-            element.addEventListener('focusout', () => updated = true);
+            fromInput.addEventListener('propertychange', () => autoFill(fromInput.value, element, updated));
+            fromInput.addEventListener('change', () => autoFill(fromInput.value, element, updated));
+            fromInput.addEventListener('keyup', () => autoFill(fromInput.value, element, updated));
+            fromInput.addEventListener('input', () => autoFill(fromInput.value, element, updated));
+            fromInput.addEventListener('paste', () => autoFill(fromInput.value, element, updated));
+            fromInput.addEventListener('focusout', () => {
+                if (fromInput.value || element.value) {
+                    updated = true;
+                }
+            });
+            element.addEventListener('focusout', () => {
+                if (element.value) {
+                    updated = true;
+                    return false;
+                }
+                updated = false;
+            });
         });
     }
 
