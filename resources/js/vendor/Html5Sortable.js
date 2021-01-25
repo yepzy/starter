@@ -1,4 +1,6 @@
-import {each} from 'lodash';
+// More information on https://github.com/lukasoppermann/html5sortable
+
+import {each, get} from 'lodash';
 import axios from 'axios';
 import sortable from 'html5sortable/dist/html5sortable.es';
 import Axios from './Axios';
@@ -10,10 +12,9 @@ Axios.configure(axios);
  * @param {HTMLElement} sortableElement
  * @returns {HTMLElement}
  */
-const getSortableContainer = (sortableElement) => {
-    // By default, the `data-sortable` HTML element will be considered as the sortable container.
-    // Declaring `data-sortable-container-selector` will override this behaviour
-    // by targeting a custom sortable container.
+const getDraggableContainer = (sortableElement) => {
+    // By default, the `data-sortable` HTML element will be considered as the draggable container.
+    // Declaring `data-draggable-container` will override this behaviour by targeting a custom draggable container.
     const sortableContainerSelector = sortableElement.dataset.sortableContainerSelector;
     return sortableContainerSelector
         ? sortableElement.querySelector(sortableContainerSelector)
@@ -25,28 +26,26 @@ export default class Html5Sortable {
     static init() {
         const sortableElements = document.querySelectorAll('[data-sortable]');
         each(sortableElements, (element) => {
-            const sortableContainer = getSortableContainer(element);
-            const sortableElementsSelector = element.dataset.sortableElementsSelector;
-            sortable(sortableContainer, {items: sortableElementsSelector})[0]
-                .addEventListener('sortupdate', function () {
-                    const sortableElements = sortableContainer.querySelectorAll(sortableElementsSelector);
-                    let orderedIds = [];
-                    each(sortableElements, (element) => {
-                        orderedIds.push(element.getElementsByClassName('id')[0].textContent);
-                    });
-                    axios.post(element.dataset.sortableReorderUrl, {'ordered_ids': orderedIds})
-                        .then((response) => {
-                            each(sortableElements, (element, key) => {
-                                element.getElementsByClassName('position')[0].textContent = key + 1;
-                            });
-                            SweetAlert.toastSuccess(response.data.message);
-                        })
-                        .catch((error) => {
-                            if (error.response) {
-                                SweetAlert.toastError(error.response.data.message);
-                            }
-                        });
+            const draggableContainer = getDraggableContainer(element);
+            const draggableItems = element.dataset.draggableItems;
+            sortable(draggableContainer, {items: draggableItems})[0].addEventListener('sortupdate', () => {
+                const sortableElements = draggableContainer.querySelectorAll(draggableItems);
+                let orderedIds = [];
+                each(sortableElements, (element) => {
+                    orderedIds.push(element.getElementsByClassName('id')[0].textContent);
                 });
+                axios.post(element.dataset.reorderUrl, {'ordered_ids': orderedIds})
+                    .then((response) => {
+                        each(sortableElements, (element, key) => {
+                            element.getElementsByClassName('position')[0].textContent = key + 1;
+                        });
+                        SweetAlert.toastSuccess(response.data.message);
+                    })
+                    .catch((error) => {
+                        const errorMessage = get(error, 'response.data.message');
+                        errorMessage ? SweetAlert.toastError(errorMessage) : SweetAlert.toastError();
+                    });
+            });
         });
     }
 

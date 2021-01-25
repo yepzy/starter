@@ -1,6 +1,8 @@
+// More information on https://github.com/t1m0n/air-datepicker
+
 import 'air-datepicker/src/js/air-datepicker';
 import 'air-datepicker/dist/js/i18n/datepicker.fr';
-import _ from 'lodash';
+import {each, map} from 'lodash';
 
 const baseConfig = {
     language: app.locale,
@@ -30,7 +32,7 @@ const selectDateTime = (dateTimePicker, $dateTimePicker) => {
 
 const selectDateRange = (monthRangePicker, $monthRangePicker) => {
     let filledDates = $monthRangePicker.val().split(' - ');
-    filledDates = _.map(filledDates, (date) => {
+    filledDates = map(filledDates, (date) => {
         const dateInstance = moment(date, 'MM/YYYY');
         return dateInstance.isValid() && dateInstance.toDate();
     });
@@ -39,7 +41,7 @@ const selectDateRange = (monthRangePicker, $monthRangePicker) => {
     instance.date = filledDates;
 };
 
-export default class DateTimePickers {
+export default class AirDatePicker {
 
     static init() {
         this.initDatePicker();
@@ -48,7 +50,7 @@ export default class DateTimePickers {
     }
 
     static initDatePicker() {
-        _.each(document.querySelectorAll('[data-date-picker]'), (item) => {
+        each(document.querySelectorAll('[data-date-picker]'), (item) => {
             const $datePicker = $(item);
             const datePicker = $datePicker.datepicker({
                 ...baseConfig,
@@ -61,7 +63,7 @@ export default class DateTimePickers {
     }
 
     static initDateTimePicker() {
-        _.each(document.querySelectorAll('[data-datetime-picker]'), (item) => {
+        each(document.querySelectorAll('[data-datetime-picker]'), (item) => {
             const $dateTimePicker = $(item);
             const dateTimePicker = $dateTimePicker.datepicker({
                 ...baseConfig,
@@ -76,7 +78,7 @@ export default class DateTimePickers {
     }
 
     static initTimeRangePicker() {
-        _.each(document.querySelectorAll('[data-month-range-picker]'), (item) => {
+        each(document.querySelectorAll('[data-month-range-picker]'), (item) => {
             const $monthRangePicker = $(item);
             const monthRangePicker = $monthRangePicker.datepicker({
                 ...baseConfig,

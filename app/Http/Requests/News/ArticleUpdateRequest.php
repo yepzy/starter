@@ -10,10 +10,14 @@ use Illuminate\Validation\Rule;
 
 class ArticleUpdateRequest extends SeoRequest
 {
+    /**
+     * @return array
+     * @throws \Okipa\MediaLibraryExt\Exceptions\CollectionNotFound
+     */
     public function rules(): array
     {
         $rules = [
-            'illustration' => app(NewsArticle::class)->getMediaValidationRules('illustration'),
+            'illustration' => app(NewsArticle::class)->getMediaValidationRules('illustrations'),
             'category_ids' => ['required', 'array'],
             'category_ids.*' => ['required', 'integer', Rule::exists(NewsArticle::class, 'id')],
             'published_at' => ['required', 'date_format:Y-m-d H:i:s'],

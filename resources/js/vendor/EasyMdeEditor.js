@@ -1,12 +1,12 @@
 // More information on https://github.com/Ionaru/easy-markdown-editor
 
 import EasyMDE from 'easymde';
-import _ from 'lodash';
+import {each} from 'lodash';
 
 export default class EasyMdeEditor {
 
     static init() {
-        _.each(document.querySelectorAll('textarea[data-editor]'), (element) => {
+        each(document.querySelectorAll('textarea[data-editor]'), (element) => {
             const easyMde = new EasyMDE({
                 element,
                 forceSync: true,

@@ -147,11 +147,11 @@ export default class SweetAlert {
     }
 
     /**
-     * @param {string} title
+     * @param {string|null} title
      * @param {string|null} html
      * @param {Object} config
      */
-    static toastError(title, html = null, config = {}) {
+    static toastError(title = app.notify.unexpected, html = null, config = {}) {
         return toastConfig.fire({icon: 'error', title, html, ...config});
     }
 

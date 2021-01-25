@@ -10,9 +10,9 @@
         @if($brick)
             @include('components.admin.table.drag-and-drop')
             <div data-sortable
-                 data-sortable-container-selector="#carousel-brick-slides-table tbody"
-                 data-sortable-elements-selector="tr"
-                 data-sortable-reorder-url="{{ route('brick.carousel.slides.reorder') }}">
+                 data-draggable-container="#carousel-brick-slides-table tbody"
+                 data-draggable-items="tr"
+                 data-reorder-url="{{ route('brick.carousel.slides.reorder') }}">
                 {{ $table }}
             </div>
         @else

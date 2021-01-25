@@ -1,3 +1,4 @@
+// More information on https://momentjs.com/
 export default class Moment {
 
     static configure() {

@@ -8,6 +8,10 @@ use Illuminate\Validation\Rule;
 
 class FileUpdateRequest extends FormRequest
 {
+    /**
+     * @return array
+     * @throws \Okipa\MediaLibraryExt\Exceptions\CollectionNotFound
+     */
     public function rules(): array
     {
         $rules = [

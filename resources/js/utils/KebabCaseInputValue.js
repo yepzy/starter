@@ -12,7 +12,6 @@ export default class KebabCaseInputValue {
 
     static init() {
         each(document.querySelectorAll('[data-kebabcase]'), (element) => {
-            console.log(element);
             element.addEventListener('propertychange', () => convertValueToKebabCase(element));
             element.addEventListener('change', () => convertValueToKebabCase(element));
             element.addEventListener('keyup', () => convertValueToKebabCase(element));
