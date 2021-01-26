@@ -23,7 +23,7 @@ class ArticleStoreRequest extends SeoRequest
                 app(NewsArticle::class)->getMediaValidationRules('illustrations')
             ),
             'category_ids' => ['required', 'array', Rule::in(NewsCategory::pluck('id'))],
-            'published_at' => ['required', 'date_format:Y-m-d H:i'],
+            'published_at' => ['required', 'date'],
             'active' => ['required', 'boolean'],
         ];
         $localizedRules = localizeRules([
@@ -45,10 +45,5 @@ class ArticleStoreRequest extends SeoRequest
     {
         parent::prepareForValidation();
         $this->merge(['active' => (bool) $this->active]);
-    }
-
-    public function messages(): array
-    {
-        return [];
     }
 }

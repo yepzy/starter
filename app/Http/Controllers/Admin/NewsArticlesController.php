@@ -64,6 +64,7 @@ class NewsArticlesController extends Controller
 
     public function edit(NewsArticle $article): View
     {
+        //dd($article->published_at->toDateTimeImmutable());
         SEOTools::setTitle(__('breadcrumbs.parent.edit', [
             'parent' => __('News'),
             'entity' => __('Articles'),

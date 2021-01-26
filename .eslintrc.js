@@ -13,7 +13,6 @@ module.exports = {
         'Swal': true,
         'app': true,
         '$': true,
-        'moment': true,
         'cookieconsent': true
     },
     'rules': {

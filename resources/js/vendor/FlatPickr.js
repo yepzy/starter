@@ -1,5 +1,4 @@
 // More information on https://github.com/flatpickr/flatpickr
-
 import flatpickr from 'flatpickr';
 import {French} from 'flatpickr/dist/l10n/fr.js';
 
@@ -11,9 +10,9 @@ const localize = () => {
         flatpickr.localize(French);
         altFormat = 'j F Y - H:i';
         time_24hr = true;
-        return;
+        return false;
     }
-    altFormat = 'F j, Y - H:i';
+    altFormat = 'F j, Y - h:i K';
     time_24hr = false;
 };
 
@@ -29,8 +28,8 @@ export default class FlatPickr {
             altInput: true,
             altFormat,
             enableTime: true,
-            dateFormat: 'Y-m-d H:i',
-            time_24hr
+            dateFormat: 'Z',
+            time_24hr,
         });
     }
 

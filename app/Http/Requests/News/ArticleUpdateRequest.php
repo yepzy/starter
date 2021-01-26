@@ -20,7 +20,7 @@ class ArticleUpdateRequest extends SeoRequest
         $rules = [
             'illustration' => app(NewsArticle::class)->getMediaValidationRules('illustrations'),
             'category_ids' => ['required', 'array', Rule::in(NewsCategory::pluck('id'))],
-            'published_at' => ['required', 'date_format:Y-m-d H:i'],
+            'published_at' => ['required', 'date'],
             'active' => ['required', 'boolean'],
         ];
         $localizedRules = localizeRules([

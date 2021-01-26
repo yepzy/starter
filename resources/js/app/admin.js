@@ -9,7 +9,6 @@ import KebabCaseInputValue from '../utils/KebabCaseInputValue';
 import SnakeCaseInputValue from '../utils/SnakeCaseInputValue';
 import FlatPickr from '../vendor/FlatPickr';
 import bsCustomFileInput from 'bs-custom-file-input';
-import Moment from '../vendor/Moment';
 import ConfirmationRequest from '../utils/ConfirmationRequest';
 
 // Scripts that will be used on the app admin panel.
@@ -19,7 +18,6 @@ require('./common');
 
 // Vendor
 bsCustomFileInput.init();
-Moment.init();
 EasyMdeEditor.init();
 MasonryGrid.init();
 Html5Sortable.init();

@@ -75,7 +75,7 @@
             <div class="col-xl-6 mb-3">
                 <x-admin.forms.card title="{{ __('Publication') }}">
                     {{ inputText()->name('published_at')
-                        ->value(optional($article)->published_at ?: now())
+                        ->value(optional(optional($article)->published_at)->toW3cString() ?: now()->toW3cString())
                         ->caption(__('You can set a future publication date: this article will not be published until this date is reached.'))
                         ->prepend('<i class="fas fa-calendar-alt"></i>')
                         ->componentHtmlAttributes(['required', 'data-datetime-picker']) }}
