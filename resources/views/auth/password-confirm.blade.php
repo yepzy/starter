@@ -1,5 +1,10 @@
 @extends('layouts.admin.auth')
 @section('content')
+    @if($errors->any())
+        @php
+            toast(__('notify.invalid'), 'error');
+        @endphp
+    @endif
     @include('components.common.multilingual.lang-switcher', [
         'containerClasses' => ['text-right', 'mb-3'],
         'dropdownClass' => ['dropdown-menu-right'],

@@ -7,6 +7,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 abstract class SeoRequest extends FormRequest
 {
+    /**
+     * @return array
+     * @throws \Okipa\MediaLibraryExt\Exceptions\CollectionNotFound
+     */
     public function rules(): array
     {
         return array_merge([

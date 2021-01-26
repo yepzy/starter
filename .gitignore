@@ -16,7 +16,6 @@
 /public/mix-manifest.json
 /public/sitemap.xml
 /public/storage
-/public/vendor
 
 # Storage
 /storage/*.key

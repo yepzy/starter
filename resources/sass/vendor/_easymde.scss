@@ -1,7 +1,15 @@
 // Imports
 @import '~easymde/dist/easymde.min.css';
 
-// Sass
+
+textarea.is-invalid + .EasyMDEContainer .CodeMirror {
+    border-color: $danger;
+}
+
+textarea.is-valid + .EasyMDEContainer .CodeMirror {
+    border-color: $success;
+}
+
 .editor-toolbar {
     @extend .w-100;
 }

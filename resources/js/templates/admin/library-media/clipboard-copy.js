@@ -1,4 +1,9 @@
-import notify from '../../../utils/notify';
+import {each, get} from 'lodash';
+import axios from 'axios';
+import Axios from '../../../vendor/Axios';
+import SweetAlert from '../../../vendor/SweetAlert';
+
+Axios.configure(axios);
 
 const copyToClipboard = (string) => {
     const el = document.createElement('textarea');
@@ -9,20 +14,24 @@ const copyToClipboard = (string) => {
     document.body.removeChild(el);
 };
 
-$('.clipboard-copy').click(function (e) {
-    e.preventDefault();
-    const libraryMediaId = $(this).data('libraryMediaId');
-    const type = $(this).data('type');
-    const locale = $(this).closest('.component-container').find('.component').data('locale');
-    let route = app.libraryMedia.clipboardCopy.route;
-    route = route.replace('__ID__', libraryMediaId);
-    route = route.replace('__TYPE__', type);
-    route = route.replace('__LOCALE__', locale || '');
-    axios.get(route).then((response) => {
-        copyToClipboard(response.data.clipboardContent);
-        notify.toastSuccess(response.data.message);
-    }).catch((error) => {
-        console.error(error);
-        notify.toastError(error.response.data.message);
+each(document.querySelectorAll('.clipboard-copy'), (element) => {
+    element.addEventListener('click', (e) => {
+        e.preventDefault();
+        const libraryMediaId = element.dataset.libraryMediaId;
+        const type = element.dataset.type;
+        const locale = element.closest('.component-container').querySelector('.component').dataset.locale;
+        let route = app.libraryMedia.clipboardCopy.route;
+        route = route.replace('__ID__', libraryMediaId);
+        route = route.replace('__TYPE__', type);
+        route = route.replace('__LOCALE__', locale || '');
+        axios.get(route)
+            .then((response) => {
+                copyToClipboard(response.data.clipboardContent);
+                SweetAlert.toastSuccess(response.data.message);
+            })
+            .catch((error) => {
+                const errorMessage = get(error, 'response.data.message');
+                errorMessage ? SweetAlert.toastError(errorMessage) : SweetAlert.toastError();
+            });
     });
 });

@@ -14,7 +14,7 @@ if (Features::enabled(Features::twoFactorAuthentication())) {
             ->name('two-factor.login');
     }
     Route::post(Lang::uri('/two-factor-challenge'), [TwoFactorAuthenticatedSessionController::class, 'store'])
-        ->middleware(array_filter(['guest', $twoFactorLimiter ? 'throttle:'.$twoFactorLimiter : null]))
+        ->middleware(array_filter(['guest', $twoFactorLimiter ? 'throttle:' . $twoFactorLimiter : null]))
         ->name('two-factor.login.store');
     $twoFactorMiddleware = Features::optionEnabled(Features::twoFactorAuthentication(), 'confirmPassword')
         ? ['auth', 'password.confirm']

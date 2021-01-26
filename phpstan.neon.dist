@@ -15,7 +15,7 @@ parameters:
         - '#Call to an undefined method Illuminate\\Http\\Request::validated\(\)#'
         - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Builder::ordered\(\)#'
 
-    excludes_analyse:
+    excludePaths:
         - ./*/*/FileToBeExcluded.php
 
     checkMissingIterableValueType: true

@@ -136,8 +136,8 @@ class LibraryMediaFilesController extends Controller
                 $returnCode = Response::HTTP_OK;
                 $clipboardContent = $file->getFirstMedia('media')->getFullUrl();
                 $message = __('Clipboard copy: :name - :type.', [
-                    'type' => __('URL'),
                     'name' => $file->getTranslation('name', $locale),
+                    'type' => __('URL'),
                 ]);
                 break;
             case 'display':
@@ -153,8 +153,8 @@ class LibraryMediaFilesController extends Controller
                     compact('file', 'media', 'locale')
                 )->toHtml());
                 $message = __('Clipboard copy: :name - :type.', [
-                    'type' => __('HTML Display'),
                     'name' => $file->getTranslation('name', $locale),
+                    'type' => __('HTML Display'),
                 ]);
                 break;
             case 'download':
@@ -164,8 +164,8 @@ class LibraryMediaFilesController extends Controller
                     compact('file', 'media', 'locale')
                 )->toHtml());
                 $message = __('Clipboard copy: :name - :type.', [
-                    'type' => __('HTML Download'),
                     'name' => $file->getTranslation('name', $locale),
+                    'type' => __('HTML Download'),
                 ]);
                 break;
             default:

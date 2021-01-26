@@ -17,7 +17,7 @@
             <a class="nav-link"
                href="{{ route('home.page.show') }}"
                title="{{ __('Back to the front') }}"
-               data-new-window>
+               target="_blank">
                 <i class="fas fa-undo fa-fw"></i>
                 {{ __('Back to the front') }}
             </a>

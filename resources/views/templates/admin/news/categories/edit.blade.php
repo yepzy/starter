@@ -24,7 +24,7 @@
                     ->prepend('<i class="fas fa-external-link-square-alt fa-fw"></i>')
                     ->label(__('Display'))
                     ->componentClasses(['btn-success'])
-                    ->componentHtmlAttributes(['data-new-window'])
+                    ->componentHtmlAttributes(['target' => '_blank'])
                     ->containerClasses(['ml-3']) }}
             @endif
         </div>

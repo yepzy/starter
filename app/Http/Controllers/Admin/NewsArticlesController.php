@@ -6,20 +6,26 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\News\ArticleStoreRequest;
 use App\Http\Requests\News\ArticleUpdateRequest;
 use App\Models\News\NewsArticle;
+use App\Tables\NewsArticlesTable;
 use Artesaos\SEOTools\Facades\SEOTools;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class NewsArticlesController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\View\View
+     * @throws \ErrorException
+     */
     public function index(): View
     {
         SEOTools::setTitle(__('breadcrumbs.parent.index', [
             'parent' => __('News'),
             'entity' => __('Articles'),
         ]));
+        $table = (new NewsArticlesTable())->setup();
 
-        return view('templates.admin.news.articles.index');
+        return view('templates.admin.news.articles.index', compact('table'));
     }
 
     public function create(): View

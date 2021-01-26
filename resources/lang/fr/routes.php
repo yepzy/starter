@@ -40,5 +40,6 @@ return [
     'user' => 'utilisateur',
     'parameters' => 'parametres',
     'send' => 'envoi',
+    'reorder' => 'reorganiser',
 
 ];

@@ -22,7 +22,7 @@ class InsertJavascript
         share([
             'locale' => app()->getLocale(),
             'notify' => __('notify'),
-            'cookieConsent' => __('cookieconsent'),
+            'cookieconsent' => __('cookieconsent'),
             'gdprPage' => ['route' => $gdprPage ? route('page.show', $gdprPage) : null],
         ]);
 

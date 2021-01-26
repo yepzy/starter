@@ -10,12 +10,11 @@ module.exports = {
         'sourceType': 'module'
     },
     'globals': {
-        '_': true,
         'Swal': true,
         'app': true,
         '$': true,
         'moment': true,
-        'axios': true,
+        'cookieconsent': true
     },
     'rules': {
         'max-len': [2, 120],

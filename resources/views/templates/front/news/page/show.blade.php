@@ -6,7 +6,7 @@
     <div class="container my-3">
         <a href="{{ route('feeds.news') }}"
            title="{{ __(config('feed.feeds.news.title')) }}"
-           data-new-window>
+           target="_blank">
             <span class="fa-stack text-primary">
                 <i class="fas fa-circle fa-stack-2x"></i>
                 <i class="fas fa-rss fa-stack-1x fa-inverse"></i>

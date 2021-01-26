@@ -41,7 +41,7 @@ return [
     'distinct' => 'Le champ :attribute possède une valeur dupliquée.',
     'email' => 'Le champ :attribute doit être une adresse email valide.',
     'ends_with' => 'Le champ :attribute doit terminer par l\'une des valeurs suivantes :values.',
-    'exists' => 'Le champ :attribute n\'existe pas.',
+    'exists' => 'Le champ :attribute sélectionné est invalide.',
     'file' => 'Le champ :attribute doit être un fichier.',
     'filled' => 'Le champ :attribute doit avoir une valeur.',
     'gt' => [
@@ -195,6 +195,7 @@ return [
         'brickable_type' => 'Type brique',
         'text' => 'Texte',
         'text_left' => 'Texte gauche',
+        'text_right' => 'Texte droite',
         'image_right' => 'Image droite',
         'invert_order' => 'Inverser ordre',
         'image' => 'Image',

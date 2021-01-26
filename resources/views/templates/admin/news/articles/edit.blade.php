@@ -25,7 +25,7 @@
                     ->prepend('<i class="fas fa-external-link-square-alt fa-fw"></i>')
                     ->label(__('Display'))
                     ->componentClasses(['btn-success'])
-                    ->componentHtmlAttributes(['data-new-window'])
+                    ->componentHtmlAttributes(['target' => '_blank'])
                     ->containerClasses(['ml-3']) }}
             @endif
         </div>
@@ -75,7 +75,7 @@
             <div class="col-xl-6 mb-3">
                 <x-admin.forms.card title="{{ __('Publication') }}">
                     {{ inputText()->name('published_at')
-                        ->value(($article->published_at ?? now())->format('d/m/Y H:i'))
+                        ->value(optional($article)->published_at ?: now())
                         ->caption(__('You can set a future publication date: this article will not be published until this date is reached.'))
                         ->prepend('<i class="fas fa-calendar-alt"></i>')
                         ->componentHtmlAttributes(['required', 'data-datetime-picker']) }}

@@ -192,9 +192,17 @@ return [
         'google_tag_manager_id' => 'Google tag manager id',
         'brickable_type' => 'Brickable type',
         'nav_title' => 'Navigation title',
+        'text' => 'Text',
+        'text_left' => 'Left text',
+        'text_right' => 'Right text',
+        'image_right' => 'Right image',
+        'invert_order' => 'Invert order',
+        'image' => 'Image',
+        'label' => 'Label',
+        'caption' => 'Caption',
+        'full_width' => 'Full width',
         'code' => 'Code',
         'recovery_code' => 'Recovery code',
-        'text' => 'Text',
     ],
 
 ];
