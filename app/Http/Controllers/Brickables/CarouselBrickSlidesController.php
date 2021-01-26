@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Brickables;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Brickables\Carousel\CarouselSlidesReorderRequest;
-use App\Http\Requests\Brickables\Carousel\CarouselSlidesReorganizeRequest;
 use App\Http\Requests\Brickables\Carousel\CarouselSlideStoreRequest;
 use App\Http\Requests\Brickables\Carousel\CarouselSlideUpdateRequest;
 use App\Models\Brickables\CarouselBrick;

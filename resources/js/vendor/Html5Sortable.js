@@ -15,9 +15,9 @@ Axios.configure(axios);
 const getDraggableContainer = (sortableElement) => {
     // By default, the `data-sortable` HTML element will be considered as the draggable container.
     // Declaring `data-draggable-container` will override this behaviour by targeting a custom draggable container.
-    const sortableContainerSelector = sortableElement.dataset.sortableContainerSelector;
-    return sortableContainerSelector
-        ? sortableElement.querySelector(sortableContainerSelector)
+    const draggableContainer = sortableElement.dataset.draggableContainer;
+    return draggableContainer
+        ? sortableElement.querySelector(draggableContainer)
         : sortableElement;
 };
 
