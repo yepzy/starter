@@ -9,6 +9,7 @@ class SettingsUpdateRequest extends FormRequest
 {
     /**
      * @return array
+     * @throws \Okipa\MediaLibraryExt\Exceptions\CollectionNotFound
      * @throws \Exception
      */
     public function rules(): array

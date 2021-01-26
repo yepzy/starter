@@ -12,6 +12,10 @@ class UserStoreRequest extends FormRequest
 {
     use PasswordValidationRules;
 
+    /**
+     * @return array
+     * @throws \Okipa\MediaLibraryExt\Exceptions\CollectionNotFound
+     */
     public function rules(): array
     {
         return [

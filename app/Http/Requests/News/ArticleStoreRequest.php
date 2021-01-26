@@ -17,7 +17,6 @@ class ArticleStoreRequest extends SeoRequest
      */
     public function rules(): array
     {
-//        dd($this->category_ids, NewsCategory::pluck('id'));
         $rules = [
             'illustration' => array_merge(
                 ['required'],

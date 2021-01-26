@@ -7,6 +7,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CarouselSlideUpdateRequest extends FormRequest
 {
+    /**
+     * @return array
+     * @throws \Okipa\MediaLibraryExt\Exceptions\CollectionNotFound
+     */
     public function rules(): array
     {
         $rules = [
