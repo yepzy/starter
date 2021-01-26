@@ -4,12 +4,7 @@
 @import '../vendor/fontawesome';
 @import '../vendor/sweetalert';
 @import '../vendor/cookieconsent';
-@import '../vendor/easymde';
-@import '../vendor/lightbox';
-@import '../vendor/air-datepicker';
+@import '../vendor/glightbox';
 
-// Bootstrap overrides
-@import '../bootstrap-overrides/common/dropdown';
-@import '../bootstrap-overrides/common/form-group';
-@import '../bootstrap-overrides/common/link';
-@import '../bootstrap-overrides/common/file-input';
+// Utils
+@import '../utils/input-required';

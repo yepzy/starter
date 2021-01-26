@@ -7,7 +7,7 @@ use App\Models\News\NewsCategory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class PageAccessTest extends TestCase
+class PagesAccessTest extends TestCase
 {
     use RefreshDatabase;
 

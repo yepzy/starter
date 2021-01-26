@@ -8,7 +8,7 @@ import {each} from 'lodash';
 const autoFill = (fromInputValue, toInput, updated) => {
     if (! updated) {
         toInput.value = fromInputValue;
-        toInput.dispatchEvent(new Event('change'));
+        toInput.dispatchEvent(new Event('input'));
     }
 };
 
@@ -22,9 +22,6 @@ export default class AutoFillInputFrom {
                 ? fromInput
                 : document.querySelector(element.dataset.autofillFrom + '-' + (element.dataset.locale || app.locale));
             let updated = false;
-            fromInput.addEventListener('propertychange', () => autoFill(fromInput.value, element, updated));
-            fromInput.addEventListener('change', () => autoFill(fromInput.value, element, updated));
-            fromInput.addEventListener('keyup', () => autoFill(fromInput.value, element, updated));
             fromInput.addEventListener('input', () => autoFill(fromInput.value, element, updated));
             fromInput.addEventListener('paste', () => autoFill(fromInput.value, element, updated));
             fromInput.addEventListener('focusout', () => {
@@ -33,11 +30,7 @@ export default class AutoFillInputFrom {
                 }
             });
             element.addEventListener('focusout', () => {
-                if (element.value) {
-                    updated = true;
-                    return false;
-                }
-                updated = false;
+                updated = !! element.value;
             });
         });
     }

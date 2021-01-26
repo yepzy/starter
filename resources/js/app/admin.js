@@ -7,18 +7,26 @@ import UpperCaseInputValue from '../utils/UpperCaseInputValue';
 import TitleCaseInputValue from '../utils/TitleCaseInputValue';
 import KebabCaseInputValue from '../utils/KebabCaseInputValue';
 import SnakeCaseInputValue from '../utils/SnakeCaseInputValue';
+import FlatPickr from '../vendor/FlatPickr';
+import bsCustomFileInput from 'bs-custom-file-input';
+import Moment from '../vendor/Moment';
+import ConfirmationRequest from '../utils/ConfirmationRequest';
 
-// Scripts that will be used globally on the admin panel.
+// Scripts that will be used on the app admin panel.
 
 // Common global scripts
 require('./common');
 
 // Vendor
+bsCustomFileInput.init();
+Moment.configure();
 EasyMdeEditor.init();
 MasonryGrid.init();
 Html5Sortable.init();
+FlatPickr.init();
 
 // Utils
+ConfirmationRequest.init();
 AutoFillInputFrom.init();
 LowerCaseInputValue.init();
 UpperCaseInputValue.init();

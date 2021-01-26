@@ -17,7 +17,6 @@ export default class LowerCaseInputValue {
             element.addEventListener('keyup', () => convertValueToLowerCase(element));
             element.addEventListener('input', () => convertValueToLowerCase(element));
             element.addEventListener('paste', () => convertValueToLowerCase(element));
-            element.addEventListener('script', () => convertValueToLowerCase(element));
         });
     }
 

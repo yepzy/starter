@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f702c87f1f115f7b2cfaa98d4806f92",
+    "content-hash": "8241e6e5ac61d0c56e215c5fa80388a7",
     "packages": [
         {
             "name": "0.0.0/composer-include-files",
@@ -3753,16 +3753,16 @@
         },
         {
             "name": "okipa/laravel-bootstrap-components",
-            "version": "dev-master",
+            "version": "5.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Okipa/laravel-bootstrap-components.git",
-                "reference": "4fb85378d0cdb186204d7a1e16c8b29f30164dd7"
+                "reference": "51b49fcef0544967b7e30cd119ec538371bd0cc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Okipa/laravel-bootstrap-components/zipball/4fb85378d0cdb186204d7a1e16c8b29f30164dd7",
-                "reference": "4fb85378d0cdb186204d7a1e16c8b29f30164dd7",
+                "url": "https://api.github.com/repos/Okipa/laravel-bootstrap-components/zipball/51b49fcef0544967b7e30cd119ec538371bd0cc5",
+                "reference": "51b49fcef0544967b7e30cd119ec538371bd0cc5",
                 "shasum": ""
             },
             "require": {
@@ -3777,7 +3777,6 @@
                 "phpmd/phpmd": "^2.9",
                 "squizlabs/php_codesniffer": "^3.5"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -3821,7 +3820,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Okipa/laravel-bootstrap-components/issues",
-                "source": "https://github.com/Okipa/laravel-bootstrap-components/tree/master"
+                "source": "https://github.com/Okipa/laravel-bootstrap-components/tree/5.0.2"
             },
             "funding": [
                 {
@@ -3833,7 +3832,7 @@
                     "type": "ko_fi"
                 }
             ],
-            "time": "2021-01-25T15:16:57+00:00"
+            "time": "2021-01-26T11:59:12+00:00"
         },
         {
             "name": "okipa/laravel-brickables",
@@ -6343,16 +6342,16 @@
         },
         {
             "name": "spatie/image",
-            "version": "1.10.1",
+            "version": "1.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/image.git",
-                "reference": "6eaf45d61832c2396dd4b10cc81d9fce93a59e2d"
+                "reference": "12662673fbe649bffcd3a24188a404dc31fa118c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/image/zipball/6eaf45d61832c2396dd4b10cc81d9fce93a59e2d",
-                "reference": "6eaf45d61832c2396dd4b10cc81d9fce93a59e2d",
+                "url": "https://api.github.com/repos/spatie/image/zipball/12662673fbe649bffcd3a24188a404dc31fa118c",
+                "reference": "12662673fbe649bffcd3a24188a404dc31fa118c",
                 "shasum": ""
             },
             "require": {
@@ -6394,7 +6393,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/image/issues",
-                "source": "https://github.com/spatie/image/tree/1.10.1"
+                "source": "https://github.com/spatie/image/tree/1.10.2"
             },
             "funding": [
                 {
@@ -6406,7 +6405,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-01T20:42:11+00:00"
+            "time": "2021-01-26T07:53:19+00:00"
         },
         {
             "name": "spatie/image-optimizer",
@@ -11287,16 +11286,16 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v5.2.0",
+            "version": "v5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "aca954fd03414ba0dd85d7d8e42ba9b251893d1f"
+                "reference": "aca63581f380f63a492b1e3114604e411e39133a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/aca954fd03414ba0dd85d7d8e42ba9b251893d1f",
-                "reference": "aca954fd03414ba0dd85d7d8e42ba9b251893d1f",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/aca63581f380f63a492b1e3114604e411e39133a",
+                "reference": "aca63581f380f63a492b1e3114604e411e39133a",
                 "shasum": ""
             },
             "require": {
@@ -11371,7 +11370,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-01-13T10:00:08+00:00"
+            "time": "2021-01-25T15:34:13+00:00"
         },
         {
             "name": "nunomaduro/larastan",
@@ -14211,7 +14210,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "okipa/laravel-bootstrap-components": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,

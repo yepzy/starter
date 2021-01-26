@@ -10,9 +10,6 @@ class CarouselSlidesReorderRequest extends FormRequest
 {
     public function rules(): array
     {
-        return [
-            'ordered_ids' => ['required', 'array'],
-            'ordered_ids.*' => ['required', 'integer', Rule::exists(CarouselBrickSlide::class, 'id')],
-        ];
+        return ['ordered_ids' => ['required', 'array', Rule::in(CarouselBrickSlide::pluck('id'))]];
     }
 }
