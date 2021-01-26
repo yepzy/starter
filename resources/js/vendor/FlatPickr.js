@@ -7,16 +7,14 @@ let altFormat;
 let time_24hr;
 
 const localize = () => {
-    switch (app.locale) {
-        case 'fr':
-            flatpickr.localize(French);
-            altFormat = 'j F Y - H:i';
-            time_24hr = true;
-            break;
-        default:
-            altFormat = 'F j, Y - H:i';
-            time_24hr = false;
+    if (app.locale === 'fr') {
+        flatpickr.localize(French);
+        altFormat = 'j F Y - H:i';
+        time_24hr = true;
+        return;
     }
+    altFormat = 'F j, Y - H:i';
+    time_24hr = false;
 };
 
 export default class FlatPickr {

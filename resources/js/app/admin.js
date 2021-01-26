@@ -19,7 +19,7 @@ require('./common');
 
 // Vendor
 bsCustomFileInput.init();
-Moment.configure();
+Moment.init();
 EasyMdeEditor.init();
 MasonryGrid.init();
 Html5Sortable.init();

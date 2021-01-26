@@ -64,9 +64,8 @@ mix
         jquery: ['$', 'jQuery', 'window.jQuery'],
         'popper.js': ['Popper', 'window.Popper'],
         cookieconsent: ['cookieconsent', 'window.cookieconsent'],
-        'moment-timezone': ['moment', 'window.moment'],
     })
-    .extract(['bootstrap', 'jquery', 'popper.js', 'cookieconsent', 'moment-timezone'])
+    .extract(['bootstrap', 'jquery', 'popper.js', 'cookieconsent'])
     .sourceMaps()
     .version([
         'public/images/',
