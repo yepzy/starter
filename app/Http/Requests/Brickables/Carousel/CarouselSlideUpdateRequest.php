@@ -18,8 +18,8 @@ class CarouselSlideUpdateRequest extends FormRequest
             'active' => ['required', 'boolean'],
         ];
         $localizedRules = localizeRules([
-            'label' => ['required', 'string', 'max:255'],
-            'caption' => ['required', 'string', 'max:255'],
+            'label' => ['nullable', 'string', 'max:255'],
+            'caption' => ['nullable', 'string', 'max:255'],
         ]);
 
         return array_merge($rules, $localizedRules);
