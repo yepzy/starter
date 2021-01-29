@@ -23,12 +23,13 @@ class Settings extends Model implements HasMedia
     protected $fillable = [
         'email',
         'phone_number',
-        'location',
         'address',
         'zip_code',
         'city',
         'facebook',
+        'twitter',
         'instagram',
+        'youtube',
         'google_tag_manager_id',
     ];
 
