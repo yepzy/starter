@@ -155,7 +155,7 @@ phpunit:
   before_script:
     - apt update && apt install -y git libfreetype6-dev libjpeg62-turbo-dev libpng-dev libwebp-dev exif
     - docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp
-    - docker-php-ext-install gd exif pdo_mysql
+    - docker-php-ext-install intl gd exif pdo_mysql
     - pecl install pcov
     - docker-php-ext-enable pcov
   script:
