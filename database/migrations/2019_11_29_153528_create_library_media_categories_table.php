@@ -15,7 +15,7 @@ class CreateLibraryMediaCategoriesTable extends Migration
     {
         Schema::create('library_media_categories', function (Blueprint $table) {
             $table->id();
-            // todo: change column type with monolingual app
+            // ToDo: change column type with monolingual app
             $table->json('name');
             $table->timestamps();
         });

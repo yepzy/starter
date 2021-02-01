@@ -17,9 +17,9 @@ class CreateCarouselBrickSlidesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('brick_id');
             $table->foreign('brick_id')->references('id')->on('bricks')->onDelete('cascade');
-            // todo: change column type with monolingual app
+            // ToDo: change column type with monolingual app
             $table->json('label');
-            // todo: change column type with monolingual app
+            // ToDo: change column type with monolingual app
             $table->json('caption');
             $table->unsignedInteger('position');
             $table->boolean('active');
