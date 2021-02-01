@@ -49,6 +49,7 @@
         "nunomaduro/collision": "^5.0",
         "nunomaduro/larastan": "^0.6",
         "phpmd/phpmd": "^2.0",
+        "phpstan/phpstan-mockery": "^0.12.11",
         "phpunit/phpunit": "^9.3.3",
         "roave/security-advisories": "dev-master",
         "squizlabs/php_codesniffer": "^3.0"
@@ -109,8 +110,8 @@
             "vendor/bin/phpcbf",
             "vendor/bin/phpcs",
             "vendor/bin/phpmd app,config,database,routes text phpmd.xml",
-            "vendor/bin/phpstan analyse --memory-limit=-1 --error-format=table",
-            "@php artisan test --parallel"
+            "vendor/bin/phpstan analyse --memory-limit=-1",
+            "@php artisan test --parallel --colors --coverage-text"
         ]
     },
     "minimum-stability": "dev",

@@ -16,9 +16,10 @@ class LibraryMediaFileFactory extends Factory
 
     public function definition(): array
     {
-        $faker = \Faker\Factory::create();
-
-        return ['name' => ['fr' => Str::title($faker->word), 'en' => Str::title($faker->word)]];
+        return ['name' => [
+            'fr' => Str::title($this->faker->word),
+            'en' => Str::title($this->faker->word)
+        ]];
     }
 
     public function configure(): self
