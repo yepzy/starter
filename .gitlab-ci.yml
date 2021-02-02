@@ -132,7 +132,7 @@ phpstan:
     - apt update && apt install -y git
     - docker-php-ext-install mysqli pdo pdo_mysql
   script:
-    - vendor/bin/phpstan analyse --error-format=table --memory-limit=2048M
+    - vendor/bin/phpstan analyse --memory-limit=2G
     - exit $?
   except:
     refs:
