@@ -6,12 +6,15 @@ use App\Models\News\NewsArticle;
 use App\Models\News\NewsCategory;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class NewsArticleFactory extends Factory
 {
     /** @var string */
     protected $model = NewsArticle::class;
+
+    protected static ?Collection $categories = null;
 
     protected array $images = ['1-2560x1440.jpg', '2-2560x1769.jpg'];
 
@@ -60,8 +63,6 @@ EOT;
                     'en' => Str::slug($page->getTranslation('title', 'en')),
                 ];
         })->afterCreating(function (NewsArticle $newsArticle) {
-            $categoryIds = NewsCategory::inRandomOrder()->get()->first()->pluck('id');
-            $newsArticle->categories()->sync($categoryIds);
             $newsArticle->saveSeoMeta([
                 'meta_title' => [
                     'fr' => $newsArticle->getTranslation('title', 'fr'),
@@ -72,6 +73,15 @@ EOT;
                     'en' => $this->faker->text(150),
                 ],
             ]);
+        });
+    }
+
+    public function withCategory(): self
+    {
+        return $this->afterCreating(function (NewsArticle $newsArticle) {
+            self::$categories = self::$categories ?: NewsCategory::get();
+            $categoryId = self::$categories->random(1)->pluck('id');
+            $newsArticle->categories()->sync($categoryId);
         });
     }
 

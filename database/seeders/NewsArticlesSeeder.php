@@ -9,6 +9,6 @@ class NewsArticlesSeeder extends Seeder
 {
     public function run(): void
     {
-        NewsArticle::factory()->withMedia()->count(5)->create();
+        NewsArticle::factory()->withCategory()->withMedia()->count(5)->create();
     }
 }

@@ -9,6 +9,6 @@ class LibraryMediaFilesSeeder extends Seeder
 {
     public function run(): void
     {
-        LibraryMediaFile::factory()->count(5)->create();
+        LibraryMediaFile::factory()->withCategory()->withMedia()->count(5)->create();
     }
 }

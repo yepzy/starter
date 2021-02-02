@@ -9,7 +9,7 @@ class SettingsSeeder extends Seeder
 {
     public function run(): void
     {
-        // Todo: set settings in seeder.
+        // Todo: set client settings in seeder `create` method.
         Settings::factory()->withMedia()->create();
     }
 }

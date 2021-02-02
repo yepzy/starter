@@ -41,8 +41,6 @@ EOT;
     public function definition(): array
     {
         return [
-            'unique_key' => null,
-            'slug' => null,
             'nav_title' => ['fr' => $this->faker->catchPhrase, 'en' => $this->faker->catchPhrase],
             'active' => true,
         ];
@@ -58,7 +56,12 @@ EOT;
                     'fr' => Str::slug($page->getTranslation('nav_title', 'fr')),
                     'en' => Str::slug($page->getTranslation('nav_title', 'en')),
                 ];
-        })->afterCreating(function (Page $page) {
+        });
+    }
+
+    public function withBricks(): self
+    {
+        return $this->afterCreating(function (Page $page) {
             $navTitle = [
                 'fr' => $page->getTranslation('nav_title', 'fr'),
                 'en' => $page->getTranslation('nav_title', 'en'),
