@@ -1,11 +1,5 @@
 const mix = require('laravel-mix');
 
-//// Fix found here to avoid custom files versioning issue : https://github.com/JeffreyWay/laravel-mix/issues/1193.
-//mix.copyDirectoryOutsideMixWorkflow = function (from, to) {
-//    new File(from).copyTo(new File(to).path());
-//    return this;
-//}.bind(mix);
-
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
