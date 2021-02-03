@@ -153,13 +153,16 @@ phpunit:
   dependencies:
     - composer
   before_script:
-    - apt update && apt install -y git libfreetype6-dev libjpeg62-turbo-dev libpng-dev libwebp-dev exif
-    - docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp
-    - docker-php-ext-install intl gd exif default-mysql-client
+    # Images management libraries are not used in test suites for now and have been disabled.
+    # We can re-enable them for feature testing purpose if necessary.
+    - apt update && apt install -y git libicu-dev #libfreetype6-dev libjpeg62-turbo-dev libpng-dev libwebp-dev exif
+    #- docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp
+    - docker-php-ext-install intl pdo_mysql #gd exif default-mysql-client
     - pecl install pcov
     - docker-php-ext-enable pcov
     - mkdir -p coverage/phpunit
     - echo "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%';" | mysql --user=root --password="$MYSQL_ROOT_PASSWORD" --host=mysql
+    - chown -R www-data:root .
   script:
     - php artisan test --parallel --coverage-text --log-junit=coverage/phpunit/junit.xml
   except:
