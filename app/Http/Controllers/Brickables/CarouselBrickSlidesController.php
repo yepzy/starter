@@ -67,7 +67,7 @@ class CarouselBrickSlidesController extends Controller
     public function update(CarouselSlideUpdateRequest $request, CarouselBrickSlide $slide): RedirectResponse
     {
         $slide->update($request->validated());
-        if ($request->file('images')) {
+        if ($request->file('image')) {
             $slide->addMediaFromRequest('image')->toMediaCollection('images');
         }
 
