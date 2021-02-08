@@ -41,6 +41,7 @@ class CarouselBrickSlide extends Model implements HasMedia, Sortable
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('images')
+            ->singleFile()
             ->acceptsMimeTypes(['image/webp', 'image/jpeg', 'image/png'])
             ->registerMediaConversions(function (Media $media = null) {
                 $this->addMediaConversion('containerized')
