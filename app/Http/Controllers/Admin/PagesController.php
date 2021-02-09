@@ -47,7 +47,7 @@ class PagesController extends Controller
         $page->saveSeoMetaFromRequest($request);
         pages(true);
 
-        return redirect()->route('pages.index')->with('toast_success', __('notifications.orphan.created', [
+        return redirect()->route('pages.index')->with('toast_success', __('crud.orphan.created', [
             'entity' => __('Pages'),
             'name' => $page->nav_title,
         ]));
@@ -76,7 +76,7 @@ class PagesController extends Controller
         $page->saveSeoMetaFromRequest($request);
         pages(true);
 
-        return redirect()->route('page.edit', $page)->with('toast_success', __('notifications.orphan.updated', [
+        return redirect()->route('page.edit', $page)->with('toast_success', __('crud.orphan.updated', [
             'entity' => __('Pages'),
             'name' => $page->nav_title,
         ]));
@@ -93,7 +93,7 @@ class PagesController extends Controller
         $page->delete();
         pages(true);
 
-        return back()->with('toast_success', __('notifications.orphan.destroyed', [
+        return back()->with('toast_success', __('crud.orphan.destroyed', [
             'entity' => __('Pages'),
             'name' => $page->nav_title,
         ]));

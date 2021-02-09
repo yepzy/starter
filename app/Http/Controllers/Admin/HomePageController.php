@@ -34,7 +34,7 @@ class HomePageController extends Controller
         $pageContent = PageContent::where('unique_key', 'home_page_content')->firstOrFail();
         $pageContent->saveSeoMetaFromRequest($request);
 
-        return back()->with('toast_success', __('notifications.orphan.updated', [
+        return back()->with('toast_success', __('crud.orphan.updated', [
             'entity' => __('Home'),
             'name' => __('Page'),
         ]));

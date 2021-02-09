@@ -45,7 +45,7 @@ class NewsCategoriesController extends Controller
         $category = NewsCategory::create($request->validated());
 
         return redirect()->route('news.categories.index')
-            ->with('toast_success', __('notifications.parent.created', [
+            ->with('toast_success', __('crud.parent.created', [
                 'parent' => __('News'),
                 'entity' => __('Categories'),
                 'name' => $category->name,
@@ -67,7 +67,7 @@ class NewsCategoriesController extends Controller
     {
         $category->update($request->validated());
 
-        return back()->with('toast_success', __('notifications.parent.updated', [
+        return back()->with('toast_success', __('crud.parent.updated', [
             'parent' => __('News'),
             'entity' => __('Categories'),
             'name' => $category->name,
@@ -78,7 +78,7 @@ class NewsCategoriesController extends Controller
     {
         $category->delete();
 
-        return back()->with('toast_success', __('notifications.parent.destroyed', [
+        return back()->with('toast_success', __('crud.parent.destroyed', [
             'parent' => __('News'),
             'entity' => __('Categories'),
             'name' => $category->name,

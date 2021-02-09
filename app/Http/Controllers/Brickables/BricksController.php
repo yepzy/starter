@@ -10,7 +10,7 @@ class BricksController extends \Okipa\LaravelBrickables\Controllers\BricksContro
 {
     protected function sendBrickCreatedResponse(Request $request, Brick $brick): RedirectResponse
     {
-        return redirect()->to($request->admin_panel_url)->with('toast_success', __('notifications.orphan.created', [
+        return redirect()->to($request->admin_panel_url)->with('toast_success', __('crud.orphan.created', [
             'entity' => $brick->model->getReadableClassName(),
             'name' => $brick->brickable->getLabel(),
         ]));
@@ -18,7 +18,7 @@ class BricksController extends \Okipa\LaravelBrickables\Controllers\BricksContro
 
     protected function sendBrickUpdatedResponse(Request $request, Brick $brick): RedirectResponse
     {
-        return redirect()->to($request->admin_panel_url)->with('toast_success', __('notifications.orphan.updated', [
+        return redirect()->to($request->admin_panel_url)->with('toast_success', __('crud.orphan.updated', [
             'entity' => $brick->model->getReadableClassName(),
             'name' => $brick->brickable->getLabel(),
         ]));
@@ -26,7 +26,7 @@ class BricksController extends \Okipa\LaravelBrickables\Controllers\BricksContro
 
     protected function sendBrickDestroyedResponse(Request $request, Brick $brick): RedirectResponse
     {
-        return redirect()->to($request->admin_panel_url)->with('toast_success', __('notifications.orphan.destroyed', [
+        return redirect()->to($request->admin_panel_url)->with('toast_success', __('crud.orphan.destroyed', [
             'entity' => $brick->model->getReadableClassName(),
             'name' => $brick->brickable->getLabel(),
         ]));

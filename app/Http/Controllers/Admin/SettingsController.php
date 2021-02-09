@@ -36,7 +36,7 @@ class SettingsController extends Controller
         }
         settings(true);
 
-        return back()->with('toast_success', __('notifications.name.updated', [
+        return back()->with('toast_success', __('crud.name.updated', [
             'name' => __('Settings'),
         ]));
     }

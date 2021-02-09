@@ -25,7 +25,7 @@ class UsersTable extends AbstractTable
             ])
             ->disableRows(fn(User $user) => $user->id === auth()->id())
             ->destroyConfirmationHtmlAttributes(fn(User $user) => [
-                'data-confirm' => __('notifications.orphan.destroyConfirm', [
+                'data-confirm' => __('crud.orphan.destroy_confirm', [
                     'entity' => __('Users'),
                     'name' => $user->full_name,
                 ]),

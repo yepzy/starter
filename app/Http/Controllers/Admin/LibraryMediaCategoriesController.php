@@ -45,7 +45,7 @@ class LibraryMediaCategoriesController extends Controller
         $category = LibraryMediaCategory::create($request->validated());
 
         return redirect()->route('libraryMedia.categories.index')
-            ->with('toast_success', __('notifications.parent.created', [
+            ->with('toast_success', __('crud.parent.created', [
                 'parent' => __('Media library'),
                 'entity' => __('Categories'),
                 'name' => $category->name,
@@ -67,7 +67,7 @@ class LibraryMediaCategoriesController extends Controller
     {
         $category->update($request->validated());
 
-        return back()->with('toast_success', __('notifications.parent.updated', [
+        return back()->with('toast_success', __('crud.parent.updated', [
             'parent' => __('Media library'),
             'entity' => __('Categories'),
             'name' => $category->name,
@@ -78,7 +78,7 @@ class LibraryMediaCategoriesController extends Controller
     {
         $category->delete();
 
-        return back()->with('toast_success', __('notifications.parent.destroyed', [
+        return back()->with('toast_success', __('crud.parent.destroyed', [
             'parent' => __('Media library'),
             'entity' => __('Categories'),
             'name' => $category->name,

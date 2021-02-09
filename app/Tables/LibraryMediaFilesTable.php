@@ -33,7 +33,7 @@ class LibraryMediaFilesTable extends AbstractTable
                 'destroy' => ['name' => 'libraryMedia.file.destroy'],
             ])
             ->destroyConfirmationHtmlAttributes(fn(LibraryMediaFile $file) => [
-                'data-confirm' => __('notifications.orphan.destroyConfirm', [
+                'data-confirm' => __('crud.orphan.destroy_confirm', [
                     'entity' => __('Media library'),
                     'name' => $file->name,
                 ]),

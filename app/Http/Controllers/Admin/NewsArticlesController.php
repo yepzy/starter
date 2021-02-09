@@ -55,7 +55,7 @@ class NewsArticlesController extends Controller
         $article->saveSeoMetaFromRequest($request);
 
         return redirect()->route('news.articles.index')
-            ->with('toast_success', __('notifications.parent.created', [
+            ->with('toast_success', __('crud.parent.created', [
                 'parent' => __('News'),
                 'entity' => __('Articles'),
                 'name' => $article->title,
@@ -91,7 +91,7 @@ class NewsArticlesController extends Controller
         $article->saveSeoMetaFromRequest($request);
 
         return redirect()->route('news.article.edit', $article)
-            ->with('toast_success', __('notifications.parent.updated', [
+            ->with('toast_success', __('crud.parent.updated', [
                 'parent' => __('News'),
                 'entity' => __('Articles'),
                 'name' => $article->title,
@@ -108,7 +108,7 @@ class NewsArticlesController extends Controller
     {
         $article->delete();
 
-        return back()->with('toast_success', __('notifications.parent.destroyed', [
+        return back()->with('toast_success', __('crud.parent.destroyed', [
             'parent' => __('News'),
             'entity' => __('Articles'),
             'name' => $article->title,

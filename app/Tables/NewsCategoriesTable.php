@@ -25,7 +25,7 @@ class NewsCategoriesTable extends AbstractTable
             ])
             ->destroyConfirmationHtmlAttributes(function (NewsCategory $category) {
                 return [
-                    'data-confirm' => __('notifications.parent.destroyConfirm', [
+                    'data-confirm' => __('crud.parent.destroy_confirm', [
                         'parent' => __('News'),
                         'entity' => __('Categories'),
                         'name' => $category->name,

@@ -59,7 +59,7 @@ class LibraryMediaFilesController extends Controller
         $file->addMediaFromRequest('media')->toMediaCollection('media');
 
         return redirect()->route('libraryMedia.files.index')
-            ->with('toast_success', __('notifications.orphan.created', [
+            ->with('toast_success', __('crud.orphan.created', [
                 'entity' => __('Media library'),
                 'name' => $file->name,
             ]));
@@ -98,7 +98,7 @@ class LibraryMediaFilesController extends Controller
             $file->addMediaFromRequest('media')->toMediaCollection('media');
         }
 
-        return back()->with('toast_success', __('notifications.orphan.updated', [
+        return back()->with('toast_success', __('crud.orphan.updated', [
             'entity' => __('Media library'),
             'name' => $file->name,
         ]));
@@ -114,7 +114,7 @@ class LibraryMediaFilesController extends Controller
     {
         $file->delete();
 
-        return back()->with('toast_success', __('notifications.orphan.destroyed', [
+        return back()->with('toast_success', __('crud.orphan.destroyed', [
             'entity' => __('Media library'),
             'name' => $file->name,
         ]));

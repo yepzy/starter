@@ -49,7 +49,7 @@ class CarouselBrickSlidesTables extends AbstractTable
                 $query->ordered();
             })->destroyConfirmationHtmlAttributes(function (CarouselBrickSlide $slide) {
                 return [
-                    'data-confirm' => __('notifications.parent.destroyConfirm', [
+                    'data-confirm' => __('crud.parent.destroy_confirm', [
                         'parent' => $this->carouselBrick->model->getReadableClassName() . ' > ' . __('Carousel'),
                         'entity' => __('Slides'),
                         'name' => $slide->label,

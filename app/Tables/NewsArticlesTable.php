@@ -27,7 +27,7 @@ class NewsArticlesTable extends AbstractTable
             ])
             ->destroyConfirmationHtmlAttributes(function (NewsArticle $article) {
                 return [
-                    'data-confirm' => __('notifications.parent.destroyConfirm', [
+                    'data-confirm' => __('crud.parent.destroy_confirm', [
                         'parent' => __('News'),
                         'entity' => __('Articles'),
                         'name' => $article->title,

@@ -45,7 +45,7 @@ class CarouselBrickSlidesController extends Controller
         return redirect()->route('brick.edit', [
             'brick' => $brick,
             'admin_panel_url' => $request->admin_panel_url,
-        ])->with('toast_success', __('notifications.parent.created', [
+        ])->with('toast_success', __('crud.parent.created', [
             'parent' => $brick->model->getReadableClassName() . ' > ' . __('Content bricks') . ' > ' . __('Carousel'),
             'entity' => __('Slides'),
             'name' => $slide->label,
@@ -71,7 +71,7 @@ class CarouselBrickSlidesController extends Controller
             $slide->addMediaFromRequest('image')->toMediaCollection('images');
         }
 
-        return back()->with('toast_success', __('notifications.parent.updated', [
+        return back()->with('toast_success', __('crud.parent.updated', [
             'parent' => $slide->brick->model->getReadableClassName() . ' > ' . __('Content bricks') . ' > '
                 . __('Carousel'),
             'entity' => __('Slides'),
@@ -87,7 +87,7 @@ class CarouselBrickSlidesController extends Controller
             ->pluck('id');
         CarouselBrickSlide::setNewOrder($orderedIds);
 
-        return back()->with('toast_success', __('notifications.parent.destroyed', [
+        return back()->with('toast_success', __('crud.parent.destroyed', [
             'parent' => $slide->brick->model->getReadableClassName() . ' > ' . __('Carousel'),
             'entity' => __('Slides'),
             'name' => $slide->label,

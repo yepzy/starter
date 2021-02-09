@@ -34,7 +34,7 @@ class ContactPageController extends Controller
         $pageContent = TitleDescriptionPageContent::where('unique_key', 'contact_page_content')->firstOrFail();
         $pageContent->saveSeoMetaFromRequest($request);
 
-        return back()->with('toast_success', __('notifications.orphan.updated', [
+        return back()->with('toast_success', __('crud.orphan.updated', [
             'entity' => __('Contact'),
             'name' => __('Page'),
         ]));

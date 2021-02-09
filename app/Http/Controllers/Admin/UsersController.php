@@ -58,7 +58,7 @@ class UsersController extends Controller
             $additionalMessage = ' ' . __('A password creation link has been sent.');
         }
 
-        return redirect()->route('users.index')->with('toast_success', __('notifications.orphan.created', [
+        return redirect()->route('users.index')->with('toast_success', __('crud.orphan.created', [
                 'entity' => __('Users'),
                 'name' => $user->full_name,
             ]) . $additionalMessage);
@@ -87,8 +87,8 @@ class UsersController extends Controller
         app(UsersService::class)->saveProfilePictureFromRequest($request, $user);
 
         return back()->with('toast_success', $user->id === Auth::id()
-            ? __('notifications.name.updated', ['name' => __('Profile')])
-            : __('notifications.orphan.updated', [
+            ? __('crud.name.updated', ['name' => __('Profile')])
+            : __('crud.orphan.updated', [
                 'entity' => __('Users'),
                 'name' => $user->full_name,
             ]));
@@ -104,7 +104,7 @@ class UsersController extends Controller
     {
         $user->delete();
 
-        return back()->with('toast_success', __('notifications.orphan.destroyed', [
+        return back()->with('toast_success', __('crud.orphan.destroyed', [
             'entity' => __('Users'),
             'name' => $user->full_name,
         ]));

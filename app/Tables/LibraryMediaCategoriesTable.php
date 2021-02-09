@@ -25,7 +25,7 @@ class LibraryMediaCategoriesTable extends AbstractTable
             ])
             ->destroyConfirmationHtmlAttributes(function (LibraryMediaCategory $category) {
                 return [
-                    'data-confirm' => __('notifications.parent.destroyConfirm', [
+                    'data-confirm' => __('crud.parent.destroy_confirm', [
                         'parent' => __('Media library'),
                         'entity' => __('Categories'),
                         'name' => $category->name,
