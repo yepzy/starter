@@ -26,7 +26,7 @@
         "okipa/laravel-stuck-jobs-notifier": "^2.0",
         "okipa/laravel-supervisor-downtime-notifier": "^2.0",
         "okipa/laravel-table": "^4.0.1",
-        "plank/laravel-metable": "^4.0",
+        "plank/laravel-metable": "^5.0",
         "propaganistas/laravel-phone": "^4.0",
         "realrashid/sweet-alert": "^3.2",
         "sentry/sentry-laravel": "^2.0",
@@ -51,7 +51,6 @@
         "phpmd/phpmd": "^2.0",
         "phpstan/phpstan-mockery": "^0.12.11",
         "phpunit/phpunit": "^9.3.3",
-        "roave/security-advisories": "dev-master",
         "squizlabs/php_codesniffer": "^3.0"
     },
     "config": {

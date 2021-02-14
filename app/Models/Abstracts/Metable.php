@@ -14,9 +14,7 @@ abstract class Metable extends Model
     public function saveMetaFromRequest(Request $request, array $metaKeys): void
     {
         foreach ($metaKeys as $metaKey) {
-            if ($this->hasMeta($metaKey)) {
-                $this->removeMeta($metaKey);
-            }
+            $this->removeMeta($metaKey);
             $meta = data_get($request->validated(), $metaKey);
             if ($meta) {
                 $this->setMeta($metaKey, $meta);
@@ -31,7 +29,7 @@ abstract class Metable extends Model
      *
      * @return mixed
      */
-    public function getMeta(string $key, $default = null, $locale = null)
+    public function getMeta(string $key, $default = null, string $locale = null)
     {
         $locale = $locale ?? app()->getLocale();
         $meta = $this->traitGetMeta($key, $default);
