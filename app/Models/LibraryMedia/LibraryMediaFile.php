@@ -57,6 +57,7 @@ class LibraryMediaFile extends Model implements HasMedia
             'application/vnd.ms-powerpoint',
             'application/x-mspublisher',
             // Audio
+            'audio/aac',
             'audio/wav',
             'audio/wave',
             'audio/x-wav',

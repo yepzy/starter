@@ -1,7 +1,6 @@
 // Imports
 @import '~easymde/dist/easymde.min.css';
 
-
 textarea.is-invalid + .EasyMDEContainer .CodeMirror {
     border-color: $danger;
 }
