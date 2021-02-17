@@ -28,21 +28,23 @@
 /_ide_helper_models.php
 
 # Laravel
-.env
-compiled.php
-down
-events.scanned.php
-maintenance.php
+/.env
+/compiled.php
+/down
+/events.scanned.php
+/maintenance.php
 
 # Homestead
-Homestead.json
-Homestead.yaml
+/Homestead.json
+/Homestead.yaml
 
 # Testing
-.phpunit.result.cache
+/.phpunit.result.cache
 
 # Docker
-docker-compose.override.yml
+/docker-compose.override.yml
+/supervisord.log
+/supervisord.pid
 
 # MacOS
-**/.DS_Store
+/**/.DS_Store
