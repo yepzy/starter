@@ -11,6 +11,6 @@ class LibraryMediaCategoriesSeeder extends Seeder
     {
         LibraryMediaCategory::factory()->create(['name' => ['fr' => 'Accueil', 'en' => 'Home']]);
         LibraryMediaCategory::factory()->create(['name' => ['fr' => 'Actualités', 'en' => 'News']]);
-        LibraryMediaCategory::factory()->count(3)->create();
+        LibraryMediaCategory::factory()->count(5)->create();
     }
 }

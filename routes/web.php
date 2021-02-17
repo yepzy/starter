@@ -57,7 +57,6 @@ Route::localized(function () {
 
 // Utils
 require('web/utils/seo.php');
-require('web/utils/download.php');
 
-// 404 fallback catch : do not not place any route declaration under this one ******************************************
+// 404 fallback catch: do not not place any route declaration under this one ******************************************
 require('web/utils/fallback.php');

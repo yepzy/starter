@@ -46,7 +46,7 @@ EOT;
         ];
     }
 
-    public function configure(): self
+    public function configure(): Factory
     {
         return $this->afterMaking(function (Page $page) {
             $page->unique_key = $page->unique_key
@@ -59,23 +59,36 @@ EOT;
         });
     }
 
-    public function withBricks(): self
+    public function withSeoMeta(): Factory
     {
         return $this->afterCreating(function (Page $page) {
-            $navTitle = [
-                'fr' => $page->getTranslation('nav_title', 'fr'),
-                'en' => $page->getTranslation('nav_title', 'en'),
-            ];
-            $page->addBrick(TitleH1::class, ['title' => $navTitle]);
+            $page->saveSeoMeta([
+                'meta_title' => [
+                    'fr' => $page->getTranslation('nav_title', 'fr'),
+                    'en' => $page->getTranslation('nav_title', 'en'),
+                ],
+                'meta_description' => [
+                    'fr' => $this->faker->text(150),
+                    'en' => $this->faker->text(150)
+                ],
+            ]);
+        });
+    }
+
+    public function withBricks(): Factory
+    {
+        return $this->afterCreating(function (Page $page) {
+            $page->addBrick(TitleH1::class, [
+                'title' => [
+                    'fr' => $page->getTranslation('nav_title', 'fr'),
+                    'en' => $page->getTranslation('nav_title', 'en'),
+                ],
+            ]);
             $page->addBrick(OneTextColumn::class, [
                 'text' => [
                     'fr' => $this->markdownText,
                     'en' => $this->markdownText,
                 ],
-            ]);
-            $page->saveSeoMeta([
-                'meta_title' => $navTitle,
-                'meta_description' => ['fr' => $this->faker->text(150), 'en' => $this->faker->text(150)],
             ]);
         });
     }

@@ -19,6 +19,6 @@ class UsersSeeder extends Seeder
             'email_verified_at' => Carbon::now(),
             'password' => Hash::make('secret'),
         ]);
-        User::factory()->withMedia()->count(29)->create();
+        User::factory()->withMedia()->count(9)->create();
     }
 }

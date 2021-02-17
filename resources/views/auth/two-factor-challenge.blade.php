@@ -39,7 +39,7 @@
                 ->componentHtmlAttributes(['required', 'autofocus', 'autocomplete' => 'one-time-code']) }}
         @endif
         {{ submit()->prepend('<i class="fas fa-sign-in-alt fa-fw"></i>')
-            ->label(__('Login'))
+            ->label(__('Log in'))
             ->componentClasses(['btn-block', 'btn-primary', 'form-group']) }}
         <div class="d-flex form-group">
             @if(request()->recovery)

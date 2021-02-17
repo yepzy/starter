@@ -24,10 +24,11 @@ class SettingsFactory extends Factory
         ];
     }
 
-    public function withMedia(): self
+    public function withMedia(): Factory
     {
         return $this->afterCreating(function (Settings $settings) {
-            $settings->addMedia(database_path('seeders/files/settings/1-300x300.png'))
+            // Todo: customize logo.
+            $settings->addMedia(resource_path('images/logo-starter.png'))
                 ->preservingOriginal()
                 ->toMediaCollection('icons');
         });

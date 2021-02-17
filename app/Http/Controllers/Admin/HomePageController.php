@@ -31,7 +31,8 @@ class HomePageController extends Controller
      */
     public function update(HomePageUpdateRequest $request): RedirectResponse
     {
-        $pageContent = PageContent::where('unique_key', 'home_page_content')->firstOrFail();
+        /** @var \App\Models\Pages\PageContent $pageContent */
+        $pageContent = PageContent::where('unique_key', 'home_page_content')->sole();
         $pageContent->saveSeoMetaFromRequest($request);
 
         return back()->with('toast_success', __('crud.orphan.updated', [

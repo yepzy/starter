@@ -14,10 +14,6 @@ class NewsArticleFactory extends Factory
     /** @var string */
     protected $model = NewsArticle::class;
 
-    protected static ?Collection $categories = null;
-
-    protected array $images = ['1-2560x1440.jpg', '2-2560x1769.jpg'];
-
     protected string $markdownText = <<<EOT
 **Bold text.**
 
@@ -54,7 +50,7 @@ EOT;
         ];
     }
 
-    public function configure(): self
+    public function configure(): Factory
     {
         return $this->afterMaking(function (NewsArticle $page) {
             $page->slug = $page->slug
@@ -76,22 +72,22 @@ EOT;
         });
     }
 
-    public function withCategory(): self
+    public function withCategory(): Factory
     {
         return $this->afterCreating(function (NewsArticle $newsArticle) {
-            self::$categories = self::$categories ?: NewsCategory::get();
-            $categoryId = self::$categories->random(1)->pluck('id');
+            $categoryId = NewsCategory::get()->random(1)->pluck('id');
             $newsArticle->categories()->sync($categoryId);
         });
     }
 
-    public function withMedia(): self
+    public function withMedia(): Factory
     {
         return $this->afterCreating(function (NewsArticle $newsArticle) {
-            $imagePath = $this->images[array_rand($this->images, 1)];
-            $newsArticle->addMedia(database_path('seeders/files/news/' . $imagePath))
-                ->preservingOriginal()
-                ->toMediaCollection('illustrations');
+            $illustrationsCount = random_int(1, 3);
+            for ($ii = 1; $ii <= $illustrationsCount; $ii++) {
+                $newsArticle->addMedia($this->faker->image(null, 1140, 500, null, true, true, 'News'))
+                    ->toMediaCollection('illustrations');
+            }
         });
     }
 }

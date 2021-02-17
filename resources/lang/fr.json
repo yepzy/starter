@@ -217,7 +217,7 @@
     "Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.": "Stockez ces codes de récupération dans un gestionnaire de mots de passe sécurisé. Ils peuvent être utilisés pour récupérer l'accès à votre compte si vous perdez l'appareil qui gère votre double authentification.",
     "Regenerate Recovery Codes": "Regénérer codes de récupération",
     "Are you sure you want to regenerate recovery codes?": "Êtes-vous sûr de vouloir regénérer vos codes de récupération ?",
-    "Login": "Connexion",
+    "Log in": "Connexion",
     "Please confirm access to your account by entering the authentication code provided by your authenticator application.": "Veuillez confirmer l'accès à votre compte en saisissant le code fourni par votre application d'authentification.",
     "Please confirm access to your account by entering one of your emergency recovery codes.": "Veuillez confirmer l'accès à votre compte en saissant l'un de vos codes de récupération.",
     "Use a recovery code": "Utiliser un code de récupération",
@@ -233,5 +233,13 @@
     "The welcome link does not have a valid signature or is expired.": "Le lien de bienvenue est ne possède pas de signature valide ou a expiré.",
     "Could not find a user to be welcomed.": "Aucun utilisateur à accueillir n'a été trouvé.",
     "The welcome link has already been used.": "Le lien de bienvenue a déjà été utilisé.",
-    "The welcome link has expired.": "Le lien de bienvenue a expiré."
+    "The welcome link has expired.": "Le lien de bienvenue a expiré.",
+    "The :attribute must be at least :length characters.": "Le champ :attribute doit comporter au moins :length caractères.",
+    "The :attribute must be at least :length characters and contain at least one special character and one number.": "Le champ :attribute doit comporter au moins :length caractères et contenir au moins un caractère spécial et un chiffre.",
+    "'The :attribute must be at least :length characters and contain at least one uppercase character, one number, and one special character.": "Le champ :attribute doit comporter au moins :length caractères et contenir au moins une majuscule, un chiffre et un caractère spécial.",
+    "The :attribute must be at least :length characters and contain at least one uppercase character and one special character.": "Le champ :attribute doit comporter au moins :length caractères et contenir au moins une majuscule et un caractère spécial.",
+    "The :attribute must be at least :length characters and contain at least one uppercase character and one number.": "Le champ :attribute doit comporter au moins :length caractères et contenir au moins une majuscule et un chiffre.",
+    "The :attribute must be at least :length characters and contain at least one special character.": "Le champ :attribute doit comporter au moins :length caractères et contenir au moins un caractère spécial.",
+    "The :attribute must be at least :length characters and contain at least one number.": "Le champ :attribute doit comporter au moins :length caractères et contenir au moins un chiffre.",
+    "The :attribute must be at least :length characters and contain at least one uppercase character.": "Le champ :attribute doit comporter au moins :length caractères et contenir au moins une majuscule."
 }

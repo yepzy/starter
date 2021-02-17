@@ -5,11 +5,13 @@ namespace App\Models\Pages;
 use App\Brickables\Carousel;
 use App\Brickables\TitleH1;
 use App\Models\Abstracts\Seo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Okipa\LaravelBrickables\Contracts\HasBrickables;
 use Okipa\LaravelBrickables\Traits\HasBrickablesTrait;
 
 class PageContent extends Seo implements HasBrickables
 {
+    use HasFactory;
     use HasBrickablesTrait;
 
     public array $brickables = [

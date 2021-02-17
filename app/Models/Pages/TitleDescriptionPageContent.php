@@ -4,6 +4,7 @@ namespace App\Models\Pages;
 
 use App\Brickables\OneTextColumn;
 use App\Brickables\TitleH1;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class TitleDescriptionPageContent extends PageContent
 {

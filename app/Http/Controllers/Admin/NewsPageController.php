@@ -30,7 +30,8 @@ class NewsPageController extends Controller
      */
     public function update(NewsPageUpdateRequest $request): RedirectResponse
     {
-        $pageContent = TitleDescriptionPageContent::where('unique_key', 'news_page_content')->firstOrFail();
+        /** @var \App\Models\Pages\TitleDescriptionPageContent $pageContent */
+        $pageContent = TitleDescriptionPageContent::where('unique_key', 'news_page_content')->sole();
         $pageContent->saveSeoMetaFromRequest($request);
 
         return back()->with('toast_success', __('crud.orphan.updated', [

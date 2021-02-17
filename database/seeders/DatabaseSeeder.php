@@ -22,10 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PagesSeeder::class);
         $this->call(LibraryMediaCategoriesSeeder::class);
         $this->call(LibraryMediaFilesSeeder::class);
-        $this->call(HomePageSeeder::class);
-        $this->call(NewsPageSeeder::class);
         $this->call(NewsCategoriesSeeder::class);
         $this->call(NewsArticlesSeeder::class);
-        $this->call(ContactPageSeeder::class);
+        $this->call(PageContentsSeeder::class);
     }
 }
