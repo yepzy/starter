@@ -97,7 +97,6 @@ return [
     'password' => 'The password is incorrect.',
     'present' => 'The :attribute field must be present.',
     'phone' => 'The :attribute field is an invalid number.',
-    'phone_international' => 'The :attribute field is an invalid number. In case of foreign number, prefix it with an international calling code (e.g. +49 for Germany).',
     'regex' => 'The :attribute format is invalid.',
     'required' => 'The :attribute field is required.',
     'required_if' => 'The :attribute field is required when :other is :value.',

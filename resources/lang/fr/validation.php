@@ -97,7 +97,6 @@ return [
     'password' => 'Le mot de passe est incorrect.',
     'present' => 'Le champ :attribute doit être transmis.',
     'phone' => 'Le champ :attribute est un numéro invalide.',
-    'phone_international' => 'Le champ :attribute est un numéro invalide. En cas de numéro étranger, le préfixer par un indicatif téléphonique international (exemple : +49 pour l\'Allemagne).',
     'regex' => 'Le format du champ :attribute est invalide.',
     'required' => 'Le champ :attribute est obligatoire.',
     'required_if' => 'Le champ :attribute est obligatoire quand :other est égal à :value.',
