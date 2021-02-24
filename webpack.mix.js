@@ -53,11 +53,15 @@ mix
             ]
         }
     })
-    .options({processCssUrls: false})
+    .options({
+        processCssUrls: false,
+        cssNano: {discardComments: {removeAll: true}}
+
+    })
     .autoload({
         jquery: ['$', 'jQuery', 'window.jQuery'],
         'popper.js': ['Popper', 'window.Popper'],
-        cookieconsent: ['cookieconsent', 'window.cookieconsent'],
+        cookieconsent: ['cookieconsent', 'window.cookieconsent']
     })
     .extract(['bootstrap', 'jquery', 'popper.js', 'cookieconsent'])
     .sourceMaps()
