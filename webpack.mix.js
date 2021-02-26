@@ -56,7 +56,6 @@ mix
     .options({
         processCssUrls: false,
         cssNano: {discardComments: {removeAll: true}}
-
     })
     .autoload({
         jquery: ['$', 'jQuery', 'window.jQuery'],

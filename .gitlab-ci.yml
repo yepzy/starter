@@ -161,7 +161,7 @@ phpunit:
     - pecl install pcov
     - docker-php-ext-enable pcov
     - mkdir -p coverage/phpunit
-    - echo "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%';" | mysql --user=root --password="$MYSQL_ROOT_PASSWORD" --host=mysql
+    - echo "GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%';" | mysql --user=root --password="$MYSQL_ROOT_PASSWORD" --host="$DB_HOST"
     - chown -R www-data:root .
   script:
     - php artisan test --parallel --coverage-text --log-junit=coverage/phpunit/junit.xml
