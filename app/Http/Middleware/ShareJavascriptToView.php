@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class InsertJavascript
+class ShareJavascriptToView
 {
     /**
      * Handle an incoming request.
@@ -22,8 +22,7 @@ class InsertJavascript
         share([
             'locale' => app()->getLocale(),
             'notify' => __('notify'),
-            'cookieconsent' => __('cookieconsent'),
-            'gdprPage' => ['route' => $gdprPage ? route('page.show', $gdprPage) : null],
+            'gdpr_page_url' => $gdprPage ? route('page.show', $gdprPage) : null,
         ]);
 
         return $next($request);
