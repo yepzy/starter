@@ -16,10 +16,10 @@ class Settings extends Model implements HasMedia
     use InteractsWithMedia;
     use ExtendsMediaAbilities;
 
-    /** @var string $table */
+    /** @var string*/
     protected $table = 'settings';
 
-    /** @var array $fillable */
+    /** @var array */
     protected $fillable = [
         'email',
         'phone_number',

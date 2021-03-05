@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class LogContactFormMessage extends Model
 {
-    /** @var string $table */
+    /** @var string*/
     protected $table = 'log_contact_form_messages';
 
-    /** @var array $fillable */
+    /** @var array */
     protected $fillable = ['data'];
 
-    /** @var array $cast */
+    /** @var array */
     protected $casts = ['data' => 'array'];
 }

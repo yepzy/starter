@@ -70,7 +70,7 @@ class PagesController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function update(Page $page, PageUpdateRequest $request): RedirectResponse
+    public function update(PageUpdateRequest $request, Page $page): RedirectResponse
     {
         $page->update(Arr::except($request->validated(), 'unique_key'));
         $page->saveSeoMetaFromRequest($request);

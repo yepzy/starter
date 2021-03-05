@@ -25,10 +25,10 @@ class CarouselBrickSlide extends Model implements HasMedia, Sortable
 
     public array $translatable = ['label', 'caption'];
 
-    /** @var string $table */
+    /** @var string*/
     protected $table = 'carousel_brick_slides';
 
-    /** @var array $fillable */
+    /** @var array */
     protected $fillable = [
         'brick_id',
         'label',

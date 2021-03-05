@@ -21,13 +21,13 @@ class NewsArticle extends Seo implements Feedable
 
     public array $translatable = ['slug', 'title', 'description'];
 
-    /** @var string $table */
+    /** @var string */
     protected $table = 'news_articles';
 
-    /** @var array $fillable */
+    /** @var array */
     protected $fillable = ['title', 'slug', 'description', 'active', 'published_at'];
 
-    /** @var array $cast */
+    /** @var array */
     protected $casts = ['active' => 'boolean', 'published_at' => 'datetime'];
 
     public static function getFeedItems(): Collection

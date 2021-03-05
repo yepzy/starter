@@ -29,7 +29,7 @@ class SettingsController extends Controller
     public function update(SettingsUpdateRequest $request): RedirectResponse
     {
         /** @var \App\Models\Settings\Settings $settings */
-        $settings = Settings::firstOrFail();
+        $settings = Settings::sole();
         $settings->update($request->validated());
         if ($request->file('icon')) {
             $settings->addMediaFromRequest('icon')->toMediaCollection('icons');

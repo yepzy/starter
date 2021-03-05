@@ -29,6 +29,7 @@ class PhoneInternational implements Rule
 
     public function message(): string
     {
-        return __('The :attribute field is an invalid number. In case of foreign number, prefix it with an international calling code (e.g. +49 for Germany).');
+        return __('The :attribute field is an invalid number. In case of foreign number, '
+            . 'prefix it with an international calling code (e.g. +49 for Germany).');
     }
 }

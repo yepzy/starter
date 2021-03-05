@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\News\CategoryStoreRequest;
 use App\Http\Requests\News\CategoryUpdateRequest;
 use App\Models\News\NewsCategory;
-use App\Services\News\CategoriesService;
 use App\Tables\NewsCategoriesTable;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\RedirectResponse;
@@ -63,7 +62,7 @@ class NewsCategoriesController extends Controller
         return view('templates.admin.news.categories.edit', compact('category'));
     }
 
-    public function update(NewsCategory $category, CategoryUpdateRequest $request): RedirectResponse
+    public function update(CategoryUpdateRequest $request, NewsCategory $category): RedirectResponse
     {
         $category->update($request->validated());
 

@@ -27,7 +27,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use InteractsWithMedia;
     use ExtendsMediaAbilities;
 
-    /** @var array $fillable */
+    /** @var array */
     protected $fillable = ['first_name', 'last_name', 'email', 'phone_number', 'password'];
 
     /** @var array $hidden */

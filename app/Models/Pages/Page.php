@@ -16,13 +16,13 @@ class Page extends Seo implements HasBrickables
 
     public array $translatable = ['slug', 'nav_title'];
 
-    /** @var string $table */
+    /** @var string*/
     protected $table = 'pages';
 
-    /** @var array $fillable */
+    /** @var array */
     protected $fillable = ['unique_key', 'nav_title', 'slug', 'active'];
 
-    /** @var array $cast */
+    /** @var array */
     protected $casts = ['active' => 'boolean'];
 
     public function getRouteKey(): string

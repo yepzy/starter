@@ -14,10 +14,10 @@ class LibraryMediaCategory extends Model
 
     public array $translatable = ['name'];
 
-    /** @var string $table */
+    /** @var string*/
     protected $table = 'library_media_categories';
 
-    /** @var array $fillable */
+    /** @var array */
     protected $fillable = ['name'];
 
     public function files(): HasMany

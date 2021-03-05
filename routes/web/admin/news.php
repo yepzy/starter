@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\NewsArticlesController;
 use App\Http\Controllers\Admin\NewsCategoriesController;
 use App\Http\Controllers\Admin\NewsPageController;
 
-// page
+// Page
 Route::get(
     Lang::uri('news/page/edit'),
     [NewsPageController::class, 'edit']
@@ -41,7 +41,7 @@ Route::delete(
     [NewsCategoriesController::class, 'destroy']
 )->name('news.category.destroy');
 
-// articles
+// Articles
 Route::get(
     Lang::uri('news/articles'),
     [NewsArticlesController::class, 'index']

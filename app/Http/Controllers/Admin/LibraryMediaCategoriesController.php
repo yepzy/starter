@@ -41,7 +41,6 @@ class LibraryMediaCategoriesController extends Controller
 
     public function store(CategoryStoreRequest $request): RedirectResponse
     {
-        /** @var \App\Models\LibraryMedia\LibraryMediaCategory $category */
         $category = LibraryMediaCategory::create($request->validated());
 
         return redirect()->route('libraryMedia.categories.index')
@@ -63,7 +62,7 @@ class LibraryMediaCategoriesController extends Controller
         return view('templates.admin.libraryMedia.categories.edit', compact('category'));
     }
 
-    public function update(LibraryMediaCategory $category, CategoryUpdateRequest $request): RedirectResponse
+    public function update(CategoryUpdateRequest $request, LibraryMediaCategory $category): RedirectResponse
     {
         $category->update($request->validated());
 

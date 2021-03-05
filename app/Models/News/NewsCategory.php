@@ -14,10 +14,10 @@ class NewsCategory extends Model
 
     public array $translatable = ['name'];
 
-    /** @var string $table */
+    /** @var string*/
     protected $table = 'news_categories';
 
-    /** @var array $fillable */
+    /** @var array */
     protected $fillable = ['name'];
 
     public function articles(): BelongsToMany

@@ -21,9 +21,9 @@ class PageContent extends Seo implements HasBrickables
         ],
     ];
 
-    /** @var string $table */
+    /** @var string*/
     protected $table = 'page_contents';
 
-    /** @var array $fillable */
+    /** @var array */
     protected $fillable = ['unique_key'];
 }

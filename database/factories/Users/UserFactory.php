@@ -26,7 +26,7 @@ class UserFactory extends Factory
 
     public function unverified(): Factory
     {
-        return $this->state(fn(array $attributes) => ['email_verified_at' => null]);
+        return $this->state(static fn() => ['email_verified_at' => null]);
     }
 
     public function withMedia(): Factory

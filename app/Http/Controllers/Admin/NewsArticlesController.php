@@ -81,7 +81,7 @@ class NewsArticlesController extends Controller
      * @throws \Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist
      * @throws \Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig
      */
-    public function update(NewsArticle $article, ArticleUpdateRequest $request): RedirectResponse
+    public function update(ArticleUpdateRequest $request, NewsArticle $article): RedirectResponse
     {
         $article->update($request->validated());
         if ($request->file('illustration')) {

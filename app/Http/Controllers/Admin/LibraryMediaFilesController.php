@@ -54,7 +54,6 @@ class LibraryMediaFilesController extends Controller
      */
     public function store(FileStoreRequest $request): RedirectResponse
     {
-        /** @var \App\Models\LibraryMedia\LibraryMediaFile $file */
         $file = LibraryMediaFile::create($request->validated());
         $file->addMediaFromRequest('media')->toMediaCollection('media');
 
@@ -91,7 +90,7 @@ class LibraryMediaFilesController extends Controller
      * @throws \Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist
      * @throws \Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig
      */
-    public function update(LibraryMediaFile $file, FileUpdateRequest $request): RedirectResponse
+    public function update(FileUpdateRequest $request, LibraryMediaFile $file): RedirectResponse
     {
         $file->update($request->validated());
         if ($request->file('media')) {

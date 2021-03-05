@@ -22,10 +22,10 @@ class LibraryMediaFile extends Model implements HasMedia
 
     public array $translatable = ['name'];
 
-    /** @var string $table */
+    /** @var string*/
     protected $table = 'library_media_files';
 
-    /** @var array $fillable */
+    /** @var array */
     protected $fillable = ['category_id', 'name'];
 
     /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
