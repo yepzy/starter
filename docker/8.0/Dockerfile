@@ -34,6 +34,7 @@ RUN apt-get update \
     && curl -sL https://deb.nodesource.com/setup_15.x | bash - \
     && apt-get install -y nodejs \
     && apt-get install -y mysql-client \
+    && apt-get install -y postgresql-client \
     && apt-get -y autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
