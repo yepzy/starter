@@ -37,7 +37,9 @@ RUN apt-get update \
     && apt-get install -y postgresql-client \
     && apt-get -y autoremove \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    # Additional instructions ##########################################################################################
+    && sed -i 's/<policy domain="coder" rights="none" pattern="PDF" \/>/<policy domain="coder" rights="read|write" pattern="PDF" \/>/g' /etc/ImageMagick-6/policy.xml
 
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.0
 
