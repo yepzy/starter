@@ -1,13 +1,14 @@
 {
+    "name": "ACID-Solutions/starter",
+    "description": "Web app prebuilt base on Laravel 8, PHP 8.0 and MySQL 8.0",
     "license": "proprietary",
     "require": {
-        "php": "^7.4",
+        "php": "^8.0",
         "ext-json": "*",
         "artesaos/seotools": "^0.20.0",
         "coderello/laravel-shared-data": "^3.0",
         "codezero/laravel-localized-routes": "^2.4",
         "codezero/laravel-unique-translation": "^3.0",
-        "deployer/deployer": "^6.0",
         "doctrine/dbal": "^2.0",
         "erusev/parsedown": "^1.0",
         "fideloper/proxy": "^4.4",
@@ -33,12 +34,13 @@
         "spatie/laravel-feed": "^3.0",
         "spatie/laravel-honeypot": "^3.0.1",
         "spatie/laravel-medialibrary": "^9.0",
-        "spatie/laravel-sitemap": "^5.0",
+        "spatie/laravel-sitemap": "^6.0",
         "spatie/laravel-translatable": "^4.6",
         "spatie/laravel-welcome-notification": "^2.1",
         "spatie/pdf-to-image": "^2.1"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-master",
         "barryvdh/laravel-ide-helper": "^2.0",
         "beyondcode/laravel-dump-server": "^1.7",
         "brianium/paratest": "^6.2",

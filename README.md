@@ -1,6 +1,6 @@
 <!-- Todo: search every `Todo:` occurrence in starter and customize what needs to be. -->
 
-# Web app prebuilt base on Laravel 8, PHP 7.4 and MySQL 8
+# Web app prebuilt base on Laravel 8, PHP 8.0 and MySQL 8.0
 
 <!-- Todo: replace by project badges -->
 `<build-status-badge>` `<coverage-report-badge>`
