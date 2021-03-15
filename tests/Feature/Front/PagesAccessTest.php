@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Front;
 
 use App\Models\News\NewsArticle;
 use App\Models\News\NewsCategory;
