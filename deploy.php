@@ -2,7 +2,6 @@
 
 namespace Deployer;
 
-use Illuminate\Support\Str;
 use RuntimeException;
 
 require 'recipe/laravel.php';
@@ -143,7 +142,7 @@ task('project:dependencies_check', function () {
     ];
     foreach ($dependencies as $dependency) {
         $output = run('dpkg-query --show --showformat=\'${db:Status-Status}\n\' \'' . $dependency . '\'');
-        if (Str::contains(strtolower($output), 'not-installed')) {
+        if (mb_stripos($output, 'not-installed') !== false) {
             throw new RuntimeException('Project dependency "' . $dependency . '" is not installed on the server.');
         }
     }
