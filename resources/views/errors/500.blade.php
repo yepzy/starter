@@ -30,8 +30,8 @@
                         Sentry.showReportDialog({
                             eventId: '{{ app('sentry')->getLastEventId() }}',
                             user: {
-                                'name': '{{ config('app.name') }}',
-                                'email': '{{ settings()->email }}',
+                                'name': '{{ optional(Auth::user())->full_name }}',
+                                'email': '{{ optional(Auth::user())->email }}',
                                 'lang': '{{ app()->getLocale() }}'
                             }
                         });
