@@ -4,7 +4,6 @@
     "license": "todo",
     "require": {
         "php": "^8.0",
-        "ext-json": "*",
         "artesaos/seotools": "^0.20.0",
         "coderello/laravel-shared-data": "^3.0",
         "codezero/laravel-localized-routes": "^2.4",
