@@ -1,5 +1,5 @@
 {
-    "name": "ACID-Solutions/starter",
+    "name": "acid-solutions/starter",
     "description": "Web app prebuilt base on Laravel 8, PHP 8.0 and MySQL 8.0",
     "license": "proprietary",
     "require": {
