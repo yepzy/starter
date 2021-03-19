@@ -117,7 +117,7 @@ phpmd:
   dependencies:
     - composer
   script:
-    - vendor/bin/phpmd app,config,database,routes text phpmd.xml
+    - vendor/bin/phpmd app,config,database,routes,tests text phpmd.xml
   except:
     refs:
       - develop

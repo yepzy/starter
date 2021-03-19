@@ -33,7 +33,9 @@
         </properties>
     </rule>
     <!-- Controversial rules -->
-    <rule ref="rulesets/controversial.xml"/>
+    <rule ref="rulesets/controversial.xml">
+        <exclude name="CamelCaseMethodName" pattern="tests/*"/>
+    </rule>
     <!-- Design rules -->
     <rule ref="rulesets/design.xml">
         <exclude name="CouplingBetweenObjects"/>

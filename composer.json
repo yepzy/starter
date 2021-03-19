@@ -109,7 +109,7 @@
         "test": [
             "vendor/bin/phpcbf",
             "vendor/bin/phpcs",
-            "vendor/bin/phpmd app,config,database,routes text phpmd.xml",
+            "vendor/bin/phpmd app,config,database,routes,tests text phpmd.xml",
             "vendor/bin/phpstan analyse --memory-limit=2G",
             "@php artisan test --parallel --colors --coverage-text"
         ]
