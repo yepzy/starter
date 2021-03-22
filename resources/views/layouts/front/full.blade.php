@@ -10,6 +10,7 @@
             </div>
             @include('layouts.front.partials.footer')
         </div>
+        @include('layouts.front.partials.cookies-management-policy')
         @include('layouts.front.partials.end')
     </body>
 @endsection
