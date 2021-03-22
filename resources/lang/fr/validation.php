@@ -96,6 +96,8 @@ return [
     'numeric' => 'Le champ :attribute doit être un nombre.',
     'password' => 'Le mot de passe est incorrect.',
     'present' => 'Le champ :attribute doit être transmis.',
+    'prohibited_if' => 'Le champ :attribute est interdit quand :other a pour valeur :value.',
+    'prohibited_unless' => 'Le champ :attribute est interdit sauf si :other a pour valeur(s) :values.',
     'phone' => 'Le champ :attribute est un numéro invalide.',
     'regex' => 'Le format du champ :attribute est invalide.',
     'required' => 'Le champ :attribute est obligatoire.',
