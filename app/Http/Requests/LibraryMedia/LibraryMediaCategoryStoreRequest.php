@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Http\Requests\News;
+namespace App\Http\Requests\LibraryMedia;
 
+use App\Models\LibraryMedia\LibraryMediaCategory;
 use CodeZero\UniqueTranslation\UniqueTranslationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryUpdateRequest extends FormRequest
+class LibraryMediaCategoryStoreRequest extends FormRequest
 {
     public function rules(): array
     {
         return localizeRules([
-            'name' => [
+            'title' => [
                 'required',
                 'string',
                 'max:255',
-                UniqueTranslationRule::for('news_categories')->ignore($this->category->id),
+                UniqueTranslationRule::for(app(LibraryMediaCategory::class)->getTable()),
             ],
         ]);
     }

@@ -2,19 +2,21 @@
 
 namespace App\Http\Requests\LibraryMedia;
 
+use App\Models\LibraryMedia\LibraryMediaCategory;
 use CodeZero\UniqueTranslation\UniqueTranslationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryStoreRequest extends FormRequest
+class LibraryMediaCategoryUpdateRequest extends FormRequest
 {
     public function rules(): array
     {
         return localizeRules([
-            'name' => [
+            'title' => [
                 'required',
                 'string',
                 'max:255',
-                UniqueTranslationRule::for('library_media_categories'),
+                UniqueTranslationRule::for(app(LibraryMediaCategory::class)->getTable())
+                    ->ignore($this->libraryMediaCategory->id),
             ],
         ]);
     }
