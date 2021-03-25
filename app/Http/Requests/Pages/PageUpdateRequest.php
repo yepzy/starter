@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Pages;
 
 use App\Http\Requests\Abstracts\SeoRequest;
+use App\Models\Pages\Page;
 use CodeZero\UniqueTranslation\UniqueTranslationRule;
 
 class PageUpdateRequest extends SeoRequest
@@ -16,7 +17,7 @@ class PageUpdateRequest extends SeoRequest
                 'string',
                 'slug',
                 'max:255',
-                UniqueTranslationRule::for('pages')->ignore($this->page->id),
+                UniqueTranslationRule::for(app(Page::class)->getTable())->ignore($this->page->id),
             ],
             'nav_title' => ['required', 'string', 'max:255'],
         ]);
