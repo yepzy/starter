@@ -16,7 +16,7 @@ class ShareJavascriptToView
      * @return mixed
      * @throws \Exception
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         $gdprPage = pages()->where('unique_key', 'gdpr_page')->first();
         share([
