@@ -96,6 +96,7 @@ return [
     'numeric' => 'The :attribute must be a number.',
     'password' => 'The password is incorrect.',
     'present' => 'The :attribute field must be present.',
+    'prohibited' => 'The :attribute field is prohibited.',
     'prohibited_if' => 'The :attribute field is prohibited when :other is :value.',
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
     'phone' => 'The :attribute field is an invalid number.',
@@ -162,7 +163,7 @@ return [
         'first_name' => 'First name',
         'last_name' => 'Last name',
         'name' => 'Name',
-        'category_name' => 'Category',
+        'category_title' => 'Category',
         'title' => 'Title',
         'description' => 'Description',
         'meta_title' => 'Meta title',
@@ -204,6 +205,9 @@ return [
         'full_width' => 'Full width',
         'code' => 'Code',
         'recovery_code' => 'Recovery code',
+        'required' => 'Required',
+        'enabled_by_default' => 'Enabled by default',
+        'cookies' => 'Cookies',
     ],
 
 ];

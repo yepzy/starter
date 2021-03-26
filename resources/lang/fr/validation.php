@@ -96,6 +96,7 @@ return [
     'numeric' => 'Le champ :attribute doit être un nombre.',
     'password' => 'Le mot de passe est incorrect.',
     'present' => 'Le champ :attribute doit être transmis.',
+    'prohibited' => 'Le champ :attribute est interdit.',
     'prohibited_if' => 'Le champ :attribute est interdit quand :other a pour valeur :value.',
     'prohibited_unless' => 'Le champ :attribute est interdit sauf si :other a pour valeur(s) :values.',
     'phone' => 'Le champ :attribute est un numéro invalide.',
@@ -184,7 +185,7 @@ return [
         'illustration' => 'Illustration',
         'category_id' => 'Catégorie',
         'category_ids' => 'Catégories',
-        'category_name' => 'Catégorie',
+        'category_title' => 'Catégorie',
         'published_at' => 'Date publication',
         'position' => 'Position',
         'meta_title' => 'Meta Title',
@@ -205,6 +206,9 @@ return [
         'full_width' => 'Pleine largeur',
         'code' => 'Code',
         'recovery_code' => 'Code de récupération',
+        'required' => 'Obligatoire',
+        'enabled_by_default' => 'Activé par défaut',
+        'cookies' => 'Cookies',
     ],
 
 ];
