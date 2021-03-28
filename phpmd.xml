@@ -13,24 +13,8 @@
     </rule>
     <!-- Code size rules -->
     <rule ref="rulesets/codesize.xml">
-        <exclude name="TooManyPublicMethods"/>
-        <exclude name="TooManyMethods"/>
-        <exclude name="ExcessiveClassComplexity"/>
-    </rule>
-    <rule ref="rulesets/codesize.xml/TooManyPublicMethods">
-        <properties>
-            <property name="maxmethods" value="20"/>
-        </properties>
-    </rule>
-    <rule ref="rulesets/codesize.xml/TooManyMethods">
-        <properties>
-            <property name="maxmethods" value="30"/>
-        </properties>
-    </rule>
-    <rule ref="rulesets/codesize.xml/ExcessiveClassComplexity">
-        <properties>
-            <property name="maximum" value="60"/>
-        </properties>
+        <exclude name="TooManyPublicMethods" pattern="tests/*"/>
+        <exclude name="TooManyMethods" pattern="tests/*"/>
     </rule>
     <!-- Controversial rules -->
     <rule ref="rulesets/controversial.xml">
@@ -66,5 +50,7 @@
         </properties>
     </rule>
     <!-- Unused code rules -->
-    <rule ref="rulesets/unusedcode.xml"/>
+    <rule ref="rulesets/unusedcode.xml">
+        <exclude name="UnusedFormalParameter" pattern="tests/*"/>
+    </rule>
 </ruleset>
