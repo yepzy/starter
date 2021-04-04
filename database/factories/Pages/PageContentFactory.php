@@ -75,14 +75,28 @@ EOT,
         return [];
     }
 
-    public function home(): Factory
+    public function home(): self
     {
         return $this->afterMaking(function (PageContent $content) {
             $content->unique_key = 'home_page_content';
         });
     }
 
-    public function withBricks(): Factory
+    public function news(): self
+    {
+        return $this->afterMaking(function (PageContent $content) {
+            $content->unique_key = 'news_page_content';
+        });
+    }
+
+    public function contact(): self
+    {
+        return $this->afterMaking(function (PageContent $content) {
+            $content->unique_key = 'contact_page_content';
+        });
+    }
+
+    public function withBricks(): self
     {
         return $this->afterCreating(function (PageContent $content) {
             $carouselBrick = $content->addBrick(Carousel::class, ['full_width' => true]);
@@ -100,7 +114,7 @@ EOT,
                     ],
                     'active' => true,
                 ]);
-                $slide->addMedia($this->faker->image(null, 2560, 700, null, true, true, 'Slide'))
+                $slide->addMedia($this->faker->image(null, 2560, 700))
                     ->toMediaCollection('images');
             }
             $content->addBrick(TitleH1::class, [
@@ -118,7 +132,7 @@ EOT,
         });
     }
 
-    public function withSeoMeta(): Factory
+    public function withSeoMeta(): self
     {
         return $this->afterCreating(function (PageContent $content) {
             $content->saveSeoMeta([
