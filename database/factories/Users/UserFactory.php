@@ -4,6 +4,7 @@ namespace Database\Factories\Users;
 
 use App\Models\Users\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class UserFactory extends Factory
@@ -17,24 +18,22 @@ class UserFactory extends Factory
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'phone_number' => $this->faker->phoneNumber,
-            'email' => $this->faker->unique()->safeEmail,
+            'email' => $this->faker->unique()->email,
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // Password
+            'password' => Hash::make('secret'),
             'remember_token' => Str::random(10),
         ];
     }
 
-    public function unverified(): Factory
+    public function unverified(): self
     {
         return $this->state(static fn() => ['email_verified_at' => null]);
     }
 
-    public function withMedia(): Factory
+    public function withMedia(string $mediaPath = null): self
     {
-        return $this->afterCreating(function (User $user) {
-            $user->addMedia($this->faker->image(null, 250, 250, null, true, true, 'User'))
-                ->preservingOriginal()
-                ->toMediaCollection('profile_pictures');
-        });
+        return $this->afterCreating(fn(User $user) => $user->addMedia($mediaPath ?: $this->faker->image(null, 250, 250))
+            ->preservingOriginal()
+            ->toMediaCollection('profile_pictures'));
     }
 }
