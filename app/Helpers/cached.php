@@ -16,10 +16,10 @@ if (! function_exists('settings')) {
     function settings(bool $clearCache = false): Settings
     {
         if ($clearCache) {
-            cache()->forget('settings');
+            Cache::forget('settings');
         }
 
-        return cache()->rememberForever('settings', fn() => Settings::with(['media'])->sole());
+        return Cache::rememberForever('settings', fn() => Settings::with(['media'])->sole());
     }
 }
 
@@ -33,10 +33,10 @@ if (! function_exists('pages')) {
     function pages(bool $clearCache = false): Collection
     {
         if ($clearCache) {
-            cache()->forget('pages');
+            Cache::forget('pages');
         }
 
-        return cache()->rememberForever('pages', fn() => Page::where('active', true)->get());
+        return Cache::rememberForever('pages', fn() => Page::where('active', true)->get());
     }
 }
 
@@ -50,10 +50,10 @@ if (! function_exists('cookieCategories')) {
     function cookieCategories(bool $clearCache = false): Collection
     {
         if ($clearCache) {
-            cache()->forget('cookie_categories');
+            Cache::forget('cookie_categories');
         }
 
-        return cache()->rememberForever(
+        return Cache::rememberForever(
             'cookie_categories',
             fn() => CookieCategory::with([
                 'services' => fn(BelongsToMany $services) => $services->with(['categories'])->where('active', true),

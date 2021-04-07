@@ -89,7 +89,7 @@ class ProfileControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_set_back_default_profile_picture_when_user_remove_it(): void
+    public function it_can_set_back_default_profile_picture_when_removed(): void
     {
         $authUser = User::factory()->create();
         $this->actingAs($authUser)

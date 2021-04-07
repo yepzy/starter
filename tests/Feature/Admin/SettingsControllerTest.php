@@ -2,11 +2,14 @@
 
 namespace Tests\Feature\Admin;
 
+use App\Http\Middleware\ShareJavascriptToView;
 use App\Models\Settings\Settings;
 use App\Models\Users\User;
+use Closure;
 use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Cache;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Tests\TestCase;
 
@@ -18,7 +21,7 @@ class SettingsControllerTest extends TestCase
     {
         parent::setUp();
         $this->withoutMix();
-        $this->withoutMiddleware([RequirePassword::class]);
+        $this->withoutMiddleware([RequirePassword::class, ShareJavascriptToView::class]);
     }
 
     /** @test */
@@ -49,8 +52,12 @@ class SettingsControllerTest extends TestCase
     /** @test */
     public function it_can_update_settings(): void
     {
-        Settings::factory()->withMedia()->create();
+        $settings = Settings::factory()->withMedia()->create();
         $authUser = User::factory()->create();
+        // Settings cache is cleared on update.
+        Cache::shouldReceive('forget')->once()->with('settings')->andReturn(true);
+        // Settings helper is called 2 times, once in formRequest and once during cache regeneration.
+        Cache::shouldReceive('rememberForever')->twice()->with('settings', Closure::class)->andReturn($settings);
         $this->actingAs($authUser)
             ->put(route('settings.update'), [
                 'logo_squared' => UploadedFile::fake()->image('logo-squared.webp', 225, 225),
