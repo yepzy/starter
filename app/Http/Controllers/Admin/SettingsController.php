@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\SettingsUpdateRequest;
 use App\Models\Settings\Settings;
 use Artesaos\SEOTools\Facades\SEOTools;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class SettingsController extends Controller
 {
@@ -36,8 +36,7 @@ class SettingsController extends Controller
         }
         settings(true);
 
-        return back()->with('toast_success', __('crud.name.updated', [
-            'name' => __('Settings'),
-        ]));
+        return redirect()->route('settings.edit')
+            ->with('toast_success', __('crud.name.updated', ['name' => __('Settings')]));
     }
 }

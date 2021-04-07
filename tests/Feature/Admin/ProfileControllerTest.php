@@ -32,18 +32,18 @@ class ProfileControllerTest extends TestCase
         $this->actingAs($authUser)->get(route('profile.edit'))
             ->assertOk()
             ->assertSeeInOrder([
-                // Headings and form actions should confirm we are on profile edit page.
+                // Headings and form actions confirm we are on profile edit page.
                 'fas fa-user fa-fw',
                 __('Profile'),
                 route('profile.update'),
-                // User data should be displayed.
+                // User data is displayed.
                 $authUser->getFirstMediaUrl('profile_pictures', 'thumb'),
                 $authUser->getFirstMedia('profile_pictures')->file_name,
                 $authUser->last_name,
                 $authUser->first_name,
                 $authUser->phone_number,
                 $authUser->email,
-                // Other form actions should be present.
+                // Other form actions are present.
                 route('password.update'),
                 route('two-factor.activate'),
                 route('profile.deleteAccount'),
@@ -71,7 +71,7 @@ class ProfileControllerTest extends TestCase
             __('Your profile information have been saved.'),
             json_decode(session()->get('alert.config'), true, 512, JSON_THROW_ON_ERROR)['title']
         );
-        // User data should have been updated.
+        // User data is updated.
         $this->assertDatabaseHas(app(User::class)->getTable(), [
             'id' => $authUser->id,
             'first_name' => 'First name test',
@@ -79,7 +79,7 @@ class ProfileControllerTest extends TestCase
             'phone_number' => '0240506070',
             'email' => $authUser->email,
         ]);
-        // Profile picture should have been updated.
+        // Profile picture is updated.
         $this->assertDatabaseHas(app(Media::class)->getTable(), [
             'model_id' => $authUser->id,
             'model_type' => User::class,
@@ -95,7 +95,7 @@ class ProfileControllerTest extends TestCase
         $this->actingAs($authUser)
             ->from(route('profile.edit'))
             ->put(route('profile.update'), [
-                // Uploaded profile picture should be ignored when user want to remove it.
+                // Uploaded profile picture is ignored when user want to remove it.
                 'profile_picture' => UploadedFile::fake()->image('profile-picture.webp', 250, 250),
                 'remove_profile_picture' => true,
                 'first_name' => 'First name test',
@@ -106,7 +106,7 @@ class ProfileControllerTest extends TestCase
             ->assertSessionHasNoErrors()
             ->assertSessionHas('alert')
             ->assertRedirect(route('profile.edit'));
-        // Profile picture should have been updated to default one.
+        // Profile picture is updated to default one.
         $this->assertDatabaseHas(app(Media::class)->getTable(), [
             'model_id' => $authUser->id,
             'model_type' => User::class,
@@ -130,7 +130,7 @@ class ProfileControllerTest extends TestCase
             ])
             ->assertSessionHasNoErrors()
             ->assertRedirect(route('profile.edit'));
-        // User data should have been updated.
+        // User data is updated.
         $this->assertDatabaseHas(app(User::class)->getTable(), [
             'id' => $authUser->id,
             'first_name' => 'First name test',
@@ -168,6 +168,7 @@ class ProfileControllerTest extends TestCase
             __('Your new password has been saved.'),
             json_decode(session()->get('alert.config'), true, 512, JSON_THROW_ON_ERROR)['title']
         );
+        // Password is updated.
         self::assertTrue(Hash::check('password', $authUser->fresh()->password));
     }
 
@@ -181,6 +182,7 @@ class ProfileControllerTest extends TestCase
             ->assertSessionHasNoErrors()
             ->assertSessionHas('success', __('Your account has been deleted.'))
             ->assertRedirect(route('home.page.show'));
+        // User is deleted.
         $this->assertDeleted(app(User::class)->getTable(), ['id' => $authUser->id]);
     }
 }

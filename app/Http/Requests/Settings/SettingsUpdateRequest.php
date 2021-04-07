@@ -21,10 +21,10 @@ class SettingsUpdateRequest extends FormRequest
             'address' => ['required', 'string', 'max:255'],
             'zip_code' => ['required', 'string', 'max:255'],
             'city' => ['required', 'string', 'max:255'],
-            'facebook' => ['nullable', 'string', 'max:255', 'url'],
-            'twitter' => ['nullable', 'string', 'max:255', 'url'],
-            'instagram' => ['nullable', 'string', 'max:255', 'url'],
-            'youtube' => ['nullable', 'string', 'max:255', 'url'],
+            'facebook_url' => ['nullable', 'string', 'max:255', 'url'],
+            'twitter_url' => ['nullable', 'string', 'max:255', 'url'],
+            'instagram_url' => ['nullable', 'string', 'max:255', 'url'],
+            'youtube_url' => ['nullable', 'string', 'max:255', 'url'],
             'google_tag_manager_id' => ['nullable', 'string', 'max:255'],
         ];
     }

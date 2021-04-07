@@ -26,10 +26,10 @@ class Settings extends Model implements HasMedia
         'address',
         'zip_code',
         'city',
-        'facebook',
-        'twitter',
-        'instagram',
-        'youtube',
+        'facebook_url',
+        'twitter_url',
+        'instagram_url',
+        'youtube_url',
         'google_tag_manager_id',
     ];
 
