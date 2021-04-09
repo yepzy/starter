@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Contact\ContactPageSendMessageRequest;
 use App\Models\Logs\LogContactFormMessage;
-use App\Models\Pages\TitleDescriptionPageContent;
+use App\Models\PageContents\TitleDescriptionPageContent;
 use App\Notifications\ContactFormMessage;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -19,7 +19,7 @@ class ContactPageController extends Controller
      */
     public function show(): View
     {
-        /** @var \App\Models\Pages\TitleDescriptionPageContent $pageContent */
+        /** @var \App\Models\PageContents\TitleDescriptionPageContent $pageContent */
         $pageContent = TitleDescriptionPageContent::where('unique_key', 'contact_page_content')->sole();
         $pageContent->displaySeoMeta();
         $css = mix('/css/templates/front/contact/page/show.css');

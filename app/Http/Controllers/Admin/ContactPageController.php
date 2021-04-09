@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Contact\ContactPageUpdateRequest;
-use App\Models\Pages\TitleDescriptionPageContent;
+use App\Models\PageContents\TitleDescriptionPageContent;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\View;
@@ -31,7 +31,7 @@ class ContactPageController extends Controller
      */
     public function update(ContactPageUpdateRequest $request): RedirectResponse
     {
-        /** @var \App\Models\Pages\TitleDescriptionPageContent $pageContent */
+        /** @var \App\Models\PageContents\TitleDescriptionPageContent $pageContent */
         $pageContent = TitleDescriptionPageContent::where('unique_key', 'contact_page_content')->sole();
         $pageContent->saveSeoMetaFromRequest($request);
 

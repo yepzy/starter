@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\Abstracts;
+namespace App\Models\Traits;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Plank\Metable\Metable;
 
-abstract class Metable extends Model
+trait HasMeta
 {
-    use \Plank\Metable\Metable {
+    use Metable {
         getMeta as traitGetMeta;
     }
 
@@ -22,14 +22,7 @@ abstract class Metable extends Model
         }
     }
 
-    /**
-     * @param string $key
-     * @param mixed|null $default
-     * @param string|null $locale
-     *
-     * @return mixed
-     */
-    public function getMeta(string $key, $default = null, string $locale = null)
+    public function getMeta(string $key, $default = null, string $locale = null): array|string|null
     {
         $locale = $locale ?? app()->getLocale();
         $meta = $this->traitGetMeta($key, $default);

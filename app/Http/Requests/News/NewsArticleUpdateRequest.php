@@ -2,15 +2,17 @@
 
 namespace App\Http\Requests\News;
 
-use App\Http\Requests\Abstracts\SeoRequest;
+use App\Http\Requests\Traits\HasSeoMeta;
 use App\Models\News\NewsArticle;
 use App\Models\News\NewsCategory;
-use Carbon\Carbon;
 use CodeZero\UniqueTranslation\UniqueTranslationRule;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class NewsArticleUpdateRequest extends SeoRequest
+class NewsArticleUpdateRequest extends FormRequest
 {
+    use HasSeoMeta;
+
     /**
      * @return array
      * @throws \Okipa\MediaLibraryExt\Exceptions\CollectionNotFound
@@ -35,12 +37,12 @@ class NewsArticleUpdateRequest extends SeoRequest
             'description' => ['nullable', 'string', 'max:4294967295'],
         ]);
 
-        return array_merge($rules, $localizedRules, parent::rules());
+        return array_merge($rules, $localizedRules, $this->seoMetaRules());
     }
 
     protected function prepareForValidation(): void
     {
-        parent::prepareForValidation();
         $this->merge(['active' => (bool) $this->active]);
+        $this->prepareSeoMetaRules();
     }
 }

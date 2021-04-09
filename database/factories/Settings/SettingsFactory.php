@@ -25,7 +25,7 @@ class SettingsFactory extends Factory
         ];
     }
 
-    public function withMedia(array $media = []): self
+    public function withMedia(array $media = null): self
     {
         return $this->afterCreating(function (Settings $settings) use ($media) {
             $settings->addMedia(data_get($media, 'logo_squared') ?: $this->faker->image(null, 250, 250))

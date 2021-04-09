@@ -36,7 +36,6 @@ class SettingsController extends Controller
         }
         settings(true);
 
-        return redirect()->route('settings.edit')
-            ->with('toast_success', __('crud.name.updated', ['name' => __('Settings')]));
+        return back()->with('toast_success', __('crud.name.updated', ['name' => __('Settings')]));
     }
 }

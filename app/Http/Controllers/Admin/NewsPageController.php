@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\News\NewsPageUpdateRequest;
-use App\Models\Pages\TitleDescriptionPageContent;
+use App\Models\PageContents\TitleDescriptionPageContent;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\View;
@@ -30,7 +30,7 @@ class NewsPageController extends Controller
      */
     public function update(NewsPageUpdateRequest $request): RedirectResponse
     {
-        /** @var \App\Models\Pages\TitleDescriptionPageContent $pageContent */
+        /** @var \App\Models\PageContents\TitleDescriptionPageContent $pageContent */
         $pageContent = TitleDescriptionPageContent::where('unique_key', 'news_page_content')->sole();
         $pageContent->saveSeoMetaFromRequest($request);
 

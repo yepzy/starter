@@ -95,17 +95,14 @@ class ProfileControllerTest extends TestCase
         $this->actingAs($authUser)
             ->from(route('profile.edit'))
             ->put(route('profile.update'), [
-                // Uploaded profile picture is ignored when user want to remove it.
+                // Uploaded profile picture is ignored when instruction to remove it is given.
                 'profile_picture' => UploadedFile::fake()->image('profile-picture.webp', 250, 250),
                 'remove_profile_picture' => true,
                 'first_name' => 'First name test',
                 'last_name' => 'Last name test',
                 'phone_number' => '0240506070',
                 'email' => $authUser->email,
-            ])
-            ->assertSessionHasNoErrors()
-            ->assertSessionHas('alert')
-            ->assertRedirect(route('profile.edit'));
+            ]);
         // Profile picture is updated to default one.
         $this->assertDatabaseHas(app(Media::class)->getTable(), [
             'model_id' => $authUser->id,

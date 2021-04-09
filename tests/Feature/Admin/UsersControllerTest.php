@@ -190,6 +190,7 @@ class UsersControllerTest extends TestCase
         $authUser = User::factory()->create();
         $updatedUser = User::factory()->create();
         $this->actingAs($authUser)
+            ->from(route('user.edit', $updatedUser))
             ->put(route('user.update', $updatedUser), [
                 'profile_picture' => UploadedFile::fake()->image('profile-picture.webp', 250, 250),
                 'first_name' => 'First name test',
@@ -230,6 +231,7 @@ class UsersControllerTest extends TestCase
         $authUser = User::factory()->create();
         $updatedUser = User::factory()->create();
         $this->actingAs($authUser)
+            ->from(route('user.edit', $updatedUser))
             ->put(route('user.update', $updatedUser), [
                 // Uploaded profile picture is ignored when user want to remove it.
                 'profile_picture' => UploadedFile::fake()->image('profile-picture.webp', 250, 250),

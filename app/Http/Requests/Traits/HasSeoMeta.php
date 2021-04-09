@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Requests\Abstracts;
+namespace App\Http\Requests\Traits;
 
-use App\Models\Pages\PageContent;
-use Illuminate\Foundation\Http\FormRequest;
+use App\Models\PageContents\PageContent;
 
-abstract class SeoRequest extends FormRequest
+trait HasSeoMeta
 {
     /**
      * @return array
      * @throws \Okipa\MediaLibraryExt\Exceptions\CollectionNotFound
      */
-    public function rules(): array
+    protected function seoMetaRules(): array
     {
         return array_merge([
             'meta_image' => array_merge(['nullable'], app(PageContent::class)->getMediaValidationRules('seo')),
@@ -22,7 +21,7 @@ abstract class SeoRequest extends FormRequest
         ]));
     }
 
-    protected function prepareForValidation(): void
+    protected function prepareSeoMetaRules(): void
     {
         $this->merge(['remove_meta_image' => (bool) $this->remove_meta_image]);
     }

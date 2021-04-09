@@ -56,7 +56,7 @@ if (! function_exists('cookieCategories')) {
         return Cache::rememberForever(
             'cookie_categories',
             fn() => CookieCategory::with([
-                'services' => fn(BelongsToMany $services) => $services->with(['categories'])->where('active', true),
+                'services' => fn(BelongsToMany $services) => $services->where('active', true)->with(['categories']),
             ])->whereHas('services')->ordered()->get()
         );
     }

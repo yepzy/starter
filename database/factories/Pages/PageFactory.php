@@ -5,38 +5,18 @@ namespace Database\Factories\Pages;
 use App\Brickables\OneTextColumn;
 use App\Brickables\TitleH1;
 use App\Models\Pages\Page;
+use Database\Factories\Traits\HasBricks;
+use Database\Factories\Traits\HasSeoMeta;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 class PageFactory extends Factory
 {
+    use HasSeoMeta;
+    use HasBricks;
+
     /** @var string */
     protected $model = Page::class;
-
-    protected string $markdownText = <<<EOT
-**Bold text.**
-
-*Italic text.*
-
-# Title 1
-## Title 2
-### Title 3
-#### Title 4
-##### Title 5
-###### Title 6
-
-> Quote.
-
-Unordered list :
-* Item 1.
-* Item 2.
-
-Ordered list :
-1. Item 1.
-2. Item 2.
-
-[Link](http://www.google.com).
-EOT;
 
     public function definition(): array
     {
@@ -56,40 +36,6 @@ EOT;
                     'fr' => Str::slug($page->getTranslation('nav_title', 'fr')),
                     'en' => Str::slug($page->getTranslation('nav_title', 'en')),
                 ];
-        });
-    }
-
-    public function withSeoMeta(): self
-    {
-        return $this->afterCreating(function (Page $page) {
-            $page->saveSeoMeta([
-                'meta_title' => [
-                    'fr' => $page->getTranslation('nav_title', 'fr'),
-                    'en' => $page->getTranslation('nav_title', 'en'),
-                ],
-                'meta_description' => [
-                    'fr' => $this->faker->text(150),
-                    'en' => $this->faker->text(150)
-                ],
-            ]);
-        });
-    }
-
-    public function withBricks(): self
-    {
-        return $this->afterCreating(function (Page $page) {
-            $page->addBrick(TitleH1::class, [
-                'title' => [
-                    'fr' => $page->getTranslation('nav_title', 'fr'),
-                    'en' => $page->getTranslation('nav_title', 'en'),
-                ],
-            ]);
-            $page->addBrick(OneTextColumn::class, [
-                'text' => [
-                    'fr' => $this->markdownText,
-                    'en' => $this->markdownText,
-                ],
-            ]);
         });
     }
 }

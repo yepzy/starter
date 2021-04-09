@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Models\Pages;
+namespace App\Models\PageContents;
 
+use App\Brickables\Carousel;
+use App\Brickables\TitleH1;
 use App\Models\Traits\HasSeoMeta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,27 +14,27 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\Translatable\HasTranslations;
 
-class Page extends Model implements HasMedia, HasBrickables
+class PageContent extends Model implements HasMedia, HasBrickables
 {
     use HasFactory;
-    use HasTranslations;
     use InteractsWithMedia;
     use ExtendsMediaAbilities;
     use HasBrickablesTrait;
     use HasSeoMeta;
 
-    public array $translatable = ['slug', 'nav_title'];
+    public array $brickables = [
+        'number_of_bricks' => [
+            TitleH1::class => ['min' => 1, 'max' => 1],
+            Carousel::class => ['max' => 1],
+        ],
+    ];
 
     /** @var string*/
-    protected $table = 'pages';
+    protected $table = 'page_contents';
 
     /** @var array */
-    protected $fillable = ['unique_key', 'nav_title', 'slug', 'active'];
-
-    /** @var array */
-    protected $casts = ['active' => 'boolean'];
+    protected $fillable = ['unique_key'];
 
     /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
     public function registerMediaCollections(): void
@@ -51,22 +53,5 @@ class Page extends Model implements HasMedia, HasBrickables
         $this->addMediaConversion('thumb')
             ->fit(Manipulations::FIT_CROP, 40, 40)
             ->format('webp');
-    }
-
-    public function getRouteKey(): string
-    {
-        return $this->getTranslation('slug', app()->getLocale());
-    }
-
-    /**
-     * @param mixed $value
-     * @param null $field
-     *
-     * @return \App\Models\Pages\Page|null
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    public function resolveRouteBinding($value, $field = null): ?Page
-    {
-        return $this->where('slug->' . app()->getLocale(), $value)->first();
     }
 }

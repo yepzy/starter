@@ -85,7 +85,7 @@ class UsersController extends Controller
             : Arr::except($request->validated(), 'new_password'));
         app(UsersService::class)->saveProfilePictureFromRequest($request, $user);
 
-        return redirect()->route('user.edit', $user)->with('toast_success', __('crud.orphan.updated', [
+        return back()->with('toast_success', __('crud.orphan.updated', [
             'entity' => __('Users'),
             'name' => $user->full_name,
         ]));

@@ -19,6 +19,8 @@ parameters:
         - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Factories\\Factory::home\(\)#'
         - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Factories\\Factory::news\(\)#'
         - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Factories\\Factory::contact\(\)#'
+        - '#Call to an undefined method Spatie\\Image\\Manipulations::withResponsiveImages\(\)#'
+        - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Relations\\BelongsToMany::where\(\)#'
 
     excludePaths:
         - ./*/*/FileToBeExcluded.php

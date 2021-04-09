@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\News\NewsArticlesIndexRequest;
 use App\Models\News\NewsArticle;
-use App\Models\Pages\TitleDescriptionPageContent;
+use App\Models\PageContents\TitleDescriptionPageContent;
 use Illuminate\Contracts\View\View;
 
 class NewsPageController extends Controller
@@ -18,7 +18,7 @@ class NewsPageController extends Controller
      */
     public function show(NewsArticlesIndexRequest $request): View
     {
-        /** @var \App\Models\Pages\TitleDescriptionPageContent $pageContent */
+        /** @var \App\Models\PageContents\TitleDescriptionPageContent $pageContent */
         $pageContent = TitleDescriptionPageContent::where('unique_key', 'news_page_content')->sole();
         $pageContent->displaySeoMeta();
         $query = NewsArticle::with(['media', 'categories'])

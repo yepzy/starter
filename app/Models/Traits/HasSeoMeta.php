@@ -1,46 +1,18 @@
 <?php
 
-namespace App\Models\Abstracts;
+namespace App\Models\Traits;
 
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
-use Okipa\MediaLibraryExt\ExtendsMediaAbilities;
 use Spatie\Image\Image;
 use Spatie\Image\Manipulations;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-abstract class Seo extends Metable implements HasMedia
+trait HasSeoMeta
 {
-    use InteractsWithMedia;
-    use ExtendsMediaAbilities;
+    use HasMeta;
 
     protected array $seoTags = ['meta_title', 'meta_description'];
-
-    /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('seo')
-            ->singleFile()
-            ->acceptsMimeTypes(['image/webp', 'image/jpeg', 'image/png'])
-            ->registerMediaConversions(fn(Media $media = null) => $this->addMediaConversion('image')
-                ->fit(Manipulations::FIT_CROP, 600, 600)
-                ->format('webp'));
-    }
-
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     * @param \Spatie\MediaLibrary\MediaCollections\Models\Media|null $media
-     *
-     * @throws \Spatie\Image\Exceptions\InvalidManipulation
-     */
-    public function registerMediaConversions(Media $media = null): void
-    {
-        $this->addMediaConversion('thumb')
-            ->fit(Manipulations::FIT_CROP, 40, 40)
-            ->format('webp');
-    }
 
     /**
      * @param \Illuminate\Http\Request $request
@@ -51,8 +23,9 @@ abstract class Seo extends Metable implements HasMedia
     public function saveSeoMetaFromRequest(Request $request): void
     {
         $this->saveMetaFromRequest($request, $this->seoTags);
-        if ($request->has('remove_meta_image')) {
+        if ($request->remove_meta_image) {
             $this->clearMediaCollection('seo');
+            return;
         }
         if ($request->file('meta_image')) {
             $this->addMediaFromRequest('meta_image')->toMediaCollection('seo');
@@ -85,5 +58,16 @@ abstract class Seo extends Metable implements HasMedia
                 ],
             ]);
         }
+    }
+
+    /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
+    protected function registerSeoMetaMediaCollection(): void
+    {
+        $this->addMediaCollection('seo')
+            ->singleFile()
+            ->acceptsMimeTypes(['image/webp', 'image/jpeg', 'image/png'])
+            ->registerMediaConversions(fn(Media $media = null) => $this->addMediaConversion('image')
+                ->fit(Manipulations::FIT_CROP, 600, 600)
+                ->format('webp'));
     }
 }

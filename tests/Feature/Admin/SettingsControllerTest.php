@@ -59,6 +59,7 @@ class SettingsControllerTest extends TestCase
         // Settings helper is called 2 times, once in formRequest and once during cache regeneration.
         Cache::shouldReceive('rememberForever')->twice()->with('settings', Closure::class)->andReturn($settings);
         $this->actingAs($authUser)
+            ->from(route('settings.edit'))
             ->put(route('settings.update'), [
                 'logo_squared' => UploadedFile::fake()->image('logo-squared.webp', 225, 225),
                 'email' => 'test@email.fr',

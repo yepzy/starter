@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Models\Pages;
+namespace App\Models\PageContents;
 
 use App\Brickables\OneTextColumn;
 use App\Brickables\TitleH1;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class TitleDescriptionPageContent extends PageContent
 {
     public array $brickables = [
         'can_only_handle' => [
             TitleH1::class,
-            OneTextColumn::class
+            OneTextColumn::class,
         ],
         'number_of_bricks' => [
             TitleH1::class => ['min' => 1, 'max' => 1],
