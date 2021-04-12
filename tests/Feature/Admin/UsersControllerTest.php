@@ -46,6 +46,10 @@ class UsersControllerTest extends TestCase
                 Str::limit($user2->email, 25),
                 $user2->created_at->format('d/m/Y H:i'),
                 $user2->updated_at->format('d/m/Y H:i'),
+                route('user.edit', $user2),
+                route('user.destroy', $user2),
+                'data-confirm',
+                __('crud.orphan.destroy_confirm', ['entity' => __('Users'), 'name' => $user2->full_name]),
                 $user1->id,
                 $user1->getFirstMediaUrl('profile_pictures', 'thumb'),
                 Str::limit($user1->first_name, 25),
@@ -53,7 +57,13 @@ class UsersControllerTest extends TestCase
                 Str::limit($user1->email, 25),
                 $user1->created_at->format('d/m/Y H:i'),
                 $user1->updated_at->format('d/m/Y H:i'),
-            ]);
+            ], false)
+            ->assertDontSee([
+                // Auth user can't edit or delete himself from table.
+                route('user.edit', $user1),
+                route('user.destroy', $user1),
+                __('crud.orphan.destroy_confirm', ['entity' => __('Users'), 'name' => $user1->full_name]),
+            ], false);
     }
 
     /** @test */

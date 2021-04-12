@@ -43,7 +43,7 @@ class ContactPageController extends Controller
                 $request->validated()['phone_number'],
                 $request->validated()['message'],
             ))->locale(app()->getLocale()));
-        Notification::route('mail', settings()->email)
+        Notification::route('mail', $request->validated()['email'])
             ->notify((new ContactFormMessage(
                 $request->validated()['first_name'],
                 $request->validated()['last_name'],

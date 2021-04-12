@@ -13,6 +13,7 @@
     </rule>
     <!-- Code size rules -->
     <rule ref="rulesets/codesize.xml">
+        <exclude name="CyclomaticComplexity" pattern="tests/*"/>
         <exclude name="TooManyPublicMethods" pattern="tests/*"/>
         <exclude name="TooManyMethods" pattern="tests/*"/>
     </rule>

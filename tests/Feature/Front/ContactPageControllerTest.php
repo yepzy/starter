@@ -2,10 +2,14 @@
 
 namespace Tests\Feature\Front;
 
+use App\Models\Logs\LogContactFormMessage;
 use App\Models\PageContents\TitleDescriptionPageContent;
 use App\Models\Pages\Page;
 use App\Models\Settings\Settings;
+use App\Notifications\ContactFormMessage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Notifications\AnonymousNotifiable;
+use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class ContactPageControllerTest extends TestCase
@@ -21,12 +25,12 @@ class ContactPageControllerTest extends TestCase
     /** @test */
     public function it_can_display_contact_page(): void
     {
+        $settings = Settings::factory()->withMedia()->create();
         TitleDescriptionPageContent::factory()->contact()
             ->withTitleH1Brick()
             ->withOneTextColumnBrick()
             ->withSeoMeta()
             ->create();
-        $settings = Settings::factory()->withMedia()->create();
         $termsOfServicePage = Page::factory()->create([
             'unique_key' => 'terms_of_service_page',
             'nav_title' => ['fr' => 'CGU et mentions légales', 'en' => 'Terms and legal notice'],
@@ -79,7 +83,71 @@ class ContactPageControllerTest extends TestCase
                 $settings->full_postal_address,
                 'href="https://www.google.com/maps/embed/v1/place?key=' . config('services.google.key') . '&q='
                 . str_replace([' ', ','], '+', $settings->full_postal_address) . '"',
-            ], false)
-        ;
+            ], false);
+    }
+
+    /** @test */
+    public function it_can_send_mail_message_from_contact_page(): void
+    {
+        $settings = Settings::factory()->create();
+        Notification::fake();
+        $this->from(route('contact.page.show'))
+            ->post(route('contact.sendMessage'), [
+                'first_name' => 'First name test',
+                'last_name' => 'Last name test',
+                'email' => 'email@test.fr',
+                'phone_number' => '0606060606',
+                'message' => 'Message test',
+            ])
+            ->assertSessionHasNoErrors()
+            ->assertSessionHas('toast_success', __('Your message has been sent, we have emailed you a copy.'))
+            ->assertRedirect(route('contact.page.show'));
+        // Mail is sent to app owner.
+        Notification::assertSentTo(
+            new AnonymousNotifiable(),
+            ContactFormMessage::class,
+            fn(
+                ContactFormMessage $notification,
+                array $channels,
+                AnonymousNotifiable $notifiable
+            ) => $notification->locale === config('app.locale')
+                && $notification->queue === 'high'
+                && $notification->firstName === 'First name test'
+                && $notification->lastName === 'Last name test'
+                && $notification->email === 'email@test.fr'
+                && $notification->phoneNumber === '0606060606'
+                && $notification->message === 'Message test'
+                && ! $notification->isCopyToSender
+                && $channels === ['mail']
+                && $notifiable->routes['mail'] === $settings->email
+        );
+        // Mail copy is sent to sender.
+        Notification::assertSentTo(
+            new AnonymousNotifiable(),
+            ContactFormMessage::class,
+            fn(
+                ContactFormMessage $notification,
+                array $channels,
+                AnonymousNotifiable $notifiable
+            ) => $notification->locale === config('app.locale')
+                && $notification->queue === 'high'
+                && $notification->firstName === 'First name test'
+                && $notification->lastName === 'Last name test'
+                && $notification->email === 'email@test.fr'
+                && $notification->phoneNumber === '0606060606'
+                && $notification->message === 'Message test'
+                && $notification->isCopyToSender
+                && $channels === ['mail']
+                && $notifiable->routes['mail'] === 'email@test.fr'
+        );
+        Notification::assertTimesSent(2, ContactFormMessage::class);
+        // Mail log is saved.
+        $this->assertDatabaseHas(app(LogContactFormMessage::class)->getTable(), [
+            'data->first_name' => 'First name test',
+            'data->last_name' => 'Last name test',
+            'data->email' => 'email@test.fr',
+            'data->phone_number' => '0606060606',
+            'data->message' => 'Message test',
+        ]);
     }
 }
