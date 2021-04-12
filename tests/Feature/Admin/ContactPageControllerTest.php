@@ -50,8 +50,8 @@ class ContactPageControllerTest extends TestCase
         $contactPage = TitleDescriptionPageContent::factory()->contact()->create();
         $data = ['meta_image' => UploadedFile::fake()->image('meta-image.webp', 600, 600)];
         foreach (supportedLocaleKeys() as $localeKey) {
-            $data['meta_title'][$localeKey] = 'Title test FR';
-            $data['meta_description'][$localeKey] = 'Title test FR';
+            $data['meta_title'][$localeKey] = 'Meta title test ' . $localeKey;
+            $data['meta_description'][$localeKey] = 'Meta title test ' . $localeKey;
         }
         $this->actingAs($authUser)
             ->from(route('contact.page.edit'))
@@ -75,7 +75,7 @@ class ContactPageControllerTest extends TestCase
             'metable_type' => TitleDescriptionPageContent::class,
             'type' => 'array',
             'key' => 'meta_description',
-            'value' => json_encode($data['meta_description']),
+            'value' => json_encode($data['meta_description'], JSON_THROW_ON_ERROR),
         ]);
         // Meta image is updated.
         $this->assertDatabaseHas(app(Media::class)->getTable(), [

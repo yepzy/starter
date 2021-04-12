@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Settings;
 
+use App\Models\Settings\Settings;
 use App\Rules\PhoneInternational;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -15,7 +16,7 @@ class SettingsUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'logo_squared' => settings()->getMediaValidationRules('logo_squared'),
+            'logo_squared' => app(Settings::class)->getMediaValidationRules('logo_squared'),
             'email' => ['required', 'string', 'max:255', 'email:rfc,dns,spoof'],
             'phone_number' => ['required', 'string', 'max:255', new PhoneInternational()],
             'address' => ['required', 'string', 'max:255'],

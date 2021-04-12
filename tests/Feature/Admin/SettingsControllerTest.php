@@ -52,12 +52,12 @@ class SettingsControllerTest extends TestCase
     /** @test */
     public function it_can_update_settings(): void
     {
-        $settings = Settings::factory()->withMedia()->create();
+        $settings = Settings::factory()->create();
         $authUser = User::factory()->create();
         // Settings cache is cleared on update.
         Cache::shouldReceive('forget')->once()->with('settings')->andReturn(true);
-        // Settings helper is called 2 times, once in formRequest and once during cache regeneration.
-        Cache::shouldReceive('rememberForever')->twice()->with('settings', Closure::class)->andReturn($settings);
+        // Settings helper is called once during cache regeneration.
+        Cache::shouldReceive('rememberForever')->once()->with('settings', Closure::class)->andReturn($settings);
         $this->actingAs($authUser)
             ->from(route('settings.edit'))
             ->put(route('settings.update'), [
