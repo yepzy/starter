@@ -24,7 +24,7 @@
                     {{ __('Update your account\'s profile and contact information.') }}
                 </p>
                 <form method="POST"
-                      action="{{ route('profile.update') }}"
+                      action="{{ route('user-profile-information.update') }}"
                       enctype="multipart/form-data"
                       novalidate>
                     @csrf
@@ -62,7 +62,7 @@
                         {{ __('Ensure your account is using a long, random password to stay secure.') }}
                     </p>
                     <form method="POST"
-                          action="{{ route('password.update') }}"
+                          action="{{ route('user-password.update') }}"
                           novalidate>
                         @csrf
                         @method('PUT')
@@ -126,6 +126,8 @@
                             <form class="ml-3"
                                   method="POST"
                                   action="{{ route('two-factor.deactivate') }}"
+                                  {{-- ToDo: replace form action by the one below if app is monolingual --}}
+                                  {{--action="{{ url(config('fortify.prefix') . '/user/two-factor-recovery-codes') }}"--}}
                                   novalidate>
                                 @csrf
                                 @method('DELETE')
@@ -138,6 +140,8 @@
                     @else
                         <form method="POST"
                               action="{{ route('two-factor.activate') }}"
+                              {{-- ToDo: replace form action by the one below if app is monolingual --}}
+                              {{--action="{{ url(config('fortify.prefix') . '/user/two-factor-authentication') }}"--}}
                               novalidate>
                             @csrf
                             {{ submit()->prepend('<i class="fas fa-check fa-fw"></i>')

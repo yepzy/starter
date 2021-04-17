@@ -5,12 +5,14 @@ namespace App\Http\Requests\Cookies;
 use App\Models\Cookies\CookieCategory;
 use CodeZero\UniqueTranslation\UniqueTranslationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CookieCategoryStoreRequest extends FormRequest
 {
     public function rules(): array
     {
-        return localizeRules([
+        $rules = ['unique_key' => ['required', 'snakecase', 'max:255', Rule::unique(CookieCategory::class)]];
+        $localizedRules = localizeRules([
             'title' => [
                 'required',
                 'string',
@@ -19,5 +21,7 @@ class CookieCategoryStoreRequest extends FormRequest
             ],
             'description' => ['nullable', 'string', 'max:4294967295'],
         ]);
+
+        return array_merge($rules, $localizedRules);
     }
 }

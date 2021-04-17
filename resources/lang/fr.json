@@ -229,6 +229,7 @@
     "You can set a future publication date: this article will not be published until this date is reached.": "Vous pouvez définir une future date de publication : cet article ne sera publié que lorsque cette date sera atteinte.",
     "You will be able to manage content once the creation is complete.": "Vous pourrez gérer le contenu une fois la création terminée.",
     "Two factor authentication has been enabled.": "La double authentification a été activée.",
+    "Two factor recovery codes have been generated.": "Les codes de récupération de double authentification ont été générés.",
     "Two factor authentication has been disabled.": "La double authentification a été désactivée.",
     "The welcome link does not have a valid signature or is expired.": "Le lien de bienvenue est ne possède pas de signature valide ou a expiré.",
     "Could not find a user to be welcomed.": "Aucun utilisateur à accueillir n'a été trouvé.",
@@ -260,5 +261,6 @@
     "Configure the cookies which are used by this service. If this service use is refused, these cookies will automatically be deleted.": "Configurez les cookies qui sont utilisés par ce service. Si l'utilisation de ce service est refusée, ces cookies seront automatiquement supprimés.",
     "To help you to configure this, an example is avaiblable here:": "Pour vous aider à configurer cela, un exemple est disponible ici:",
     "This configuration must be declared in a valid JSON format.": "Cette configuration doit être déclarée dans un format JSON valide.",
-    "Civil status": "État civil"
+    "Civil status": "État civil",
+    "This action is unauthorized.": "Cette action n'est pas autorisée."
 }

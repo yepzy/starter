@@ -13,7 +13,7 @@
         {{ __('Define new password') }}
     </h1>
     <x-common.forms.notice class="mt-3"/>
-    <form method="POST" action="{{ route('password.reset.update') }}" novalidate>
+    <form method="POST" action="{{ route('password.update') }}" novalidate>
         @csrf
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
         {{ inputEmail()->name('email')

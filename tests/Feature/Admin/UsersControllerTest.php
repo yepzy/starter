@@ -31,10 +31,10 @@ class UsersControllerTest extends TestCase
     /** @test */
     public function it_can_display_users_list(): void
     {
-        $user1 = User::factory()->withMedia()->create();
+        $authUser = User::factory()->withMedia()->create();
         Carbon::setTestNow(now()->addMinute());
         $user2 = User::factory()->withMedia()->create();
-        $this->actingAs($user1)
+        $this->actingAs($authUser)
             ->get(route('users.index'))
             ->assertOk()
             ->assertSeeInOrder([
@@ -50,33 +50,36 @@ class UsersControllerTest extends TestCase
                 route('user.destroy', $user2),
                 'data-confirm',
                 __('crud.orphan.destroy_confirm', ['entity' => __('Users'), 'name' => $user2->full_name]),
-                $user1->id,
-                $user1->getFirstMediaUrl('profile_pictures', 'thumb'),
-                Str::limit($user1->first_name, 25),
-                Str::limit($user1->last_name, 25),
-                Str::limit($user1->email, 25),
-                $user1->created_at->format('d/m/Y H:i'),
-                $user1->updated_at->format('d/m/Y H:i'),
+                $authUser->id,
+                $authUser->getFirstMediaUrl('profile_pictures', 'thumb'),
+                Str::limit($authUser->first_name, 25),
+                Str::limit($authUser->last_name, 25),
+                Str::limit($authUser->email, 25),
+                $authUser->created_at->format('d/m/Y H:i'),
+                $authUser->updated_at->format('d/m/Y H:i'),
             ], false)
             ->assertDontSee([
                 // Auth user can't edit or delete himself from table.
-                route('user.edit', $user1),
-                route('user.destroy', $user1),
-                __('crud.orphan.destroy_confirm', ['entity' => __('Users'), 'name' => $user1->full_name]),
+                route('user.edit', $authUser),
+                route('user.destroy', $authUser),
+                __('crud.orphan.destroy_confirm', ['entity' => __('Users'), 'name' => $authUser->full_name]),
             ], false);
     }
 
     /** @test */
     public function it_can_display_user_create_page(): void
     {
-        $user = User::factory()->withMedia()->create();
-        $this->actingAs($user)->get(route('user.create'))
+        $authUser = User::factory()->withMedia()->create();
+        $this->actingAs($authUser)->get(route('user.create'))
             ->assertOk()
             ->assertSeeInOrder([
-                // Headings and form action confirm we are on create page.
+                // Heading
                 'fas fa-user fa-fw',
                 __('breadcrumbs.orphan.create', ['entity' => __('Users')]),
+                // Form and back button route
                 route('user.store'),
+                route('users.index'),
+                __('Create'),
             ]);
     }
 
@@ -179,11 +182,14 @@ class UsersControllerTest extends TestCase
         $this->actingAs($authUser)->get(route('user.edit', $editedUser))
             ->assertOk()
             ->assertSeeInOrder([
-                // Headings and form action confirm we are on edit page.
+                // Heading
                 'fas fa-user fa-fw',
                 __('breadcrumbs.orphan.edit', ['entity' => __('Users'), 'detail' => $editedUser->full_name]),
+                // Form and back button route
                 route('user.update', $editedUser),
-                // User data is displayed.
+                route('users.index'),
+                __('Update'),
+                // User data
                 $editedUser->getFirstMediaUrl('profile_pictures', 'thumb'),
                 $editedUser->getFirstMedia('profile_pictures')->file_name,
                 $editedUser->last_name,
@@ -191,6 +197,7 @@ class UsersControllerTest extends TestCase
                 $editedUser->phone_number,
                 $editedUser->email,
             ])
+            // User password is not displayed.
             ->assertDontSee([$editedUser->password]);
     }
 

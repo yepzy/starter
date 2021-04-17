@@ -32,23 +32,38 @@ class ProfileControllerTest extends TestCase
         $this->actingAs($authUser)->get(route('profile.edit'))
             ->assertOk()
             ->assertSeeInOrder([
-                // Headings and form actions confirm we are on profile edit page.
+                // Heading
                 'fas fa-user fa-fw',
                 __('Profile'),
-                route('profile.update'),
-                // User data is displayed.
+                // Form
+                route('user-profile-information.update'),
+                // User data
                 $authUser->getFirstMediaUrl('profile_pictures', 'thumb'),
                 $authUser->getFirstMedia('profile_pictures')->file_name,
                 $authUser->last_name,
                 $authUser->first_name,
                 $authUser->phone_number,
                 $authUser->email,
-                // Other form actions are present.
-                route('password.update'),
-                route('two-factor.activate'),
+                // Other form actions
+                route('user-password.update'),
+                route('two-factor.activate'), // ToDo: replace by the lines below if app is monolingual.
+                //url(config('fortify.prefix') . '/user/two-factor-authentication'),
                 route('profile.deleteAccount'),
             ])
+            // User password is not displayed.
             ->assertDontSee([$authUser->password]);
+    }
+
+    /** @test */
+    public function it_can_display_2fa_recovery_codes_generation_and_deactivation_form_actions_when_activated(): void
+    {
+        $authUser = User::factory()->twoFactorAuthenticationActivated()->withMedia()->create();
+        $this->actingAs($authUser)->get(route('profile.edit'))->assertSeeInOrder([
+            route('two-factor.recovery.regen'), // ToDo: replace by the lines below if app is monolingual.
+            //url(config('fortify.prefix') . '/user/two-factor-recovery-codes'),
+            route('two-factor.deactivate'), // ToDo: replace by the lines below if app is monolingual.
+            //url(config('fortify.prefix') . '/user/two-factor-authentication'),
+        ]);
     }
 
     /** @test */
@@ -57,7 +72,7 @@ class ProfileControllerTest extends TestCase
         $authUser = User::factory()->create();
         $this->actingAs($authUser)
             ->from(route('profile.edit'))
-            ->put(route('profile.update'), [
+            ->put(route('user-profile-information.update'), [
                 'profile_picture' => UploadedFile::fake()->image('profile-picture.webp', 250, 250),
                 'first_name' => 'First name test',
                 'last_name' => 'Last name test',
@@ -67,6 +82,10 @@ class ProfileControllerTest extends TestCase
             ->assertSessionHasNoErrors()
             ->assertSessionHas('alert')
             ->assertRedirect(route('profile.edit'));
+        self::assertEquals(
+            'success',
+            json_decode(session()->get('alert.config'), true, 512, JSON_THROW_ON_ERROR)['icon']
+        );
         self::assertEquals(
             __('Your profile information have been saved.'),
             json_decode(session()->get('alert.config'), true, 512, JSON_THROW_ON_ERROR)['title']
@@ -94,7 +113,7 @@ class ProfileControllerTest extends TestCase
         $authUser = User::factory()->create();
         $this->actingAs($authUser)
             ->from(route('profile.edit'))
-            ->put(route('profile.update'), [
+            ->put(route('user-profile-information.update'), [
                 // Uploaded profile picture is ignored when instruction to remove it is given.
                 'profile_picture' => UploadedFile::fake()->image('profile-picture.webp', 250, 250),
                 'remove_profile_picture' => true,
@@ -119,7 +138,7 @@ class ProfileControllerTest extends TestCase
         $authUser = User::factory()->create();
         $this->actingAs($authUser)
             ->from(route('profile.edit'))
-            ->put(route('profile.update'), [
+            ->put(route('user-profile-information.update'), [
                 'first_name' => 'First name test',
                 'last_name' => 'Last name test',
                 'phone_number' => '0240506070',
@@ -153,7 +172,7 @@ class ProfileControllerTest extends TestCase
         $authUser = User::factory()->create();
         $this->actingAs($authUser)
             ->from(route('profile.edit'))
-            ->put(route('password.update'), [
+            ->put(route('user-password.update'), [
                 'current_password' => 'secret',
                 'new_password' => 'password',
                 'new_password_confirmation' => 'password',
@@ -162,11 +181,62 @@ class ProfileControllerTest extends TestCase
             ->assertSessionHas('alert')
             ->assertRedirect(route('profile.edit'));
         self::assertEquals(
+            'success',
+            json_decode(session()->get('alert.config'), true, 512, JSON_THROW_ON_ERROR)['icon']
+        );
+        self::assertEquals(
             __('Your new password has been saved.'),
             json_decode(session()->get('alert.config'), true, 512, JSON_THROW_ON_ERROR)['title']
         );
         // Password is updated.
         self::assertTrue(Hash::check('password', $authUser->fresh()->password));
+    }
+
+    /** @test */
+    public function it_can_activate_two_factor_authentication(): void
+    {
+        $authUser = User::factory()->create();
+        $this->actingAs($authUser)
+            ->from(route('profile.edit'))
+            ->post(route('two-factor.activate')) // ToDo: replace by the lines below if app is monolingual.
+            //->post(url(config('fortify.prefix') . '/user/two-factor-authentication'))
+            ->assertSessionHasNoErrors()
+            ->assertSessionHas('status', 'two-factor-authentication-enabled')
+            ->assertRedirect(route('profile.edit'));
+        $authUser->fresh();
+        self::assertNotNull($authUser->two_factor_secret);
+        self::assertNotNull($authUser->two_factor_recovery_codes);
+    }
+
+    public function it_can_regenerate_two_factor_recovery_codes(): void
+    {
+        $authUser = User::factory()->twoFactorAuthenticationActivated()->create();
+        $this->actingAs($authUser)
+            ->from(route('profile.edit'))
+            ->post(route('two-factor.recovery.regen')) // ToDo: replace by the lines below if app is monolingual.
+            //->post(url(config('fortify.prefix') . '/user/two-factor-recovery-codes'))
+            ->assertSessionHasNoErrors()
+            ->assertSessionHas('status', 'recovery-codes-generated')
+            ->assertRedirect(route('profile.edit'));
+        self::assertNotSame($authUser->two_factor_recovery_codes, $authUser->fresh()->two_factor_recovery_codes);
+    }
+
+    /** @test */
+    public function it_can_deactivate_two_factor_authentication(): void
+    {
+        $authUser = User::factory()->twoFactorAuthenticationActivated()->create();
+        $this->actingAs($authUser)
+            ->from(route('profile.edit'))
+            ->delete(route('two-factor.deactivate')) // ToDo: replace by the lines below if app is monolingual.
+            //->delete(url(config('fortify.prefix') . '/user/two-factor-authentication'))
+            ->assertSessionHasNoErrors()
+            ->assertSessionHas('status', 'two-factor-authentication-disabled')
+            ->assertRedirect(route('profile.edit'));
+        $this->assertDatabaseHas(app(User::class)->getTable(), [
+            'id' => $authUser->id,
+            'two_factor_secret' => null,
+            'two_factor_recovery_codes' => null,
+        ]);
     }
 
     /** @test */

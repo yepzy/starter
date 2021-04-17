@@ -41,7 +41,7 @@
 ### Import and git setup
 
 <!-- ToDo: set git repo URL -->
-Clone the project from `<project-repository-url>`.
+Clone the project from <project-repository-url>.
 
 ### DNS setup
 
@@ -49,7 +49,7 @@ Set your project domain resolution in your virtualhost: `sudo vim /etc/hosts`.
 
 <!-- ToDo: Replace `starter.test` by your project local DNS -->
 ```sh
-    # add these lines in your /etc/hosts file
+    # Add these lines in your /etc/hosts file
     127.0.0.1   starter.test
 ```
 

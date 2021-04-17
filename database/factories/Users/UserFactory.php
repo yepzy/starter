@@ -4,8 +4,11 @@ namespace Database\Factories\Users;
 
 use App\Models\Users\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Laravel\Fortify\Contracts\TwoFactorAuthenticationProvider as TwoFactorAuthenticationProviderContract;
+use Laravel\Fortify\RecoveryCode;
 
 class UserFactory extends Factory
 {
@@ -28,6 +31,16 @@ class UserFactory extends Factory
     public function unverified(): self
     {
         return $this->state(static fn() => ['email_verified_at' => null]);
+    }
+
+    public function twoFactorAuthenticationActivated(): self
+    {
+        return $this->state(fn() => [
+            'two_factor_secret' => encrypt(app(TwoFactorAuthenticationProviderContract::class)->generateSecretKey()),
+            'two_factor_recovery_codes' => encrypt(json_encode(Collection::times(8, function () {
+                return RecoveryCode::generate();
+            })->all(), JSON_THROW_ON_ERROR)),
+        ]);
     }
 
     public function withMedia(string $mediaPath = null): self

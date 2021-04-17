@@ -13,7 +13,7 @@ class CookieCategoryFactory extends Factory
 
     public function definition(): array
     {
-        $titles = ['fr' => $this->faker->catchPhrase, 'en' => $this->faker->catchPhrase];
+        $titles = ['fr' => $this->faker->unique()->catchPhrase, 'en' => $this->faker->unique()->catchPhrase];
 
         return [
             'unique_key' => Str::slug($titles['en']),

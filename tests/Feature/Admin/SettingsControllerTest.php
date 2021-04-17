@@ -33,7 +33,7 @@ class SettingsControllerTest extends TestCase
             ->get(route('settings.edit'))
             ->assertOk()
             ->assertSeeInOrder([
-                // Settings data is displayed.
+                // Settings data
                 $settings->getFirstMediaUrl('logo_squared', 'thumb'),
                 $settings->getFirstMedia('logo_squared')->file_name,
                 $settings->email,

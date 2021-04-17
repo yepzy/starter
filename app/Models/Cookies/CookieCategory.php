@@ -23,7 +23,7 @@ class CookieCategory extends Model implements Sortable
     protected $table = 'cookie_categories';
 
     /** @var array */
-    protected $fillable = ['title', 'description'];
+    protected $fillable = ['unique_key', 'title', 'description'];
 
     public function services(): BelongsToMany
     {

@@ -9,7 +9,7 @@
                 <form method="POST"
                       action="{{ route('contact.sendMessage') }}"
                       novalidate>
-                    @honeypot
+                    <x-honeypot/>
                     @csrf()
                     <div class="form-row">
                         <div class="col-md-6">
