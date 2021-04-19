@@ -51,6 +51,7 @@ class CookieServicesController extends Controller
     public function store(CookieServiceStoreRequest $request): RedirectResponse
     {
         $cookieService = CookieService::create($request->validated());
+        $cookieService->categories()->sync($request->category_ids);
         cookieCategories(true);
 
         return redirect()->route('cookie.services.index')
@@ -82,6 +83,7 @@ class CookieServicesController extends Controller
     public function update(CookieServiceUpdateRequest $request, CookieService $cookieService): RedirectResponse
     {
         $cookieService->update($request->validated());
+        $cookieService->categories()->sync($request->category_ids);
         cookieCategories(true);
 
         return back()->with('toast_success', __('crud.parent.updated', [

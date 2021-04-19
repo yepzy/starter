@@ -33,6 +33,17 @@ class SettingsControllerTest extends TestCase
             ->get(route('settings.edit'))
             ->assertOk()
             ->assertSeeInOrder([
+                // Heading
+                '<i class="fas fa-cogs fa-fw"></i>',
+                e(__('breadcrumbs.orphan.index', ['entity' => __('Settings')])),
+                // Form
+                'method="POST"',
+                'action="' . route('settings.update') . '"',
+                'enctype="multipart/form-data"',
+                'novalidate>',
+                csrf_field(),
+                method_field('PUT'),
+                __('Update'),
                 // Settings data
                 $settings->getFirstMediaUrl('logo_squared', 'thumb'),
                 $settings->getFirstMedia('logo_squared')->file_name,
@@ -46,7 +57,7 @@ class SettingsControllerTest extends TestCase
                 $settings->instagram_url,
                 $settings->youtube_url,
                 $settings->google_tag_manager_id,
-            ]);
+            ], false);
     }
 
     /** @test */
@@ -75,8 +86,6 @@ class SettingsControllerTest extends TestCase
             ->assertSessionHasNoErrors()
             ->assertSessionHas('toast_success', __('crud.name.updated', ['name' => __('Settings')]))
             ->assertRedirect(route('settings.edit'));
-        /** @var \App\Models\Settings\Settings $settings */
-        $settings = Settings::sole();
         // Settings data is updated.
         $this->assertDatabaseHas(app(Settings::class)->getTable(), [
             'email' => 'test@email.fr',

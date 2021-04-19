@@ -49,33 +49,25 @@ class ContactPageControllerTest extends TestCase
                 'name="email"',
                 'name="phone_number"',
                 'name="message"',
-            ], false)
-            // Terms of service and GDPR messages are displayed.
-            ->assertSee(__(
-                'By clicking on the "Send" button, I acknowledge that I have read the '
-                . ':terms_of_service_page_link, :gdpr_page_link pages and that this data will be used in the context '
-                . 'of the commercial relationship that may result from it.',
-                [
+                // Terms of service and GDPR messages are displayed.
+                __('By clicking on the "Send" button, I acknowledge that I have read the '
+                    . ':terms_of_service_page_link, :gdpr_page_link pages and that this data will be used in the context '
+                    . 'of the commercial relationship that may result from it.', [
                     'terms_of_service_page_link' => '<a href="' . route('page.show', $termsOfServicePage)
                         . '" title="'
                         . $termsOfServicePage->nav_title . '" target="_blank">' . $termsOfServicePage->nav_title
                         . '</a>',
                     'gdpr_page_link' => '<a href="' . route('page.show', $gdprPage) . '" title="'
                         . $gdprPage->nav_title . '" target="_blank">' . $gdprPage->nav_title . '</a>',
-                ]
-            ), false)
-            ->assertSee(__(
-                'Your personal data is subject to computer processing by :company, in order to answer '
-                . 'your questions and/or complaints. You have a right of access, rectification, opposition, limitation '
-                . 'and portability by contacting: :email or by mail to: :postal_address. You also have the right to '
-                . 'lodge a complaint with the CNIL.',
-                [
+                ]),
+                e(__('Your personal data is subject to computer processing by :company, in order to answer '
+                    . 'your questions and/or complaints. You have a right of access, rectification, opposition, limitation '
+                    . 'and portability by contacting: :email or by mail to: :postal_address. You also have the right to '
+                    . 'lodge a complaint with the CNIL.', [
                     'company' => config('app.name'),
                     'email' => $settings->email,
                     'postal_address' => $settings->full_postal_address,
-                ]
-            ))
-            ->assertSeeInOrder([
+                ])),
                 // Contact information is displayed.
                 config('app.name'),
                 $settings->phone_number,
@@ -103,43 +95,35 @@ class ContactPageControllerTest extends TestCase
             ->assertSessionHas('toast_success', __('Your message has been sent, we have emailed you a copy.'))
             ->assertRedirect(route('contact.page.show'));
         // Mail is sent to app owner.
-        Notification::assertSentTo(
-            new AnonymousNotifiable(),
-            ContactFormMessage::class,
-            fn(
-                ContactFormMessage $notification,
-                array $channels,
-                AnonymousNotifiable $notifiable
-            ) => $notification->locale === config('app.locale')
-                && $notification->queue === 'high'
-                && $notification->firstName === 'First name test'
-                && $notification->lastName === 'Last name test'
-                && $notification->email === 'email@test.fr'
-                && $notification->phoneNumber === '0606060606'
-                && $notification->message === 'Message test'
-                && ! $notification->isCopyToSender
-                && $channels === ['mail']
-                && $notifiable->routes['mail'] === $settings->email
-        );
+        Notification::assertSentTo(new AnonymousNotifiable(), ContactFormMessage::class, fn(
+            ContactFormMessage $notification,
+            array $channels,
+            AnonymousNotifiable $notifiable
+        ) => $notification->locale === config('app.locale')
+            && $notification->queue === 'high'
+            && $notification->firstName === 'First name test'
+            && $notification->lastName === 'Last name test'
+            && $notification->email === 'email@test.fr'
+            && $notification->phoneNumber === '0606060606'
+            && $notification->message === 'Message test'
+            && ! $notification->isCopyToSender
+            && $channels === ['mail']
+            && $notifiable->routes['mail'] === $settings->email);
         // Mail copy is sent to sender.
-        Notification::assertSentTo(
-            new AnonymousNotifiable(),
-            ContactFormMessage::class,
-            fn(
-                ContactFormMessage $notification,
-                array $channels,
-                AnonymousNotifiable $notifiable
-            ) => $notification->locale === config('app.locale')
-                && $notification->queue === 'high'
-                && $notification->firstName === 'First name test'
-                && $notification->lastName === 'Last name test'
-                && $notification->email === 'email@test.fr'
-                && $notification->phoneNumber === '0606060606'
-                && $notification->message === 'Message test'
-                && $notification->isCopyToSender
-                && $channels === ['mail']
-                && $notifiable->routes['mail'] === 'email@test.fr'
-        );
+        Notification::assertSentTo(new AnonymousNotifiable(), ContactFormMessage::class, fn(
+            ContactFormMessage $notification,
+            array $channels,
+            AnonymousNotifiable $notifiable
+        ) => $notification->locale === config('app.locale')
+            && $notification->queue === 'high'
+            && $notification->firstName === 'First name test'
+            && $notification->lastName === 'Last name test'
+            && $notification->email === 'email@test.fr'
+            && $notification->phoneNumber === '0606060606'
+            && $notification->message === 'Message test'
+            && $notification->isCopyToSender
+            && $channels === ['mail']
+            && $notifiable->routes['mail'] === 'email@test.fr');
         Notification::assertTimesSent(2, ContactFormMessage::class);
         // Mail log is saved.
         $this->assertDatabaseHas(app(LogContactFormMessage::class)->getTable(), [

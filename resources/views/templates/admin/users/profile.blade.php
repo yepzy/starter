@@ -3,6 +3,11 @@
         alert()->html(__('Success'), __('Two factor authentication has been enabled.'), 'success')->showConfirmButton()
     @endphp
 @endif
+@if (session('status') === 'recovery-codes-generated')
+    @php
+        alert()->html(__('Success'), __('Two factor recovery codes have been generated.'), 'success')->showConfirmButton()
+    @endphp
+@endif
 @if (session('status') === 'two-factor-authentication-disabled')
     @php
         alert()->html(__('Success'), __('Two factor authentication has been disabled.'), 'success')->showConfirmButton()
@@ -12,10 +17,9 @@
 @section('template')
     <h1>
         <i class="fas fa-user fa-fw"></i>
-        {{ __('Profile') }}
+        {{ __('breadcrumbs.orphan.index', ['entity' => __('Profile')]) }}
     </h1>
     <hr>
-    {{ buttonBack()->route('users.index') }}
     <x-common.forms.notice class="mt-3"/>
     <div class="row mb-n3" data-masonry>
         <div class="col-xl-6 mb-3">

@@ -25,12 +25,12 @@ class UsersControllerTest extends TestCase
         parent::setUp();
         $this->withoutMix();
         $this->withoutMiddleware([RequirePassword::class]);
-        Settings::factory()->withMedia()->create();
     }
 
     /** @test */
     public function it_can_display_users_list(): void
     {
+        Settings::factory()->withMedia()->create();
         $authUser = User::factory()->withMedia()->create();
         Carbon::setTestNow(now()->addMinute());
         $user2 = User::factory()->withMedia()->create();
@@ -69,23 +69,30 @@ class UsersControllerTest extends TestCase
     /** @test */
     public function it_can_display_user_create_page(): void
     {
+        Settings::factory()->withMedia()->create();
         $authUser = User::factory()->withMedia()->create();
         $this->actingAs($authUser)->get(route('user.create'))
             ->assertOk()
             ->assertSeeInOrder([
                 // Heading
-                'fas fa-user fa-fw',
-                __('breadcrumbs.orphan.create', ['entity' => __('Users')]),
-                // Form and back button route
-                route('user.store'),
-                route('users.index'),
+                '<i class="fas fa-user fa-fw"></i>',
+                e(__('breadcrumbs.orphan.create', ['entity' => __('Users')])),
+                // Form and actions
+                'method="POST"',
+                'action="' . route('user.store') . '"',
+                'enctype="multipart/form-data"',
+                'novalidate>',
+                csrf_field(),
+                'href="' . route('users.index') . '"',
+                __('Back'),
                 __('Create'),
-            ]);
+            ], false);
     }
 
     /** @test */
     public function it_can_store_user(): void
     {
+        Settings::factory()->create();
         $authUser = User::factory()->create();
         $this->actingAs($authUser)
             ->post(route('user.store'), [
@@ -126,6 +133,7 @@ class UsersControllerTest extends TestCase
     /** @test */
     public function it_can_store_user_without_password_and_send_invitation_email_to_create_it(): void
     {
+        Settings::factory()->create();
         Notification::fake();
         $authUser = User::factory()->create();
         $now = now();
@@ -177,17 +185,24 @@ class UsersControllerTest extends TestCase
     /** @test */
     public function it_can_display_user_edit_page(): void
     {
+        Settings::factory()->withMedia()->create();
         $authUser = User::factory()->withMedia()->create();
         $editedUser = User::factory()->withMedia()->create();
         $this->actingAs($authUser)->get(route('user.edit', $editedUser))
             ->assertOk()
             ->assertSeeInOrder([
                 // Heading
-                'fas fa-user fa-fw',
-                __('breadcrumbs.orphan.edit', ['entity' => __('Users'), 'detail' => $editedUser->full_name]),
-                // Form and back button route
-                route('user.update', $editedUser),
-                route('users.index'),
+                '<i class="fas fa-user fa-fw"></i>',
+                e(__('breadcrumbs.orphan.edit', ['entity' => __('Users'), 'detail' => $editedUser->full_name])),
+                // Form and actions
+                'method="POST"',
+                'action="' . route('user.update', $editedUser) . '"',
+                'enctype="multipart/form-data"',
+                'novalidate>',
+                csrf_field(),
+                method_field('PUT'),
+                'href="' . route('users.index') . '"',
+                __('Back'),
                 __('Update'),
                 // User data
                 $editedUser->getFirstMediaUrl('profile_pictures', 'thumb'),
@@ -196,7 +211,7 @@ class UsersControllerTest extends TestCase
                 $editedUser->first_name,
                 $editedUser->phone_number,
                 $editedUser->email,
-            ])
+            ], false)
             // User password is not displayed.
             ->assertDontSee([$editedUser->password]);
     }
@@ -204,6 +219,7 @@ class UsersControllerTest extends TestCase
     /** @test */
     public function it_can_update_user(): void
     {
+        Settings::factory()->create();
         $authUser = User::factory()->create();
         $updatedUser = User::factory()->create();
         $this->actingAs($authUser)
@@ -245,6 +261,7 @@ class UsersControllerTest extends TestCase
     /** @test */
     public function it_can_set_back_default_profile_picture_when_removing_it(): void
     {
+        Settings::factory()->create();
         $authUser = User::factory()->create();
         $updatedUser = User::factory()->create();
         $this->actingAs($authUser)
@@ -276,6 +293,7 @@ class UsersControllerTest extends TestCase
     /** @test */
     public function it_can_delete_user(): void
     {
+        Settings::factory()->create();
         $authUser = User::factory()->withMedia()->create();
         $destroyedUser = User::factory()->create();
         $this->actingAs($authUser)

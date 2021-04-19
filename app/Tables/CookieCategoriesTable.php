@@ -48,7 +48,7 @@ class CookieCategoriesTable extends AbstractTable
     {
         $table->column('id');
         $table->column('unique_key');
-        $table->column('title');
+        $table->column('title')->stringLimit(25);
         $table->column()
             ->title(__('Associated services'))
             ->link(fn(CookieCategory $cookieCategory) => route(

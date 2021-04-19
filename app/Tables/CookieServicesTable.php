@@ -62,7 +62,7 @@ class CookieServicesTable extends AbstractTable
     {
         $table->column('id')->sortable();
         $table->column('unique_key')->sortable()->searchable();
-        $table->column('title')->sortable()->searchable();
+        $table->column('title')->stringLimit(25)->sortable()->searchable();
         $table->column()
             ->title(__('Categories'))
             ->value(fn(CookieService $cookieService) => $cookieService->categories

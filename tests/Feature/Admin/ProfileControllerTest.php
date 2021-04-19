@@ -22,53 +22,84 @@ class ProfileControllerTest extends TestCase
         parent::setUp();
         $this->withoutMix();
         $this->withoutMiddleware([RequirePassword::class]);
-        Settings::factory()->withMedia()->create();
     }
 
     /** @test */
     public function it_can_display_user_profile_edit_page(): void
     {
+        Settings::factory()->withMedia()->create();
         $authUser = User::factory()->withMedia()->create();
         $this->actingAs($authUser)->get(route('profile.edit'))
             ->assertOk()
             ->assertSeeInOrder([
                 // Heading
-                'fas fa-user fa-fw',
-                __('Profile'),
-                // Form
-                route('user-profile-information.update'),
-                // User data
+                '<i class="fas fa-user fa-fw"></i>',
+                e(__('breadcrumbs.orphan.index', ['entity' => __('Profile')])),
+                // Profile form and data
+                'method="POST"',
+                'action="' . route('user-profile-information.update') . '"',
+                'enctype="multipart/form-data"',
+                'novalidate>',
+                csrf_field(),
+                method_field('PUT'),
                 $authUser->getFirstMediaUrl('profile_pictures', 'thumb'),
                 $authUser->getFirstMedia('profile_pictures')->file_name,
                 $authUser->last_name,
                 $authUser->first_name,
                 $authUser->phone_number,
                 $authUser->email,
-                // Other form actions
-                route('user-password.update'),
-                route('two-factor.activate'), // ToDo: replace by the lines below if app is monolingual.
-                //url(config('fortify.prefix') . '/user/two-factor-authentication'),
-                route('profile.deleteAccount'),
-            ])
+                __('Update'),
+                // Password form
+                'method="POST"',
+                'action="' . route('user-password.update') . '"',
+                'novalidate>',
+                csrf_field(),
+                method_field('PUT'),
+                __('Update'),
+                // 2FA activation form
+                'method="POST"',
+                'action="' . route('two-factor.activate') . '"', // ToDo: replace by the lines below if app is monolingual.
+                //'action="' . url(config('fortify.prefix') . '/user/two-factor-authentication') . '"',
+                'novalidate>',
+                csrf_field(),
+                __('Enable'),
+                // Account deletion form
+                'method="POST"',
+                'action="' . route('profile.deleteAccount') . '"',
+                'novalidate>',
+                csrf_field(),
+                __('Delete Account'),
+            ], false)
             // User password is not displayed.
             ->assertDontSee([$authUser->password]);
     }
 
     /** @test */
-    public function it_can_display_2fa_recovery_codes_generation_and_deactivation_form_actions_when_activated(): void
+    public function it_can_display_2fa_recovery_codes_generation_and_deactivation_forms_when_2fa_is_activated(): void
     {
+        Settings::factory()->withMedia()->create();
         $authUser = User::factory()->twoFactorAuthenticationActivated()->withMedia()->create();
         $this->actingAs($authUser)->get(route('profile.edit'))->assertSeeInOrder([
-            route('two-factor.recovery.regen'), // ToDo: replace by the lines below if app is monolingual.
-            //url(config('fortify.prefix') . '/user/two-factor-recovery-codes'),
-            route('two-factor.deactivate'), // ToDo: replace by the lines below if app is monolingual.
-            //url(config('fortify.prefix') . '/user/two-factor-authentication'),
-        ]);
+            // 2FA recovery codes regeneration form
+            'method="POST"',
+            'action="' . route('two-factor.recovery.regen') . '"', // ToDo: replace by the lines below if app is monolingual.
+            //'action="' . url(config('fortify.prefix') . '/user/two-factor-recovery-codes') . '"',
+            'novalidate>',
+            csrf_field(),
+            // 2FA deactivation form
+            'method="POST"',
+            'action="' . route('two-factor.deactivate') . '"', // ToDo: replace by the lines below if app is monolingual.
+            //'action="' . url(config('fortify.prefix') . '/user/two-factor-authentication') . '"',
+            'novalidate>',
+            csrf_field(),
+            method_field('DELETE'),
+        ], false);
     }
 
     /** @test */
     public function it_can_update_user_profile(): void
     {
+        Settings::factory()->create();
         $authUser = User::factory()->create();
         $this->actingAs($authUser)
             ->from(route('profile.edit'))
@@ -110,6 +141,7 @@ class ProfileControllerTest extends TestCase
     /** @test */
     public function it_can_set_back_default_profile_picture_when_removed(): void
     {
+        Settings::factory()->create();
         $authUser = User::factory()->create();
         $this->actingAs($authUser)
             ->from(route('profile.edit'))
@@ -134,6 +166,7 @@ class ProfileControllerTest extends TestCase
     /** @test */
     public function it_can_pass_user_account_to_unverified_email_status_when_updating_email_address(): void
     {
+        Settings::factory()->create();
         Notification::fake();
         $authUser = User::factory()->create();
         $this->actingAs($authUser)
@@ -169,6 +202,7 @@ class ProfileControllerTest extends TestCase
     /** @test */
     public function it_can_update_user_password(): void
     {
+        Settings::factory()->create();
         $authUser = User::factory()->create();
         $this->actingAs($authUser)
             ->from(route('profile.edit'))
@@ -195,6 +229,7 @@ class ProfileControllerTest extends TestCase
     /** @test */
     public function it_can_activate_two_factor_authentication(): void
     {
+        Settings::factory()->create();
         $authUser = User::factory()->create();
         $this->actingAs($authUser)
             ->from(route('profile.edit'))
@@ -210,6 +245,7 @@ class ProfileControllerTest extends TestCase
 
     public function it_can_regenerate_two_factor_recovery_codes(): void
     {
+        Settings::factory()->create();
         $authUser = User::factory()->twoFactorAuthenticationActivated()->create();
         $this->actingAs($authUser)
             ->from(route('profile.edit'))
@@ -224,6 +260,7 @@ class ProfileControllerTest extends TestCase
     /** @test */
     public function it_can_deactivate_two_factor_authentication(): void
     {
+        Settings::factory()->create();
         $authUser = User::factory()->twoFactorAuthenticationActivated()->create();
         $this->actingAs($authUser)
             ->from(route('profile.edit'))
@@ -242,6 +279,7 @@ class ProfileControllerTest extends TestCase
     /** @test */
     public function it_can_delete_user_account(): void
     {
+        Settings::factory()->create();
         $authUser = User::factory()->create();
         $this->actingAs($authUser)
             ->from(route('profile.edit'))

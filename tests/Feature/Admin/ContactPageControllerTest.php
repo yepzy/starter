@@ -21,31 +21,46 @@ class ContactPageControllerTest extends TestCase
         parent::setUp();
         $this->withoutMix();
         $this->withoutMiddleware([RequirePassword::class]);
-        Settings::factory()->withMedia()->create();
     }
 
     /** @test */
     public function it_can_display_contact_page_edit_page(): void
     {
+        Settings::factory()->withMedia()->create();
         $authUser = User::factory()->withMedia()->create();
         $contactPage = TitleDescriptionPageContent::factory()->contact()->withSeoMeta()->create();
-        // Seo meta data is displayed.
-        $html = [
+        // Translated SEO data
+        $translatedSeoData = [];
+        foreach (supportedLocaleKeys() as $localeKey) {
+            $translatedSeoData[] = $contactPage->getMeta('meta_title', null, $localeKey);
+        }
+        foreach (supportedLocaleKeys() as $localeKey) {
+            $translatedSeoData[] = $contactPage->getMeta('meta_description', null, $localeKey);
+        }
+        $this->actingAs($authUser)->get(route('contact.page.edit'))->assertOk()->assertSeeInOrder(array_merge([
+            // Heading
+            '<i class="fas fa-desktop fa-fw"></i>',
+            e(__('breadcrumbs.orphan.edit', ['entity' => __('Contact'), 'detail' => __('Page')])),
+            // Form and actions
+            'method="POST"',
+            'action="' . route('contact.page.update') . '"',
+            'enctype="multipart/form-data"',
+            'novalidate>',
+            csrf_field(),
+            method_field('PUT'),
+            __('Update'),
+            'href="' . route('contact.page.show') . '"',
+            __('Display'),
+            // Non-translated SEO data
             $contactPage->getFirstMediaUrl('seo', 'thumb'),
             $contactPage->getFirstMedia('seo')->file_name,
-        ];
-        foreach (supportedLocaleKeys() as $localeKey) {
-            $html[] = $contactPage->getMeta('meta_title', null, $localeKey);
-        }
-        foreach (supportedLocaleKeys() as $localeKey) {
-            $html[] = $contactPage->getMeta('meta_description', null, $localeKey);
-        }
-        $this->actingAs($authUser)->get(route('contact.page.edit'))->assertOk()->assertSeeInOrder($html);
+        ], $translatedSeoData), false);
     }
 
     /** @test */
     public function it_can_update_contact_page(): void
     {
+        Settings::factory()->create();
         $authUser = User::factory()->create();
         $contactPage = TitleDescriptionPageContent::factory()->contact()->create();
         $data = ['meta_image' => UploadedFile::fake()->image('meta-image.webp', 600, 600)];
@@ -89,6 +104,7 @@ class ContactPageControllerTest extends TestCase
     /** @test */
     public function it_can_remove_seo_image(): void
     {
+        Settings::factory()->create();
         $authUser = User::factory()->create();
         $contactPage = TitleDescriptionPageContent::factory()->contact()->create();
         $this->actingAs($authUser)

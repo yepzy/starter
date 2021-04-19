@@ -18,12 +18,12 @@ class CookieCategoriesControllerTest extends TestCase
     {
         parent::setUp();
         $this->withoutMix();
-        Settings::factory()->withMedia()->create();
     }
 
     /** @test */
     public function it_can_get_cookie_categories_javascript_variables_on_front(): void
     {
+        Settings::factory()->withMedia()->create();
         PageContent::factory()->home()->create();
         $cookieCategory = CookieCategory::factory()->create();
         CookieService::factory()->withCategories([$cookieCategory->unique_key])->create(['active' => true]);

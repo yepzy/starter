@@ -16,7 +16,7 @@ class CookieServiceUpdateRequest extends FormRequest
             'category_ids' => ['required', 'array', Rule::in(CookieCategory::pluck('id'))],
             'unique_key' => [
                 'required',
-                'slug',
+                'snakecase',
                 'max:255',
                 Rule::unique(CookieService::class)->ignore($this->cookieService),
             ],

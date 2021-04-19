@@ -20,7 +20,7 @@ class CookieServiceFactory extends Factory
             'unique_key' => Str::slug($titles['en']),
             'title' => $titles,
             'description' => ['fr' => $this->faker->realText(), 'en' => $this->faker->realText()],
-            'cookies' => [['/^_cookie.*$/']],
+            'cookies' => $this->faker->words(),
             'required' => $this->faker->boolean,
             'enabled_by_default' => $this->faker->boolean,
             'active' => $this->faker->boolean,

@@ -31,11 +31,11 @@ class CookieService extends Model
     ];
 
     /** @var array */
-    protected $casts = ['cookies' => 'json'];
+    protected $casts = ['cookies' => 'array'];
 
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(CookieCategory::class, 'cookie_service_category')->withTimestamps();
+        return $this->belongsToMany(CookieCategory::class, 'cookie_service_category')->ordered()->withTimestamps();
     }
 
     public function getCategoryIdsAttribute(): array
