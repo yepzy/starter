@@ -2,12 +2,15 @@
 
 namespace Tests\Feature\Admin;
 
+use App\Http\Middleware\ShareJavascriptToView;
 use App\Models\Cookies\CookieCategory;
 use App\Models\Cookies\CookieService;
 use App\Models\Settings\Settings;
 use App\Models\Users\User;
+use Closure;
 use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Cache;
 use Tests\TestCase;
 
 class CookieCategoriesControllerTest extends TestCase
@@ -18,7 +21,7 @@ class CookieCategoriesControllerTest extends TestCase
     {
         parent::setUp();
         $this->withoutMix();
-        $this->withoutMiddleware([RequirePassword::class]);
+        $this->withoutMiddleware([RequirePassword::class, ShareJavascriptToView::class]);
         Settings::factory()->withMedia()->create();
     }
 
@@ -26,31 +29,31 @@ class CookieCategoriesControllerTest extends TestCase
     public function it_can_display_cookie_categories_list(): void
     {
         $authUser = User::factory()->withMedia()->create();
-        $cookieCategorie1 = CookieCategory::factory()->create();
-        $cookieCategorie2 = CookieCategory::factory()->create();
-        CookieService::factory()->withCategories([$cookieCategorie1->unique_key])->create();
+        $cookieCategory1 = CookieCategory::factory()->create();
+        $cookieCategory2 = CookieCategory::factory()->create();
+        CookieService::factory()->withCategories([$cookieCategory1->unique_key])->create();
         CookieService::factory()
-            ->withCategories([$cookieCategorie1->unique_key, $cookieCategorie2->unique_key])
+            ->withCategories([$cookieCategory1->unique_key, $cookieCategory2->unique_key])
             ->create();
         $this->actingAs($authUser)
             ->get(route('cookie.categories.index'))
             ->assertOk()
             ->assertSeeInOrder([
                 // Cookie categories data is displayed in table columns.
-                $cookieCategorie1->id,
-                $cookieCategorie1->unique_key,
-                $cookieCategorie1->title,
+                $cookieCategory1->id,
+                $cookieCategory1->unique_key,
+                $cookieCategory1->title,
                 1, // 1 cookie service attached
                 1, // Position 1
-                $cookieCategorie1->created_at->format('d/m/Y H:i'),
-                $cookieCategorie1->updated_at->format('d/m/Y H:i'),
-                $cookieCategorie2->id,
-                $cookieCategorie2->unique_key,
-                $cookieCategorie2->title,
+                $cookieCategory1->created_at->format('d/m/Y H:i'),
+                $cookieCategory1->updated_at->format('d/m/Y H:i'),
+                $cookieCategory2->id,
+                $cookieCategory2->unique_key,
+                $cookieCategory2->title,
                 2, // 2 cookie service attached
                 2, // Position 2
-                $cookieCategorie2->created_at->format('d/m/Y H:i'),
-                $cookieCategorie2->updated_at->format('d/m/Y H:i'),
+                $cookieCategory2->created_at->format('d/m/Y H:i'),
+                $cookieCategory2->updated_at->format('d/m/Y H:i'),
             ]);
     }
 
@@ -83,6 +86,12 @@ class CookieCategoriesControllerTest extends TestCase
             $data['title'][$localeKey] = 'Title test ' . $localeKey;
             $data['description'][$localeKey] = 'Description test ' . $localeKey;
         }
+        // Cache is cleared and regenerated after creation.
+        Cache::shouldReceive('forget')->once()->with('cookie_categories')->andReturn(true);
+        Cache::shouldReceive('rememberForever')
+            ->once()
+            ->with('cookie_categories', Closure::class)
+            ->andReturn(collect(app(CookieCategory::class)->fill($data)));
         $this->actingAs($authUser)
             ->post(route('cookie.category.store'), $data)
             ->assertSessionHasNoErrors()
@@ -137,6 +146,12 @@ class CookieCategoriesControllerTest extends TestCase
             $data['title'][$localeKey] = 'Title test ' . $localeKey;
             $data['description'][$localeKey] = 'Description test ' . $localeKey;
         }
+        // Cache is cleared and regenerated after update.
+        Cache::shouldReceive('forget')->once()->with('cookie_categories')->andReturn(true);
+        Cache::shouldReceive('rememberForever')
+            ->once()
+            ->with('cookie_categories', Closure::class)
+            ->andReturn(collect($cookieCategory));
         $this->actingAs($authUser)
             ->from(route('cookie.category.edit', $cookieCategory))
             ->put(route('cookie.category.update', $cookieCategory), $data)
@@ -161,6 +176,12 @@ class CookieCategoriesControllerTest extends TestCase
     {
         $authUser = User::factory()->withMedia()->create();
         $cookieCategory = CookieCategory::factory()->create();
+        // Cache is cleared and regenerated after deletion.
+        Cache::shouldReceive('forget')->once()->with('cookie_categories')->andReturn(true);
+        Cache::shouldReceive('rememberForever')
+            ->once()
+            ->with('cookie_categories', Closure::class)
+            ->andReturn(collect());
         $this->actingAs($authUser)
             ->from(route('cookie.categories.index'))
             ->delete(route('cookie.category.destroy', $cookieCategory))

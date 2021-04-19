@@ -54,9 +54,8 @@ class SettingsControllerTest extends TestCase
     {
         $settings = Settings::factory()->create();
         $authUser = User::factory()->create();
-        // Settings cache is cleared on update.
+        // Cache is cleared and regenerated after update.
         Cache::shouldReceive('forget')->once()->with('settings')->andReturn(true);
-        // Settings helper is called once during cache regeneration.
         Cache::shouldReceive('rememberForever')->once()->with('settings', Closure::class)->andReturn($settings);
         $this->actingAs($authUser)
             ->from(route('settings.edit'))
