@@ -25,7 +25,7 @@ class Page extends Model implements HasMedia, HasBrickables
 
     public array $translatable = ['slug', 'nav_title'];
 
-    /** @var string*/
+    /** @var string */
     protected $table = 'pages';
 
     /** @var array */
@@ -53,20 +53,18 @@ class Page extends Model implements HasMedia, HasBrickables
             ->format('webp');
     }
 
-    public function getRouteKey(): string
-    {
-        return $this->getTranslation('slug', app()->getLocale());
-    }
-
     /**
-     * @param mixed $value
-     * @param null $field
+     * Retrieve the model for a bound value.
      *
-     * @return \App\Models\Pages\Page|null
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @param mixed $value
+     * @param string|null $field
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function resolveRouteBinding($value, $field = null): ?Page
+    public function resolveRouteBinding($value, $field = null): ?Model
     {
-        return $this->where('slug->' . app()->getLocale(), $value)->first();
+        return multilingual() && $field
+            ? self::where($field . '->' . app()->getLocale(), $value)->first()
+            : parent::resolveRouteBinding($value, $field);
     }
 }

@@ -14,7 +14,7 @@ trait HasBricks
     /**
      * @param array $carouselSlides
      *
-     * @return mixed
+     * @return $this
      * @throws \Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist
      * @throws \Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig
      * @throws \Exception
@@ -63,7 +63,7 @@ trait HasBricks
         return $this->afterCreating(function (Model $model) use ($text) {
             $data = [];
             foreach (supportedLocaleKeys() as $localeKey) {
-                $data['title'][$localeKey] = data_get($text, $localeKey) ?: $this->faker->paragraph();
+                $data['title'][$localeKey] = data_get($text, $localeKey) ?: $this->faker->realText(500);
             }
             $model->addBrick(OneTextColumn::class, $data);
         });

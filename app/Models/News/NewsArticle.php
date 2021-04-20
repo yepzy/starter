@@ -37,6 +37,14 @@ class NewsArticle extends Model implements HasMedia, Feedable
     /** @var array */
     protected $casts = ['active' => 'boolean', 'published_at' => 'datetime'];
 
+    public static function getFeedItems(): Collection
+    {
+        return app(self::class)->where('published_at', '<=', now())
+            ->orderBy('published_at', 'desc')
+            ->with(['media', 'categories'])
+            ->get();
+    }
+
     /**
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      * @param \Spatie\MediaLibrary\MediaCollections\Models\Media|null $media
@@ -50,29 +58,19 @@ class NewsArticle extends Model implements HasMedia, Feedable
             ->format('webp');
     }
 
-    public static function getFeedItems(): Collection
-    {
-        return app(self::class)->where('published_at', '<=', now())
-            ->orderBy('published_at', 'desc')
-            ->with(['media', 'categories'])
-            ->get();
-    }
-
-    public function getRouteKey(): string
-    {
-        return $this->getTranslation('slug', app()->getLocale());
-    }
-
     /**
-     * @param mixed $value
-     * @param null $field
+     * Retrieve the model for a bound value.
      *
-     * @return \App\Models\News\NewsArticle|null
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @param mixed $value
+     * @param string|null $field
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function resolveRouteBinding($value, $field = null): ?NewsArticle
+    public function resolveRouteBinding($value, $field = null): ?Model
     {
-        return $this->where('slug->' . app()->getLocale(), $value)->first();
+        return multilingual() && $field
+            ? self::where($field . '->' . app()->getLocale(), $value)->first()
+            : parent::resolveRouteBinding($value, $field);
     }
 
     /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
