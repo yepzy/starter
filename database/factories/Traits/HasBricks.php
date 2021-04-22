@@ -14,7 +14,7 @@ trait HasBricks
     /**
      * @param array $carouselSlides
      *
-     * @return mixed
+     * @return $this
      * @throws \Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist
      * @throws \Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig
      * @throws \Exception
