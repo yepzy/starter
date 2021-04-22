@@ -63,7 +63,7 @@ trait HasBricks
         return $this->afterCreating(function (Model $model) use ($text) {
             $data = [];
             foreach (supportedLocaleKeys() as $localeKey) {
-                $data['title'][$localeKey] = data_get($text, $localeKey) ?: $this->faker->paragraph();
+                $data['text'][$localeKey] = data_get($text, $localeKey) ?: $this->faker->realText(800);
             }
             $model->addBrick(OneTextColumn::class, $data);
         });

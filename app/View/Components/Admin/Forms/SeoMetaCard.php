@@ -8,11 +8,9 @@ use Illuminate\View\Component;
 
 class SeoMetaCard extends Component
 {
-    public Model $model;
-
-    public function __construct(?Model $model)
+    public function __construct(public ?Model $model)
     {
-        $this->model = $model;
+        //
     }
 
     public function render(): View
