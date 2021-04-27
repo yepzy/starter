@@ -37,7 +37,7 @@
                         ->caption(__('Define in which categories this service will be classified. A service can be attached to one or more categories.')) }}
                     {{ inputText()->name('unique_key')
                         ->model($cookieService)
-                        ->componentHtmlAttributes(['required', 'data-kebabcase'])
+                        ->componentHtmlAttributes(['required', 'data-snakecase'])
                         ->caption(__('The unique service key, which is used to associate the user consent with a third-party script in order to enable or disable it accordingly to the user choice.')) }}
                     {{ inputText()->name('title')
                         ->locales(supportedLocaleKeys())

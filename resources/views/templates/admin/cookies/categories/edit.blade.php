@@ -26,7 +26,7 @@
                 <x-admin.forms.card title="{{ __('Identity') }}">
                     {{ inputText()->name('unique_key')
                         ->model($cookieCategory)
-                        ->componentHtmlAttributes(['required', 'data-kebabcase']) }}
+                        ->componentHtmlAttributes(['required', 'data-snakecase']) }}
                     {{ inputText()->name('title')
                         ->locales(supportedLocaleKeys())
                         ->model($cookieCategory)
