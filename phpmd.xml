@@ -16,6 +16,7 @@
         <exclude name="CyclomaticComplexity" pattern="tests/*"/>
         <exclude name="TooManyPublicMethods" pattern="tests/*"/>
         <exclude name="TooManyMethods" pattern="tests/*"/>
+        <exclude name="ExcessiveMethodLength" pattern="tests/*"/>
     </rule>
     <!-- Controversial rules -->
     <rule ref="rulesets/controversial.xml">
