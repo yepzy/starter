@@ -46,7 +46,7 @@ const getServices = () => {
             purposes: map(cookieService.categories, 'unique_key'),
             required: cookieService.required,
             default: cookieService.enabled_by_default,
-            cookies: cookieService.cookies
+            cookies: cookieService.cookies || {}
         });
     });
     console.log(services);
