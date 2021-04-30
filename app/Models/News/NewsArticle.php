@@ -45,6 +45,13 @@ class NewsArticle extends Model implements HasMedia, Feedable
             ->get();
     }
 
+    public function resolveRouteBinding($value, $field = null): Model|null
+    {
+        return multilingual() && $field
+            ? self::where($field . '->' . app()->getLocale(), $value)->first()
+            : parent::resolveRouteBinding($value, $field);
+    }
+
     /**
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      * @param \Spatie\MediaLibrary\MediaCollections\Models\Media|null $media
@@ -56,21 +63,6 @@ class NewsArticle extends Model implements HasMedia, Feedable
         $this->addMediaConversion('thumb')
             ->fit(Manipulations::FIT_CROP, 40, 40)
             ->format('webp');
-    }
-
-    /**
-     * Retrieve the model for a bound value.
-     *
-     * @param mixed $value
-     * @param string|null $field
-     *
-     * @return \Illuminate\Database\Eloquent\Model|null
-     */
-    public function resolveRouteBinding($value, $field = null): ?Model
-    {
-        return multilingual() && $field
-            ? self::where($field . '->' . app()->getLocale(), $value)->first()
-            : parent::resolveRouteBinding($value, $field);
     }
 
     /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */

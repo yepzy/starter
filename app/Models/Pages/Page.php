@@ -2,6 +2,8 @@
 
 namespace App\Models\Pages;
 
+use App\Brickables\Carousel;
+use App\Brickables\TitleH1;
 use App\Models\Traits\HasSeoMeta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,6 +27,13 @@ class Page extends Model implements HasMedia, HasBrickables
 
     public array $translatable = ['slug', 'nav_title'];
 
+    public array $brickables = [
+        'number_of_bricks' => [
+            TitleH1::class => ['min' => 1, 'max' => 1],
+            Carousel::class => ['max' => 1],
+        ],
+    ];
+
     /** @var string */
     protected $table = 'pages';
 
@@ -33,6 +42,13 @@ class Page extends Model implements HasMedia, HasBrickables
 
     /** @var array */
     protected $casts = ['active' => 'boolean'];
+
+    public function resolveRouteBinding($value, $field = null): Model|null
+    {
+        return multilingual() && $field
+            ? self::where($field . '->' . app()->getLocale(), $value)->first()
+            : parent::resolveRouteBinding($value, $field);
+    }
 
     /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
     public function registerMediaCollections(): void
@@ -51,20 +67,5 @@ class Page extends Model implements HasMedia, HasBrickables
         $this->addMediaConversion('thumb')
             ->fit(Manipulations::FIT_CROP, 40, 40)
             ->format('webp');
-    }
-
-    /**
-     * Retrieve the model for a bound value.
-     *
-     * @param mixed $value
-     * @param string|null $field
-     *
-     * @return \Illuminate\Database\Eloquent\Model|null
-     */
-    public function resolveRouteBinding($value, $field = null): ?Model
-    {
-        return multilingual() && $field
-            ? self::where($field . '->' . app()->getLocale(), $value)->first()
-            : parent::resolveRouteBinding($value, $field);
     }
 }

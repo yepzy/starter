@@ -35,7 +35,6 @@
     "Links": "Liens",
     "List": "Liste",
     "Page": "Page",
-    "Identity": "Identité",
     "Contact": "Contact",
     "Security": "Sécurité",
     "SEO": "Référencement",
@@ -262,5 +261,6 @@
     "To help you to configure this, an example is avaiblable here:": "Pour vous aider à configurer cela, un exemple est disponible ici:",
     "This configuration must be declared in a valid JSON format.": "Cette configuration doit être déclarée dans un format JSON valide.",
     "Civil status": "État civil",
-    "This action is unauthorized.": "Cette action n'est pas autorisée."
+    "This action is unauthorized.": "Cette action n'est pas autorisée.",
+    "Free pages": "Pages libres"
 }
