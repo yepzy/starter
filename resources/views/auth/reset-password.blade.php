@@ -19,7 +19,8 @@
         {{ inputEmail()->name('email')
             ->componentHtmlAttributes(['required', 'autofocus', 'autocomplete' => 'username']) }}
         {{ inputPassword()->name('password')
-            ->componentHtmlAttributes(['required', 'autocomplete' => 'new-password']) }}
+            ->componentHtmlAttributes(['required', 'autocomplete' => 'new-password'])
+            ->containerHtmlAttributes(['data-password-strength-meter']) }}
         {{ inputPassword()->name('password_confirmation')
             ->componentHtmlAttributes(['required', 'autocomplete' => 'new-password']) }}
         {{ submitValidate()->label(__('Save new password'))->componentClasses(['btn-block', 'btn-primary', 'form-group']) }}

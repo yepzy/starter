@@ -50,7 +50,7 @@
                             {{ __('Only fill if you want to change the current password.') }}
                         @endif
                     </p>
-                    {{ inputPassword()->name($user ? 'new_password' : 'password') }}
+                    {{ inputPassword()->name($user ? 'new_password' : 'password')->containerHtmlAttributes(['data-password-strength-meter']) }}
                     {{ inputPassword()->name($user ? 'new_password_confirmation' : 'password_confirmation')->model($user) }}
                 </x-admin.forms.card>
             </div>

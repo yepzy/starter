@@ -24,7 +24,8 @@
         {{ inputEmail()->name('email')
             ->componentHtmlAttributes(['required', 'autocomplete' => 'email']) }}
         {{ inputPassword()->name('password')
-            ->componentHtmlAttributes(['required', 'autocomplete' => 'new-password']) }}
+            ->componentHtmlAttributes(['required', 'autocomplete' => 'new-password'])
+            ->containerHtmlAttributes(['data-password-strength-meter']) }}
         {{ inputPassword()->name('password_confirmation')
             ->componentHtmlAttributes(['required', 'autocomplete' => 'new-password']) }}
         {{ submitValidate()->label(__('Create account'))->componentClasses(['btn-block', 'btn-primary', 'form-group']) }}

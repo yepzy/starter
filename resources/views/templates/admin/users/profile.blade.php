@@ -75,6 +75,7 @@
                             ->errorBag('updatePassword') }}
                         {{ inputPassword()->name('new_password')
                             ->componentHtmlAttributes(['required', 'autocomplete' => 'new-password'])
+                            ->containerHtmlAttributes(['data-password-strength-meter'])
                             ->errorBag('updatePassword') }}
                         {{ inputPassword()->name('new_password_confirmation')
                             ->componentHtmlAttributes(['required', 'autocomplete' => 'new-password'])
