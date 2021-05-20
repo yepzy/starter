@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Models\PageContents\TitleDescriptionPageContent;
+use App\Models\PageContents\PageContent;
 use App\Models\Settings\Settings;
 use App\Models\Users\User;
 use Illuminate\Auth\Middleware\RequirePassword;
@@ -28,7 +28,7 @@ class ContactPageControllerTest extends TestCase
     {
         Settings::factory()->withMedia()->create();
         $authUser = User::factory()->withMedia()->create();
-        $contactPage = TitleDescriptionPageContent::factory()->contact()->withSeoMeta()->create();
+        $contactPage = PageContent::factory()->contact()->withSeoMeta()->create();
         // Translated SEO data
         $translatedSeoData = [];
         foreach (supportedLocaleKeys() as $localeKey) {
@@ -62,7 +62,7 @@ class ContactPageControllerTest extends TestCase
     {
         Settings::factory()->create();
         $authUser = User::factory()->create();
-        $contactPage = TitleDescriptionPageContent::factory()->contact()->create();
+        $contactPage = PageContent::factory()->contact()->create();
         $data = ['meta_image' => UploadedFile::fake()->image('meta-image.webp', 600, 600)];
         foreach (supportedLocaleKeys() as $localeKey) {
             $data['meta_title'][$localeKey] = 'Meta title test ' . $localeKey;
@@ -80,14 +80,14 @@ class ContactPageControllerTest extends TestCase
         // Meta data is updated.
         $this->assertDatabaseHas(app(Meta::class)->getTable(), [
             'metable_id' => $contactPage->id,
-            'metable_type' => TitleDescriptionPageContent::class,
+            'metable_type' => PageContent::class,
             'type' => 'array',
             'key' => 'meta_title',
             'value' => json_encode($data['meta_title'], JSON_THROW_ON_ERROR),
         ]);
         $this->assertDatabaseHas(app(Meta::class)->getTable(), [
             'metable_id' => $contactPage->id,
-            'metable_type' => TitleDescriptionPageContent::class,
+            'metable_type' => PageContent::class,
             'type' => 'array',
             'key' => 'meta_description',
             'value' => json_encode($data['meta_description'], JSON_THROW_ON_ERROR),
@@ -95,7 +95,7 @@ class ContactPageControllerTest extends TestCase
         // Meta image is updated.
         $this->assertDatabaseHas(app(Media::class)->getTable(), [
             'model_id' => $contactPage->id,
-            'model_type' => TitleDescriptionPageContent::class,
+            'model_type' => PageContent::class,
             'collection_name' => 'seo',
             'file_name' => 'meta-image.webp',
         ]);
@@ -106,18 +106,22 @@ class ContactPageControllerTest extends TestCase
     {
         Settings::factory()->create();
         $authUser = User::factory()->create();
-        $contactPage = TitleDescriptionPageContent::factory()->contact()->create();
+        $contactPage = PageContent::factory()->contact()->create();
+        $data = [
+            // Uploaded meta image is ignored when instruction to remove it is given.
+            'meta_image' => UploadedFile::fake()->image('meta-image.webp', 600, 600),
+            'remove_meta_image' => true,
+        ];
+        foreach (supportedLocaleKeys() as $localeKey) {
+            $data['meta_title'][$localeKey] = 'Meta title test ' . $localeKey;
+        }
         $this->actingAs($authUser)
             ->from(route('contact.page.edit'))
-            ->put(route('contact.page.update'), [
-                // Uploaded meta image is ignored when instruction to remove it is given.
-                'meta_image' => UploadedFile::fake()->image('meta-image.webp', 600, 600),
-                'remove_meta_image' => true,
-            ]);
+            ->put(route('contact.page.update'), $data);
         // Meta image is deleted.
         $this->assertDeleted(app(Media::class)->getTable(), [
             'model_id' => $contactPage->id,
-            'model_type' => TitleDescriptionPageContent::class,
+            'model_type' => PageContent::class,
             'collection_name' => 'seo',
             'file_name' => 'meta-image.webp',
         ]);

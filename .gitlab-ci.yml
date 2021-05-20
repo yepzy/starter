@@ -9,6 +9,7 @@ composer:
   stage: build
   image: composer:latest
   script:
+    - composer update roave/security-advisories --dry-run --ignore-platform-reqs
     - composer install --optimize-autoloader --no-progress --no-scripts --ignore-platform-reqs
   artifacts:
     expire_in: 1 day
@@ -27,6 +28,7 @@ composer:nodev:
   stage: build
   image: composer:latest
   script:
+    - composer update roave/security-advisories --dry-run --ignore-platform-reqs
     - composer install --optimize-autoloader --no-progress --no-scripts --ignore-platform-reqs --no-dev
   artifacts:
     expire_in: 1 day

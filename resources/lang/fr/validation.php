@@ -209,6 +209,10 @@ return [
         'required' => 'Obligatoire',
         'enabled_by_default' => 'Activé par défaut',
         'cookies' => 'Cookies',
+        'background_color' => 'Couleur de fond',
+        'alignment' => 'Alignement',
+        'type' => 'Type',
+        'style' => 'Style',
     ],
 
 ];
