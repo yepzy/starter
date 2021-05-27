@@ -156,7 +156,7 @@ phpunit:
   dependencies:
     - composer
   before_script:
-    # Uncomment image management dependencies for feature testing purpose if necessary.
+    # ToDo: uncomment image management dependencies for feature testing purpose if necessary.
     - apt update && apt install -y git libicu-dev default-mysql-client #libfreetype6-dev libjpeg62-turbo-dev libpng-dev libwebp-dev exif
     - echo 'memory_limit = 1024M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini
     #- docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp

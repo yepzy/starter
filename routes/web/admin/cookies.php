@@ -30,7 +30,7 @@ Route::delete(
     [CookieCategoriesController::class, 'destroy']
 )->name('cookie.category.destroy');
 Route::post(
-    'cookie/categories/reorder',
+    Lang::uri('cookie/categories/reorder'),
     [CookieCategoriesController::class, 'reorder']
 )->name('cookie.categories.reorder');
 

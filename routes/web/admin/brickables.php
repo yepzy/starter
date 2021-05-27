@@ -27,6 +27,6 @@ Route::delete(
     [CarouselBrickSlidesController::class, 'destroy']
 )->name('brick.carousel.slide.destroy');
 Route::post(
-    'brick/carousel/slides/reorder',
+    Lang::uri('brick/carousel/slides/reorder'),
     [CarouselBrickSlidesController::class, 'reorder']
 )->name('brick.carousel.slides.reorder');

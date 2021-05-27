@@ -1,5 +1,7 @@
 <?php
 
+// ToDo: remove this file after having reported all route translations (when necessary) if your app is not multilingual.
+
 return [
 
     'create' => 'creation',
