@@ -101,7 +101,7 @@ class NewsArticle extends Model implements HasMedia, Feedable
             ->id((string) $this->id)
             ->title($this->title)
             ->summary(Str::limit(strip_tags((new Parsedown())->text($this->description))))
-            ->link(route('news.article.show', $this))
+            ->link(route('news.article.show', [$this]))
             ->authorName(config('app.name'))
             ->authorEmail(settings()->email)
             ->category($this->categories->pluck('name'))
