@@ -21,7 +21,7 @@ class CookieServicesSeeder extends Seeder
             'active' => true,
         ]);
         CookieService::factory()->withCategories(['security'])->create([
-            'unique_key' => 'csrf-token',
+            'unique_key' => 'csrf_token',
             'title' => ['fr' => 'Clé CSRF', 'en' => 'CSRF Token'],
             'description' => ['fr' => null, 'en' => null],
             'required' => true,
@@ -30,7 +30,7 @@ class CookieServicesSeeder extends Seeder
             'active' => true,
         ]);
         CookieService::factory()->withCategories(['statistic'])->create([
-            'unique_key' => 'google-analytics',
+            'unique_key' => 'google_analytics',
             'title' => ['fr' => 'Google Analytics', 'en' => 'Google Analytics'],
             'description' => ['fr' => null, 'en' => null],
             'required' => false,
@@ -55,7 +55,7 @@ class CookieServicesSeeder extends Seeder
             'active' => true,
         ]);
         CookieService::factory()->withCategories(['advertising'])->create([
-            'unique_key' => 'twitter-feed',
+            'unique_key' => 'twitter_feed',
             'title' => ['fr' => 'Fil Twitter intégré', 'en' => 'Twitter Embed Feed'],
             'description' => ['fr' => null, 'en' => null],
             'required' => false,
@@ -75,7 +75,7 @@ class CookieServicesSeeder extends Seeder
             'active' => false,
         ]);
         CookieService::factory()->withCategories(['advertising'])->create([
-            'unique_key' => 'youtube-video',
+            'unique_key' => 'youtube_video',
             'title' => ['fr' => 'Vidéos Youtube intégrées', 'en' => 'Youtube Embed Videos'],
             'description' => ['fr' => null, 'en' => null],
             'required' => false,
