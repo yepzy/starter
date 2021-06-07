@@ -50,6 +50,11 @@ class CookieServicesController extends Controller
      */
     public function store(CookieServiceStoreRequest $request): RedirectResponse
     {
+        $request->merge([
+            'cookies' => $request->get('cookies')
+                ? json_decode($request->get('cookies'), true, 512, JSON_THROW_ON_ERROR)
+                : null,
+        ]);
         $cookieService = CookieService::create($request->validated());
         $cookieService->categories()->sync($request->category_ids);
         cookieCategories(true);
@@ -82,6 +87,11 @@ class CookieServicesController extends Controller
      */
     public function update(CookieServiceUpdateRequest $request, CookieService $cookieService): RedirectResponse
     {
+        $request->merge([
+            'cookies' => $request->get('cookies')
+                ? json_decode($request->get('cookies'), true, 512, JSON_THROW_ON_ERROR)
+                : null,
+        ]);
         $cookieService->update($request->validated());
         $cookieService->categories()->sync($request->category_ids);
         cookieCategories(true);
