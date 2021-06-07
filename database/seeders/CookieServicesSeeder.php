@@ -30,7 +30,7 @@ class CookieServicesSeeder extends Seeder
             'active' => true,
         ]);
         CookieService::factory()->withCategories(['statistic'])->create([
-            'unique_key' => 'google_analytics',
+            'unique_key' => 'google_tag_manager',
             'title' => ['fr' => 'Google Analytics', 'en' => 'Google Analytics'],
             'description' => ['fr' => null, 'en' => null],
             'required' => false,
@@ -80,12 +80,7 @@ class CookieServicesSeeder extends Seeder
             'description' => ['fr' => null, 'en' => null],
             'required' => false,
             'enabled_by_default' => false,
-            'cookies' => [
-                'GEUP',
-                'PREF',
-                'VISITOR_INFO1_LIVE',
-                'YSC',
-            ],
+            'cookies' => ['GEUP', 'PREF', 'VISITOR_INFO1_LIVE', 'YSC'],
             'active' => false,
         ]);
     }
